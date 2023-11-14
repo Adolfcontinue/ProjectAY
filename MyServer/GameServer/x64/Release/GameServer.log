@@ -1,17 +1,18 @@
 ﻿  pch.cpp
   ClientPacketHandler.cpp
   GameServer.cpp
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(2): warning C4603: '_CRTDBG_MAP_ALLOC': 매크로가 정의되지 않았거나 미리 컴파일된 헤더 사용 후와 정의가 다릅니다.
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(2): message : 여기에서 정의하지 않고 미리 컴파일된 헤더에 매크로 추가
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(5): message : 미리 컴파일된 헤더 사용
   GameSession.cpp
-C:\Users\godye\Desktop\Project\MyServer\GameServer\GameSession.cpp(10,48): warning C4244: '인수': 'int64'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\Project\MyServer\GameServer\GameSession.cpp(26,51): warning C4244: '인수': 'int64'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameSessionManager.cpp
   User.cpp
-  UserManager.cpp
+  World.cpp
   Enum.pb.cc
   Protocol.pb.cc
   Struct.pb.cc
   코드를 생성하고 있습니다.
   Previous IPDB not found, fall back to full compilation.
-  All 1898 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 2110 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
-  GameServer.vcxproj -> C:\Users\godye\Desktop\Project\MyServer\Binary\Release\GameServer.exe
+  GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Release\GameServer.exe

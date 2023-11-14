@@ -3,7 +3,7 @@
   Allocator.cpp
   BufferReader.cpp
   BufferWriter.cpp
-C:\Users\godye\Desktop\Project\ProjectYA\MyServer\ServerCore\BufferWriter.cpp(19,17): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\BufferWriter.cpp(19,17): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   ConsoleLogger.cpp
   CoreGlobal.cpp
   CorePch.cpp
@@ -26,4 +26,5 @@ C:\Users\godye\Desktop\Project\ProjectYA\MyServer\ServerCore\BufferWriter.cpp(19
   SocketUtils.cpp
   Table.cpp
   ThreadManager.cpp
-  ServerCore.vcxproj -> C:\Users\godye\Desktop\Project\ProjectYA\MyServer\Libraries\Libs\ServerCore\Release\ServerCore.lib
+  TimeConverter.cpp
+  ServerCore.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Libraries\Libs\ServerCore\Release\ServerCore.lib
