@@ -1,0 +1,6 @@
+set CURRENT_PATH=%~dp0
+echo %CURRENT_PATH%
+
+protoc -I%CURRENT_PATH% --cpp_out=%CURRENT_PATH% %CURRENT_PATH%Protocol.proto
+
+IF ERRORLEVEL 1 PAUSE

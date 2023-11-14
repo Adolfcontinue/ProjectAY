@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Protocol;
+
+import "Enum.proto";
+import "Struct.proto";
+
+message C2P_RequestLogin
+{
+	string id = 1;
+	string pw = 2;
+}
+
+message P2C_ResultLogin
+{
+	uint32 result = 1;
+}
