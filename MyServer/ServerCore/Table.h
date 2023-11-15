@@ -18,6 +18,9 @@ public:
         }
     }
 
+public:
+    virtual void Init() override {}
+
 protected:
     std::unordered_map<TKey, TValue> _table;
 
@@ -56,4 +59,5 @@ public:
         return _table.size();
     }
 };
+
 

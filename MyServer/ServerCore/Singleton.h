@@ -6,6 +6,9 @@ protected:
     ~Singleton() {};
     Singleton(const Singleton& other) {};
 
+public:
+    virtual void Init();
+
 private:
     static std::once_flag _check;
     static T* _instance;

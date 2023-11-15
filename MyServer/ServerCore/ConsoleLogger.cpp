@@ -1,31 +1,31 @@
 #include "pch.h"
 #include "ConsoleLogger.h"
 
-string ConsoleLog::ConvertString()
+ConsoleLogger::ConsoleLogger()
 {
-	return _msg;
 }
 
-void ConsoleLogger::SetLogType(ConsoleLogType type)
+ConsoleLogger::~ConsoleLogger()
 {
-	_type = type;
 }
 
-void ConsoleLogger::AddLog(ConsoleLog* log)
+void ConsoleLogger::Init()
+{
+}
+
+void ConsoleLogger::AddLog(string log)
 {
 	WRITE_LOCK;
-	_logqueue.push(log);
+	log_queue.push(log);
 }
 
 void ConsoleLogger::Print()
 {
 	WRITE_LOCK;
-	while (!_logqueue.empty())
+	while (run && !log_queue.empty())
 	{
-		ConsoleLog* data = _logqueue.front();
-		cout << data->ConvertString() << std::endl;
-		_logqueue.pop();
-		delete data;
+		cout << log_queue.front() << std::endl;
+		log_queue.pop();
 	}
 }
 

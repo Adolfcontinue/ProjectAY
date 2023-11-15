@@ -108,12 +108,14 @@
     <ClInclude Include="Singleton.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="..\GameServer\CSVReader.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="TimeConverter.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -189,12 +191,14 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="..\GameServer\CSVReader.cpp">
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="TimeConverter.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
