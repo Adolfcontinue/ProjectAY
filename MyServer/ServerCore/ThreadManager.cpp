@@ -18,6 +18,10 @@ ThreadManager::~ThreadManager()
 	Join();
 }
 
+void ThreadManager::Init()
+{
+}
+
 void ThreadManager::Launch(function<void(void)> callback)
 {
 	LockGuard guard(_lock);

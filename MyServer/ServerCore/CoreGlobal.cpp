@@ -5,10 +5,10 @@
 #include "DeadLockProfiler.h"
 #include "SocketUtils.h"
 #include "SendBuffer.h"
+#include "DBConnectionPool.h"
+#include "QueryRunManager.h"
 
-ThreadManager*		GThreadManager = nullptr;
 Memory*				GMemory = nullptr;
-SendBufferManager*  GSendBufferManager = nullptr;
 DeadLockProfiler*	GDeadLockProfiler = nullptr;
 
 class CoreGlobal
@@ -16,18 +16,25 @@ class CoreGlobal
 public:
 	CoreGlobal()
 	{
-		GThreadManager = new ThreadManager();
+		/*DBConnectionPool::Instance().Init();
+		ThreadManager::Instance().Init();
+		SendBufferManager::Instance().Init();
+		QueryRunManager::Instance().Init();*/
+		//GThreadManager = new ThreadManager();
 		GMemory = new Memory();
-		GSendBufferManager = new SendBufferManager();
 		GDeadLockProfiler = new DeadLockProfiler();
 		SocketUtils::Init();
 	}
 
 	~CoreGlobal()
 	{
-		delete GThreadManager;
+		/*ThreadManager::Destroy();
+		SendBufferManager::Destroy();
+		DBConnectionPool::Destroy();
+		QueryRunManager::Destroy();*/
+
+		//delete GThreadManager;
 		delete GMemory;
-		delete GSendBufferManager;
 		delete GDeadLockProfiler;
 		SocketUtils::Clear();
 	}

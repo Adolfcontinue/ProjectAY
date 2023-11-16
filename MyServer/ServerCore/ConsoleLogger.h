@@ -2,7 +2,7 @@
 
 #include "Singleton.h"
 
-class ConsoleLogger : Singleton<ConsoleLogger>
+class ConsoleLogger : public Singleton<ConsoleLogger>
 {
 public:
 	ConsoleLogger();

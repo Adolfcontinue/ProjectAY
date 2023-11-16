@@ -19,6 +19,9 @@
     <Filter Include="Session">
       <UniqueIdentifier>{24caac57-d7d8-49fe-99e3-24a4720835cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{2297043b-5045-467d-8a86-5e0fa06e3564}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -51,6 +54,7 @@
     <ClCompile Include="World.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -80,5 +84,6 @@
     <ClInclude Include="World.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h" />
   </ItemGroup>
 </Project>

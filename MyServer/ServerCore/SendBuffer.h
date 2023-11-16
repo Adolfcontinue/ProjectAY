@@ -1,4 +1,5 @@
 #pragma once
+#include "Singleton.h"
 
 class SendBufferChunk;
 
@@ -48,7 +49,7 @@ private:
 	uint32 _usedSize = 0;
 };
 
-class SendBufferManager
+class SendBufferManager	: public Singleton<SendBufferManager>
 {
 public:
 	SendBufferRef Open(uint32 size);

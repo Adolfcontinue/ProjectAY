@@ -29,6 +29,7 @@ using ClientServiceRef	= std::shared_ptr<class ClientService>;
 using SendBufferRef		= std::shared_ptr<class SendBuffer>;
 using SendBufferChunkRef = std::shared_ptr<class SendBufferChunk>;
 using PacketSessionRef = std::shared_ptr<class PacketSession>;
+using DBQueryRef = std::shared_ptr<class DBQuery>;
 
 
 #define size16(val)		static_cast<int16>(sizeof(val))

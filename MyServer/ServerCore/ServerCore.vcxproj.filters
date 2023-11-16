@@ -19,6 +19,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{077f92d0-dcec-403d-828c-d3c61f1847c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{03be30f8-6108-4aca-a81d-fed6a5d8d33b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CorePch.h">
@@ -117,6 +120,18 @@
     <ClInclude Include="ConsoleLogger.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="DBConnection.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBQuery.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryRunManager.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePch.cpp">
@@ -199,6 +214,18 @@
     </ClCompile>
     <ClCompile Include="ConsoleLogger.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnectionPool.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBQuery.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryRunManager.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

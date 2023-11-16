@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename T>
 class Singleton
 {
@@ -42,3 +44,8 @@ T* Singleton <T>::_instance = nullptr;
 
 template <typename T> 
 std::once_flag Singleton<T>::_check;
+
+template<typename T>
+inline void Singleton<T>::Init()
+{
+}

@@ -1,9 +1,14 @@
 ﻿  pch.cpp
   ClientPacketHandler.cpp
+  Engine.cpp
   GameServer.cpp
-C:\Users\godye\Desktop\Project\ProjectYA\MyServer\GameServer\GameServer.cpp(2): warning C4603: '_CRTDBG_MAP_ALLOC': 매크로가 정의되지 않았거나 미리 컴파일된 헤더 사용 후와 정의가 다릅니다.
-C:\Users\godye\Desktop\Project\ProjectYA\MyServer\GameServer\GameServer.cpp(2): message : 여기에서 정의하지 않고 미리 컴파일된 헤더에 매크로 추가
-C:\Users\godye\Desktop\Project\ProjectYA\MyServer\GameServer\GameServer.cpp(5,1): message : 미리 컴파일된 헤더 사용
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(2,1): warning C4603: '_CRTDBG_MAP_ALLOC': 매크로가 정의되지 않았거나 미리 컴파일된 헤더 사용 후와 정의가 다릅니다.
+  (소스 파일 '/GameServer.cpp'을(를) 컴파일하는 중)
+  C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(2,1):
+  여기에서 정의하지 않고 미리 컴파일된 헤더에 매크로 추가
+  C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(5,1):
+  미리 컴파일된 헤더 사용
+  
   GameSession.cpp
   GameSessionManager.cpp
   User.cpp
@@ -13,4 +18,4 @@ C:\Users\godye\Desktop\Project\ProjectYA\MyServer\GameServer\GameServer.cpp(5,1)
   Protocol.pb.cc
   Struct.pb.cc
   코드를 생성하고 있습니다...
-  GameServer.vcxproj -> C:\Users\godye\Desktop\Project\ProjectYA\MyServer\Binary\Debug\GameServer.exe
+  GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\GameServer.exe
