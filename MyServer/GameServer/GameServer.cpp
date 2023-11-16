@@ -1,8 +1,4 @@
-﻿#ifdef _DEBUG
-	#define _CRTDBG_MAP_ALLOC
-#endif
-
-#include "pch.h"
+﻿#include "pch.h"
 #include "ThreadManager.h"
 #include "Service.h"
 #include "Session.h"
@@ -42,9 +38,5 @@ int main()
 	}
 
 	ThreadManager::Instance().Join();
-
-#ifdef  _DEBUG
-	_CrtDumpMemoryLeaks();
-#endif
 
 }
