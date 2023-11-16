@@ -6,7 +6,6 @@
 #include "SocketUtils.h"
 #include "SendBuffer.h"
 #include "DBConnectionPool.h"
-#include "QueryRunManager.h"
 
 Memory*				GMemory = nullptr;
 DeadLockProfiler*	GDeadLockProfiler = nullptr;
@@ -21,6 +20,7 @@ public:
 		SendBufferManager::Instance().Init();
 		QueryRunManager::Instance().Init();*/
 		//GThreadManager = new ThreadManager();
+
 		GMemory = new Memory();
 		GDeadLockProfiler = new DeadLockProfiler();
 		SocketUtils::Init();

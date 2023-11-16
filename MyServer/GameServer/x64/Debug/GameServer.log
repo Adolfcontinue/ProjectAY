@@ -11,6 +11,7 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp(2,
   
   GameSession.cpp
   GameSessionManager.cpp
+  MSDBQuery.cpp
   User.cpp
   World.cpp
   코드를 생성하고 있습니다...

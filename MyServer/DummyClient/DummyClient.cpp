@@ -58,7 +58,7 @@ int main()
 
 	for (int32 i = 0; i < 2; i++)
 	{
-		GThreadManager->Launch([=]()
+		ThreadManager::Instance().Launch([=]()
 			{
 				while (true)
 				{
@@ -77,5 +77,5 @@ int main()
 		this_thread::sleep_for(1s);
 	}*/
 
-	GThreadManager->Join();
+	ThreadManager::Instance().Join();
 }
