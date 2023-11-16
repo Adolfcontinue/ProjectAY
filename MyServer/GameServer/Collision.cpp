@@ -1,7 +1,12 @@
 #include "pch.h"
 #include "Collision.h"
+#include <cmath>
 
-bool Collision::SphereToSphere(SVector& src, SVector& desc)
+bool Collision::SphereToSphere(SVector& srcPos, double srcRadius, SVector& descPos, double descRadius)
 {
-	return false;
-} 
+	double dist = Math::Distance(srcPos, descPos);
+
+	double subRadius = Math::Distance(srcRadius, descRadius);
+
+	return dist <= subRadius;
+}
