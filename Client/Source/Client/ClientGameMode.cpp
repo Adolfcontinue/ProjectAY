@@ -1,26 +1,15 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ClientGameMode.h"
-#include "ClientPlayerController.h"
 #include "ClientCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 AClientGameMode::AClientGameMode()
 {
-	// use our custom PlayerController class
-	PlayerControllerClass = AClientPlayerController::StaticClass();
-
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownCharacter"));
-	if (PlayerPawnBPClass.Class != nullptr)
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
+	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
-	}
-
-	// set default controller to our Blueprinted controller
-	static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownPlayerController"));
-	if(PlayerControllerBPClass.Class != NULL)
-	{
-		PlayerControllerClass = PlayerControllerBPClass.Class;
 	}
 }
