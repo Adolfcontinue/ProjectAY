@@ -22,6 +22,9 @@
     <Filter Include="DB">
       <UniqueIdentifier>{2297043b-5045-467d-8a86-5e0fa06e3564}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{9980c2c2-3d5d-4802-91ab-2b1e4cea3a19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -58,6 +61,8 @@
     <ClCompile Include="MSDBQuery.cpp">
       <Filter>DB</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="SVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -91,5 +96,7 @@
     <ClInclude Include="MSDBQuery.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="SVector.h" />
   </ItemGroup>
 </Project>
