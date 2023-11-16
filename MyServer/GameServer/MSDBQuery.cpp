@@ -11,6 +11,8 @@ QueryLogin::QueryLogin(int64 sessionKey, int32 param1, int32 param2)
 void QueryLogin::Run()
 {
 	DBConect;
+	if (con == nullptr)
+		return;
 
 	int inputIndex = 0;
 	SQLLEN input;
