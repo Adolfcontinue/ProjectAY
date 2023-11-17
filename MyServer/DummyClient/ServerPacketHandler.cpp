@@ -12,3 +12,13 @@ bool Handler::P2C_ResultLogin(PacketSessionRef& session, Protocol::P2C_ResultLog
 {
 	return false;
 }
+
+bool Handler::P2C_ReportMove(PacketSessionRef& session, Protocol::P2C_ReportMove& packet)
+{
+	return false;
+}
+
+bool Handler::P2C_ResultCollision(PacketSessionRef& session, Protocol::P2C_ResultCollision& packet)
+{
+	return false;
+}

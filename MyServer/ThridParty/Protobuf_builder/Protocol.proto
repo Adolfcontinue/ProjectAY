@@ -30,3 +30,20 @@ message P2C_ReportMove
 	double posY = 3;
 	double posZ = 4;
 }
+
+message C2P_RequestCollison
+{
+	double srcX = 1;
+	double srcY = 2;
+	double srcZ = 3;
+	double srcR = 4;
+	double descX = 5;
+	double descY = 6;
+	double descZ = 7;
+	double descR = 8;
+}
+
+message P2C_ResultCollision
+{
+	uint32 result = 1;
+}

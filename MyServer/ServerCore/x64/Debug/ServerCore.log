@@ -3,10 +3,10 @@
   Allocator.cpp
   BufferReader.cpp
   BufferWriter.cpp
-  ConsoleLogger.cpp
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\BufferWriter.cpp(19,17): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   (소스 파일 '/BufferWriter.cpp'을(를) 컴파일하는 중)
   
+  ConsoleLogger.cpp
   CoreGlobal.cpp
   CorePch.cpp
   CoreTLS.cpp

@@ -4,6 +4,7 @@
 #include "MSDBQuery.h"
 #include "GameSessionManager.h"
 #include "GameSession.h"
+#include "Collision.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -42,5 +43,20 @@ bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove
 	GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
 
 	return false;
+}
+
+bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_RequestCollison& packet)
+{
+	SVector srcvec = SVector(packet.srcx(), packet.srcy(), packet.srcz());
+	SVector descvec = SVector(packet.descx(), packet.descy(), packet.descz());
+
+	bool retval = Collision::SphereToSphere(srcvec, packet.srcr(), descvec, packet.descr());
+	
+	Protocol::P2C_ResultCollision sendPacket;
+	sendPacket.set_result((uint32)retval);
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	session->Send(sendBuffer);
+	return true;
 }
 

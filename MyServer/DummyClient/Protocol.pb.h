@@ -48,7 +48,7 @@ struct TableStruct_Protocol_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,20 +59,28 @@ namespace Protocol {
 class C2P_ReportMove;
 struct C2P_ReportMoveDefaultTypeInternal;
 extern C2P_ReportMoveDefaultTypeInternal _C2P_ReportMove_default_instance_;
+class C2P_RequestCollison;
+struct C2P_RequestCollisonDefaultTypeInternal;
+extern C2P_RequestCollisonDefaultTypeInternal _C2P_RequestCollison_default_instance_;
 class C2P_RequestLogin;
 struct C2P_RequestLoginDefaultTypeInternal;
 extern C2P_RequestLoginDefaultTypeInternal _C2P_RequestLogin_default_instance_;
 class P2C_ReportMove;
 struct P2C_ReportMoveDefaultTypeInternal;
 extern P2C_ReportMoveDefaultTypeInternal _P2C_ReportMove_default_instance_;
+class P2C_ResultCollision;
+struct P2C_ResultCollisionDefaultTypeInternal;
+extern P2C_ResultCollisionDefaultTypeInternal _P2C_ResultCollision_default_instance_;
 class P2C_ResultLogin;
 struct P2C_ResultLoginDefaultTypeInternal;
 extern P2C_ResultLoginDefaultTypeInternal _P2C_ResultLogin_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Protocol::C2P_ReportMove* Arena::CreateMaybeMessage<::Protocol::C2P_ReportMove>(Arena*);
+template<> ::Protocol::C2P_RequestCollison* Arena::CreateMaybeMessage<::Protocol::C2P_RequestCollison>(Arena*);
 template<> ::Protocol::C2P_RequestLogin* Arena::CreateMaybeMessage<::Protocol::C2P_RequestLogin>(Arena*);
 template<> ::Protocol::P2C_ReportMove* Arena::CreateMaybeMessage<::Protocol::P2C_ReportMove>(Arena*);
+template<> ::Protocol::P2C_ResultCollision* Arena::CreateMaybeMessage<::Protocol::P2C_ResultCollision>(Arena*);
 template<> ::Protocol::P2C_ResultLogin* Arena::CreateMaybeMessage<::Protocol::P2C_ResultLogin>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
@@ -692,6 +700,347 @@ class P2C_ReportMove final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
+// -------------------------------------------------------------------
+
+class C2P_RequestCollison final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C2P_RequestCollison) */ {
+ public:
+  inline C2P_RequestCollison() : C2P_RequestCollison(nullptr) {}
+  ~C2P_RequestCollison() override;
+  explicit constexpr C2P_RequestCollison(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  C2P_RequestCollison(const C2P_RequestCollison& from);
+  C2P_RequestCollison(C2P_RequestCollison&& from) noexcept
+    : C2P_RequestCollison() {
+    *this = ::std::move(from);
+  }
+
+  inline C2P_RequestCollison& operator=(const C2P_RequestCollison& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline C2P_RequestCollison& operator=(C2P_RequestCollison&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const C2P_RequestCollison& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const C2P_RequestCollison* internal_default_instance() {
+    return reinterpret_cast<const C2P_RequestCollison*>(
+               &_C2P_RequestCollison_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(C2P_RequestCollison& a, C2P_RequestCollison& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(C2P_RequestCollison* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(C2P_RequestCollison* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline C2P_RequestCollison* New() const final {
+    return new C2P_RequestCollison();
+  }
+
+  C2P_RequestCollison* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<C2P_RequestCollison>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const C2P_RequestCollison& from);
+  void MergeFrom(const C2P_RequestCollison& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(C2P_RequestCollison* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.C2P_RequestCollison";
+  }
+  protected:
+  explicit C2P_RequestCollison(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSrcXFieldNumber = 1,
+    kSrcYFieldNumber = 2,
+    kSrcZFieldNumber = 3,
+    kSrcRFieldNumber = 4,
+    kDescXFieldNumber = 5,
+    kDescYFieldNumber = 6,
+    kDescZFieldNumber = 7,
+    kDescRFieldNumber = 8,
+  };
+  // double srcX = 1;
+  void clear_srcx();
+  double srcx() const;
+  void set_srcx(double value);
+  private:
+  double _internal_srcx() const;
+  void _internal_set_srcx(double value);
+  public:
+
+  // double srcY = 2;
+  void clear_srcy();
+  double srcy() const;
+  void set_srcy(double value);
+  private:
+  double _internal_srcy() const;
+  void _internal_set_srcy(double value);
+  public:
+
+  // double srcZ = 3;
+  void clear_srcz();
+  double srcz() const;
+  void set_srcz(double value);
+  private:
+  double _internal_srcz() const;
+  void _internal_set_srcz(double value);
+  public:
+
+  // double srcR = 4;
+  void clear_srcr();
+  double srcr() const;
+  void set_srcr(double value);
+  private:
+  double _internal_srcr() const;
+  void _internal_set_srcr(double value);
+  public:
+
+  // double descX = 5;
+  void clear_descx();
+  double descx() const;
+  void set_descx(double value);
+  private:
+  double _internal_descx() const;
+  void _internal_set_descx(double value);
+  public:
+
+  // double descY = 6;
+  void clear_descy();
+  double descy() const;
+  void set_descy(double value);
+  private:
+  double _internal_descy() const;
+  void _internal_set_descy(double value);
+  public:
+
+  // double descZ = 7;
+  void clear_descz();
+  double descz() const;
+  void set_descz(double value);
+  private:
+  double _internal_descz() const;
+  void _internal_set_descz(double value);
+  public:
+
+  // double descR = 8;
+  void clear_descr();
+  double descr() const;
+  void set_descr(double value);
+  private:
+  double _internal_descr() const;
+  void _internal_set_descr(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.C2P_RequestCollison)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double srcx_;
+  double srcy_;
+  double srcz_;
+  double srcr_;
+  double descx_;
+  double descy_;
+  double descz_;
+  double descr_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_Protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
+class P2C_ResultCollision final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.P2C_ResultCollision) */ {
+ public:
+  inline P2C_ResultCollision() : P2C_ResultCollision(nullptr) {}
+  ~P2C_ResultCollision() override;
+  explicit constexpr P2C_ResultCollision(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  P2C_ResultCollision(const P2C_ResultCollision& from);
+  P2C_ResultCollision(P2C_ResultCollision&& from) noexcept
+    : P2C_ResultCollision() {
+    *this = ::std::move(from);
+  }
+
+  inline P2C_ResultCollision& operator=(const P2C_ResultCollision& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline P2C_ResultCollision& operator=(P2C_ResultCollision&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const P2C_ResultCollision& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const P2C_ResultCollision* internal_default_instance() {
+    return reinterpret_cast<const P2C_ResultCollision*>(
+               &_P2C_ResultCollision_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(P2C_ResultCollision& a, P2C_ResultCollision& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(P2C_ResultCollision* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(P2C_ResultCollision* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline P2C_ResultCollision* New() const final {
+    return new P2C_ResultCollision();
+  }
+
+  P2C_ResultCollision* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<P2C_ResultCollision>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const P2C_ResultCollision& from);
+  void MergeFrom(const P2C_ResultCollision& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(P2C_ResultCollision* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.P2C_ResultCollision";
+  }
+  protected:
+  explicit P2C_ResultCollision(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResultFieldNumber = 1,
+  };
+  // uint32 result = 1;
+  void clear_result();
+  ::PROTOBUF_NAMESPACE_ID::uint32 result() const;
+  void set_result(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_result() const;
+  void _internal_set_result(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.P2C_ResultCollision)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 result_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_Protocol_2eproto;
+};
 // ===================================================================
 
 
@@ -985,9 +1334,201 @@ inline void P2C_ReportMove::set_posz(double value) {
   // @@protoc_insertion_point(field_set:Protocol.P2C_ReportMove.posZ)
 }
 
+// -------------------------------------------------------------------
+
+// C2P_RequestCollison
+
+// double srcX = 1;
+inline void C2P_RequestCollison::clear_srcx() {
+  srcx_ = 0;
+}
+inline double C2P_RequestCollison::_internal_srcx() const {
+  return srcx_;
+}
+inline double C2P_RequestCollison::srcx() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.srcX)
+  return _internal_srcx();
+}
+inline void C2P_RequestCollison::_internal_set_srcx(double value) {
+  
+  srcx_ = value;
+}
+inline void C2P_RequestCollison::set_srcx(double value) {
+  _internal_set_srcx(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.srcX)
+}
+
+// double srcY = 2;
+inline void C2P_RequestCollison::clear_srcy() {
+  srcy_ = 0;
+}
+inline double C2P_RequestCollison::_internal_srcy() const {
+  return srcy_;
+}
+inline double C2P_RequestCollison::srcy() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.srcY)
+  return _internal_srcy();
+}
+inline void C2P_RequestCollison::_internal_set_srcy(double value) {
+  
+  srcy_ = value;
+}
+inline void C2P_RequestCollison::set_srcy(double value) {
+  _internal_set_srcy(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.srcY)
+}
+
+// double srcZ = 3;
+inline void C2P_RequestCollison::clear_srcz() {
+  srcz_ = 0;
+}
+inline double C2P_RequestCollison::_internal_srcz() const {
+  return srcz_;
+}
+inline double C2P_RequestCollison::srcz() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.srcZ)
+  return _internal_srcz();
+}
+inline void C2P_RequestCollison::_internal_set_srcz(double value) {
+  
+  srcz_ = value;
+}
+inline void C2P_RequestCollison::set_srcz(double value) {
+  _internal_set_srcz(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.srcZ)
+}
+
+// double srcR = 4;
+inline void C2P_RequestCollison::clear_srcr() {
+  srcr_ = 0;
+}
+inline double C2P_RequestCollison::_internal_srcr() const {
+  return srcr_;
+}
+inline double C2P_RequestCollison::srcr() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.srcR)
+  return _internal_srcr();
+}
+inline void C2P_RequestCollison::_internal_set_srcr(double value) {
+  
+  srcr_ = value;
+}
+inline void C2P_RequestCollison::set_srcr(double value) {
+  _internal_set_srcr(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.srcR)
+}
+
+// double descX = 5;
+inline void C2P_RequestCollison::clear_descx() {
+  descx_ = 0;
+}
+inline double C2P_RequestCollison::_internal_descx() const {
+  return descx_;
+}
+inline double C2P_RequestCollison::descx() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.descX)
+  return _internal_descx();
+}
+inline void C2P_RequestCollison::_internal_set_descx(double value) {
+  
+  descx_ = value;
+}
+inline void C2P_RequestCollison::set_descx(double value) {
+  _internal_set_descx(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.descX)
+}
+
+// double descY = 6;
+inline void C2P_RequestCollison::clear_descy() {
+  descy_ = 0;
+}
+inline double C2P_RequestCollison::_internal_descy() const {
+  return descy_;
+}
+inline double C2P_RequestCollison::descy() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.descY)
+  return _internal_descy();
+}
+inline void C2P_RequestCollison::_internal_set_descy(double value) {
+  
+  descy_ = value;
+}
+inline void C2P_RequestCollison::set_descy(double value) {
+  _internal_set_descy(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.descY)
+}
+
+// double descZ = 7;
+inline void C2P_RequestCollison::clear_descz() {
+  descz_ = 0;
+}
+inline double C2P_RequestCollison::_internal_descz() const {
+  return descz_;
+}
+inline double C2P_RequestCollison::descz() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.descZ)
+  return _internal_descz();
+}
+inline void C2P_RequestCollison::_internal_set_descz(double value) {
+  
+  descz_ = value;
+}
+inline void C2P_RequestCollison::set_descz(double value) {
+  _internal_set_descz(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.descZ)
+}
+
+// double descR = 8;
+inline void C2P_RequestCollison::clear_descr() {
+  descr_ = 0;
+}
+inline double C2P_RequestCollison::_internal_descr() const {
+  return descr_;
+}
+inline double C2P_RequestCollison::descr() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestCollison.descR)
+  return _internal_descr();
+}
+inline void C2P_RequestCollison::_internal_set_descr(double value) {
+  
+  descr_ = value;
+}
+inline void C2P_RequestCollison::set_descr(double value) {
+  _internal_set_descr(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestCollison.descR)
+}
+
+// -------------------------------------------------------------------
+
+// P2C_ResultCollision
+
+// uint32 result = 1;
+inline void P2C_ResultCollision::clear_result() {
+  result_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 P2C_ResultCollision::_internal_result() const {
+  return result_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 P2C_ResultCollision::result() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ResultCollision.result)
+  return _internal_result();
+}
+inline void P2C_ResultCollision::_internal_set_result(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  result_ = value;
+}
+inline void P2C_ResultCollision::set_result(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_result(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ResultCollision.result)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
