@@ -1,9 +1,24 @@
 ﻿  pch.cpp
-  Enum.pb.cc
-  Protocol.pb.cc
-  Struct.pb.cc
-  코드를 생성하고 있습니다...
-  ServerPacketHandler.cpp
   DummyClient.cpp
+  ServerPacketHandler.cpp
   코드를 생성하고 있습니다...
+  LINK : C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\DummyClient.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
+ServerCore.lib(Allocator.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Allocator.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(SendBuffer.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(SendBuffer.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(IocpCore.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(IocpCore.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(NetAddress.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(NetAddress.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(Session.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Session.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(ThreadManager.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(ThreadManager.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(Service.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Service.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(Memory.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Memory.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(CoreGlobal.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(CoreGlobal.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(pch.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(pch.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(Lock.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Lock.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(CoreTLS.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(CoreTLS.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(IocpEvent.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(IocpEvent.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(RecvBuffer.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(RecvBuffer.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(SocketUtils.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(SocketUtils.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(Listener.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(Listener.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(MemoryPool.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(MemoryPool.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
+ServerCore.lib(DeadLockProfiler.obj) : warning LNK4099: '' PDB를 'ServerCore.lib(DeadLockProfiler.obj)' 또는 ''에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
   DummyClient.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\DummyClient.exe

@@ -2,6 +2,8 @@
 #include "ClientPacketHandler.h"
 #include "QueryRunManager.h"
 #include "MSDBQuery.h"
+#include "GameSessionManager.h"
+#include "GameSession.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -14,21 +16,31 @@ bool Handler::Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
 
 bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestLogin& packet)
 {
-	/*if (packet.id().empty())
+	//::todo db
+	
+	Protocol::P2C_ResultLogin sendPacket;
+	sendPacket.set_result((uint32)true);
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	session->Send(sendBuffer);
+
+	return true;
+}
+
+bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
+{
+	if (session == nullptr)
 		return false;
 
-	if (packet.id().empty())
-		return false;*/
+	Protocol::P2C_ReportMove sendPacket;
+	sendPacket.set_sessionkey(session->GetSessionKey());
+	sendPacket.set_posx(packet.posx());
+	sendPacket.set_posy(packet.posy());
+	sendPacket.set_posz(packet.posz());
 
-	//::todo db
-	std::shared_ptr<QueryLogin> query = std::make_shared<QueryLogin>(1, 1, 1);
-	QueryRunManager::Instance().Push(std::static_pointer_cast<DBQuery>(query));
-
-	Protocol::P2C_ResultLogin send;
-	send.set_result((uint32)true);
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(send);
-	session->Send(sendBuffer);
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	
-	return true;
+	GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
+
+	return false;
 }
 

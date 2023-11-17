@@ -9,3 +9,10 @@ message BuffData
 	float remainTime = 2;
 	repeated uint64 victims = 3;
 }
+
+message Vector
+{
+	double x = 1;
+	double y = 2;
+	double z = 3;
+}

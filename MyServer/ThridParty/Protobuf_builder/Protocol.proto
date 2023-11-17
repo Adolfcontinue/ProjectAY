@@ -14,3 +14,19 @@ message P2C_ResultLogin
 {
 	uint32 result = 1;
 }
+
+message C2P_ReportMove
+{
+	int64 sessionKey = 1;
+	double posX = 2;
+	double posY = 3;
+	double posZ = 4;
+}
+
+message P2C_ReportMove
+{
+	int64 sessionKey = 1;
+	double posX = 2;
+	double posY = 3;
+	double posZ = 4;
+}

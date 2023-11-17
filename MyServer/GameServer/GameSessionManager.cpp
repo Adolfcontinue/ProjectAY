@@ -37,6 +37,19 @@ void GameSessionManager::BroadCast(SendBufferRef sendBuffer)
 	}
 }
 
+void GameSessionManager::BroadCast(SendBufferRef sendBuffer, int64 except)
+{
+	WRITE_LOCK;
+	for (GameSessionRef session : _sessions)
+	{
+		if (session->GetSessionKey() == except)
+			continue;
+
+		session->Send(sendBuffer);
+	}
+}
+
+
 GameSessionRef GameSessionManager::Find(int64 sessionKey)
 {
 	auto iter = _sessionMap.find(sessionKey);

@@ -11,6 +11,17 @@
 #include "DBConnectionPool.h"
 #include "QueryRunManager.h"
 
+void Process(ServerServiceRef& sevice)
+{
+	while (true)
+	{
+		sevice->GetIocpCore()->Dispatch();
+		std::cout << "cll" << std::endl;
+		QueryRunManager::Instance().Run();
+		QueryRunManager::Instance().Complete();
+	}
+}
+
 int main()
 {
 	std::cout << "Server Start .. !" << std::endl;
@@ -28,15 +39,18 @@ int main()
 
 	for (int32 i = 0; i < 5; i++)
 	{
-		ThreadManager::Instance().Launch([=]()
+		ThreadManager::Instance().Launch([&service]()
 			{
 				while (true)
 				{
-					service->GetIocpCore()->Dispatch();
+					Process(service);
 				}
 			});
 	}
 
+	Process(service);
+
 	ThreadManager::Instance().Join();
 
 }
+
