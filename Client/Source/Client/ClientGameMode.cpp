@@ -13,3 +13,4 @@ AClientGameMode::AClientGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 }
+	
