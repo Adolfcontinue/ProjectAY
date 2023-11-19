@@ -6,6 +6,7 @@ c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\world.o
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\user.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\svector.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\msdbquery.obj
+c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\monster.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\math.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\gamesessionmanager.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\gamesession.obj
@@ -13,6 +14,7 @@ c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\gameser
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\engine.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\collision.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\clientpackethandler.obj
+c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\actor.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\struct.pb.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\protocol.pb.obj
 c:\users\godye\desktop\myproject\projectay\myserver\gameserver\x64\debug\enum.pb.obj

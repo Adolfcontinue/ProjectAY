@@ -13,3 +13,4 @@
 #include "CorePch.h"
 
 using UserRef = std::shared_ptr<class User>;
+using MonsterRef = std::shared_ptr<class Monster>;

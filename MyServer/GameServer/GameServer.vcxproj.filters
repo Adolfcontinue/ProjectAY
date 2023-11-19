@@ -63,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="SVector.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Actor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -98,5 +101,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="SVector.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Enum.h" />
   </ItemGroup>
 </Project>

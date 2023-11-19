@@ -170,6 +170,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ClientPacketHandler.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="GameSession.cpp" />
     <ClCompile Include="GameSessionManager.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MSDBQuery.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -207,12 +209,15 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="Enum.pb.h" />
     <ClInclude Include="GameSession.h" />
     <ClInclude Include="GameSessionManager.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="MSDBQuery.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ClientPacketHandler.h" />

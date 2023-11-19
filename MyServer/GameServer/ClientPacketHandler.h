@@ -12,6 +12,7 @@ enum Packet_C2P
 	P2C_ReportMove = 1003,
 	C2P_RequestCollison = 1004,
 	P2C_ResultCollision = 1005,
+	P2C_ReportUpdateMonsters = 1006,
 };
 
 // Custom Handlers
@@ -44,6 +45,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultLogin& packet) { return MakeSendBuffer(packet, P2C_ResultLogin); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMove& packet) { return MakeSendBuffer(packet, P2C_ReportMove); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultCollision& packet) { return MakeSendBuffer(packet, P2C_ResultCollision); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportUpdateMonsters& packet) { return MakeSendBuffer(packet, P2C_ReportUpdateMonsters); }
 
 
 private:

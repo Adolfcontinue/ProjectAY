@@ -4,13 +4,13 @@
 #include "GameSessionManager.h"
 #include "GameSession.h"
 
-void World::Enter(UserRef user)
+void World::EnterUser(UserRef user)
 {
 	WRITE_LOCK;
 	_users[user->GetSessionKey()] = user;
 }
 
-void World::Leave(UserRef user)
+void World::LeaveUser(UserRef user)
 {
 	WRITE_LOCK;
 	_users.erase(user->GetSessionKey());

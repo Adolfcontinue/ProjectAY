@@ -1,3 +1,4 @@
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Actor.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Actor.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\ClientPacketHandler.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\ClientPacketHandler.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Collision.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Collision.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Engine.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Engine.obj
@@ -6,6 +7,7 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameServer.cpp;C:
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameSession.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\GameSession.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\GameSessionManager.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\GameSessionManager.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Math.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Math.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Monster.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Monster.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\MSDBQuery.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\MSDBQuery.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\pch.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\pch.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Protocol.pb.cc;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\x64\Debug\Protocol.pb.obj

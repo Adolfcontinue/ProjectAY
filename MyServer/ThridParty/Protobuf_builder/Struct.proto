@@ -3,16 +3,25 @@ package Protocol;
 
 import "Enum.proto";
 
-message BuffData
-{
-	uint64 buffId = 1;
-	float remainTime = 2;
-	repeated uint64 victims = 3;
-}
-
 message Vector
 {
 	double x = 1;
 	double y = 2;
 	double z = 3;
+}
+
+message UserData
+{
+	uint64 sessionKey = 1;
+	uint64 userKey = 2;
+	double col_r = 3;
+	Vector pos = 4;
+}
+
+message MonsterData
+{
+	uint64 monsterKey = 1;
+	int32  hp = 2;
+	double cor_r = 3;
+	Vector pos = 4;
 }

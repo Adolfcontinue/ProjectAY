@@ -15,10 +15,7 @@ void Process(ServerServiceRef& sevice)
 {
 	while (true)
 	{
-		sevice->GetIocpCore()->Dispatch();
-		std::cout << "cll" << std::endl;
-		QueryRunManager::Instance().Run();
-		QueryRunManager::Instance().Complete();
+		sevice->GetIocpCore()->Dispatch(10);
 	}
 }
 
