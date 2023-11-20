@@ -22,3 +22,8 @@ bool Handler::P2C_ResultCollision(PacketSessionRef& session, Protocol::P2C_Resul
 {
 	return false;
 }
+
+bool Handler::P2C_ReportUpdateMonsters(PacketSessionRef& session, Protocol::P2C_ReportUpdateMonsters& packet)
+{
+	return false;
+}
