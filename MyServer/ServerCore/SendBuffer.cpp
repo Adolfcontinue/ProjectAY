@@ -92,5 +92,5 @@ void SendBufferManager::Push(SendBufferChunkRef buffer)
 
 void SendBufferManager::PushGlobal(SendBufferChunk* buffer)
 {
-	SendBufferManager::Instance().Push(SendBufferChunkRef(buffer, PushGlobal));
+	GSendBufferManager->Push(SendBufferChunkRef(buffer, PushGlobal));
 }

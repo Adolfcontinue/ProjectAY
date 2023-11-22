@@ -5,6 +5,8 @@
 #include "GameSessionManager.h"
 #include "GameSession.h"
 #include "Collision.h"
+#include "World.h"
+#include "User.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -18,7 +20,14 @@ bool Handler::Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
 bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestLogin& packet)
 {
 	//::todo login data
-	
+	UserRef user = MakeShared<User>();
+	user->SetExp(0);
+	user->SetID(packet.id());
+	user->SetPW(packet.pw());
+	user->SetLevel(1);
+	user->SetSessionKey(session->GetSessionKey());
+
+	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
@@ -44,7 +53,9 @@ bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove
 
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	
-	GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
+	GWorld->DoASync(&World::BroadCast, sendBuffer);
+
+	//GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
 	return false;
 }
 
@@ -100,7 +111,9 @@ bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_Reque
 	}
 
 	SendBufferRef reportBuffer = ClientPacketHandler::MakeSendBuffer(reportPacket);
-	GGameSessionManager.BroadCast(reportBuffer, session->GetSessionKey());
+	//GGameSessionManager.BroadCast(reportBuffer, session->GetSessionKey());
+
+	GWorld->DoASync(&World::BroadCast, reportBuffer);
 	return true;
 }
 

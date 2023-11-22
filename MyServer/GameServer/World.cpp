@@ -4,21 +4,20 @@
 #include "GameSessionManager.h"
 #include "GameSession.h"
 
+shared_ptr<World> GWorld = make_shared<World>();
+
 void World::EnterUser(UserRef user)
 {
-	WRITE_LOCK;
 	_users[user->GetSessionKey()] = user;
 }
 
 void World::LeaveUser(UserRef user)
 {
-	WRITE_LOCK;
 	_users.erase(user->GetSessionKey());
 }
 
 void World::BroadCast(SendBufferRef sendBuffer)
 {
-	WRITE_LOCK;
 	for (auto& p : _users)
 	{
 		GameSessionRef sessison = GGameSessionManager.Find(p.first);

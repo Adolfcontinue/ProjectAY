@@ -49,7 +49,7 @@ private:
 	uint32 _usedSize = 0;
 };
 
-class SendBufferManager	: public Singleton<SendBufferManager>
+class SendBufferManager
 {
 public:
 	SendBufferRef Open(uint32 size);

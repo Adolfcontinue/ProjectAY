@@ -8,20 +8,21 @@
 	ThreadManager
 -------------------*/
 
-class ThreadManager	: public Singleton<ThreadManager>
+class ThreadManager
 {
 public:
 	ThreadManager();
 	~ThreadManager();
 
 public:
-	virtual void Init() override;
-
 	void	Launch(function<void(void)> callback);
 	void	Join();
 
 	static void InitTLS();
 	static void DestroyTLS();
+
+	static void DoGlobalQueueWork();
+	static void DistributeReserveJobs();
 
 private:
 	Mutex			_lock;

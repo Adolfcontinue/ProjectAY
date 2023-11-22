@@ -11,11 +11,21 @@
 #include "DBConnectionPool.h"
 #include "QueryRunManager.h"
 
+enum
+{
+	WORKER_TICK = 64
+};
+
 void Process(ServerServiceRef& sevice)
 {
 	while (true)
 	{
+		LEndTickCount = GetTickCount64() + WORKER_TICK;
+
 		sevice->GetIocpCore()->Dispatch(10);
+
+		ThreadManager::DistributeReserveJobs();
+		ThreadManager::DoGlobalQueueWork();
 	}
 }
 
@@ -36,7 +46,7 @@ int main()
 
 	for (int32 i = 0; i < 5; i++)
 	{
-		ThreadManager::Instance().Launch([&service]()
+		GThreadManager->Launch([&service]()
 			{
 				while (true)
 				{
@@ -47,7 +57,6 @@ int main()
 
 	Process(service);
 
-	ThreadManager::Instance().Join();
-
+	GThreadManager->Join();
 }
 

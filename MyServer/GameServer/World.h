@@ -1,5 +1,7 @@
 #pragma once
-class World
+#include "JobQueue.h"
+
+class World : public JobQueue
 {
 public:
 	void EnterUser(UserRef user);
@@ -8,8 +10,8 @@ public:
 	
 
 private:
-	USE_LOCK;
 	map<int64, UserRef> _users;
 	map<int64, MonsterRef> _monsters;
 };
 
+extern shared_ptr<World> GWorld;
