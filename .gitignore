@@ -107,7 +107,7 @@ Build/Android/res/*/*
 
 ##
 Client/Binaries/*
-Client/Build
+Client/Build/*
 Client/Intermediate/*
 Client/Saved/*
 Client/DerivedDataCache/*
