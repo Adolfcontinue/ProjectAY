@@ -104,8 +104,9 @@ Build/Android/res/*
 !Build/Android/res/*/
 Build/Android/res/*/*
 !Build/Android/res/*/*.png
-# Ignore plugins binaries on deep subfolders
-Plugins/**/Binaries/*
-Plugins/**/Intermediate/*
 
-# End of https://www.toptal.com/developers/gitignore/api/unrealengine,c++
+##
+Client/Binaries/*
+Client/Build
+Client/Intermediate/*
+Client/Saved/*
