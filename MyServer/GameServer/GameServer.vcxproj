@@ -204,7 +204,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SVector.cpp" />
+    <ClCompile Include="Float3.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -223,7 +223,7 @@
     <ClInclude Include="ClientPacketHandler.h" />
     <ClInclude Include="Protocol.pb.h" />
     <ClInclude Include="Struct.pb.h" />
-    <ClInclude Include="SVector.h" />
+    <ClInclude Include="Float3.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

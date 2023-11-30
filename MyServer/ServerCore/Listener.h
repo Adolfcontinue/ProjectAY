@@ -1,5 +1,5 @@
 #pragma once
-#include "IocpCore.h"
+#include "NetCore.h"
 #include "NetAddress.h"
 
 class AcceptEvent;
@@ -9,7 +9,7 @@ class ServerService;
 	Listener
 ---------------*/
 
-class Listener : public IocpObject
+class Listener : public NetObject
 {
 public:
 	Listener() = default;
@@ -23,7 +23,7 @@ public:
 public:
 	/* 인터페이스 구현 */
 	virtual HANDLE GetHandle() override;
-	virtual void Dispatch(class IocpEvent* iocpEvent, int32 numOfBytes = 0) override;
+	virtual void Dispatch(class NetEvent* iocpEvent, int32 numOfBytes = 0) override;
 
 private:
 	/* 수신 관련 */

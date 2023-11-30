@@ -1,11 +1,11 @@
 #pragma once
 #include <cmath>
-#include "SVector.h"
+#include "Float3.h"
 
 class Math
 {
 public:
-	static double Distance(SVector& src, SVector& desc)
+	static double Distance(Float3& src, Float3& desc)
 	{
 		double distX = pow(abs(src._x - desc._x), 2);
 		double distY = pow(abs(src._y - desc._y), 2);

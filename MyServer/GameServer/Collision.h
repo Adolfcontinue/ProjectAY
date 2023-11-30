@@ -1,10 +1,10 @@
 #pragma once
-#include "SVector.h"
+#include "Float3.h"
 #include "Math.h"
 
 class Collision
 {
 public:
-	static bool SphereToSphere(SVector& srcPos, double srcRadius, SVector& descPos, double descRadius);
+	static bool SphereToSphere(Float3& srcPos, double srcRadius, Float3& descPos, double descRadius);
 };
 

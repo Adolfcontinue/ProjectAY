@@ -61,7 +61,7 @@ bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove
 
 bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_RequestCollison& packet)
 {
-	SVector srcVec = SVector(packet.src().pos().x(), packet.src().pos().y(), packet.src().pos().z());
+	Float3 srcVec = Float3 (packet.src().pos().x(), packet.src().pos().y(), packet.src().pos().z());
 	double srcR = packet.src().col_r();
 	const int32 size = packet.descdatas_size();
 
@@ -74,7 +74,7 @@ bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_Reque
 	for (int i = 0; i < size; ++i)
 	{
 		Protocol::MonsterData monster = packet.descdatas(i);
-		SVector descVec = SVector(monster.pos().x(), monster.pos().y(), monster.pos().z());
+		Float3 descVec = Float3(monster.pos().x(), monster.pos().y(), monster.pos().z());
 		double descR = monster.cor_r();
 
 		if (Collision::SphereToSphere(srcVec, srcR, descVec, descR))

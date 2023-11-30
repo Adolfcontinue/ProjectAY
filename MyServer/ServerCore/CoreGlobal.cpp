@@ -3,7 +3,7 @@
 #include "ThreadManager.h"
 #include "Memory.h"
 #include "DeadLockProfiler.h"
-#include "SocketUtils.h"
+#include "NetSocketUtils.h"
 #include "SendBuffer.h"
 #include "GlobalQueue.h"
 #include "JobTimer.h"
@@ -27,7 +27,7 @@ public:
 		GGlobalQueue = new GlobalQueue();
 		GJobTimer = new JobTimer();
 		GDeadLockProfiler = new DeadLockProfiler();
-		SocketUtils::Init();
+		NetSocketUtils::Init();
 	}
 
 	~CoreGlobal()
@@ -38,6 +38,6 @@ public:
 		delete GGlobalQueue;
 		delete GJobTimer;
 		delete GDeadLockProfiler;
-		SocketUtils::Clear();
+		NetSocketUtils::Clear();
 	}
 } GCoreGlobal;

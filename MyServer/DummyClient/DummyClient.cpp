@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "ThreadManager.h"
-#include "Service.h"
-#include "Session.h"
+#include "NetService.h"
+#include "NetSession.h"
 #include "BufferReader.h"
 #include "ServerPacketHandler.h"
 
@@ -50,7 +50,7 @@ int main()
 
 	ClientServiceRef service = MakeShared<ClientService>(
 		NetAddress(L"127.0.0.1", 7777),
-		MakeShared<IocpCore>(),
+		MakeShared<NetCore>(),
 		MakeShared<ServerSession>, // TODO : SessionManager 등
 		1);
 
@@ -58,11 +58,11 @@ int main()
 
 	for (int32 i = 0; i < 2; i++)
 	{
-		ThreadManager::Instance().Launch([=]()
+		GThreadManager->Launch([=]()
 			{
 				while (true)
 				{
-					service->GetIocpCore()->Dispatch();
+					service->GetCore()->Dispatch();
 				}
 			});
 	}
@@ -77,5 +77,5 @@ int main()
 		this_thread::sleep_for(1s);
 	}*/
 
-	ThreadManager::Instance().Join();
+	GThreadManager->Join();
 }

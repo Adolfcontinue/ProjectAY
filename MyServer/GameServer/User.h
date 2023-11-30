@@ -1,5 +1,5 @@
 #pragma once
-#include "SVector.h"
+#include "Float3.h"
 
 class User : public enable_shared_from_this<User>
 {
@@ -27,6 +27,6 @@ private:
 
 	int32 _level;
 	int32 _exp;
-	SVector _pos;
+	Float3 _pos;
 };
 

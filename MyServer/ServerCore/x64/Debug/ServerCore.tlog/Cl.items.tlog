@@ -11,8 +11,8 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBConnectionPool.
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\DBQuery.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DeadLockProfiler.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\DeadLockProfiler.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\GlobalQueue.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\GlobalQueue.obj
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\IocpCore.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\IocpCore.obj
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\IocpEvent.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\IocpEvent.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\NetCore.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\NetCore.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\NetEvent.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\NetEvent.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\Job.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\Job.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\JobQueue.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\JobQueue.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\JobTimer.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\JobTimer.obj
@@ -27,10 +27,10 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\QueryRunManager.c
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\RecvBuffer.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\RecvBuffer.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\RefCounting.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\RefCounting.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\SendBuffer.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\SendBuffer.obj
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\Service.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\Service.obj
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\Session.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\Session.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\NetService.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\NetService.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\NetSession.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\NetSession.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\Singleton.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\Singleton.obj
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\SocketUtils.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\SocketUtils.obj
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\NetSocketUtils.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\NetSocketUtils.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\Table.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\Table.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\ThreadManager.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\ThreadManager.obj
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\TimeConverter.cpp;C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\x64\Debug\TimeConverter.obj

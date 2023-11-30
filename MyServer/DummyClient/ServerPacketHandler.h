@@ -66,7 +66,7 @@ private:
 		const uint16 dataSize = static_cast<uint16>(packet.ByteSizeLong());
 		const uint16 packetSize = dataSize + sizeof(PacketHeader);
 
-		SendBufferRef sendBuffer = SendBufferManager::Instance().Open(packetSize);
+		SendBufferRef sendBuffer = GSendBufferManager->Open(packetSize);
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 		header->size = packetSize;
 		header->id = pktId;

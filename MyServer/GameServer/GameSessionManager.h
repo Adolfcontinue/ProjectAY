@@ -13,8 +13,6 @@ public:
 	void Remove(int64 sessionKey);
 	GameSessionRef Find(int64 sessionKey);
 
-
-
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCast(SendBufferRef sendBuffer, int64 except);
 

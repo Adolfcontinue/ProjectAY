@@ -62,7 +62,7 @@
       <Filter>DB</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="SVector.cpp" />
+    <ClCompile Include="Float3.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Actor.cpp" />
@@ -100,7 +100,7 @@
       <Filter>DB</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="SVector.h" />
+    <ClInclude Include="Float3.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Actor.h" />

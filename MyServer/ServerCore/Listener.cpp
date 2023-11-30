@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "Listener.h"
-#include "SocketUtils.h"
-#include "IocpEvent.h"
-#include "Session.h"
-#include "Service.h"
+#include "NetSocketUtils.h"
+#include "NetEvent.h"
+#include "NetSession.h"
+#include "NetService.h"
 
 /*--------------
 	Listener
@@ -11,7 +11,7 @@
 
 Listener::~Listener()
 {
-	SocketUtils::Close(_socket);
+	NetSocketUtils::Close(_socket);
 
 	for (AcceptEvent* acceptEvent : _acceptEvents)
 	{
@@ -27,23 +27,23 @@ bool Listener::StartAccept(ServerServiceRef service)
 	if (_service == nullptr)
 		return false;
 
-	_socket = SocketUtils::CreateSocket();
+	_socket = NetSocketUtils::CreateSocket();
 	if (_socket == INVALID_SOCKET)
 		return false;
 
-	if (_service->GetIocpCore()->Register(shared_from_this()) == false)
+	if (_service->GetCore()->Register(shared_from_this()) == false)
 		return false;
 
-	if (SocketUtils::SetReuseAddress(_socket, true) == false)
+	if (NetSocketUtils::SetReuseAddress(_socket, true) == false)
 		return false;
 
-	if (SocketUtils::SetLinger(_socket, 0, 0) == false)
+	if (NetSocketUtils::SetLinger(_socket, 0, 0) == false)
 		return false;
 
-	if (SocketUtils::Bind(_socket, _service->GetNetAddress()) == false)
+	if (NetSocketUtils::Bind(_socket, _service->GetNetAddress()) == false)
 		return false;
 
-	if (SocketUtils::Listen(_socket) == false)
+	if (NetSocketUtils::Listen(_socket) == false)
 		return false;
 
 	const int32 acceptCount = _service->GetMaxSessionCount();
@@ -60,7 +60,7 @@ bool Listener::StartAccept(ServerServiceRef service)
 
 void Listener::CloseSocket()
 {
-	SocketUtils::Close(_socket);
+	NetSocketUtils::Close(_socket);
 }
 
 HANDLE Listener::GetHandle()
@@ -68,7 +68,7 @@ HANDLE Listener::GetHandle()
 	return reinterpret_cast<HANDLE>(_socket);
 }
 
-void Listener::Dispatch(IocpEvent* iocpEvent, int32 numOfBytes)
+void Listener::Dispatch(NetEvent* iocpEvent, int32 numOfBytes)
 {
 	ASSERT_CRASH(iocpEvent->eventType == EventType::Accept);
 	AcceptEvent* acceptEvent = static_cast<AcceptEvent*>(iocpEvent);
@@ -77,13 +77,13 @@ void Listener::Dispatch(IocpEvent* iocpEvent, int32 numOfBytes)
 
 void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 {
-	SessionRef session = _service->CreateSession(); // Register IOCP
+	NetSessionRef session = _service->CreateSession(); // Register IOCP
 
 	acceptEvent->Init();
 	acceptEvent->session = session;
 
 	DWORD bytesReceived = 0;
-	if (false == SocketUtils::AcceptEx(_socket, session->GetSocket(), session->_recvBuffer.WritePos(), 0, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, OUT & bytesReceived, static_cast<LPOVERLAPPED>(acceptEvent)))
+	if (false == NetSocketUtils::AcceptEx(_socket, session->GetSocket(), session->_recvBuffer.WritePos(), 0, sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, OUT & bytesReceived, static_cast<LPOVERLAPPED>(acceptEvent)))
 	{
 		const int32 errorCode = ::WSAGetLastError();
 		if (errorCode != WSA_IO_PENDING)
@@ -96,9 +96,9 @@ void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 
 void Listener::ProcessAccept(AcceptEvent* acceptEvent)
 {
-	SessionRef session = acceptEvent->session;
+	NetSessionRef session = acceptEvent->session;
 
-	if (false == SocketUtils::SetUpdateAcceptSocket(session->GetSocket(), _socket))
+	if (false == NetSocketUtils::SetUpdateAcceptSocket(session->GetSocket(), _socket))
 	{
 		RegisterAccept(acceptEvent);
 		return;

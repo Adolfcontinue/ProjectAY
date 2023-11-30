@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "ThreadManager.h"
-#include "Service.h"
-#include "Session.h"
+#include "NetService.h"
+#include "NetSession.h"
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "BufferWriter.h"
@@ -10,6 +10,7 @@
 #include "Protocol.pb.h"
 #include "DBConnectionPool.h"
 #include "QueryRunManager.h"
+#include "World.h"
 
 enum
 {
@@ -22,7 +23,7 @@ void Process(ServerServiceRef& sevice)
 	{
 		LEndTickCount = GetTickCount64() + WORKER_TICK;
 
-		sevice->GetIocpCore()->Dispatch(10);
+		sevice->GetCore()->Dispatch(10);
 
 		ThreadManager::DistributeReserveJobs();
 		ThreadManager::DoGlobalQueueWork();
@@ -33,13 +34,17 @@ int main()
 {
 	std::cout << "Server Start .. !" << std::endl;
 
+	GWorld->DoTimer(1000, &World::Update);
+
 	ClientPacketHandler::Init();
-	DBConnectionPool::Instance().Init();
+	
+	//todo createmonster
+	GWorld->CreateMonster();
 
 	ServerServiceRef service = MakeShared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
-		MakeShared<IocpCore>(),
-		MakeShared<GameSession>, // TODO : SessionManager 등
+		MakeShared<NetCore>(),
+		MakeShared<GameSession>,
 		100);
 
 	ASSERT_CRASH(service->Start());
@@ -55,7 +60,7 @@ int main()
 			});
 	}
 
-	Process(service);
+	//Process(service);
 
 	GThreadManager->Join();
 }

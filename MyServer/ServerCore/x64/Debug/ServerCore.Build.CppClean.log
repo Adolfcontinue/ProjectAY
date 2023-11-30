@@ -9,8 +9,8 @@ c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\listene
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\jobtimer.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\jobqueue.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\job.obj
-c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\iocpevent.obj
-c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\iocpcore.obj
+c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\netevent.obj
+c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\netcore.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\globalqueue.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\deadlockprofiler.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\dbquery.obj
@@ -26,10 +26,10 @@ c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\allocat
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\timeconverter.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\threadmanager.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\table.obj
-c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\socketutils.obj
+c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\netsocketutils.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\singleton.obj
-c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\session.obj
-c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\service.obj
+c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\netsession.obj
+c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\netservice.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\sendbuffer.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\refcounting.obj
 c:\users\godye\desktop\myproject\projectay\myserver\servercore\x64\debug\recvbuffer.obj

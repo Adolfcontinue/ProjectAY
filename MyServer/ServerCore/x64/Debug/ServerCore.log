@@ -5,8 +5,6 @@
   BufferWriter.cpp
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\BufferWriter.cpp(19,17): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   ConsoleLogger.cpp
-  (소스 파일 '/BufferWriter.cpp'을(를) 컴파일하는 중)
-  
   CoreGlobal.cpp
   CorePch.cpp
   CoreTLS.cpp
@@ -14,12 +12,10 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\BufferWriter.cpp(
   DBConnectionPool.cpp
   DBQuery.cpp
 C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp(4,88): warning C4244: '초기화 중': 'int64'에서 'long'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 '/DBQuery.cpp'을(를) 컴파일하는 중)
-  
   DeadLockProfiler.cpp
   GlobalQueue.cpp
-  IocpCore.cpp
-  IocpEvent.cpp
+  NetCore.cpp
+  NetEvent.cpp
   Job.cpp
   JobQueue.cpp
   JobTimer.cpp
@@ -35,10 +31,10 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp(4,88)
   RecvBuffer.cpp
   RefCounting.cpp
   SendBuffer.cpp
-  Service.cpp
-  Session.cpp
+  NetService.cpp
+  NetSession.cpp
   Singleton.cpp
-  SocketUtils.cpp
+  NetSocketUtils.cpp
   Table.cpp
   ThreadManager.cpp
   TimeConverter.cpp

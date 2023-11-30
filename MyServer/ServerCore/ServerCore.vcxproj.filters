@@ -78,22 +78,22 @@
     <ClInclude Include="NetAddress.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="SocketUtils.h">
+    <ClInclude Include="NetSocketUtils.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="IocpCore.h">
+    <ClInclude Include="NetCore.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="IocpEvent.h">
+    <ClInclude Include="NetEvent.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Listener.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Session.h">
+    <ClInclude Include="NetSession.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Service.h">
+    <ClInclude Include="NetService.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="RecvBuffer.h">
@@ -188,22 +188,22 @@
     <ClCompile Include="NetAddress.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="SocketUtils.cpp">
+    <ClCompile Include="NetSocketUtils.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="IocpCore.cpp">
+    <ClCompile Include="NetCore.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="IocpEvent.cpp">
+    <ClCompile Include="NetEvent.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="Listener.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Session.cpp">
+    <ClCompile Include="NetSession.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Service.cpp">
+    <ClCompile Include="NetService.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="RecvBuffer.cpp">

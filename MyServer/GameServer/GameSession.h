@@ -1,5 +1,5 @@
 #pragma once
-#include "Session.h"
+#include "NetSession.h"
 
 class GameSession : public PacketSession
 {

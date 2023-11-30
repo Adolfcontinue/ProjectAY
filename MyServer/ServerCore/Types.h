@@ -20,9 +20,9 @@ using UniqueLock = std::unique_lock<std::mutex>;
 using LockGuard = std::lock_guard<std::mutex>;
 
 // shared_ptr
-using IocpCoreRef		= std::shared_ptr<class IocpCore>;
-using IocpObjectRef		= std::shared_ptr<class IocpObject>;
-using SessionRef		= std::shared_ptr<class Session>;
+using NetCoreRef		= std::shared_ptr<class NetCore>;
+using NetObjectRef		= std::shared_ptr<class NetObject>;
+using NetSessionRef		= std::shared_ptr<class NetSession>;
 using ListenerRef		= std::shared_ptr<class Listener>;
 using ServerServiceRef	= std::shared_ptr<class ServerService>;
 using ClientServiceRef	= std::shared_ptr<class ClientService>;
