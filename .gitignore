@@ -110,3 +110,4 @@ Client/Binaries/*
 Client/Build
 Client/Intermediate/*
 Client/Saved/*
+Client/DerivedDataCache/*
