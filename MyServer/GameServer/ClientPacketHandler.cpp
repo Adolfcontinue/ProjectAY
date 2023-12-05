@@ -29,7 +29,7 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
-	sendPacket.set_result((uint32)true);
+	sendPacket.set_result(111);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	session->Send(sendBuffer);
 

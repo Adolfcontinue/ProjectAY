@@ -61,7 +61,7 @@ protected:
 class CLIENT_API ClientService : public NetService
 {
 public:
-	ClientService() {};
+	ClientService() { _type = ServiceType::Client; };
 	ClientService(NetAddress targetAddress, NetCoreRef core, SessionFactory factory, int32 maxSessionCount = 1);
 	virtual ~ClientService() {}
 
@@ -70,5 +70,11 @@ public:
 public:
 	void SetMaxSessionCount(int32 cnt) { _maxSessionCount = cnt; }
 	void SetCore(NetCoreRef core) { _core = core; }
+
+public:
+	NetSessionRef GetSession() { return _clientSession; }
+
+private:
+	NetSessionRef _clientSession;
 };
 

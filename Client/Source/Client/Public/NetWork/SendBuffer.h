@@ -13,6 +13,7 @@
 class CLIENT_API SendBuffer : public enable_shared_from_this<SendBuffer>
 {
 public:
+	SendBuffer(int32 allocSize) { SetBuffer(allocSize); };
 	SendBuffer(BYTE* buffer, int32 allocSize);
 	~SendBuffer();
 
@@ -21,6 +22,9 @@ public:
 	int32 AllocSize() { return _allocSize; }
 	int32 WriteSize() { return _writeSize; }
 	void Close(uint32 writeSize);
+
+public:
+	void SetBuffer(int32 buffersize);
 
 private:
 	BYTE* _buffer;

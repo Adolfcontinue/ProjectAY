@@ -52,7 +52,7 @@ void World::CreateMonster()
 void World::Update()
 {
 	//::todo
-	std::cout << "World Update!" << std::endl;
+	//std::cout << "World Update!" << std::endl;
 
 	for (auto& it : _Monsters)
 		it.second->Update();

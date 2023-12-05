@@ -10,6 +10,7 @@ SendBuffer::SendBuffer(BYTE* buffer, int32 allocSize)
 
 SendBuffer::~SendBuffer()
 {
+	delete _buffer;
 }
 
 void SendBuffer::Close(uint32 writeSize)
@@ -17,4 +18,12 @@ void SendBuffer::Close(uint32 writeSize)
 	if (!(_allocSize >= writeSize)) return;
 	_writeSize = writeSize;
 }
+
+void SendBuffer::SetBuffer(int32 buffersize)
+{
+	_buffer = new BYTE[buffersize];
+	_allocSize = buffersize;
+}
+
+
 

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "Public/NetSocket.h"
 #include "AYGameInstance.generated.h"
 
 /**
@@ -14,4 +15,8 @@ class CLIENT_API UAYGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 	
+	virtual void Init();
+
+	//socket
+	ANetSocket* _socket;
 };

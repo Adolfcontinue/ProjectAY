@@ -56,13 +56,11 @@ bool ClientService::Start()
 		return false;
 
 	const int32 sessionCount = GetMaxSessionCount();
-	for (int32 i = 0; i < sessionCount; i++)
-	{
-		NetSessionRef session = CreateSession();
-		if (session->Connect() == false)
-			return false;
-	}
-
+	
+	_clientSession = CreateSession();
+	if (_clientSession->Connect() == false)
+		return false;
+	
 	return true;
 }
 
