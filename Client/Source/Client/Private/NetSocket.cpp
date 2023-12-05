@@ -3,21 +3,18 @@
 
 #include "NetSocket.h"
 #include "NetWork/NetAddress.h"
-#include "ServerSession.h"
 
 // Sets default values
 ANetSocket::ANetSocket()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
 void ANetSocket::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -37,13 +34,66 @@ void ANetSocket::CreateService()
 	if (IsConnected)
 		return;
 
-	_service = make_shared<ClientService>();
+	//create service
+	_service = make_shared<GameService>();
 	_service->SetNetAddress(NetAddress("127.0.0.1", 7777));
 	_service->SetSessionFactory(make_shared<ServerSession>);
 	_service->SetCore(make_shared<NetCore>());
 	_service->SetMaxSessionCount(1);
+	_service->SetOwner(this);
 
+	//service start
 	if (_service->Start()) IsConnected = true;
-	
 }
+
+/*
+Recv Packet Process
+*/
+
+bool ANetSocket::NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+	Packet_C2P protocol = (Packet_C2P)header->id;
+	switch (protocol)
+	{
+	case P2C_ResultLogin:
+		return P2C_ResultLogin_Process(session, buffer, len);
+	case P2C_ReportMove:
+		break;
+	case P2C_ResultCollision:
+		break;
+	case P2C_ReportUpdateMonsters:
+		break;
+	default:
+		return Handle_INVALID(session, buffer, len);
+	}
+
+	return false;
+}
+
+#pragma region  RecvPacketProcess
+
+bool ANetSocket::Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	return false;
+}
+
+bool ANetSocket::P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ResultLogin packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return false;
+
+	//delegate broadcast
+	P2C_ResultLogin_dele.Broadcast(session, buffer, len);
+
+	//process
+	int aa = packet.result();
+
+	return true;
+}
+
+#pragma endregion
+
 

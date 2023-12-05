@@ -4,15 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "NetWork/NetService.h"
-#include "NetWork/NetCore.h"
+#include "ServerSession.h"
+#include "GameService.h"
 #include "NetSocket.generated.h"
+
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ResultLogin, PacketSessionRef&, BYTE*, int32);
 
 UCLASS()
 class CLIENT_API ANetSocket : public AActor
 {
 	GENERATED_BODY()
 	
+	FDEL_P2C_ResultLogin P2C_ResultLogin_dele;
+
 public:	
 	// Sets default values for this actor's properties
 	ANetSocket();
@@ -26,12 +30,49 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	std::shared_ptr<ClientService> _service;
-
-public:
 	void CreateService();
+	bool NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len);
 
 private:
 	bool IsConnected = false;
+	std::shared_ptr<GameService> _service;
 
+	//RecvPacket
+private:
+	bool Handle_INVALID(PacketSessionRef& session , BYTE* buffer, int32 len);
+	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
+	
+
+
+	//Send
+public:
+	template<typename T>
+	void Send(T& packet, uint16 col);
+
+private:
+	template<typename T>
+	SendBufferRef MakeSendBuffer(T& packet, uint16 pktId);
 };
+
+template<typename T>
+inline void ANetSocket::Send(T& packet, uint16 col)
+{
+	SendBufferRef buffer = MakeSendBuffer(packet, col);
+	_service->Send(buffer);
+}
+
+template<typename T>
+inline SendBufferRef ANetSocket::MakeSendBuffer(T& packet, uint16 pktId)
+{
+	const uint16 dataSize = static_cast<uint16>(packet.ByteSizeLong());
+	const uint16 packetSize = dataSize + sizeof(PacketHeader);
+
+	SendBufferRef sendBuffer = make_shared<SendBuffer>(packetSize);
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
+	header->size = packetSize;
+	header->id = pktId;
+	packet.SerializeToArray(&header[1], dataSize);
+	sendBuffer->Close(packetSize);
+
+	return sendBuffer;
+}

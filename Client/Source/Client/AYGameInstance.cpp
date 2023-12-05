@@ -8,9 +8,13 @@
 void UAYGameInstance::Init()
 {
 	Super::Init();
-	NetPacketHandler::Init();
 
+	//server connect init
 	NetSocketUtils::Init();
+
+	//create server socket actor
 	ANetSocket* SpawnedActor1 = (ANetSocket*)GetWorld()->SpawnActor(ANetSocket::StaticClass());
 	SpawnedActor1->CreateService();
+	_socket = SpawnedActor1;
 }
+

@@ -10,6 +10,9 @@
 /**
  * 
  */
+
+DECLARE_DELEGATE_TwoParams(handlerz, int, int);
+
 UCLASS()
 class CLIENT_API UAYGameInstance : public UGameInstance
 {
@@ -17,6 +20,17 @@ class CLIENT_API UAYGameInstance : public UGameInstance
 	
 	virtual void Init();
 
-	//socket
+
+public:
 	ANetSocket* _socket;
+
+public:
+	template<typename T>
+	void Send(T& packet, uint16 col);
 };
+
+template<typename T>
+inline void UAYGameInstance::Send(T& packet, uint16 col)
+{
+	_socket->Send<T>(packet, col);
+}
