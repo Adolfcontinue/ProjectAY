@@ -19,7 +19,9 @@ enum Packet_C2P
 	C2P_RequestCollison = 1004,
 	P2C_ResultCollision = 1005,
 	P2C_ReportUpdateMonsters = 1006,
+	P2C_ReportEnterUser = 1007,
 };
+
 //
 //namespace Handler
 //{

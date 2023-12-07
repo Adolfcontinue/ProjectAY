@@ -94,6 +94,21 @@ bool ANetSocket::P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer
 	return true;
 }
 
+bool ANetSocket::P2C_ReportEnterUser(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ReportEnterUser packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return false;
+
+	//delegate broadcast
+	P2C_ReportEnterUser_dele.Broadcast(session, buffer, len);
+
+	//process
+	
+	return true;
+}
+
 #pragma endregion
 
 

@@ -10,6 +10,7 @@
 #include "NetSocket.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ResultLogin, PacketSessionRef&, BYTE*, int32);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ReportEnterUser, PacketSessionRef&, BYTE*, int32);
 
 UCLASS()
 class CLIENT_API ANetSocket : public AActor
@@ -17,6 +18,8 @@ class CLIENT_API ANetSocket : public AActor
 	GENERATED_BODY()
 	
 	FDEL_P2C_ResultLogin P2C_ResultLogin_dele;
+	FDEL_P2C_ResultLogin P2C_ReportEnterUser_dele;
+
 
 public:	
 	// Sets default values for this actor's properties
@@ -42,7 +45,7 @@ private:
 private:
 	bool Handle_INVALID(PacketSessionRef& session , BYTE* buffer, int32 len);
 	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
-	
+	bool P2C_ReportEnterUser(PacketSessionRef& session, BYTE* buffer, int32 len);
 	//Send
 public:
 	template<typename T>
