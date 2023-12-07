@@ -49,7 +49,7 @@ int main()
 	this_thread::sleep_for(1s);
 
 	ClientServiceRef service = MakeShared<ClientService>(
-		NetAddress(L"127.0.0.1", 7777),
+		NetAddress(L"102.37.212.218", 7777),
 		MakeShared<NetCore>(),
 		MakeShared<ServerSession>, // TODO : SessionManager 등
 		1);

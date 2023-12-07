@@ -29,7 +29,6 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp(4,88)
   NetAddress.cpp
   QueryRunManager.cpp
   RecvBuffer.cpp
-  RefCounting.cpp
   SendBuffer.cpp
   NetService.cpp
   NetSession.cpp
