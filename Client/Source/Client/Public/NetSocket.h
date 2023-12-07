@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "ServerSession.h"
 #include "GameService.h"
+#include "Network/SendBuffer.h"
 #include "NetSocket.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ResultLogin, PacketSessionRef&, BYTE*, int32);
@@ -42,8 +43,6 @@ private:
 	bool Handle_INVALID(PacketSessionRef& session , BYTE* buffer, int32 len);
 	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
 	
-
-
 	//Send
 public:
 	template<typename T>
