@@ -198,6 +198,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Struct.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -222,6 +223,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ClientPacketHandler.h" />
     <ClInclude Include="Protocol.pb.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Struct.pb.h" />
     <ClInclude Include="Float3.h" />
     <ClInclude Include="User.h" />

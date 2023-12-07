@@ -185,7 +185,6 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="QueryRunManager.h" />
     <ClInclude Include="RecvBuffer.h" />
-    <ClInclude Include="RefCounting.h" />
     <ClInclude Include="SendBuffer.h" />
     <ClInclude Include="NetService.h" />
     <ClInclude Include="NetSession.h" />
@@ -235,7 +234,6 @@
     </ClCompile>
     <ClCompile Include="QueryRunManager.cpp" />
     <ClCompile Include="RecvBuffer.cpp" />
-    <ClCompile Include="RefCounting.cpp" />
     <ClCompile Include="SendBuffer.cpp" />
     <ClCompile Include="NetService.cpp" />
     <ClCompile Include="NetSession.cpp" />

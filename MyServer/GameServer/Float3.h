@@ -1,4 +1,7 @@
 #pragma once
+#include <math.h>
+#include "Protocol.pb.h"
+
 
 struct Float3
 {
@@ -9,5 +12,16 @@ public:
 	double _x;
 	double _y;
 	double _z;
+
+public:
+	Protocol::Vector Convert()
+	{
+		Protocol::Vector retval;
+		retval.set_x(_x);
+		retval.set_y(_y);
+		retval.set_z(_z);
+
+		return retval;
+	}
 };
 

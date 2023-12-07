@@ -8,6 +8,7 @@ Monster::Monster()
 
 Monster::~Monster()
 {
+	shared_from_this();
 }
 
 void Monster::Update()

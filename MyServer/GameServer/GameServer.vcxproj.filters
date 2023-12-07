@@ -1,109 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Main">
-      <UniqueIdentifier>{e8dccf15-3bdd-4854-8dd2-f0ba5d770abc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{37e6aaa6-0769-426b-aa67-d42e60cd791c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ProtoBuf">
-      <UniqueIdentifier>{dc59edc3-e97b-4265-aee1-d1517815f82f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Handler">
-      <UniqueIdentifier>{d8279857-4852-476b-84fc-3c8ebed0c59c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents">
+    <Filter Include="01.Actor">
       <UniqueIdentifier>{b47e9b07-70f8-4888-a673-957626903a0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Session">
+    <Filter Include="02.World">
+      <UniqueIdentifier>{12e1bd05-6bbb-4232-aea9-476f3a364fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Main">
+      <UniqueIdentifier>{e8dccf15-3bdd-4854-8dd2-f0ba5d770abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Handler">
+      <UniqueIdentifier>{d8279857-4852-476b-84fc-3c8ebed0c59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Math">
+      <UniqueIdentifier>{9980c2c2-3d5d-4802-91ab-2b1e4cea3a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Session">
       <UniqueIdentifier>{24caac57-d7d8-49fe-99e3-24a4720835cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DB">
+    <Filter Include="05.ProtoBuf">
+      <UniqueIdentifier>{dc59edc3-e97b-4265-aee1-d1517815f82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.DB">
       <UniqueIdentifier>{2297043b-5045-467d-8a86-5e0fa06e3564}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{9980c2c2-3d5d-4802-91ab-2b1e4cea3a19}</UniqueIdentifier>
+    <Filter Include="08.Utils">
+      <UniqueIdentifier>{37e6aaa6-0769-426b-aa67-d42e60cd791c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
-      <Filter>Main</Filter>
+      <Filter>00.Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Utils</Filter>
+      <Filter>08.Utils</Filter>
     </ClCompile>
     <ClCompile Include="Struct.pb.cc">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClCompile>
     <ClCompile Include="Enum.pb.cc">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
-      <Filter>Contents</Filter>
+      <Filter>01.Actor</Filter>
     </ClCompile>
     <ClCompile Include="ClientPacketHandler.cpp">
-      <Filter>Handler</Filter>
+      <Filter>03.Handler</Filter>
     </ClCompile>
     <ClCompile Include="GameSession.cpp">
-      <Filter>Session</Filter>
+      <Filter>04.Session</Filter>
     </ClCompile>
     <ClCompile Include="GameSessionManager.cpp">
-      <Filter>Session</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Contents</Filter>
+      <Filter>04.Session</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="MSDBQuery.cpp">
-      <Filter>DB</Filter>
+      <Filter>06.DB</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Float3.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Actor.cpp">
+      <Filter>01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01.Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Float3.cpp">
+      <Filter>07.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>07.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>07.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>07.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>02.World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
-      <Filter>Utils</Filter>
+      <Filter>08.Utils</Filter>
     </ClInclude>
     <ClInclude Include="ClientPacketHandler.h">
-      <Filter>Handler</Filter>
+      <Filter>03.Handler</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClInclude>
     <ClInclude Include="Struct.pb.h">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClInclude>
     <ClInclude Include="Enum.pb.h">
-      <Filter>ProtoBuf</Filter>
+      <Filter>05.ProtoBuf</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
-      <Filter>Contents</Filter>
+      <Filter>01.Actor</Filter>
     </ClInclude>
     <ClInclude Include="GameSession.h">
-      <Filter>Session</Filter>
+      <Filter>04.Session</Filter>
     </ClInclude>
     <ClInclude Include="GameSessionManager.h">
-      <Filter>Session</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Contents</Filter>
+      <Filter>04.Session</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="MSDBQuery.h">
-      <Filter>DB</Filter>
+      <Filter>06.DB</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="Float3.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Monster.h" />
-    <ClInclude Include="Actor.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="Actor.h">
+      <Filter>01.Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01.Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Float3.h">
+      <Filter>07.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>07.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>07.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>07.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>02.World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

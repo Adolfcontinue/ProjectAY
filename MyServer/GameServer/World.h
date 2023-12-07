@@ -16,14 +16,14 @@ public:
 	void Update();
 
 private:
-	int64 MonsterKey() { return _MonsterKey.fetch_add(1); }
+	int64 IssueActorKey() { return _ActorKey.fetch_add(1); }
 
 private:
-	Atomic<int64> _MonsterKey = 0;
+	Atomic<int64> _ActorKey = 0;
 
 private:
 	map<int64, UserRef> _Users;
-	map<int64, MonsterRef> _Monsters;
+	map<int64, MonsterRef> _Monsters; 
 };
 
 extern shared_ptr<World> GWorld;

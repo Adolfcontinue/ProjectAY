@@ -35,6 +35,5 @@ XCOPY /y ServerPacketHandler.h "../../DummyClient"
 echo.
 DEL /Q /F *.pb.h
 DEL /Q /F *.pb.cc
-DEL /Q /F *.h
 
 PAUSE

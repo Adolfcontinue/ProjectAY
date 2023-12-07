@@ -45,3 +45,8 @@ message P2C_ReportUpdateMonsters
 {
 	repeated MonsterData datas = 5;
 }
+
+message P2C_ReportEnterUser
+{
+	UserData user = 1;
+}

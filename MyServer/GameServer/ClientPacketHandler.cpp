@@ -19,7 +19,7 @@ bool Handler::Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
 
 bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestLogin& packet)
 {
-	//::todo login data
+	//::todo login data db
 	UserRef user = MakeShared<User>();
 	user->SetExp(0);
 	user->SetID(packet.id());
@@ -29,7 +29,7 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
-	sendPacket.set_result(111);
+	sendPacket.set_result((uint32)true);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	session->Send(sendBuffer);
 
