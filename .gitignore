@@ -112,3 +112,5 @@ Client/Intermediate/*
 Client/Saved/*
 Client/DerivedDataCache/*
 MyServer/Binary/*
+MyServer/Binary/Debug/DummyClient.exe
+MyServer/Binary/Debug/DummyClient.pdb
