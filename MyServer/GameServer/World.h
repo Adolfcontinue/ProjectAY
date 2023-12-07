@@ -5,7 +5,7 @@ class World : public JobQueue
 {
 public:
 	void EnterUser(UserRef user);
-	void LeaveUser(UserRef user);
+	void LeaveUser(int64 sessionKey);
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey);
 

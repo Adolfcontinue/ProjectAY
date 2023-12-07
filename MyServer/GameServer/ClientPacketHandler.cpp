@@ -26,7 +26,7 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	user->SetPW(packet.pw());
 	user->SetLevel(1);
 	user->SetSessionKey(session->GetSessionKey());
-
+	user->SetPos(make_shared<Float3>(0, 0, 0));
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);

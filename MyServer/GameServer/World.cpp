@@ -17,21 +17,23 @@ void World::EnterUser(UserRef user)
 	_Users[user->GetSessionKey()] = user;
 
 	Protocol::UserData enterUser;
-	Protocol::Vector pos = user->GetPos()->Convert();
 	enterUser.set_userkey(user->GetSessionKey());
-	enterUser.set_allocated_pos(&pos);
-	enterUser.set_userkey(user->GetActorKey());
+	Protocol::Vector* v = enterUser.mutable_pos();
+	v->set_x(0);
+	v->set_y(0);
+	v->set_z(0);
+	//enterUser.set_userkey(user->GetActorKey());
 	enterUser.set_col_r(1.0);
 
-	Protocol::P2C_ReportEnterUser packet;
+	/*Protocol::P2C_ReportEnterUser packet;
 	packet.set_allocated_user(&enterUser);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
-	BroadCastExcept(sendBuffer, user->GetSessionKey());
+	BroadCastExcept(sendBuffer, user->GetSessionKey());*/
 }
 
-void World::LeaveUser(UserRef user)
+void World::LeaveUser(int64 sessionKey)
 {
-	_Users.erase(user->GetSessionKey());
+	_Users.erase(sessionKey);
 }
 
 void World::BroadCast(SendBufferRef sendBuffer)

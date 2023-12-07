@@ -2,6 +2,7 @@
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "ClientPacketHandler.h"
+#include "World.h"
 
 void GameSession::OnConnected()
 {
@@ -26,4 +27,5 @@ void GameSession::OnDisconnected()
     GGameSessionManager.Remove(static_pointer_cast<GameSession>(shared_from_this()));
     GGameSessionManager.Remove(this->GetSessionKey());
     std::cout << "DisConnected Client" << std::endl;
+    GWorld->DoASync(&World::LeaveUser, GetSessionKey());
 }
