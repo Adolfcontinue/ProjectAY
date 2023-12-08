@@ -64,6 +64,9 @@ bool ANetSocket::NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer,
 		break;
 	case P2C_ReportUpdateMonsters:
 		break;
+	case P2C_ReportEnterUser:
+		return P2C_ReportEnterUser_Process(session, buffer, len);
+		break;
 	default:
 		return Handle_INVALID(session, buffer, len);
 	}
@@ -94,7 +97,7 @@ bool ANetSocket::P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer
 	return true;
 }
 
-bool ANetSocket::P2C_ReportEnterUser(PacketSessionRef& session, BYTE* buffer, int32 len)
+bool ANetSocket::P2C_ReportEnterUser_Process(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
 	//vaild
 	Protocol::P2C_ReportEnterUser packet;

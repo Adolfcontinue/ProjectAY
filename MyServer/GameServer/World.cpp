@@ -16,19 +16,28 @@ void World::EnterUser(UserRef user)
 	user->SetActorKey(IssueActorKey());
 	_Users[user->GetSessionKey()] = user;
 
-	Protocol::UserData enterUser;
-	enterUser.set_userkey(user->GetSessionKey());
-	Protocol::Vector* v = enterUser.mutable_pos();
+	//Protocol::UserData enterUser;
+	//enterUser.set_userkey(user->GetSessionKey());
+	//Protocol::Vector* v = enterUser.mutable_pos();
+	//v->set_x(0);
+	//v->set_y(0);
+	//v->set_z(0);
+	//enterUser.set_userkey(user->GetActorKey());
+	//enterUser.set_col_r(1.0);
+
+	Protocol::P2C_ReportEnterUser packet;
+	Protocol::UserData* data = packet.mutable_user();
+	data->set_userkey(user->GetSessionKey());
+	Protocol::Vector* v = data->mutable_pos();
 	v->set_x(0);
 	v->set_y(0);
 	v->set_z(0);
-	//enterUser.set_userkey(user->GetActorKey());
-	enterUser.set_col_r(1.0);
-
-	/*Protocol::P2C_ReportEnterUser packet;
-	packet.set_allocated_user(&enterUser);
+	data->set_userkey(user->GetActorKey());
+	data->set_col_r(1.0);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
-	BroadCastExcept(sendBuffer, user->GetSessionKey());*/
+	DoASync(&World::BroadCast,sendBuffer);
+	//BroadCast(sendBuffer);
+	//BroadCastExcept(sendBuffer, user->GetSessionKey());
 }
 
 void World::LeaveUser(int64 sessionKey)

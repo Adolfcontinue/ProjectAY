@@ -45,7 +45,7 @@ private:
 private:
 	bool Handle_INVALID(PacketSessionRef& session , BYTE* buffer, int32 len);
 	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
-	bool P2C_ReportEnterUser(PacketSessionRef& session, BYTE* buffer, int32 len);
+	bool P2C_ReportEnterUser_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
 	//Send
 public:
 	template<typename T>
