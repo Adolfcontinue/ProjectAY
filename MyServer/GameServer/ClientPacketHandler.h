@@ -14,6 +14,7 @@ enum Packet_C2P
 	P2C_ResultCollision = 1005,
 	P2C_ReportUpdateMonsters = 1006,
 	P2C_ReportEnterUser = 1007,
+	P2C_ReportLeaveUser = 1008,
 };
 
 // Custom Handlers
@@ -48,6 +49,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultCollision& packet) { return MakeSendBuffer(packet, P2C_ResultCollision); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportUpdateMonsters& packet) { return MakeSendBuffer(packet, P2C_ReportUpdateMonsters); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportEnterUser& packet) { return MakeSendBuffer(packet, P2C_ReportEnterUser); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportLeaveUser& packet) { return MakeSendBuffer(packet, P2C_ReportLeaveUser); }
 
 
 private:
@@ -67,7 +69,7 @@ private:
 		const uint16 dataSize = static_cast<uint16>(packet.ByteSizeLong());
 		const uint16 packetSize = dataSize + sizeof(PacketHeader);
 
-		SendBufferRef sendBuffer = GSendBufferManager->Open(packetSize);
+		SendBufferRef sendBuffer = SendBufferManager::Instance().Open(packetSize);
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 		header->size = packetSize;
 		header->id = pktId;

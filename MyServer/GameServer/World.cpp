@@ -42,6 +42,15 @@ void World::EnterUser(UserRef user)
 
 void World::LeaveUser(int64 sessionKey)
 {
+	auto iter = _Users.find(sessionKey);
+	if (iter == _Users.end())
+		return;
+
+	Protocol::P2C_ReportLeaveUser packet;
+	Protocol::UserData* data = packet.mutable_user();
+	data->set_userkey(iter->second->GetActorKey());
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
+	DoASync(&World::BroadCast, sendBuffer);
 	_Users.erase(sessionKey);
 }
 

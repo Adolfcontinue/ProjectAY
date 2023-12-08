@@ -9,16 +9,25 @@
 #include "Network/SendBuffer.h"
 #include "NetSocket.generated.h"
 
+
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ResultLogin, PacketSessionRef&, BYTE*, int32);
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ReportEnterUser, PacketSessionRef&, BYTE*, int32);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ReportLeaveUser, PacketSessionRef&, BYTE*, int32);
+
+//temp
+DECLARE_MULTICAST_DELEGATE_OneParam(FDEL_P2C_ResultLogin_one, Protocol::P2C_ResultLogin);
 
 UCLASS()
 class CLIENT_API ANetSocket : public AActor
 {
 	GENERATED_BODY()
 	
+
 	FDEL_P2C_ResultLogin P2C_ResultLogin_dele;
 	FDEL_P2C_ResultLogin P2C_ReportEnterUser_dele;
+	FDEL_P2C_ResultLogin P2C_ReportLeaveUser_dele;
+
+	FDEL_P2C_ResultLogin_one P2C_ResultLogin_dele_one;
 
 
 public:	
@@ -46,6 +55,8 @@ private:
 	bool Handle_INVALID(PacketSessionRef& session , BYTE* buffer, int32 len);
 	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool P2C_ReportEnterUser_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
+	bool P2C_ReportLeaveUser_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
+
 	//Send
 public:
 	template<typename T>

@@ -18,3 +18,11 @@ void UAYGameInstance::Init()
 	_socket = SpawnedActor1;
 }
 
+ANetSocket* UAYGameInstance::GetSocket()
+{
+	if (_socket == nullptr)
+		return nullptr;
+
+	return _socket;
+}
+

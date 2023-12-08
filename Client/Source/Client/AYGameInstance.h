@@ -20,8 +20,10 @@ class CLIENT_API UAYGameInstance : public UGameInstance
 	
 	virtual void Init();
 
-
 public:
+	ANetSocket* GetSocket();
+
+private:
 	ANetSocket* _socket;
 
 public:

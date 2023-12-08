@@ -120,8 +120,20 @@ struct P2C_ReportEnterUserDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT P2C_ReportEnterUserDefaultTypeInternal _P2C_ReportEnterUser_default_instance_;
+constexpr P2C_ReportLeaveUser::P2C_ReportLeaveUser(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : user_(nullptr){}
+struct P2C_ReportLeaveUserDefaultTypeInternal {
+  constexpr P2C_ReportLeaveUserDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~P2C_ReportLeaveUserDefaultTypeInternal() {}
+  union {
+    P2C_ReportLeaveUser _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT P2C_ReportLeaveUserDefaultTypeInternal _P2C_ReportLeaveUser_default_instance_;
 }  // namespace Protocol
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_Protocol_2eproto[8];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_Protocol_2eproto[9];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -181,6 +193,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Protocol_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportEnterUser, user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportLeaveUser, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportLeaveUser, user_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Protocol::C2P_RequestLogin)},
@@ -191,6 +209,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 35, -1, sizeof(::Protocol::P2C_ResultCollision)},
   { 43, -1, sizeof(::Protocol::P2C_ReportUpdateMonsters)},
   { 49, -1, sizeof(::Protocol::P2C_ReportEnterUser)},
+  { 55, -1, sizeof(::Protocol::P2C_ReportLeaveUser)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -202,6 +221,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_P2C_ResultCollision_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_P2C_ReportUpdateMonsters_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_P2C_ReportEnterUser_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Protocol::_P2C_ReportLeaveUser_default_instance_),
 };
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -220,7 +240,9 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\005 \003(\0132\025.Protocol.MonsterData\"@\n\030P2C_Repo"
   "rtUpdateMonsters\022$\n\005datas\030\005 \003(\0132\025.Protoc"
   "ol.MonsterData\"7\n\023P2C_ReportEnterUser\022 \n"
-  "\004user\030\001 \001(\0132\022.Protocol.UserDatab\006proto3"
+  "\004user\030\001 \001(\0132\022.Protocol.UserData\"7\n\023P2C_R"
+  "eportLeaveUser\022 \n\004user\030\001 \001(\0132\022.Protocol."
+  "UserDatab\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -228,8 +250,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Protocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto = {
-  false, false, 639, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
-  &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 8,
+  false, false, 696, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
+  &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 9,
   schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
   file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto, file_level_service_descriptors_Protocol_2eproto,
 };
@@ -2133,6 +2155,217 @@ void P2C_ReportEnterUser::InternalSwap(P2C_ReportEnterUser* other) {
       file_level_metadata_Protocol_2eproto[7]);
 }
 
+// ===================================================================
+
+class P2C_ReportLeaveUser::_Internal {
+ public:
+  static const ::Protocol::UserData& user(const P2C_ReportLeaveUser* msg);
+};
+
+const ::Protocol::UserData&
+P2C_ReportLeaveUser::_Internal::user(const P2C_ReportLeaveUser* msg) {
+  return *msg->user_;
+}
+void P2C_ReportLeaveUser::clear_user() {
+  if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+P2C_ReportLeaveUser::P2C_ReportLeaveUser(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Protocol.P2C_ReportLeaveUser)
+}
+P2C_ReportLeaveUser::P2C_ReportLeaveUser(const P2C_ReportLeaveUser& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::Protocol::UserData(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:Protocol.P2C_ReportLeaveUser)
+}
+
+void P2C_ReportLeaveUser::SharedCtor() {
+user_ = nullptr;
+}
+
+P2C_ReportLeaveUser::~P2C_ReportLeaveUser() {
+  // @@protoc_insertion_point(destructor:Protocol.P2C_ReportLeaveUser)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void P2C_ReportLeaveUser::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete user_;
+}
+
+void P2C_ReportLeaveUser::ArenaDtor(void* object) {
+  P2C_ReportLeaveUser* _this = reinterpret_cast< P2C_ReportLeaveUser* >(object);
+  (void)_this;
+}
+void P2C_ReportLeaveUser::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void P2C_ReportLeaveUser::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void P2C_ReportLeaveUser::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.P2C_ReportLeaveUser)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* P2C_ReportLeaveUser::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .Protocol.UserData user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* P2C_ReportLeaveUser::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.P2C_ReportLeaveUser)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Protocol.UserData user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.P2C_ReportLeaveUser)
+  return target;
+}
+
+size_t P2C_ReportLeaveUser::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.P2C_ReportLeaveUser)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .Protocol.UserData user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void P2C_ReportLeaveUser::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Protocol.P2C_ReportLeaveUser)
+  GOOGLE_DCHECK_NE(&from, this);
+  const P2C_ReportLeaveUser* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<P2C_ReportLeaveUser>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Protocol.P2C_ReportLeaveUser)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Protocol.P2C_ReportLeaveUser)
+    MergeFrom(*source);
+  }
+}
+
+void P2C_ReportLeaveUser::MergeFrom(const P2C_ReportLeaveUser& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Protocol.P2C_ReportLeaveUser)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::Protocol::UserData::MergeFrom(from._internal_user());
+  }
+}
+
+void P2C_ReportLeaveUser::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Protocol.P2C_ReportLeaveUser)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void P2C_ReportLeaveUser::CopyFrom(const P2C_ReportLeaveUser& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.P2C_ReportLeaveUser)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool P2C_ReportLeaveUser::IsInitialized() const {
+  return true;
+}
+
+void P2C_ReportLeaveUser::InternalSwap(P2C_ReportLeaveUser* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata P2C_ReportLeaveUser::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[8]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
@@ -2159,6 +2392,9 @@ template<> PROTOBUF_NOINLINE ::Protocol::P2C_ReportUpdateMonsters* Arena::Create
 }
 template<> PROTOBUF_NOINLINE ::Protocol::P2C_ReportEnterUser* Arena::CreateMaybeMessage< ::Protocol::P2C_ReportEnterUser >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::P2C_ReportEnterUser >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::P2C_ReportLeaveUser* Arena::CreateMaybeMessage< ::Protocol::P2C_ReportLeaveUser >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::P2C_ReportLeaveUser >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

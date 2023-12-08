@@ -50,3 +50,8 @@ message P2C_ReportEnterUser
 {
 	UserData user = 1;
 }
+
+message P2C_ReportLeaveUser
+{
+	UserData user = 1;
+}

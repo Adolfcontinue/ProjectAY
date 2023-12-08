@@ -20,6 +20,7 @@ enum Packet_C2P
 	P2C_ResultCollision = 1005,
 	P2C_ReportUpdateMonsters = 1006,
 	P2C_ReportEnterUser = 1007,
+	P2C_ReportLeaveUser = 1008,
 };
 
 //

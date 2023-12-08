@@ -14,6 +14,7 @@ enum Packet_C2P
 	P2C_ResultCollision = 1005,
 	P2C_ReportUpdateMonsters = 1006,
 	P2C_ReportEnterUser = 1007,
+	P2C_ReportLeaveUser = 1008,
 };
 
 // Custom Handlers
@@ -25,6 +26,7 @@ namespace Handler
 	bool P2C_ResultCollision(PacketSessionRef& session, Protocol::P2C_ResultCollision& packet);
 	bool P2C_ReportUpdateMonsters(PacketSessionRef& session, Protocol::P2C_ReportUpdateMonsters& packet);
 	bool P2C_ReportEnterUser(PacketSessionRef& session, Protocol::P2C_ReportEnterUser& packet);
+	bool P2C_ReportLeaveUser(PacketSessionRef& session, Protocol::P2C_ReportLeaveUser& packet);
 }
 
 
@@ -40,6 +42,7 @@ public:
 		GPacketHandler[P2C_ResultCollision] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultCollision>(Handler::P2C_ResultCollision, session, buffer, len); };
 		GPacketHandler[P2C_ReportUpdateMonsters] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportUpdateMonsters>(Handler::P2C_ReportUpdateMonsters, session, buffer, len); };
 		GPacketHandler[P2C_ReportEnterUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportEnterUser>(Handler::P2C_ReportEnterUser, session, buffer, len); };
+		GPacketHandler[P2C_ReportLeaveUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportLeaveUser>(Handler::P2C_ReportLeaveUser, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -69,7 +72,7 @@ private:
 		const uint16 dataSize = static_cast<uint16>(packet.ByteSizeLong());
 		const uint16 packetSize = dataSize + sizeof(PacketHeader);
 
-		SendBufferRef sendBuffer = GSendBufferManager->Open(packetSize);
+		SendBufferRef sendBuffer = SendBufferManager::Instance().Open(packetSize);
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 		header->size = packetSize;
 		header->id = pktId;

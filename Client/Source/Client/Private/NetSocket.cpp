@@ -67,6 +67,8 @@ bool ANetSocket::NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer,
 	case P2C_ReportEnterUser:
 		return P2C_ReportEnterUser_Process(session, buffer, len);
 		break;
+	case P2C_ReportLeaveUser:
+		return P2C_ReportLeaveUser_Process(session, buffer, len);
 	default:
 		return Handle_INVALID(session, buffer, len);
 	}
@@ -90,6 +92,7 @@ bool ANetSocket::P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer
 
 	//delegate broadcast
 	P2C_ResultLogin_dele.Broadcast(session, buffer, len);
+	P2C_ResultLogin_dele_one.Broadcast(packet);
 
 	//process
 	int aa = packet.result();
@@ -109,6 +112,21 @@ bool ANetSocket::P2C_ReportEnterUser_Process(PacketSessionRef& session, BYTE* bu
 
 	//process
 	
+	return true;
+}
+
+bool ANetSocket::P2C_ReportLeaveUser_Process(PacketSessionRef& session, BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ReportLeaveUser packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return false;
+
+	//delegate broadcast
+	P2C_ReportLeaveUser_dele.Broadcast(session, buffer, len);
+	//process
+
+
 	return true;
 }
 
