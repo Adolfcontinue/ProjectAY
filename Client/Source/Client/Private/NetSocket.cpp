@@ -3,6 +3,7 @@
 
 #include "NetSocket.h"
 #include "NetWork/NetAddress.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ANetSocket::ANetSocket()
@@ -92,8 +93,9 @@ bool ANetSocket::P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer
 
 	//delegate broadcast
 	P2C_ResultLogin_dele.Broadcast(session, buffer, len);
-	P2C_ResultLogin_dele_one.Broadcast(packet);
+	P2C_ResultLogin_dele_one.Broadcast();
 
+	
 	//process
 	int aa = packet.result();
 

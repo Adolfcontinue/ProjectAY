@@ -8,7 +8,6 @@
 //Gameinstance
 #include "Kismet/GameplayStatics.h"
 #include "Client/AYGameInstance.h"
-
 #include <string>
 
 void ULoginUserWidget::NativeConstruct()
@@ -25,7 +24,20 @@ void ULoginUserWidget::NativeConstruct()
     {
         LoginButton->OnClicked.AddDynamic(this, &ULoginUserWidget::HandleLoginButtonClicked);
     }
+
+    UAYGameInstance* GI = Cast<UAYGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+    GI->GetSocket()->P2C_ResultLogin_dele_one.AddUObject(this, &ULoginUserWidget::ChangeLevel);
 }
+
+void ULoginUserWidget::ChangeLevel()
+{
+    UGameplayStatics::OpenLevel(this, "ThirdPersonmMap");
+}
+
+//void ULoginUserWidget::ChangeLevel()
+//{
+//    UGameplayStatics::OpenLevel(this, "ThirdPersonmMap");
+//}
 
 void ULoginUserWidget::HandleLoginButtonClicked()
 {

@@ -117,17 +117,6 @@ void AClientCharacter::Move(const FInputActionValue& Value)
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
 
-		if (!btest)
-		{
-			Protocol::C2P_RequestLogin packet;
-			packet.set_id("aaa");
-			packet.set_pw("123");
-
-			UAYGameInstance* inst = static_cast<UAYGameInstance*>(GetWorld()->GetGameInstance());
-			inst->Send(packet, (uint16)Packet_C2P::C2P_RequestLogin);
-
-			btest = true;
-		}
 	}
 }
 
