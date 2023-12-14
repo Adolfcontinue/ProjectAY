@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Protocol.pb.h"
 #include "LoginUserWidget.generated.h"
 
 UCLASS()
@@ -29,4 +30,7 @@ protected:
     void HandleLoginButtonClicked();
 
     virtual void NativeConstruct() override;
+
+    UFUNCTION()
+    void ChangeLevel();
 };

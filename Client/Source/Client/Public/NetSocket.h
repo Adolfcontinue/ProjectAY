@@ -15,19 +15,19 @@ DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ReportEnterUser, PacketSessionRe
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FDEL_P2C_ReportLeaveUser, PacketSessionRef&, BYTE*, int32);
 
 //temp
-DECLARE_MULTICAST_DELEGATE_OneParam(FDEL_P2C_ResultLogin_one, Protocol::P2C_ResultLogin);
+DECLARE_MULTICAST_DELEGATE(FDEL_P2C_ResultLogin_del);
 
 UCLASS()
 class CLIENT_API ANetSocket : public AActor
 {
 	GENERATED_BODY()
 	
-
+public:
 	FDEL_P2C_ResultLogin P2C_ResultLogin_dele;
 	FDEL_P2C_ResultLogin P2C_ReportEnterUser_dele;
 	FDEL_P2C_ResultLogin P2C_ReportLeaveUser_dele;
 
-	FDEL_P2C_ResultLogin_one P2C_ResultLogin_dele_one;
+	FDEL_P2C_ResultLogin_del P2C_ResultLogin_dele_one;
 
 
 public:	
