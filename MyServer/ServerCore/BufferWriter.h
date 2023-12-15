@@ -15,7 +15,7 @@ public:
 
 	template <typename T>
 	bool Write(T* src) { return Write(src, sizeof(T)); }
-	bool Write(void* src, int len);
+	bool Write(void* src, uint32 len);
 
 	template <typename T>
 	T* Reserve();

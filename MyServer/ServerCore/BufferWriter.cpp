@@ -14,7 +14,7 @@ BufferWriter::~BufferWriter()
 {
 }
 
-bool BufferWriter::Write(void* src, int len)
+bool BufferWriter::Write(void* src, uint32 len)
 {
 	if (FreeSize() < len)
 		return false;

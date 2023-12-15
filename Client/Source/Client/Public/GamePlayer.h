@@ -27,8 +27,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	void SetUserKey(uint64 userKey);
+	void SetPlayerKey(uint64 userKey);
+	uint64 GetPlayerKey();
 
 private:
-	uint64 _userKey;
+	uint64 _PlayerKey;
 };

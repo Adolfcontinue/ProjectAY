@@ -16,6 +16,7 @@ void AGamePlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
 }
 
 // Called every frame
@@ -29,11 +30,17 @@ void AGamePlayer::Tick(float DeltaTime)
 void AGamePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
-void AGamePlayer::SetUserKey(uint64 userKey)
+void AGamePlayer::SetPlayerKey(uint64 userKey)
 {
-	_userKey = userKey;
+	_PlayerKey = userKey;
 }
+
+uint64 AGamePlayer::GetPlayerKey()
+{
+	return _PlayerKey;
+}
+
+
 
