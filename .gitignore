@@ -115,3 +115,6 @@ MyServer/Binary/*
 MyServer/ServerCore/x64/*
 MyServer/GameServer/x64/*
 
+Client/Binaries/Win64/ClientEditor.target
+Client/Binaries/Win64/UnrealEditor.modules
+Client/Binaries/Win64/UnrealEditor-Client.pdb
