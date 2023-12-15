@@ -112,5 +112,6 @@ Client/Intermediate/*
 Client/Saved/*
 Client/DerivedDataCache/*
 MyServer/Binary/*
-MyServer/Binary/Debug/DummyClient.exe
-MyServer/Binary/Debug/DummyClient.pdb
+MyServer/ServerCore/x64/*
+MyServer/GameServer/x64/*
+Client/Binaries/
