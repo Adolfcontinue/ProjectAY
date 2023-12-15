@@ -31,7 +31,7 @@ void ULoginUserWidget::NativeConstruct()
 
 void ULoginUserWidget::ChangeLevel()
 {
-    UGameplayStatics::OpenLevel(this, "ThirdPersonmMap");
+    UGameplayStatics::OpenLevel(this, "Field");
 }
 
 //void ULoginUserWidget::ChangeLevel()
