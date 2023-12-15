@@ -9,6 +9,10 @@
 /**
  * 
  */
+DECLARE_MULTICAST_DELEGATE(FOnNextAttackCheckDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnAttackHitCheckDelegate);
+
+
 UCLASS()
 class CLIENT_API UDarkNightAnimInstance : public UAnimInstance
 {
@@ -20,6 +24,20 @@ public:
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 
 	void PlayComboAttackMontage();
+	void JumpToAttackMontageSection(int32 newSecion);
+
+public:
+	FOnNextAttackCheckDelegate OnNextAttackCheck;
+	FOnAttackHitCheckDelegate OnAttackHitCheck;
+
+private:
+	UFUNCTION()
+	void AnimNotify_AttackHitCheck();
+
+	UFUNCTION()
+	void AnimNotify_NextAttackCheck();
+
+	FName GetAttackMontageSectionName(int32 section);
 
 private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category=Pawn, Meta=(AllowPrivateAccess = true))

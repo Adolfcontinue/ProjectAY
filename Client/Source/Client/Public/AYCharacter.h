@@ -53,12 +53,27 @@ private:
 	UFUNCTION()
 	void OnAttackMontageEnded(UAnimMontage* montage, bool bInterrupted);
 
+	void AttackStartComboState();
+	void AttackEndComboState();
+
 private:
 	eControlType CurrentControlType = eControlType::Type1;
 	FVector DirectionToMove = FVector::ZeroVector;
 
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	bool IsAttacking;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	bool CanNextCombo;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	bool IsComboInputOn;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	int32 CurrentCombo;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	int32 MaxCombo;
 
 	UPROPERTY()
 	class UDarkNightAnimInstance* _Anim;

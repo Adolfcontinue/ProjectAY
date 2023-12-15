@@ -6,7 +6,7 @@
 void AClientPlayerController::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	LOG_S(Warning);
+	//LOG_S(Warning);
 }
 
 

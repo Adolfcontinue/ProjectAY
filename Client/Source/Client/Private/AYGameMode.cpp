@@ -17,8 +17,8 @@ AAYGameMode::AAYGameMode()
 
 void AAYGameMode::PostLogin(APlayerController* newPlayer)
 {
-	LOG(Warning, TEXT("PostLogin Bagin"));
+	//LOG(Warning, TEXT("PostLogin Bagin"));
 	Super::PostLogin(newPlayer);
-	LOG(Warning, TEXT("PostLogin End"));
+	//LOG(Warning, TEXT("PostLogin End"));
 }
 

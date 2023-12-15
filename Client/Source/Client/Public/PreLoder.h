@@ -25,6 +25,15 @@
         } \
     }
 
+
+#define CHECK(Expr,...) \
+	{ \
+		if (!(Expr)) \
+		{ \
+			LOG("ASSERTION : %s", #Expr) \
+			return __VA_ARGS__; \
+		} \
+	}
 /**
  * 
  */

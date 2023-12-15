@@ -58,12 +58,12 @@ void AClientPlayerPawn::Tick(float DeltaTime)
 void AClientPlayerPawn::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	LOG_S(Warning);
+	//LOG_S(Warning);
 }
 
 void AClientPlayerPawn::PossessedBy(AController* newController)
 {
-	LOG_S(Warning);
+	//LOG_S(Warning);
 	Super::PossessedBy(newController);
 }
 

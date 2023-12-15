@@ -2,6 +2,7 @@
 
 
 #include "AYCharacter.h"
+#include "PreLoder.h"
 #include "DarkNightAnimInstance.h"
 
 // Sets default values
@@ -20,13 +21,13 @@ AAYCharacter::AAYCharacter()
 	SpringArm->TargetArmLength = 400.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/OneMeshCharacters/DarkKnightSK.DarkKnightSK"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/GreatSword/Mannequin/Character/Mesh/WeaponMaster_GreatSword01.WeaponMaster_GreatSword01"));
 	if (skeletalmesh.Succeeded())
 		GetMesh()->SetSkeletalMesh(skeletalmesh.Object);
 
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/DarkNightAnimBP.DarkNightAnimBP_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/GreatSwordAnimBP.GreatSwordAnimBP_C"));
 	if (anim.Succeeded())
 		GetMesh()->SetAnimInstanceClass(anim.Class);
 
@@ -35,6 +36,8 @@ AAYCharacter::AAYCharacter()
 	GetCharacterMovement()->JumpZVelocity = 450.0f;
 
 	IsAttacking = false;
+	MaxCombo = 3;
+	AttackEndComboState();
 }
 
 // Called when the game starts or when spawned
@@ -60,6 +63,16 @@ void AAYCharacter::PostInitializeComponents()
 	CHECK(_Anim);
 
 	_Anim->OnMontageEnded.AddDynamic(this, &AAYCharacter::OnAttackMontageEnded);
+
+	_Anim->OnNextAttackCheck.AddLambda([this]()->void {
+		LOG("OnNextAttackCheck");
+		CanNextCombo = false;
+
+		if (IsComboInputOn)
+		{
+			AttackStartComboState();
+			_Anim->JumpToAttackMontageSection(CurrentCombo);
+		}});
 }
 
 // Called to bind functionality to input
@@ -191,16 +204,46 @@ void AAYCharacter::TickMove()
 
 void AAYCharacter::ComboAttack()
 {
-	if (IsAttacking) return;
-
-	_Anim->PlayComboAttackMontage();
-	IsAttacking = true;
+	if (IsAttacking)
+	{
+		CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
+		if(CanNextCombo)
+		{
+			IsComboInputOn = true;
+		}
+	}
+	else
+	{
+		CHECK(CurrentCombo == 0);
+		AttackStartComboState();
+		_Anim->PlayComboAttackMontage();
+		_Anim->JumpToAttackMontageSection(CurrentCombo);
+		IsAttacking = true;
+	}
 }
 
 void AAYCharacter::OnAttackMontageEnded(UAnimMontage* montage, bool bInterrupted)
 {
 	CHECK(IsAttacking);
+	CHECK(CurrentCombo > 0);
 	IsAttacking = false;
+	AttackEndComboState();
+}
+
+void AAYCharacter::AttackStartComboState()
+{
+	CanNextCombo = true;
+	IsComboInputOn = false;
+	CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 0, MaxCombo - 1));
+	CurrentCombo = FMath::Clamp<int32>(CurrentCombo + 1 , 1 , MaxCombo);
+	LOG("CurrentCombo %d", CurrentCombo);
+}
+
+void AAYCharacter::AttackEndComboState()
+{
+	IsComboInputOn = false;
+	CanNextCombo = false;
+	CurrentCombo = 0;
 }
 
 
