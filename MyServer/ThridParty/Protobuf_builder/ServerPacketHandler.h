@@ -8,12 +8,6 @@ enum Packet_C2P
 {
 	C2P_RequestLogin = 1000,
 	P2C_ResultLogin = 1001,
-	C2P_ReportMove = 1002,
-	P2C_ReportMove = 1003,
-	C2P_RequestCollison = 1004,
-	P2C_ResultCollision = 1005,
-	P2C_ReportUpdateMonsters = 1006,
-	P2C_ReportEnterUser = 1007,
 };
 
 // Custom Handlers
@@ -21,10 +15,6 @@ namespace Handler
 {
 	bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool P2C_ResultLogin(PacketSessionRef& session, Protocol::P2C_ResultLogin& packet);
-	bool P2C_ReportMove(PacketSessionRef& session, Protocol::P2C_ReportMove& packet);
-	bool P2C_ResultCollision(PacketSessionRef& session, Protocol::P2C_ResultCollision& packet);
-	bool P2C_ReportUpdateMonsters(PacketSessionRef& session, Protocol::P2C_ReportUpdateMonsters& packet);
-	bool P2C_ReportEnterUser(PacketSessionRef& session, Protocol::P2C_ReportEnterUser& packet);
 }
 
 
@@ -36,10 +26,6 @@ public:
 		for (int32 i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[i] = Handler::Handle_INVALID;
 		GPacketHandler[P2C_ResultLogin] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultLogin>(Handler::P2C_ResultLogin, session, buffer, len); };
-		GPacketHandler[P2C_ReportMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportMove>(Handler::P2C_ReportMove, session, buffer, len); };
-		GPacketHandler[P2C_ResultCollision] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultCollision>(Handler::P2C_ResultCollision, session, buffer, len); };
-		GPacketHandler[P2C_ReportUpdateMonsters] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportUpdateMonsters>(Handler::P2C_ReportUpdateMonsters, session, buffer, len); };
-		GPacketHandler[P2C_ReportEnterUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportEnterUser>(Handler::P2C_ReportEnterUser, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -48,8 +34,6 @@ public:
 		return GPacketHandler[header->id](session, buffer, len);
 	}
 	static SendBufferRef MakeSendBuffer(Protocol::C2P_RequestLogin& packet) { return MakeSendBuffer(packet, C2P_RequestLogin); }
-	static SendBufferRef MakeSendBuffer(Protocol::C2P_ReportMove& packet) { return MakeSendBuffer(packet, C2P_ReportMove); }
-	static SendBufferRef MakeSendBuffer(Protocol::C2P_RequestCollison& packet) { return MakeSendBuffer(packet, C2P_RequestCollison); }
 
 
 private:

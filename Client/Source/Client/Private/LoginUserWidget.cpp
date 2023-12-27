@@ -26,7 +26,7 @@ void ULoginUserWidget::NativeConstruct()
     }
 
     UAYGameInstance* GI = Cast<UAYGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
-    GI->GetSocket()->P2C_ResultLogin_dele_one.AddUObject(this, &ULoginUserWidget::ChangeLevel);
+    GI->GetRecvProsessor()->Delegate_P2C_Result.AddUObject(this, &ULoginUserWidget::ChangeLevel);
 }
 
 void ULoginUserWidget::ChangeLevel()
@@ -71,7 +71,7 @@ void ULoginUserWidget::HandleLoginButtonClicked()
         Protocol::C2P_RequestLogin packet;
         packet.set_id(std::string(TCHAR_TO_UTF8(*Username)));
         packet.set_pw(std::string(TCHAR_TO_UTF8(*Password)));
-        GI->Send(packet,(uint16)Packet_C2P::C2P_RequestLogin);
+        GI->Send(packet,(uint16)EPacket_C2P_Protocol::C2P_RequestLogin);
     }
 }
 

@@ -46,6 +46,9 @@ public:
 	NetCoreRef& GetCore() { return _core; }
 	void SetNetAddress(NetAddress address) { _netAddress = address; }
 
+public:
+	virtual void PacketHandle(PacketSessionRef& session, BYTE* buffer, int32 len) {};
+
 protected:
 	mutex _lock;
 	ServiceType			_type;

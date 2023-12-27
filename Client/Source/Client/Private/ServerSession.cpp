@@ -2,7 +2,8 @@
 
 
 #include "ServerSession.h"
-#include "NetSocket.h"
+#include "GameService.h"
+
 
 ServerSession::ServerSession()
 {
@@ -19,8 +20,7 @@ void ServerSession::OnConnected()
 void ServerSession::OnRecvPacket(BYTE* buffer, int32 len)
 {
 	PacketSessionRef session = GetPacketSessionRef();
-	GameService* service = static_cast<GameService*>(GetService().get());
-	service->ServicePacketHandler(session, buffer, len);
+	GetService()->PacketHandle(session, buffer, len);
 }
 
 void ServerSession::OnSend(int32 len)

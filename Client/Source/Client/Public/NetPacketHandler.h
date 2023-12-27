@@ -10,19 +10,6 @@
 //using PacketHandlerFunc = std::function<bool(PacketSessionRef&, BYTE*, int32)>;
 //extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
-enum Packet_C2P
-{
-	C2P_RequestLogin = 1000,
-	P2C_ResultLogin = 1001,
-	C2P_ReportMove = 1002,
-	P2C_ReportMove = 1003,
-	C2P_RequestCollison = 1004,
-	P2C_ResultCollision = 1005,
-	P2C_ReportUpdateMonsters = 1006,
-	P2C_ReportEnterUser = 1007,
-	P2C_ReportLeaveUser = 1008,
-};
-
 //
 //namespace Handler
 //{

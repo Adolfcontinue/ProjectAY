@@ -9,20 +9,29 @@ void UAYGameInstance::Init()
 {
 	Super::Init();
 
-	//server connect init
 	NetSocketUtils::Init();
-
-	//create server socket actor
-	ANetSocket* SpawnedActor1 = (ANetSocket*)GetWorld()->SpawnActor(ANetSocket::StaticClass());
-	SpawnedActor1->CreateService();
-	_socket = SpawnedActor1;
+	Socket = new NetworkSocket();
+	Socket->SetGameInstance(this);
+	FRunnableThread::Create(Socket, TEXT("network_thread"));
+	RecvProsesor = NewObject<URecvPacketProsesor>();
+	RecvProsesor->Init();
 }
 
-ANetSocket* UAYGameInstance::GetSocket()
+NetworkSocket* UAYGameInstance::GetNetworkSocket()
 {
-	if (_socket == nullptr)
+	if (Socket == nullptr)
 		return nullptr;
 
-	return _socket;
+	return Socket;
+}
+
+URecvPacketProsesor* UAYGameInstance::GetRecvProsessor()
+{
+	return RecvProsesor;
+}
+
+void UAYGameInstance::RecvPacketPush(BYTE* buffer, int32 len)
+{
+	RecvProsesor->Push(buffer, len);
 }
 

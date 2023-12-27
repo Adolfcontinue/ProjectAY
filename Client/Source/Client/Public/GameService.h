@@ -12,13 +12,13 @@ class CLIENT_API GameService : public ClientService
 {
 
 public:
-	class ANetSocket* GetOwner();
-	void SetOwner(ANetSocket* owner);
-	void ServicePacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len);
+	class NetworkSocket* GetOwner();
+	void SetOwner(class NetworkSocket* owner);
 	void Send(SendBufferRef sendbuffer);
 
+	virtual void PacketHandle(PacketSessionRef& session, BYTE* buffer, int32 len) override;
 
 private:
-	class ANetSocket* _owner;
+	class NetworkSocket* _owner;
 
 };

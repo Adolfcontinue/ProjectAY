@@ -36,84 +36,84 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	return true;
 }
 
-bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
-{
-	if (session == nullptr)
-		return false;
-
-	//valid
-	//todo vaild
-	
-	//process
-	Protocol::P2C_ReportMove sendPacket;
-	Protocol::UserData* user = nullptr;
-	user->set_userkey(packet.user().userkey());
-	Protocol::Vector vec = packet.user().pos();
-	user->set_allocated_pos(&vec);
-
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	
-	GWorld->DoASync(&World::BroadCast, sendBuffer);
-
-	//GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
-	return false;
-}
-
-bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_RequestCollison& packet)
-{
-	Float3 srcVec = Float3 (packet.src().pos().x(), packet.src().pos().y(), packet.src().pos().z());
-	double srcR = packet.src().col_r();
-	const int32 size = packet.descdatas_size();
-
-	//valid
-	//todo valid
-
-
-	//process
-	vector<Protocol::MonsterData> vec;
-	for (int i = 0; i < size; ++i)
-	{
-		Protocol::MonsterData monster = packet.descdatas(i);
-		Float3 descVec = Float3(monster.pos().x(), monster.pos().y(), monster.pos().z());
-		double descR = monster.cor_r();
-
-		if (Collision::SphereToSphere(srcVec, srcR, descVec, descR))
-		{
-			//todo
-			vec.push_back(monster);
-		}
-	}
-	
-
-	Protocol::P2C_ResultCollision sendPacket;
-	for (int i = 0; i < vec.size(); ++i)
-	{
-		Protocol::MonsterData* mon = sendPacket.add_descdatass();
-		mon->set_cor_r(vec[i].cor_r());
-		mon->set_hp(vec[i].hp());
-		mon->set_monsterkey(vec[i].monsterkey());
-		Protocol::Vector pos = vec[i].pos();
-		mon->set_allocated_pos(&pos);
-	}
-
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	session->Send(sendBuffer);
-
-	Protocol::P2C_ReportUpdateMonsters reportPacket;
-	for (int i = 0; i < vec.size(); ++i)
-	{
-		Protocol::MonsterData* mon = sendPacket.add_descdatass();
-		mon->set_cor_r(vec[i].cor_r());
-		mon->set_hp(vec[i].hp());
-		mon->set_monsterkey(vec[i].monsterkey());
-		Protocol::Vector pos = vec[i].pos();
-		mon->set_allocated_pos(&pos);
-	}
-
-	SendBufferRef reportBuffer = ClientPacketHandler::MakeSendBuffer(reportPacket);
-	//GGameSessionManager.BroadCast(reportBuffer, session->GetSessionKey());
-
-	GWorld->DoASync(&World::BroadCast, reportBuffer);
-	return true;
-}
+//bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
+//{
+//	if (session == nullptr)
+//		return false;
+//
+//	//valid
+//	//todo vaild
+//	
+//	//process
+//	Protocol::P2C_ReportMove sendPacket;
+//	Protocol::UserData* user = nullptr;
+//	user->set_userkey(packet.user().userkey());
+//	Protocol::Vector vec = packet.user().pos();
+//	user->set_allocated_pos(&vec);
+//
+//	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+//	
+//	GWorld->DoASync(&World::BroadCast, sendBuffer);
+//
+//	//GGameSessionManager.BroadCast(sendBuffer, session->GetSessionKey());
+//	return false;
+//}
+//
+//bool Handler::C2P_RequestCollison(PacketSessionRef& session, Protocol::C2P_RequestCollison& packet)
+//{
+//	Float3 srcVec = Float3 (packet.src().pos().x(), packet.src().pos().y(), packet.src().pos().z());
+//	double srcR = packet.src().col_r();
+//	const int32 size = packet.descdatas_size();
+//
+//	//valid
+//	//todo valid
+//
+//
+//	//process
+//	vector<Protocol::MonsterData> vec;
+//	for (int i = 0; i < size; ++i)
+//	{
+//		Protocol::MonsterData monster = packet.descdatas(i);
+//		Float3 descVec = Float3(monster.pos().x(), monster.pos().y(), monster.pos().z());
+//		double descR = monster.cor_r();
+//
+//		if (Collision::SphereToSphere(srcVec, srcR, descVec, descR))
+//		{
+//			//todo
+//			vec.push_back(monster);
+//		}
+//	}
+//	
+//
+//	Protocol::P2C_ResultCollision sendPacket;
+//	for (int i = 0; i < vec.size(); ++i)
+//	{
+//		Protocol::MonsterData* mon = sendPacket.add_descdatass();
+//		mon->set_cor_r(vec[i].cor_r());
+//		mon->set_hp(vec[i].hp());
+//		mon->set_monsterkey(vec[i].monsterkey());
+//		Protocol::Vector pos = vec[i].pos();
+//		mon->set_allocated_pos(&pos);
+//	}
+//
+//	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+//	session->Send(sendBuffer);
+//
+//	Protocol::P2C_ReportUpdateMonsters reportPacket;
+//	for (int i = 0; i < vec.size(); ++i)
+//	{
+//		Protocol::MonsterData* mon = sendPacket.add_descdatass();
+//		mon->set_cor_r(vec[i].cor_r());
+//		mon->set_hp(vec[i].hp());
+//		mon->set_monsterkey(vec[i].monsterkey());
+//		Protocol::Vector pos = vec[i].pos();
+//		mon->set_allocated_pos(&pos);
+//	}
+//
+//	SendBufferRef reportBuffer = ClientPacketHandler::MakeSendBuffer(reportPacket);
+//	//GGameSessionManager.BroadCast(reportBuffer, session->GetSessionKey());
+//
+//	GWorld->DoASync(&World::BroadCast, reportBuffer);
+//	return true;
+//}
 

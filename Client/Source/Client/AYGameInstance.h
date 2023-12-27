@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "Public/NetSocket.h"
+#include "Public/NetworkSocket.h"
+#include "Public/RecvPacketProsesor.h"
 #include "AYGameInstance.generated.h"
 
 /**
@@ -21,10 +23,14 @@ class CLIENT_API UAYGameInstance : public UGameInstance
 	virtual void Init();
 
 public:
-	ANetSocket* GetSocket();
+	NetworkSocket* GetNetworkSocket();
+	URecvPacketProsesor* GetRecvProsessor();
+	void RecvPacketPush(BYTE* buffer, int32 len);
 
 private:
-	ANetSocket* _socket;
+	NetworkSocket* Socket;
+	URecvPacketProsesor* RecvProsesor;
+
 
 public:
 	template<typename T>
@@ -34,5 +40,6 @@ public:
 template<typename T>
 inline void UAYGameInstance::Send(T& packet, uint16 col)
 {
-	_socket->Send<T>(packet, col);
+	if (Socket)
+		Socket->Send(packet, col);
 }

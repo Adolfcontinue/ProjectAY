@@ -25,17 +25,17 @@ void World::EnterUser(UserRef user)
 	//enterUser.set_userkey(user->GetActorKey());
 	//enterUser.set_col_r(1.0);
 
-	Protocol::P2C_ReportEnterUser packet;
-	Protocol::UserData* data = packet.mutable_user();
-	data->set_userkey(user->GetSessionKey());
-	Protocol::Vector* v = data->mutable_pos();
-	v->set_x(0);
-	v->set_y(0);
-	v->set_z(0);
-	data->set_userkey(user->GetActorKey());
-	data->set_col_r(1.0);
-	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
-	DoASync(&World::BroadCast,sendBuffer);
+	//Protocol::P2C_ReportEnterUser packet;
+	//Protocol::UserData* data = packet.mutable_user();
+	//data->set_userkey(user->GetSessionKey());
+	//Protocol::Vector* v = data->mutable_pos();
+	//v->set_x(0);
+	//v->set_y(0);
+	//v->set_z(0);
+	//data->set_userkey(user->GetActorKey());
+	//data->set_col_r(1.0);
+	//SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
+	//DoASync(&World::BroadCast,sendBuffer);
 	//BroadCast(sendBuffer);
 	//BroadCastExcept(sendBuffer, user->GetSessionKey());
 }
@@ -46,12 +46,12 @@ void World::LeaveUser(int64 sessionKey)
 	if (iter == _Users.end())
 		return;
 
-	Protocol::P2C_ReportLeaveUser packet;
+	/*Protocol::P2C_ReportLeaveUser packet;
 	Protocol::UserData* data = packet.mutable_user();
 	data->set_userkey(iter->second->GetActorKey());
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
 	DoASync(&World::BroadCast, sendBuffer);
-	_Users.erase(sessionKey);
+	_Users.erase(sessionKey);*/
 }
 
 void World::BroadCast(SendBufferRef sendBuffer)
