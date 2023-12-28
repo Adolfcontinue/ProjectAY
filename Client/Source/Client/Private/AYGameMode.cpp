@@ -5,20 +5,30 @@
 #include "ClientPlayerPawn.h"
 #include "AYCharacter.h"
 #include "ClientPlayerController.h"
+#include "../AYGameInstance.h"
+#include "AYGameState.h"
 
 AAYGameMode::AAYGameMode()
 {
-	//default pawn class setting 
 	DefaultPawnClass = AAYCharacter::StaticClass();
-
-	//default controller class setting
 	PlayerControllerClass = AClientPlayerController::StaticClass();
+	GameStateClass = AAYGameState::StaticClass();
+}
+
+void AAYGameMode::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	AYGameState = Cast<AAYGameState>(GameState);
 }
 
 void AAYGameMode::PostLogin(APlayerController* newPlayer)
 {
 	//LOG(Warning, TEXT("PostLogin Bagin"));
 	Super::PostLogin(newPlayer);
-	//LOG(Warning, TEXT("PostLogin End"));
+
+
+	UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
+	Protocol::C2P_RequestWorldData packet;
+	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_RequestWorldData);
 }
 

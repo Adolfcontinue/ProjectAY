@@ -13,8 +13,6 @@ class CLIENT_API AAYMonsterBase : public APawn
 
 protected:
 
-
-
 public:
     // Sets default values for this actor's properties
     AAYMonsterBase();

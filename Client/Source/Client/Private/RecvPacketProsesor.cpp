@@ -9,19 +9,33 @@
 #include "NetworkSocket.h"
 #include "PreLoder.h"
 
+void URecvPacketProsesor::CallTimer()
+{
+	FTimerHandle tHandle;
+	const float Delay = 1.0f;
+	//GetWorld()->GetTimerManager().SetTimer(tHandle, this, &URecvPacketProsesor::TestTimer, Delay, false);
+}
+
+void URecvPacketProsesor::TestTimer()
+{
+	GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "Hello World");
+}
+
 void URecvPacketProsesor::Init()
 {
 	Handler[EPacket_C2P_Protocol::P2C_ResultLogin] = &URecvPacketProsesor::Result_P2C_ResultLogin;
+	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::Result_P2C_ResultWorldData;
 	//Handler.Add(EPacket_C2P_Protocol::P2C_ResultLogin, &URecvPacketProsesor::Result_P2C_ResultLogin);
+
 }
 
 void URecvPacketProsesor::Tick(float DeltaTime)
 {
-	if (!RecvQueue.empty())
+	if (!RecvQueue.IsEmpty())
 	{
-		RecvPacket packet = RecvQueue.front();
-		PacketHandle(packet.Buffer, packet.Len);
-		RecvQueue.pop();
+		RecvPacket* packet = RecvQueue.Peek();
+		PacketHandle((*packet).Buffer, (*packet).Len);
+		RecvQueue.Pop();
 	}
 }
 
@@ -45,19 +59,24 @@ TStatId URecvPacketProsesor::GetStatId() const
 	return TStatId();
 }
 
-UWorld* URecvPacketProsesor::GetWorld() const
-{
-	return nullptr;
-}
-
 void URecvPacketProsesor::Push(RecvPacket packet)
 {
-	RecvQueue.push(packet);
+	RecvQueue.Enqueue(packet);
 }
 
 void URecvPacketProsesor::Push(BYTE* buffer, int32 len)
 {
-	RecvQueue.push(RecvPacket(buffer, len));
+	RecvQueue.Enqueue(RecvPacket(buffer, len));
+}
+
+void URecvPacketProsesor::SetGameInstance(UAYGameInstance* instance)
+{
+	GameInstance = instance;
+}
+
+UAYGameInstance* URecvPacketProsesor::GetGameInstance()
+{
+	return GameInstance;
 }
 
 void URecvPacketProsesor::PacketHandle(BYTE* buffer, int32 len)
@@ -81,5 +100,15 @@ void URecvPacketProsesor::Result_P2C_ResultLogin(BYTE* buffer, int32 len)
 	Delegate_P2C_Result.Broadcast();
 
 	LOG_SCREEN(FColor::Blue,"Result_P2C_ResultLogin");
+}
+
+void URecvPacketProsesor::Result_P2C_ResultWorldData(BYTE* buffer, int32 len)
+{
+	//valid
+	Protocol::P2C_ResultWorldData packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+
+	LOG_SCREEN(FColor::Blue, "Result_P2C_ResultWorldData");
 }
 

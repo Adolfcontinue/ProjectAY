@@ -4,6 +4,7 @@
 #include "AYCharacter.h"
 #include "PreLoder.h"
 #include "DarkNightAnimInstance.h"
+#include "../AYGameInstance.h"
 
 // Sets default values
 AAYCharacter::AAYCharacter()
@@ -45,6 +46,10 @@ void AAYCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//pakcet send
+	/*UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
+	Protocol::C2P_RequestWorldData packet;
+	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_RequestWorldData);*/
 }
 
 // Called every frame
@@ -54,6 +59,8 @@ void AAYCharacter::Tick(float DeltaTime)
 
 	if (CurrentControlType == eControlType::Type2)
 		TickMove();
+
+	UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
 }
 
 void AAYCharacter::PostInitializeComponents()

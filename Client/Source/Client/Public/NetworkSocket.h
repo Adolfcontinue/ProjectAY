@@ -14,6 +14,8 @@ enum EPacket_C2P_Protocol
 {
 	C2P_RequestLogin = 1000,
 	P2C_ResultLogin = 1001,
+	C2P_RequestWorldData = 1002,
+	P2C_ResultWorldData = 1003,
 };
 
 class CLIENT_API NetworkSocket : public FRunnable
@@ -36,7 +38,6 @@ private:
 public:
 	bool NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
-	bool P2C_ResultLogin_Process(PacketSessionRef& session, BYTE* buffer, int32 len);
 	void SetGameInstance(class UAYGameInstance* inst);
 	class UAYGameInstance* GetGameInstance();
 

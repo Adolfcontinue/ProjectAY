@@ -340,12 +340,12 @@ class UserData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPosFieldNumber = 4,
+    kPosFieldNumber = 3,
+    kRotFieldNumber = 4,
     kSessionKeyFieldNumber = 1,
     kUserKeyFieldNumber = 2,
-    kColRFieldNumber = 3,
   };
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   bool has_pos() const;
   private:
   bool _internal_has_pos() const;
@@ -362,6 +362,24 @@ class UserData final :
   void unsafe_arena_set_allocated_pos(
       ::Protocol::Vector* pos);
   ::Protocol::Vector* unsafe_arena_release_pos();
+
+  // .Protocol.Vector Rot = 4;
+  bool has_rot() const;
+  private:
+  bool _internal_has_rot() const;
+  public:
+  void clear_rot();
+  const ::Protocol::Vector& rot() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::Vector* release_rot();
+  ::Protocol::Vector* mutable_rot();
+  void set_allocated_rot(::Protocol::Vector* rot);
+  private:
+  const ::Protocol::Vector& _internal_rot() const;
+  ::Protocol::Vector* _internal_mutable_rot();
+  public:
+  void unsafe_arena_set_allocated_rot(
+      ::Protocol::Vector* rot);
+  ::Protocol::Vector* unsafe_arena_release_rot();
 
   // uint64 sessionKey = 1;
   void clear_sessionkey();
@@ -381,15 +399,6 @@ class UserData final :
   void _internal_set_userkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // double col_r = 3;
-  void clear_col_r();
-  double col_r() const;
-  void set_col_r(double value);
-  private:
-  double _internal_col_r() const;
-  void _internal_set_col_r(double value);
-  public:
-
   // @@protoc_insertion_point(class_scope:Protocol.UserData)
  private:
   class _Internal;
@@ -398,9 +407,9 @@ class UserData final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::Protocol::Vector* pos_;
+  ::Protocol::Vector* rot_;
   ::PROTOBUF_NAMESPACE_ID::uint64 sessionkey_;
   ::PROTOBUF_NAMESPACE_ID::uint64 userkey_;
-  double col_r_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Struct_2eproto;
 };
@@ -514,12 +523,12 @@ class MonsterData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPosFieldNumber = 4,
+    kPosFieldNumber = 3,
+    kRotFieldNumber = 4,
     kMonsterKeyFieldNumber = 1,
-    kCorRFieldNumber = 3,
     kHpFieldNumber = 2,
   };
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   bool has_pos() const;
   private:
   bool _internal_has_pos() const;
@@ -537,6 +546,24 @@ class MonsterData final :
       ::Protocol::Vector* pos);
   ::Protocol::Vector* unsafe_arena_release_pos();
 
+  // .Protocol.Vector Rot = 4;
+  bool has_rot() const;
+  private:
+  bool _internal_has_rot() const;
+  public:
+  void clear_rot();
+  const ::Protocol::Vector& rot() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::Protocol::Vector* release_rot();
+  ::Protocol::Vector* mutable_rot();
+  void set_allocated_rot(::Protocol::Vector* rot);
+  private:
+  const ::Protocol::Vector& _internal_rot() const;
+  ::Protocol::Vector* _internal_mutable_rot();
+  public:
+  void unsafe_arena_set_allocated_rot(
+      ::Protocol::Vector* rot);
+  ::Protocol::Vector* unsafe_arena_release_rot();
+
   // uint64 monsterKey = 1;
   void clear_monsterkey();
   ::PROTOBUF_NAMESPACE_ID::uint64 monsterkey() const;
@@ -544,15 +571,6 @@ class MonsterData final :
   private:
   ::PROTOBUF_NAMESPACE_ID::uint64 _internal_monsterkey() const;
   void _internal_set_monsterkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
-  // double cor_r = 3;
-  void clear_cor_r();
-  double cor_r() const;
-  void set_cor_r(double value);
-  private:
-  double _internal_cor_r() const;
-  void _internal_set_cor_r(double value);
   public:
 
   // int32 hp = 2;
@@ -572,8 +590,8 @@ class MonsterData final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::Protocol::Vector* pos_;
+  ::Protocol::Vector* rot_;
   ::PROTOBUF_NAMESPACE_ID::uint64 monsterkey_;
-  double cor_r_;
   ::PROTOBUF_NAMESPACE_ID::int32 hp_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Struct_2eproto;
@@ -693,27 +711,7 @@ inline void UserData::set_userkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   // @@protoc_insertion_point(field_set:Protocol.UserData.userKey)
 }
 
-// double col_r = 3;
-inline void UserData::clear_col_r() {
-  col_r_ = 0;
-}
-inline double UserData::_internal_col_r() const {
-  return col_r_;
-}
-inline double UserData::col_r() const {
-  // @@protoc_insertion_point(field_get:Protocol.UserData.col_r)
-  return _internal_col_r();
-}
-inline void UserData::_internal_set_col_r(double value) {
-  
-  col_r_ = value;
-}
-inline void UserData::set_col_r(double value) {
-  _internal_set_col_r(value);
-  // @@protoc_insertion_point(field_set:Protocol.UserData.col_r)
-}
-
-// .Protocol.Vector pos = 4;
+// .Protocol.Vector pos = 3;
 inline bool UserData::_internal_has_pos() const {
   return this != internal_default_instance() && pos_ != nullptr;
 }
@@ -796,6 +794,89 @@ inline void UserData::set_allocated_pos(::Protocol::Vector* pos) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.UserData.pos)
 }
 
+// .Protocol.Vector Rot = 4;
+inline bool UserData::_internal_has_rot() const {
+  return this != internal_default_instance() && rot_ != nullptr;
+}
+inline bool UserData::has_rot() const {
+  return _internal_has_rot();
+}
+inline void UserData::clear_rot() {
+  if (GetArenaForAllocation() == nullptr && rot_ != nullptr) {
+    delete rot_;
+  }
+  rot_ = nullptr;
+}
+inline const ::Protocol::Vector& UserData::_internal_rot() const {
+  const ::Protocol::Vector* p = rot_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::Vector&>(
+      ::Protocol::_Vector_default_instance_);
+}
+inline const ::Protocol::Vector& UserData::rot() const {
+  // @@protoc_insertion_point(field_get:Protocol.UserData.Rot)
+  return _internal_rot();
+}
+inline void UserData::unsafe_arena_set_allocated_rot(
+    ::Protocol::Vector* rot) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(rot_);
+  }
+  rot_ = rot;
+  if (rot) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.UserData.Rot)
+}
+inline ::Protocol::Vector* UserData::release_rot() {
+  
+  ::Protocol::Vector* temp = rot_;
+  rot_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::Protocol::Vector* UserData::unsafe_arena_release_rot() {
+  // @@protoc_insertion_point(field_release:Protocol.UserData.Rot)
+  
+  ::Protocol::Vector* temp = rot_;
+  rot_ = nullptr;
+  return temp;
+}
+inline ::Protocol::Vector* UserData::_internal_mutable_rot() {
+  
+  if (rot_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Protocol::Vector>(GetArenaForAllocation());
+    rot_ = p;
+  }
+  return rot_;
+}
+inline ::Protocol::Vector* UserData::mutable_rot() {
+  // @@protoc_insertion_point(field_mutable:Protocol.UserData.Rot)
+  return _internal_mutable_rot();
+}
+inline void UserData::set_allocated_rot(::Protocol::Vector* rot) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete rot_;
+  }
+  if (rot) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::Vector>::GetOwningArena(rot);
+    if (message_arena != submessage_arena) {
+      rot = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, rot, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  rot_ = rot;
+  // @@protoc_insertion_point(field_set_allocated:Protocol.UserData.Rot)
+}
+
 // -------------------------------------------------------------------
 
 // MonsterData
@@ -840,27 +921,7 @@ inline void MonsterData::set_hp(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:Protocol.MonsterData.hp)
 }
 
-// double cor_r = 3;
-inline void MonsterData::clear_cor_r() {
-  cor_r_ = 0;
-}
-inline double MonsterData::_internal_cor_r() const {
-  return cor_r_;
-}
-inline double MonsterData::cor_r() const {
-  // @@protoc_insertion_point(field_get:Protocol.MonsterData.cor_r)
-  return _internal_cor_r();
-}
-inline void MonsterData::_internal_set_cor_r(double value) {
-  
-  cor_r_ = value;
-}
-inline void MonsterData::set_cor_r(double value) {
-  _internal_set_cor_r(value);
-  // @@protoc_insertion_point(field_set:Protocol.MonsterData.cor_r)
-}
-
-// .Protocol.Vector pos = 4;
+// .Protocol.Vector pos = 3;
 inline bool MonsterData::_internal_has_pos() const {
   return this != internal_default_instance() && pos_ != nullptr;
 }
@@ -941,6 +1002,89 @@ inline void MonsterData::set_allocated_pos(::Protocol::Vector* pos) {
   }
   pos_ = pos;
   // @@protoc_insertion_point(field_set_allocated:Protocol.MonsterData.pos)
+}
+
+// .Protocol.Vector Rot = 4;
+inline bool MonsterData::_internal_has_rot() const {
+  return this != internal_default_instance() && rot_ != nullptr;
+}
+inline bool MonsterData::has_rot() const {
+  return _internal_has_rot();
+}
+inline void MonsterData::clear_rot() {
+  if (GetArenaForAllocation() == nullptr && rot_ != nullptr) {
+    delete rot_;
+  }
+  rot_ = nullptr;
+}
+inline const ::Protocol::Vector& MonsterData::_internal_rot() const {
+  const ::Protocol::Vector* p = rot_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Protocol::Vector&>(
+      ::Protocol::_Vector_default_instance_);
+}
+inline const ::Protocol::Vector& MonsterData::rot() const {
+  // @@protoc_insertion_point(field_get:Protocol.MonsterData.Rot)
+  return _internal_rot();
+}
+inline void MonsterData::unsafe_arena_set_allocated_rot(
+    ::Protocol::Vector* rot) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(rot_);
+  }
+  rot_ = rot;
+  if (rot) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Protocol.MonsterData.Rot)
+}
+inline ::Protocol::Vector* MonsterData::release_rot() {
+  
+  ::Protocol::Vector* temp = rot_;
+  rot_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::Protocol::Vector* MonsterData::unsafe_arena_release_rot() {
+  // @@protoc_insertion_point(field_release:Protocol.MonsterData.Rot)
+  
+  ::Protocol::Vector* temp = rot_;
+  rot_ = nullptr;
+  return temp;
+}
+inline ::Protocol::Vector* MonsterData::_internal_mutable_rot() {
+  
+  if (rot_ == nullptr) {
+    auto* p = CreateMaybeMessage<::Protocol::Vector>(GetArenaForAllocation());
+    rot_ = p;
+  }
+  return rot_;
+}
+inline ::Protocol::Vector* MonsterData::mutable_rot() {
+  // @@protoc_insertion_point(field_mutable:Protocol.MonsterData.Rot)
+  return _internal_mutable_rot();
+}
+inline void MonsterData::set_allocated_rot(::Protocol::Vector* rot) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete rot_;
+  }
+  if (rot) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::Protocol::Vector>::GetOwningArena(rot);
+    if (message_arena != submessage_arena) {
+      rot = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, rot, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  rot_ = rot;
+  // @@protoc_insertion_point(field_set_allocated:Protocol.MonsterData.Rot)
 }
 
 #ifdef __GNUC__

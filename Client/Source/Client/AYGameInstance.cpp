@@ -4,6 +4,7 @@
 #include "AYGameInstance.h"
 #include "NetWork/NetSocketUtils.h"
 #include "NetPacketHandler.h"
+#include "PreLoder.h"
 
 void UAYGameInstance::Init()
 {
@@ -13,8 +14,9 @@ void UAYGameInstance::Init()
 	Socket = new NetworkSocket();
 	Socket->SetGameInstance(this);
 	FRunnableThread::Create(Socket, TEXT("network_thread"));
-	RecvProsesor = NewObject<URecvPacketProsesor>();
+	RecvProsesor = new URecvPacketProsesor();
 	RecvProsesor->Init();
+	RecvProsesor->SetGameInstance(this);
 }
 
 NetworkSocket* UAYGameInstance::GetNetworkSocket()
@@ -33,5 +35,7 @@ URecvPacketProsesor* UAYGameInstance::GetRecvProsessor()
 void UAYGameInstance::RecvPacketPush(BYTE* buffer, int32 len)
 {
 	RecvProsesor->Push(buffer, len);
+	LOG_SCREEN(FColor::Red, "RecvPacketPush Success");
+	LOG("RecvPacketPush Success");
 }
 

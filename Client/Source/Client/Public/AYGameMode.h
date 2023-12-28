@@ -17,5 +17,10 @@ class CLIENT_API AAYGameMode : public AGameModeBase
 public:
 	AAYGameMode();
 
+	virtual void PostInitializeComponents() override;
 	virtual void PostLogin(APlayerController* newPlayer) override;
+
+private:
+	UPROPERTY()
+	class AAYGameState* AYGameState;
 };
