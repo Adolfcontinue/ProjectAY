@@ -34,9 +34,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT VectorDefaultTypeInternal _Vect
 constexpr UserData::UserData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : pos_(nullptr)
+  , rot_(nullptr)
   , sessionkey_(uint64_t{0u})
-  , userkey_(uint64_t{0u})
-  , col_r_(0){}
+  , userkey_(uint64_t{0u}){}
 struct UserDataDefaultTypeInternal {
   constexpr UserDataDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -49,8 +49,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserDataDefaultTypeInternal _Us
 constexpr MonsterData::MonsterData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : pos_(nullptr)
+  , rot_(nullptr)
   , monsterkey_(uint64_t{0u})
-  , cor_r_(0)
   , hp_(0){}
 struct MonsterDataDefaultTypeInternal {
   constexpr MonsterDataDefaultTypeInternal()
@@ -82,8 +82,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Struct_2eproto::offsets[] PROT
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::UserData, sessionkey_),
   PROTOBUF_FIELD_OFFSET(::Protocol::UserData, userkey_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::UserData, col_r_),
   PROTOBUF_FIELD_OFFSET(::Protocol::UserData, pos_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::UserData, rot_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -91,8 +91,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Struct_2eproto::offsets[] PROT
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, monsterkey_),
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, hp_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, cor_r_),
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, pos_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, rot_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Protocol::Vector)},
@@ -109,18 +109,19 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\")\n\006"
   "Vector\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\""
-  "]\n\010UserData\022\022\n\nsessionKey\030\001 \001(\004\022\017\n\007userK"
-  "ey\030\002 \001(\004\022\r\n\005col_r\030\003 \001(\001\022\035\n\003pos\030\004 \001(\0132\020.P"
-  "rotocol.Vector\"[\n\013MonsterData\022\022\n\nmonster"
-  "Key\030\001 \001(\004\022\n\n\002hp\030\002 \001(\005\022\r\n\005cor_r\030\003 \001(\001\022\035\n\003"
-  "pos\030\004 \001(\0132\020.Protocol.Vectorb\006proto3"
+  "m\n\010UserData\022\022\n\nsessionKey\030\001 \001(\004\022\017\n\007userK"
+  "ey\030\002 \001(\004\022\035\n\003pos\030\003 \001(\0132\020.Protocol.Vector\022"
+  "\035\n\003Rot\030\004 \001(\0132\020.Protocol.Vector\"k\n\013Monste"
+  "rData\022\022\n\nmonsterKey\030\001 \001(\004\022\n\n\002hp\030\002 \001(\005\022\035\n"
+  "\003pos\030\003 \001(\0132\020.Protocol.Vector\022\035\n\003Rot\030\004 \001("
+  "\0132\020.Protocol.Vectorb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Struct_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto = {
-  false, false, 275, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
+  false, false, 307, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
   &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 3,
   schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
   file_level_metadata_Struct_2eproto, file_level_enum_descriptors_Struct_2eproto, file_level_service_descriptors_Struct_2eproto,
@@ -380,11 +381,16 @@ void Vector::InternalSwap(Vector* other) {
 class UserData::_Internal {
  public:
   static const ::Protocol::Vector& pos(const UserData* msg);
+  static const ::Protocol::Vector& rot(const UserData* msg);
 };
 
 const ::Protocol::Vector&
 UserData::_Internal::pos(const UserData* msg) {
   return *msg->pos_;
+}
+const ::Protocol::Vector&
+UserData::_Internal::rot(const UserData* msg) {
+  return *msg->rot_;
 }
 UserData::UserData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -400,17 +406,22 @@ UserData::UserData(const UserData& from)
   } else {
     pos_ = nullptr;
   }
+  if (from._internal_has_rot()) {
+    rot_ = new ::Protocol::Vector(*from.rot_);
+  } else {
+    rot_ = nullptr;
+  }
   ::memcpy(&sessionkey_, &from.sessionkey_,
-    static_cast<size_t>(reinterpret_cast<char*>(&col_r_) -
-    reinterpret_cast<char*>(&sessionkey_)) + sizeof(col_r_));
+    static_cast<size_t>(reinterpret_cast<char*>(&userkey_) -
+    reinterpret_cast<char*>(&sessionkey_)) + sizeof(userkey_));
   // @@protoc_insertion_point(copy_constructor:Protocol.UserData)
 }
 
 void UserData::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&pos_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&col_r_) -
-    reinterpret_cast<char*>(&pos_)) + sizeof(col_r_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&userkey_) -
+    reinterpret_cast<char*>(&pos_)) + sizeof(userkey_));
 }
 
 UserData::~UserData() {
@@ -422,6 +433,7 @@ UserData::~UserData() {
 void UserData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete pos_;
+  if (this != internal_default_instance()) delete rot_;
 }
 
 void UserData::ArenaDtor(void* object) {
@@ -444,9 +456,13 @@ void UserData::Clear() {
     delete pos_;
   }
   pos_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && rot_ != nullptr) {
+    delete rot_;
+  }
+  rot_ = nullptr;
   ::memset(&sessionkey_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&col_r_) -
-      reinterpret_cast<char*>(&sessionkey_)) + sizeof(col_r_));
+      reinterpret_cast<char*>(&userkey_) -
+      reinterpret_cast<char*>(&sessionkey_)) + sizeof(userkey_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -470,17 +486,17 @@ const char* UserData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // double col_r = 3;
+      // .Protocol.Vector pos = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
-          col_r_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pos(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .Protocol.Vector pos = 4;
+      // .Protocol.Vector Rot = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_pos(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_rot(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -525,18 +541,20 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_userkey(), target);
   }
 
-  // double col_r = 3;
-  if (!(this->col_r() <= 0 && this->col_r() >= 0)) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_col_r(), target);
-  }
-
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   if (this->has_pos()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        4, _Internal::pos(this), target, stream);
+        3, _Internal::pos(this), target, stream);
+  }
+
+  // .Protocol.Vector Rot = 4;
+  if (this->has_rot()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::rot(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -555,11 +573,18 @@ size_t UserData::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   if (this->has_pos()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *pos_);
+  }
+
+  // .Protocol.Vector Rot = 4;
+  if (this->has_rot()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *rot_);
   }
 
   // uint64 sessionKey = 1;
@@ -574,11 +599,6 @@ size_t UserData::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_userkey());
-  }
-
-  // double col_r = 3;
-  if (!(this->col_r() <= 0 && this->col_r() >= 0)) {
-    total_size += 1 + 8;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -615,14 +635,14 @@ void UserData::MergeFrom(const UserData& from) {
   if (from.has_pos()) {
     _internal_mutable_pos()->::Protocol::Vector::MergeFrom(from._internal_pos());
   }
+  if (from.has_rot()) {
+    _internal_mutable_rot()->::Protocol::Vector::MergeFrom(from._internal_rot());
+  }
   if (from.sessionkey() != 0) {
     _internal_set_sessionkey(from._internal_sessionkey());
   }
   if (from.userkey() != 0) {
     _internal_set_userkey(from._internal_userkey());
-  }
-  if (!(from.col_r() <= 0 && from.col_r() >= 0)) {
-    _internal_set_col_r(from._internal_col_r());
   }
 }
 
@@ -648,8 +668,8 @@ void UserData::InternalSwap(UserData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UserData, col_r_)
-      + sizeof(UserData::col_r_)
+      PROTOBUF_FIELD_OFFSET(UserData, userkey_)
+      + sizeof(UserData::userkey_)
       - PROTOBUF_FIELD_OFFSET(UserData, pos_)>(
           reinterpret_cast<char*>(&pos_),
           reinterpret_cast<char*>(&other->pos_));
@@ -666,11 +686,16 @@ void UserData::InternalSwap(UserData* other) {
 class MonsterData::_Internal {
  public:
   static const ::Protocol::Vector& pos(const MonsterData* msg);
+  static const ::Protocol::Vector& rot(const MonsterData* msg);
 };
 
 const ::Protocol::Vector&
 MonsterData::_Internal::pos(const MonsterData* msg) {
   return *msg->pos_;
+}
+const ::Protocol::Vector&
+MonsterData::_Internal::rot(const MonsterData* msg) {
+  return *msg->rot_;
 }
 MonsterData::MonsterData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -685,6 +710,11 @@ MonsterData::MonsterData(const MonsterData& from)
     pos_ = new ::Protocol::Vector(*from.pos_);
   } else {
     pos_ = nullptr;
+  }
+  if (from._internal_has_rot()) {
+    rot_ = new ::Protocol::Vector(*from.rot_);
+  } else {
+    rot_ = nullptr;
   }
   ::memcpy(&monsterkey_, &from.monsterkey_,
     static_cast<size_t>(reinterpret_cast<char*>(&hp_) -
@@ -708,6 +738,7 @@ MonsterData::~MonsterData() {
 void MonsterData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete pos_;
+  if (this != internal_default_instance()) delete rot_;
 }
 
 void MonsterData::ArenaDtor(void* object) {
@@ -730,6 +761,10 @@ void MonsterData::Clear() {
     delete pos_;
   }
   pos_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && rot_ != nullptr) {
+    delete rot_;
+  }
+  rot_ = nullptr;
   ::memset(&monsterkey_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&hp_) -
       reinterpret_cast<char*>(&monsterkey_)) + sizeof(hp_));
@@ -756,17 +791,17 @@ const char* MonsterData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // double cor_r = 3;
+      // .Protocol.Vector pos = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
-          cor_r_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pos(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .Protocol.Vector pos = 4;
+      // .Protocol.Vector Rot = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_pos(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_rot(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -811,18 +846,20 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_hp(), target);
   }
 
-  // double cor_r = 3;
-  if (!(this->cor_r() <= 0 && this->cor_r() >= 0)) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_cor_r(), target);
-  }
-
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   if (this->has_pos()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        4, _Internal::pos(this), target, stream);
+        3, _Internal::pos(this), target, stream);
+  }
+
+  // .Protocol.Vector Rot = 4;
+  if (this->has_rot()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::rot(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -841,11 +878,18 @@ size_t MonsterData::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.Vector pos = 4;
+  // .Protocol.Vector pos = 3;
   if (this->has_pos()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *pos_);
+  }
+
+  // .Protocol.Vector Rot = 4;
+  if (this->has_rot()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *rot_);
   }
 
   // uint64 monsterKey = 1;
@@ -853,11 +897,6 @@ size_t MonsterData::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_monsterkey());
-  }
-
-  // double cor_r = 3;
-  if (!(this->cor_r() <= 0 && this->cor_r() >= 0)) {
-    total_size += 1 + 8;
   }
 
   // int32 hp = 2;
@@ -901,11 +940,11 @@ void MonsterData::MergeFrom(const MonsterData& from) {
   if (from.has_pos()) {
     _internal_mutable_pos()->::Protocol::Vector::MergeFrom(from._internal_pos());
   }
+  if (from.has_rot()) {
+    _internal_mutable_rot()->::Protocol::Vector::MergeFrom(from._internal_rot());
+  }
   if (from.monsterkey() != 0) {
     _internal_set_monsterkey(from._internal_monsterkey());
-  }
-  if (!(from.cor_r() <= 0 && from.cor_r() >= 0)) {
-    _internal_set_cor_r(from._internal_cor_r());
   }
   if (from.hp() != 0) {
     _internal_set_hp(from._internal_hp());

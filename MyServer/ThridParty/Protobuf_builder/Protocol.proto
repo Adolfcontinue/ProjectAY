@@ -14,3 +14,12 @@ message P2C_ResultLogin
 {
 	uint32 result = 1;
 }
+
+message C2P_RequestWorldData
+{
+}
+
+message P2C_ResultWorldData
+{
+	repeated UserData Users = 1;
+}

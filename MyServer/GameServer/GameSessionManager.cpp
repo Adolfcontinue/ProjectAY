@@ -62,6 +62,6 @@ GameSessionRef GameSessionManager::Find(int64 sessionKey)
 GameSessionRef GameSessionManager::CreateSession()
 {
 	GameSessionRef retval = MakeShared<GameSession>();
-	retval->SetSessionKey(FindSessionKey());
+	retval->SetSessionKey(IssueSessionKey());
 	return retval;
 }

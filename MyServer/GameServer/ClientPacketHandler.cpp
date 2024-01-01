@@ -36,6 +36,16 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	return true;
 }
 
+bool Handler::C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_RequestWorldData& packet)
+{
+	UserRef user = GWorld->FindUser(session->GetSessionKey());
+	if (user == nullptr)
+		return false;
+
+	user->DoASync(&User::ReqWorldData);
+	return true;
+}
+
 //bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
 //{
 //	if (session == nullptr)

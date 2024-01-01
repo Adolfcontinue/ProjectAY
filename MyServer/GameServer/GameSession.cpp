@@ -6,7 +6,7 @@
 
 void GameSession::OnConnected()
 {
-    this->SetSessionKey(GGameSessionManager.FindSessionKey());
+    this->SetSessionKey(GGameSessionManager.IssueSessionKey());
     GGameSessionManager.Add(static_pointer_cast<GameSession>(shared_from_this()));
     GGameSessionManager.Add(this->GetSessionKey(), static_pointer_cast<GameSession>(shared_from_this()));
     std::cout << "Connect Client" << std::endl;

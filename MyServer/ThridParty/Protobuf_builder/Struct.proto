@@ -14,14 +14,14 @@ message UserData
 {
 	uint64 sessionKey = 1;
 	uint64 userKey = 2;
-	double col_r = 3;
-	Vector pos = 4;
+	Vector pos = 3;
+	Vector Rot = 4;
 }
 
 message MonsterData
 {
 	uint64 monsterKey = 1;
 	int32  hp = 2;
-	double cor_r = 3;
-	Vector pos = 4;
+	Vector pos = 3;
+	Vector Rot = 4;
 }

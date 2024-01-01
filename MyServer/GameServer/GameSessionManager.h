@@ -20,7 +20,7 @@ public:
 	GameSessionRef CreateSession();
 
 public:
-	inline int64 FindSessionKey() { return _sessionKey.fetch_add(1); }
+	inline int64 IssueSessionKey() { return _sessionKey.fetch_add(1); }
 
 private:
 	USE_LOCK;

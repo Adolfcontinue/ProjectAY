@@ -77,6 +77,15 @@ void World::BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey)
 	}
 }
 
+UserRef World::FindUser(int64 key)
+{
+	auto iter = _Users.find(key);
+	if (iter == _Users.end())
+		return nullptr;
+
+	return iter->second;
+}
+
 //::todo create monster
 void World::CreateMonster()
 {
@@ -87,9 +96,6 @@ void World::CreateMonster()
 
 void World::Update()
 {
-	//::todo
-	//std::cout << "World Update!" << std::endl;
-
 	for (auto& it : _Monsters)
 		it.second->Update();
 

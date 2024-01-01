@@ -22,6 +22,9 @@ public:
 	int32 GetLevel() { return _Level; }
 	int32 GetExp() { return _Exp; }
 
+	void ReqWorldData();
+
+
 private:
 	int64 _SessionKey;
 	string _Id;
