@@ -3,11 +3,14 @@
 
 #include "RecvPacketProsesor.h"
 #include "NetWork/NetSession.h"
-#include "Enum.pb.h"
-#include "Protocol.pb.h"
-#include "Struct.pb.h"
+#include "Protobuf/Struct.pb.h"
+#include "Protobuf/Enum.pb.h"
+#include "Protobuf/Protocol.pb.h"
 #include "NetworkSocket.h"
 #include "PreLoder.h"
+#include "Kismet/GameplayStatics.h"
+#include "AYGameState.h"
+#include "../AYGameInstance.h"
 
 void URecvPacketProsesor::CallTimer()
 {
@@ -23,10 +26,10 @@ void URecvPacketProsesor::TestTimer()
 
 void URecvPacketProsesor::Init()
 {
-	Handler[EPacket_C2P_Protocol::P2C_ResultLogin] = &URecvPacketProsesor::Result_P2C_ResultLogin;
-	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::Result_P2C_ResultWorldData;
-	//Handler.Add(EPacket_C2P_Protocol::P2C_ResultLogin, &URecvPacketProsesor::Result_P2C_ResultLogin);
-
+	Handler[EPacket_C2P_Protocol::P2C_ResultLogin] = &URecvPacketProsesor::Proc_P2C_ResultLogin;
+	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::Proc_P2C_ResultWorldData;
+	Handler[EPacket_C2P_Protocol::P2C_ReportEnterUser] = &URecvPacketProsesor::Proc_P2C_ReportEnterUser;
+	Handler[EPacket_C2P_Protocol::P2C_ReportLeaveUser] = &URecvPacketProsesor::Proc_P2C_ReportLeaveUser;
 }
 
 void URecvPacketProsesor::Tick(float DeltaTime)
@@ -90,7 +93,7 @@ void URecvPacketProsesor::PacketHandle(BYTE* buffer, int32 len)
 	Handler[protocol](*this, buffer, len);
 }
 
-void URecvPacketProsesor::Result_P2C_ResultLogin(BYTE* buffer, int32 len)
+void URecvPacketProsesor::Proc_P2C_ResultLogin(BYTE* buffer, int32 len)
 {
 	//vaild
 	Protocol::P2C_ResultLogin packet;
@@ -99,16 +102,46 @@ void URecvPacketProsesor::Result_P2C_ResultLogin(BYTE* buffer, int32 len)
 
 	Delegate_P2C_Result.Broadcast();
 
-	LOG_SCREEN(FColor::Blue,"Result_P2C_ResultLogin");
+	LOG("Result_P2C_ResultLogin");
 }
 
-void URecvPacketProsesor::Result_P2C_ResultWorldData(BYTE* buffer, int32 len)
+void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
 {
 	//valid
 	Protocol::P2C_ResultWorldData packet;
 	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
 		return;
 
-	LOG_SCREEN(FColor::Blue, "Result_P2C_ResultWorldData");
+	//process
+	for (size_t i = 0; i < packet.users_size(); i++)
+		GameInstance->AddPlayer(packet.users(i));
+
+	LOG("Result_P2C_ResultWorldData");
+}
+
+void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)
+{
+	//valid
+	Protocol::P2C_ReportEnterUser packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+	
+	//process
+	GameInstance->AddPlayer(packet.user());
+
+	LOG("Result_P2C_ReportEnterUser");
+}
+
+void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
+{
+	//valid
+	Protocol::P2C_ReportLeaveUser packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+
+	//process
+	GameInstance->RemovePlayer(packet.userkey());
+
+	LOG("Result_P2C_ReportEnterUser");
 }
 

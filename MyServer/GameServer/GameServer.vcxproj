@@ -192,6 +192,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ProtobufHelper.cpp" />
     <ClCompile Include="Protocol.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -222,6 +223,7 @@
     <ClInclude Include="MSDBQuery.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ClientPacketHandler.h" />
+    <ClInclude Include="ProtobufHelper.h" />
     <ClInclude Include="Protocol.pb.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Struct.pb.h" />

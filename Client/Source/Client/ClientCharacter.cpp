@@ -10,7 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "Protocol.pb.h"
+#include "Protobuf/Protocol.pb.h"
 #include "AYGameInstance.h"
 #include "NetPacketHandler.h"
 

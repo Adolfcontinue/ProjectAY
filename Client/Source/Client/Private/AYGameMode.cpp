@@ -26,7 +26,6 @@ void AAYGameMode::PostLogin(APlayerController* newPlayer)
 	//LOG(Warning, TEXT("PostLogin Bagin"));
 	Super::PostLogin(newPlayer);
 
-
 	UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
 	Protocol::C2P_RequestWorldData packet;
 	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_RequestWorldData);

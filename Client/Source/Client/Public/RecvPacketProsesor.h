@@ -51,8 +51,10 @@ public:
 
 private:
 	void PacketHandle(BYTE* buffer, int32 len);
-	void Result_P2C_ResultLogin(BYTE* buffer, int32 len);
-	void Result_P2C_ResultWorldData(BYTE* buffer, int32 len);
+	void Proc_P2C_ResultLogin(BYTE* buffer, int32 len);
+	void Proc_P2C_ResultWorldData(BYTE* buffer, int32 len);
+	void Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len);
+	void Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len);
 
 private:
 	std::map<EPacket_C2P_Protocol, std::function<void(URecvPacketProsesor& ,BYTE*, int32)>> Handler;

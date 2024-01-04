@@ -1,1 +1,14 @@
-﻿  GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\GameServer.exe
+﻿  ClientPacketHandler.cpp
+  Collision.cpp
+  GameServer.cpp
+  GameSession.cpp
+  Math.cpp
+  User.cpp
+  World.cpp
+  코드를 생성하고 있습니다...
+  Enum.pb.cc
+  Protocol.pb.cc
+  Struct.pb.cc
+C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Struct.pb.cc(790,64): warning C4244: '=': 'google::protobuf::uint64'에서 'google::protobuf::int32'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\GameServer.exe

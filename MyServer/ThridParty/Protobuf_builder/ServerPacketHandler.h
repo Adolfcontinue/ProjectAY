@@ -10,6 +10,8 @@ enum Packet_C2P
 	P2C_ResultLogin = 1001,
 	C2P_RequestWorldData = 1002,
 	P2C_ResultWorldData = 1003,
+	P2C_ReportEnterUser = 1004,
+	P2C_ReportLeaveUser = 1005,
 };
 
 // Custom Handlers
@@ -18,6 +20,8 @@ namespace Handler
 	bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool P2C_ResultLogin(PacketSessionRef& session, Protocol::P2C_ResultLogin& packet);
 	bool P2C_ResultWorldData(PacketSessionRef& session, Protocol::P2C_ResultWorldData& packet);
+	bool P2C_ReportEnterUser(PacketSessionRef& session, Protocol::P2C_ReportEnterUser& packet);
+	bool P2C_ReportLeaveUser(PacketSessionRef& session, Protocol::P2C_ReportLeaveUser& packet);
 }
 
 
@@ -30,6 +34,8 @@ public:
 			GPacketHandler[i] = Handler::Handle_INVALID;
 		GPacketHandler[P2C_ResultLogin] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultLogin>(Handler::P2C_ResultLogin, session, buffer, len); };
 		GPacketHandler[P2C_ResultWorldData] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultWorldData>(Handler::P2C_ResultWorldData, session, buffer, len); };
+		GPacketHandler[P2C_ReportEnterUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportEnterUser>(Handler::P2C_ReportEnterUser, session, buffer, len); };
+		GPacketHandler[P2C_ReportLeaveUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportLeaveUser>(Handler::P2C_ReportLeaveUser, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)

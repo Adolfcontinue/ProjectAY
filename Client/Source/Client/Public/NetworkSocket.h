@@ -16,6 +16,8 @@ enum EPacket_C2P_Protocol
 	P2C_ResultLogin = 1001,
 	C2P_RequestWorldData = 1002,
 	P2C_ResultWorldData = 1003,
+	P2C_ReportEnterUser = 1004,
+	P2C_ReportLeaveUser = 1005,
 };
 
 class CLIENT_API NetworkSocket : public FRunnable

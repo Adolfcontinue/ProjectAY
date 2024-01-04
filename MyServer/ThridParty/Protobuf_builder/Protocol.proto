@@ -23,3 +23,13 @@ message P2C_ResultWorldData
 {
 	repeated UserData Users = 1;
 }
+
+message P2C_ReportEnterUser
+{
+	UserData User = 1;
+}
+
+message P2C_ReportLeaveUser
+{
+	uint64 UserKey = 1;
+}

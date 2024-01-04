@@ -4,8 +4,7 @@
 #include "GameSessionManager.h"
 #include "GameSession.h"
 #include "Monster.h"
-#include "Protocol.pb.h"
-#include "Struct.pb.h"
+#include "ProtobufHelper.h"
 #include "ClientPacketHandler.h"
 #include "ConsoleLogger.h"
 
@@ -16,28 +15,17 @@ void World::EnterUser(UserRef user)
 	user->SetActorKey(IssueActorKey());
 	_Users[user->GetSessionKey()] = user;
 
-	//Protocol::UserData enterUser;
-	//enterUser.set_userkey(user->GetSessionKey());
-	//Protocol::Vector* v = enterUser.mutable_pos();
-	//v->set_x(0);
-	//v->set_y(0);
-	//v->set_z(0);
-	//enterUser.set_userkey(user->GetActorKey());
-	//enterUser.set_col_r(1.0);
+	Protocol::P2C_ReportEnterUser packet;
+	Protocol::UserData* data = packet.mutable_user();
+	Protocol::Vector* loc = data->mutable_pos();
+	ProtobufHelper::ConvertVector(loc, user->GetPosX(), user->GetPosY(), user->GetPosZ());
 
-	//Protocol::P2C_ReportEnterUser packet;
-	//Protocol::UserData* data = packet.mutable_user();
-	//data->set_userkey(user->GetSessionKey());
-	//Protocol::Vector* v = data->mutable_pos();
-	//v->set_x(0);
-	//v->set_y(0);
-	//v->set_z(0);
-	//data->set_userkey(user->GetActorKey());
-	//data->set_col_r(1.0);
-	//SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
-	//DoASync(&World::BroadCast,sendBuffer);
-	//BroadCast(sendBuffer);
-	//BroadCastExcept(sendBuffer, user->GetSessionKey());
+	Protocol::Vector* rot = data->mutable_rot();
+	ProtobufHelper::ConvertVector(rot, user->GetRotX(), user->GetRotY(), user->GetRotZ());
+	
+	data->set_userkey(user->GetSessionKey());
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
+	BroadCastExcept(sendBuffer, user->GetSessionKey());
 }
 
 void World::LeaveUser(int64 sessionKey)
@@ -46,12 +34,12 @@ void World::LeaveUser(int64 sessionKey)
 	if (iter == _Users.end())
 		return;
 
-	/*Protocol::P2C_ReportLeaveUser packet;
-	Protocol::UserData* data = packet.mutable_user();
-	data->set_userkey(iter->second->GetActorKey());
+	_Users.erase(sessionKey);
+
+	Protocol::P2C_ReportLeaveUser packet;
+	packet.set_userkey(sessionKey);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
-	DoASync(&World::BroadCast, sendBuffer);
-	_Users.erase(sessionKey);*/
+	BroadCastExcept(sendBuffer, sessionKey);
 }
 
 void World::BroadCast(SendBufferRef sendBuffer)

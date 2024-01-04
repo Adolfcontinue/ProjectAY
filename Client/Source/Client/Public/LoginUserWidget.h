@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Protocol.pb.h"
+#include "Protobuf/Protocol.pb.h"
 #include "LoginUserWidget.generated.h"
 
 UCLASS()

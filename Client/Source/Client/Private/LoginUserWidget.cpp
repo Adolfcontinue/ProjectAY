@@ -62,7 +62,6 @@ void ULoginUserWidget::HandleLoginButtonClicked()
 
     //아이디 확인여부는 나중에 리시브로 받아서 확인한다.
 
-
     // 예시로 콘솔에 사용자 이름과 비밀번호를 출력합니다.
     UE_LOG(LogTemp, Warning, TEXT("Username: %s, Password: %s"), *Username, *Password);
     UAYGameInstance* GI = Cast<UAYGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));

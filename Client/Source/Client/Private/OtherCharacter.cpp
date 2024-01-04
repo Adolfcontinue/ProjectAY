@@ -44,3 +44,8 @@ void AOtherCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void AOtherCharacter::Move(FVector& loc)
+{
+	SetActorLocation(loc);
+}
+

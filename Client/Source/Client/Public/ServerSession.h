@@ -9,7 +9,7 @@
  */
 #include "Engine/World.h"
 #include "NetWork/NetSession.h"
-#include "Protocol.pb.h"
+#include "Protobuf/Protocol.pb.h"
 #include "NetPacketHandler.h"
 
 

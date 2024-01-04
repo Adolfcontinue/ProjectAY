@@ -10,6 +10,8 @@ enum Packet_C2P
 	P2C_ResultLogin = 1001,
 	C2P_RequestWorldData = 1002,
 	P2C_ResultWorldData = 1003,
+	P2C_ReportEnterUser = 1004,
+	P2C_ReportLeaveUser = 1005,
 };
 
 // Custom Handlers
@@ -39,6 +41,8 @@ public:
 	}
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultLogin& packet) { return MakeSendBuffer(packet, P2C_ResultLogin); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultWorldData& packet) { return MakeSendBuffer(packet, P2C_ResultWorldData); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportEnterUser& packet) { return MakeSendBuffer(packet, P2C_ReportEnterUser); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportLeaveUser& packet) { return MakeSendBuffer(packet, P2C_ReportLeaveUser); }
 
 
 private:

@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "Public/NetSocket.h"
 #include "Public/NetworkSocket.h"
 #include "Public/RecvPacketProsesor.h"
+#include "Public/Protobuf/Enum.pb.h"
+#include "Public/Protobuf/Struct.pb.h"
+#include "Public/Protobuf/Protocol.pb.h"
 #include "AYGameInstance.generated.h"
 
 /**
@@ -31,6 +33,9 @@ private:
 	NetworkSocket* Socket;
 	URecvPacketProsesor* RecvProsesor;
 
+public:
+	void AddPlayer(Protocol::UserData userData);
+	void RemovePlayer(int64 userKey);
 
 public:
 	template<typename T>

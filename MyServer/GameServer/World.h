@@ -3,12 +3,15 @@
 
 class World : public JobQueue
 {
+	friend class User;
+
 public:
 	void EnterUser(UserRef user);
 	void LeaveUser(int64 sessionKey);
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey);
 	UserRef FindUser(int64 key);
+	
 
 public:
 	void CreateMonster();

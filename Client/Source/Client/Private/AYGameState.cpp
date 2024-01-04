@@ -11,7 +11,6 @@ void AAYGameState::AddPlayer(int64 key, AOtherCharacter* player)
 void AAYGameState::RemovePlayer(int64 key)
 {
 	Players.Remove(key);
-	
 }
 
 AOtherCharacter* AAYGameState::FindPlayer(int64 key)
