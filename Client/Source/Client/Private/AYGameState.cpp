@@ -16,5 +16,17 @@ void AAYGameState::RemovePlayer(int64 key)
 AOtherCharacter* AAYGameState::FindPlayer(int64 key)
 {
 	auto iter = Players.Find(key);
+	if (iter == nullptr)
+		return nullptr;
+
 	return *iter;
+}
+
+void AAYGameState::RepPlayerMove(int64 userKey, FVector pos)
+{
+	AOtherCharacter* player = FindPlayer(userKey);
+	if (player == nullptr)
+		return;
+
+	player->RepPlayerMove(pos);
 }

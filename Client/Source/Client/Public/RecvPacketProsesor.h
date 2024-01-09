@@ -12,6 +12,7 @@
  */
 
 DECLARE_MULTICAST_DELEGATE(FDEL_P2C_RESULT);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FDEL_P2C_REPORTMOVE, uint64, FVector);
 
 struct RecvPacket
 {
@@ -27,6 +28,7 @@ class CLIENT_API URecvPacketProsesor : public FTickableGameObject
 
 public:
 	FDEL_P2C_RESULT Delegate_P2C_Result;
+	FDEL_P2C_REPORTMOVE Delegate_P2C_ReportMove;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = Test)
@@ -55,6 +57,7 @@ private:
 	void Proc_P2C_ResultWorldData(BYTE* buffer, int32 len);
 	void Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len);
 	void Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len);
+	void Proc_P2C_ReportMove(BYTE* buffer, int32 len);
 
 private:
 	std::map<EPacket_C2P_Protocol, std::function<void(URecvPacketProsesor& ,BYTE*, int32)>> Handler;

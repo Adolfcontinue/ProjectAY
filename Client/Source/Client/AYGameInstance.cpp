@@ -22,6 +22,15 @@ void UAYGameInstance::Init()
 	RecvProsesor->SetGameInstance(this);
 }
 
+void UAYGameInstance::Shutdown()
+{
+	LOG("UAYGameInstance::Shutdown()");
+	Socket->Stop();
+
+	delete Socket;
+	delete RecvProsesor;
+}
+
 NetworkSocket* UAYGameInstance::GetNetworkSocket()
 {
 	if (Socket == nullptr)
@@ -64,8 +73,25 @@ void UAYGameInstance::RemovePlayer(int64 userKey)
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
 	{
-		state->FindPlayer(userKey)->Destroy();
+		auto it = state->FindPlayer(userKey);
+		if (it == nullptr)
+			return;
+
+		it->Destroy();
 		state->RemovePlayer(userKey);
+	}
+}
+
+void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos)
+{
+	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(state))
+	{
+		auto it = state->FindPlayer(userKey);
+		if (it == nullptr)
+			return;
+
+		it->RepPlayerMove(pos);
 	}
 }
 

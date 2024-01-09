@@ -23,6 +23,7 @@ class CLIENT_API UAYGameInstance : public UGameInstance
 	GENERATED_BODY()
 	
 	virtual void Init();
+	virtual void Shutdown();
 
 public:
 	NetworkSocket* GetNetworkSocket();
@@ -36,6 +37,7 @@ private:
 public:
 	void AddPlayer(Protocol::UserData userData);
 	void RemovePlayer(int64 userKey);
+	void RepPlayerMove(int64 userKey, FVector pos);
 
 public:
 	template<typename T>

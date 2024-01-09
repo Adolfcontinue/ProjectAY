@@ -38,3 +38,10 @@ int64 ACharacterBase::GetPalyerKey()
 	return PlayerKey;
 }
 
+void ACharacterBase::RepPlayerMove(FVector pos)
+{
+	CurrentLocation = GetActorLocation(); // 현재 위치 저장
+	TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
+	LerpAlpha = 0.0f;
+}
+

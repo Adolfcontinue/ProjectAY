@@ -1,4 +1,5 @@
 #pragma once
+#include "Float3.h"
 #include "JobQueue.h"
 
 class World : public JobQueue
@@ -11,7 +12,8 @@ public:
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey);
 	UserRef FindUser(int64 key);
-	
+	void MoveUser(int64 sessionKey, Float3 pos);
+
 
 public:
 	void CreateMonster();

@@ -30,6 +30,7 @@ void URecvPacketProsesor::Init()
 	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::Proc_P2C_ResultWorldData;
 	Handler[EPacket_C2P_Protocol::P2C_ReportEnterUser] = &URecvPacketProsesor::Proc_P2C_ReportEnterUser;
 	Handler[EPacket_C2P_Protocol::P2C_ReportLeaveUser] = &URecvPacketProsesor::Proc_P2C_ReportLeaveUser;
+	Handler[EPacket_C2P_Protocol::P2C_ReportMove] = &URecvPacketProsesor::Proc_P2C_ReportMove;
 }
 
 void URecvPacketProsesor::Tick(float DeltaTime)
@@ -143,5 +144,20 @@ void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
 	GameInstance->RemovePlayer(packet.userkey());
 
 	LOG("Result_P2C_ReportEnterUser");
+}
+
+void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ReportMove packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+
+	//process
+	FVector pos;
+	pos.Set(packet._pos().x(), packet._pos().y(), packet._pos().z());
+	GameInstance->RepPlayerMove(packet.userkey(), pos);
+	
+	LOG("Proc_P2C_ReportMove");
 }
 

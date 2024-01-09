@@ -10,7 +10,6 @@
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
-// Á÷Á¢ ÄÁÅÙÃ÷ ÀÛ¾÷ÀÚ
 
 bool Handler::Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len)
 {
@@ -26,8 +25,16 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	user->SetPW(packet.pw());
 	user->SetLevel(1);
 	user->SetSessionKey(session->GetSessionKey());
-	user->SetPos(make_shared<Float3>(790, 1110, 90));
-	user->SetRot(make_shared<Float3>(0, 0, 0));
+	Float3 pos;
+	pos._x = 790;
+	pos._y = 1110;
+	pos._z = 90;
+	user->SetPos(pos);
+	Float3 rot;
+	rot._x = 0;
+	rot._y = 0;
+	rot._z = 0;
+	user->SetRot(rot);
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);
@@ -44,6 +51,17 @@ bool Handler::C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_Requ
 		return false;
 
 	user->DoASync(&User::ReqWorldData);
+	return true;
+}
+
+bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
+{
+	Float3 pos;
+	pos._x = packet._pos().x();
+	pos._y = packet._pos().y();
+	pos._z = packet._pos().z();
+
+	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos);
 	return true;
 }
 

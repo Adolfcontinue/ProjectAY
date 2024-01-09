@@ -35,17 +35,29 @@ void AOtherCharacter::BeginPlay()
 void AOtherCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (TargetLocation.Size() > 0)
+	{
+		Move(DeltaTime);
+	}
 }
 
 // Called to bind functionality to input
 void AOtherCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
-void AOtherCharacter::Move(FVector& loc)
+void AOtherCharacter::Move(float DeltaTime)
 {
-	SetActorLocation(loc);
+	// 보간 가중치를 증가시켜 부드러운 이동을 만듦
+	LerpAlpha += DeltaTime * 2.0f; // 2.0f는 보간 속도 조절 값
+
+	// 보간 가중치를 [0, 1] 범위로 클램프
+	LerpAlpha = FMath::Clamp(LerpAlpha, 0.0f, 1.0f);
+
+	// 선형 보간을 사용해 현재 위치를 목표 위치로 부드럽게 이동시킴
+	FVector NewLocation = FMath::Lerp(CurrentLocation, TargetLocation, LerpAlpha);
+	SetActorLocation(NewLocation);
 }
 

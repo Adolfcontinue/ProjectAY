@@ -24,7 +24,7 @@ bool NetworkSocket::Init()
 
 uint32 NetworkSocket::Run()
 {
-	while (true)
+	while (IsConnected)
 	{
 		ServiceRun(10);
 	}
@@ -33,6 +33,9 @@ uint32 NetworkSocket::Run()
 
 void NetworkSocket::Stop()
 {
+	IsConnected = false;
+
+	Service->GetSession()->Disconnect(L"DisConnect");
 }
 
 void NetworkSocket::Exit()

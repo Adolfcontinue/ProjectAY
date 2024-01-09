@@ -7,6 +7,7 @@
 #include "ProtobufHelper.h"
 #include "ClientPacketHandler.h"
 #include "ConsoleLogger.h"
+#include "Actor.h"
 
 shared_ptr<World> GWorld = make_shared<World>();
 
@@ -72,6 +73,22 @@ UserRef World::FindUser(int64 key)
 		return nullptr;
 
 	return iter->second;
+}
+
+void World::MoveUser(int64 sessionKey, Float3 pos)
+{
+	UserRef user = FindUser(sessionKey);
+	if (user == nullptr)
+		return;
+
+	user->SetPos(pos);
+
+	Protocol::P2C_ReportMove sendPacket;
+	sendPacket.set_userkey(user->GetSessionKey());
+	Protocol::Vector* userPos = sendPacket.mutable__pos();
+	ProtobufHelper::ConvertVector(userPos, pos._x, pos._y, pos._z);
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	BroadCastExcept(sendBuffer, sessionKey);
 }
 
 //::todo create monster

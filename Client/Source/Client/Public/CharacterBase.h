@@ -19,7 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -30,7 +30,13 @@ public:
 	void SetPlayerKey(int64 PlayerKey);
 	int64 GetPalyerKey();
 
-private:
+public:
+	void RepPlayerMove(FVector pos);
+
+protected:
 	int64 PlayerKey;
+	FVector CurrentLocation;
+	FVector TargetLocation;
+	float LerpAlpha;
 
 };

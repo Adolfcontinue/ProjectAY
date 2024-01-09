@@ -12,6 +12,8 @@ enum Packet_C2P
 	P2C_ResultWorldData = 1003,
 	P2C_ReportEnterUser = 1004,
 	P2C_ReportLeaveUser = 1005,
+	C2P_ReportMove = 1006,
+	P2C_ReportMove = 1007,
 };
 
 // Custom Handlers
@@ -20,6 +22,7 @@ namespace Handler
 	bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestLogin& packet);
 	bool C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_RequestWorldData& packet);
+	bool C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet);
 }
 
 
@@ -32,6 +35,7 @@ public:
 			GPacketHandler[i] = Handler::Handle_INVALID;
 		GPacketHandler[C2P_RequestLogin] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_RequestLogin>(Handler::C2P_RequestLogin, session, buffer, len); };
 		GPacketHandler[C2P_RequestWorldData] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_RequestWorldData>(Handler::C2P_RequestWorldData, session, buffer, len); };
+		GPacketHandler[C2P_ReportMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_ReportMove>(Handler::C2P_ReportMove, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -43,6 +47,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultWorldData& packet) { return MakeSendBuffer(packet, P2C_ResultWorldData); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportEnterUser& packet) { return MakeSendBuffer(packet, P2C_ReportEnterUser); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportLeaveUser& packet) { return MakeSendBuffer(packet, P2C_ReportLeaveUser); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMove& packet) { return MakeSendBuffer(packet, P2C_ReportMove); }
 
 
 private:

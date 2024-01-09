@@ -20,6 +20,10 @@ public:
 	void RemovePlayer(int64 key);
 	AOtherCharacter* FindPlayer(int64 key);
 
+public:
+	void RepPlayerMove(int64 userKey, FVector pos);
+
+
 private:
 	TMap<int64, AOtherCharacter*> Players;
 

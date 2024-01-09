@@ -33,3 +33,14 @@ message P2C_ReportLeaveUser
 {
 	uint64 UserKey = 1;
 }
+
+message C2P_ReportMove
+{
+	Vector _Pos = 1;
+}
+
+message P2C_ReportMove
+{
+	uint64 UserKey = 1;
+	Vector _Pos = 2 ;
+}
