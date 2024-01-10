@@ -3,6 +3,7 @@
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "ClientPacketHandler.h"
+#include "ProtobufHelper.h"
 #include "World.h"
 #include "Struct.pb.h"
 #include "Protocol.pb.h"
@@ -31,15 +32,11 @@ void User::ReqWorldData()
 		UserRef itVal = iter.second;
 		Protocol::UserData* user = sendPacket.add_users();
 		
-		Protocol::Vector* pos = user->mutable_pos();
-		pos->set_x(itVal->GetPosX());
-		pos->set_y(itVal->GetPosY());
-		pos->set_z(itVal->GetPosZ());
-
-		Protocol::Vector* rot = user->mutable_rot();
-		rot->set_x(itVal->GetRotX());
-		rot->set_y(itVal->GetRotY());
-		rot->set_z(itVal->GetRotZ());
+		Protocol::Float3* pos = user->mutable_position();
+		ProtobufConverter::ConvertFloat3(pos, itVal->GetPositionX(), itVal->GetPositionY(), itVal->GetPositionZ());
+		
+		Protocol::Float4* rot = user->mutable_rotation();
+		ProtobufConverter::ConvertFloat4(rot, itVal->GetRotationX(), itVal->GetRotationY(), itVal->GetRotationZ(), itVal->GetRotationW());
 
 		user->set_sessionkey(itVal->GetSessionKey());
 		user->set_userkey(itVal->GetActorKey());

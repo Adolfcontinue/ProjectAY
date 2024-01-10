@@ -37,9 +37,10 @@ void AOtherCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (TargetLocation.Size() > 0)
-	{
 		Move(DeltaTime);
-	}
+
+	if (TargetRotation.Size() > 0)
+		Rotation(DeltaTime);
 }
 
 // Called to bind functionality to input
@@ -59,5 +60,15 @@ void AOtherCharacter::Move(float DeltaTime)
 	// 선형 보간을 사용해 현재 위치를 목표 위치로 부드럽게 이동시킴
 	FVector NewLocation = FMath::Lerp(CurrentLocation, TargetLocation, LerpAlpha);
 	SetActorLocation(NewLocation);
+}
+
+void AOtherCharacter::Rotation(float DeltaTime)
+{
+	SlerpAlpha += DeltaTime * 2.0f; // 보간 속도 조절 값 (2.0f는 예시, 조절 필요)
+	SlerpAlpha = FMath::Clamp(SlerpAlpha, 0.0f, 1.0f); // [0, 1] 범위로 클램프
+
+	// 쿼터니언 Slerp를 사용해 현재 회전을 목표 회전으로 부드럽게 이동시킴
+	FQuat NewRotation = FQuat::Slerp(CurrentRotation, TargetRotation, SlerpAlpha);
+	SetActorRotation(NewRotation);
 }
 

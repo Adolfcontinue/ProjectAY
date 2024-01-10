@@ -102,8 +102,6 @@ void URecvPacketProsesor::Proc_P2C_ResultLogin(BYTE* buffer, int32 len)
 		return;
 
 	Delegate_P2C_Result.Broadcast();
-
-	LOG("Result_P2C_ResultLogin");
 }
 
 void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
@@ -116,8 +114,6 @@ void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
 	//process
 	for (size_t i = 0; i < packet.users_size(); i++)
 		GameInstance->AddPlayer(packet.users(i));
-
-	LOG("Result_P2C_ResultWorldData");
 }
 
 void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)
@@ -129,8 +125,6 @@ void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)
 	
 	//process
 	GameInstance->AddPlayer(packet.user());
-
-	LOG("Result_P2C_ReportEnterUser");
 }
 
 void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
@@ -142,8 +136,6 @@ void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
 
 	//process
 	GameInstance->RemovePlayer(packet.userkey());
-
-	LOG("Result_P2C_ReportEnterUser");
 }
 
 void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
@@ -155,9 +147,12 @@ void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
 
 	//process
 	FVector pos;
-	pos.Set(packet._pos().x(), packet._pos().y(), packet._pos().z());
-	GameInstance->RepPlayerMove(packet.userkey(), pos);
-	
-	LOG("Proc_P2C_ReportMove");
+	pos.Set(packet.posdata().posision().x(), packet.posdata().posision().y(), packet.posdata().posision().z());
+	FQuat quat;
+	quat.X = packet.posdata().rotation().x();
+	quat.Y = packet.posdata().rotation().y();
+	quat.Z = packet.posdata().rotation().z();
+	quat.W = packet.posdata().rotation().w();
+	GameInstance->RepPlayerMove(packet.userkey(), pos, quat);
 }
 

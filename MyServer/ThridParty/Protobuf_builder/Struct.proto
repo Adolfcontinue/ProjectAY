@@ -3,25 +3,40 @@ package Protocol;
 
 import "Enum.proto";
 
-message Vector
+message Float3
 {
 	double x = 1;
 	double y = 2;
 	double z = 3;
 }
 
+message Float4
+{
+	double x = 1;
+	double y = 2;
+	double z = 3;
+	double w = 4;
+}
+
+message PositionData
+{
+	Float3 posision = 1;
+	Float4 rotation = 2;
+	PlayerState State = 3;
+}
+
 message UserData
 {
 	uint64 sessionKey = 1;
 	uint64 userKey = 2;
-	Vector pos = 3;
-	Vector Rot = 4;
+	Float3 position = 3;
+	Float4 rotation = 4;
 }
 
 message MonsterData
 {
 	uint64 monsterKey = 1;
 	int32  hp = 2;
-	Vector pos = 3;
-	Vector Rot = 4;
+	Float3 pos = 3;
+	Float4 Rot = 4;
 }

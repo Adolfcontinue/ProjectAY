@@ -12,7 +12,7 @@ public:
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey);
 	UserRef FindUser(int64 key);
-	void MoveUser(int64 sessionKey, Float3 pos);
+	void MoveUser(int64 sessionKey, Float3 pos, Float4 rot);
 
 
 public:

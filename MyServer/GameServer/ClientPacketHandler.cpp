@@ -26,15 +26,12 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	user->SetLevel(1);
 	user->SetSessionKey(session->GetSessionKey());
 	Float3 pos;
-	pos._x = 790;
-	pos._y = 1110;
-	pos._z = 90;
-	user->SetPos(pos);
-	Float3 rot;
-	rot._x = 0;
-	rot._y = 0;
-	rot._z = 0;
-	user->SetRot(rot);
+	pos.X = 790;
+	pos.Y = 1110;
+	pos.Z = 90;
+	user->SetPosition(pos);
+	Float4 rot;
+	user->SetRotation(rot);
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);
@@ -56,12 +53,11 @@ bool Handler::C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_Requ
 
 bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
 {
-	Float3 pos;
-	pos._x = packet._pos().x();
-	pos._y = packet._pos().y();
-	pos._z = packet._pos().z();
+	Float3 pos(packet.posdata().posision());
+	Float4 rot(packet.posdata().rotation());
 
-	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos);
+	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot);
+
 	return true;
 }
 

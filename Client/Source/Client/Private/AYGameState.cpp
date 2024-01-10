@@ -22,11 +22,11 @@ AOtherCharacter* AAYGameState::FindPlayer(int64 key)
 	return *iter;
 }
 
-void AAYGameState::RepPlayerMove(int64 userKey, FVector pos)
+void AAYGameState::RepPlayerMove(int64 userKey, FVector pos, FQuat quat)
 {
 	AOtherCharacter* player = FindPlayer(userKey);
 	if (player == nullptr)
 		return;
 
-	player->RepPlayerMove(pos);
+	player->RepPlayerMove(pos, quat);
 }

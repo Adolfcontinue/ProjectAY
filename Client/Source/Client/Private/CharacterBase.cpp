@@ -38,10 +38,14 @@ int64 ACharacterBase::GetPalyerKey()
 	return PlayerKey;
 }
 
-void ACharacterBase::RepPlayerMove(FVector pos)
+void ACharacterBase::RepPlayerMove(FVector pos, FQuat quat)
 {
 	CurrentLocation = GetActorLocation(); // 현재 위치 저장
 	TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
 	LerpAlpha = 0.0f;
+
+	CurrentRotation = GetActorQuat();   // 현재 회전 저장
+	TargetRotation = quat; // 서버로부터 받은 목표 회전 설정
+	SlerpAlpha = 0.0f;
 }
 

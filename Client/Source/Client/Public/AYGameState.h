@@ -21,7 +21,7 @@ public:
 	AOtherCharacter* FindPlayer(int64 key);
 
 public:
-	void RepPlayerMove(int64 userKey, FVector pos);
+	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat);
 
 
 private:

@@ -27,5 +27,5 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void Move(float DeltaTime);
-
+	void Rotation(float DeltaTime);
 };

@@ -47,19 +47,15 @@ URecvPacketProsesor* UAYGameInstance::GetRecvProsessor()
 void UAYGameInstance::RecvPacketPush(BYTE* buffer, int32 len)
 {
 	RecvProsesor->Push(buffer, len);
-	LOG_SCREEN(FColor::Red, "RecvPacketPush Success");
-	LOG("RecvPacketPush Success");
 }
 
 void UAYGameInstance::AddPlayer(Protocol::UserData userData)
 {
-	LOG("AddPlayer");
-
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
 	{
-		FVector location = FVector(userData.pos().x(), userData.pos().y(), userData.pos().z());
-		FRotator rotation = FRotator(userData.rot().x(), userData.rot().y(), userData.rot().z());
+		FVector location = FVector(userData.position().x(), userData.position().y(), userData.position().z());
+		FRotator rotation = FRotator::ZeroRotator;
 		AOtherCharacter* newPlayer = GetWorld()->SpawnActor<AOtherCharacter>(AOtherCharacter::StaticClass(), location, rotation);
 		newPlayer->SetPlayerKey(userData.userkey());
 		state->AddPlayer(newPlayer->GetPalyerKey(), newPlayer);
@@ -68,8 +64,6 @@ void UAYGameInstance::AddPlayer(Protocol::UserData userData)
 
 void UAYGameInstance::RemovePlayer(int64 userKey)
 {
-	LOG("RemovePlayer");
-
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
 	{
@@ -82,7 +76,7 @@ void UAYGameInstance::RemovePlayer(int64 userKey)
 	}
 }
 
-void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos)
+void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat)
 {
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
@@ -91,7 +85,7 @@ void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos)
 		if (it == nullptr)
 			return;
 
-		it->RepPlayerMove(pos);
+		it->RepPlayerMove(pos, quat);
 	}
 }
 

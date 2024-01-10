@@ -31,12 +31,15 @@ public:
 	int64 GetPalyerKey();
 
 public:
-	void RepPlayerMove(FVector pos);
+	void RepPlayerMove(FVector pos, FQuat quat);
 
 protected:
 	int64 PlayerKey;
 	FVector CurrentLocation;
 	FVector TargetLocation;
 	float LerpAlpha;
+	FQuat CurrentRotation;
+	FQuat TargetRotation;
+	float SlerpAlpha;
 
 };

@@ -18,11 +18,10 @@ void World::EnterUser(UserRef user)
 
 	Protocol::P2C_ReportEnterUser packet;
 	Protocol::UserData* data = packet.mutable_user();
-	Protocol::Vector* loc = data->mutable_pos();
-	ProtobufHelper::ConvertVector(loc, user->GetPosX(), user->GetPosY(), user->GetPosZ());
-
-	Protocol::Vector* rot = data->mutable_rot();
-	ProtobufHelper::ConvertVector(rot, user->GetRotX(), user->GetRotY(), user->GetRotZ());
+	//Protocol::Float3* pos = data->mutable_position();
+	ProtobufConverter::ConvertFloat3(data->mutable_position(), user->GetPositionX(), user->GetPositionY(), user->GetPositionZ());
+	//Protocol::Float4* rot = data->mutable_rotation();
+	ProtobufConverter::ConvertFloat4(data->mutable_rotation(), user->GetRotationX(), user->GetRotationY(), user->GetRotationZ(), user->GetRotationW());
 	
 	data->set_userkey(user->GetSessionKey());
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
@@ -75,18 +74,22 @@ UserRef World::FindUser(int64 key)
 	return iter->second;
 }
 
-void World::MoveUser(int64 sessionKey, Float3 pos)
+void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot)
 {
 	UserRef user = FindUser(sessionKey);
 	if (user == nullptr)
 		return;
 
-	user->SetPos(pos);
+	user->SetPosition(pos);
 
 	Protocol::P2C_ReportMove sendPacket;
 	sendPacket.set_userkey(user->GetSessionKey());
-	Protocol::Vector* userPos = sendPacket.mutable__pos();
-	ProtobufHelper::ConvertVector(userPos, pos._x, pos._y, pos._z);
+
+	Protocol::PositionData* posData = sendPacket.mutable_posdata();
+	Protocol::Float3* userPos = posData->mutable_posision();
+	ProtobufConverter::ConvertFloat3(userPos, pos.X, pos.Y, pos.Z);
+	Protocol::Float4* userRot = posData->mutable_rotation();
+	ProtobufConverter::ConvertFloat4(userRot, rot.X, rot.Y, rot.Z, rot.W);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	BroadCastExcept(sendBuffer, sessionKey);
 }

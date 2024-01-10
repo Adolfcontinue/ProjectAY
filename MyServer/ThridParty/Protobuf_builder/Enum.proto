@@ -8,3 +8,11 @@ enum PlayerType
 	PLAYER_TYPE_MAGE = 2;
 	PLAYER_TYPE_ARCHER = 3;
 }
+
+enum PlayerState
+{
+	IDlE = 0;
+	ATTACK = 1;
+	MOVE = 2;
+	DEAD = 3;
+}

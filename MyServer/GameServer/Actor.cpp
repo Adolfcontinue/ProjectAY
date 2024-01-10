@@ -9,31 +9,35 @@ Actor::~Actor()
 {
 }
 
-void Actor::SetPos(Float3 pos)
+void Actor::SetPosition(Float3 pos)
 {
-	_Pos._x = pos._x;
-	_Pos._y = pos._y;
-	_Pos._z = pos._z;
+	Position.X = pos.X;
+	Position.Y = pos.Y;
+	Position.Z = pos.Z;
 }
 
-void Actor::SetPos(double x, double y, double z)
+void Actor::SetPosition(double x, double y, double z)
 {
-	_Pos._x = x;
-	_Pos._y = y;
-	_Pos._z = z;
+	Position.X = x;
+	Position.Y = y;
+	Position.Z = z;
 }
 
-void Actor::SetRot(Float3 rot)
+void Actor::SetRotation(Float4 rot)
 {
-	_Rot._x = rot._x;
-	_Rot._y = rot._y;
-	_Rot._z = rot._z;
+	Rotation.X = rot.X;
+	Rotation.Y = rot.Y;
+	Rotation.Z = rot.Z;
+	Rotation.W = rot.W;
 }
 
-void Actor::SetRot(double x, double y, double z)
+void Actor::SetRotation(double x, double y, double z, double w)
 {
-	_Rot._x = x;
-	_Rot._y = y;
-	_Rot._z = z;
+	Rotation.X = x;
+	Rotation.Y = y;
+	Rotation.Z = z;
+	Rotation.W = w;
 }
+
+
 

@@ -57,6 +57,8 @@ void AAYCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector prevPos = GetActorLocation();
+
 	if (CurrentControlType == eControlType::Type2)
 		TickMove();
 }
@@ -205,16 +207,22 @@ void AAYCharacter::TickMove()
 		GetController()->SetControlRotation(FRotationMatrix::MakeFromX(DirectionToMove).Rotator());
 		AddMovementInput(DirectionToMove);
 
+		FVector curPos = GetActorLocation();
+		FQuat curRot = GetActorQuat();
 		UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
 
 		Protocol::C2P_ReportMove packet;
-		Protocol::Vector* pos = packet.mutable__pos();
-
-		FVector curPos = GetActorLocation();
+		Protocol::PositionData* posData = packet.mutable_posdata();
+		Protocol::Float3* pos = posData->mutable_posision();
 		pos->set_x(curPos.X);
 		pos->set_y(curPos.Y);
 		pos->set_z(curPos.Z);
-		
+		Protocol::Float4* rot = posData->mutable_rotation();
+		rot->set_x(curRot.X);
+		rot->set_y(curRot.Y);
+		rot->set_z(curRot.Z);
+		rot->set_w(curRot.W);
+
 		inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);
 	}
 }
