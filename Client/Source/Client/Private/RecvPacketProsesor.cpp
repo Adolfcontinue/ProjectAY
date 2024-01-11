@@ -153,6 +153,6 @@ void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
 	quat.Y = packet.posdata().rotation().y();
 	quat.Z = packet.posdata().rotation().z();
 	quat.W = packet.posdata().rotation().w();
-	GameInstance->RepPlayerMove(packet.userkey(), pos, quat);
+	GameInstance->RepPlayerMove(packet.userkey(), pos, quat, packet.state());
 }
 

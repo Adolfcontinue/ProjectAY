@@ -1,4 +1,6 @@
-﻿  ProtobufHelper.cpp
+﻿  ClientPacketHandler.cpp
+  GameServer.cpp
+  GameSession.cpp
   User.cpp
   World.cpp
   코드를 생성하고 있습니다...

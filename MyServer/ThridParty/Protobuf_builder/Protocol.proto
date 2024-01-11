@@ -36,11 +36,24 @@ message P2C_ReportLeaveUser
 
 message C2P_ReportMove
 {
-	PositionData PosData = 1;	
+	PositionData PosData = 1;
+	PlayerState State =2;
 }
 
 message P2C_ReportMove
 {
 	uint64 UserKey = 1;
 	PositionData PosData = 2;
+	PlayerState State = 3;
+}
+
+message C2P_ReportAnimSync
+{
+	PlayerState State = 1;
+}
+
+message P2C_ReportAnimSync
+{
+	uint64 UserKey = 1;
+	PlayerState State = 2;
 }

@@ -56,7 +56,7 @@ bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove
 	Float3 pos(packet.posdata().posision());
 	Float4 rot(packet.posdata().rotation());
 
-	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot);
+	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot, packet.state());
 
 	return true;
 }

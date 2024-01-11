@@ -12,7 +12,8 @@ enum PlayerType
 enum PlayerState
 {
 	IDlE = 0;
-	ATTACK = 1;
-	MOVE = 2;
-	DEAD = 3;
+	ATTACK1 = 1;
+	ATTACK2 = 2;
+	MOVE = 3;
+	DEAD = 4;
 }

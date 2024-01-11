@@ -2,6 +2,7 @@
 
 
 #include "OtherCharacter.h"
+#include "PlayerAnimInstance.h"
 
 // Sets default values
 AOtherCharacter::AOtherCharacter()
@@ -10,13 +11,13 @@ AOtherCharacter::AOtherCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/GreatSword/Mannequin/Character/Mesh/WeaponMaster_GreatSword01.WeaponMaster_GreatSword01"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/OneMeshCharacters/IronMaskSK.IronMaskSK"));
 	if (skeletalmesh.Succeeded())
 		GetMesh()->SetSkeletalMesh(skeletalmesh.Object);
 
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/GreatSwordAnimBP.GreatSwordAnimBP_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/SwordAnimBP.SwordAnimBP_C"));
 	if (anim.Succeeded())
 		GetMesh()->SetAnimInstanceClass(anim.Class);
 
@@ -29,6 +30,12 @@ AOtherCharacter::AOtherCharacter()
 void AOtherCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AOtherCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	Anim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 }
 
 // Called every frame
@@ -47,6 +54,7 @@ void AOtherCharacter::Tick(float DeltaTime)
 void AOtherCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
 }
 
 void AOtherCharacter::Move(float DeltaTime)
@@ -70,5 +78,38 @@ void AOtherCharacter::Rotation(float DeltaTime)
 	// 쿼터니언 Slerp를 사용해 현재 회전을 목표 회전으로 부드럽게 이동시킴
 	FQuat NewRotation = FQuat::Slerp(CurrentRotation, TargetRotation, SlerpAlpha);
 	SetActorRotation(NewRotation);
+}
+
+void AOtherCharacter::SetAnimState(EAnimState state)
+{
+	AnimState = state;
+	Anim->SetAnimState(state);
+}
+
+void AOtherCharacter::SetAnimState(Protocol::PlayerState state)
+{
+	switch (state)
+	{
+	case Protocol::IDlE:
+		AnimState = EAnimState::Idle;
+		break;
+	case Protocol::ATTACK1:
+		AnimState = EAnimState::Attack1;
+		break;
+	case Protocol::ATTACK2:
+		AnimState = EAnimState::Attack2;
+		break;
+	case Protocol::MOVE:
+		AnimState = EAnimState::Move;
+		break;
+	case Protocol::DEAD:
+		AnimState = EAnimState::Dead;
+		break;
+	default:
+		AnimState = EAnimState::Idle;
+		break;
+	}
+
+	Anim->SetAnimState(AnimState);
 }
 

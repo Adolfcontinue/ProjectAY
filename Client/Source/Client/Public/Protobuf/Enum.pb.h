@@ -89,9 +89,10 @@ inline bool PlayerType_Parse(
 }
 enum PlayerState : int {
   IDlE = 0,
-  ATTACK = 1,
-  MOVE = 2,
-  DEAD = 3,
+  ATTACK1 = 1,
+  ATTACK2 = 2,
+  MOVE = 3,
+  DEAD = 4,
   PlayerState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   PlayerState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };

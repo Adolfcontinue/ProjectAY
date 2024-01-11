@@ -4,6 +4,7 @@
 
 #include "../Client.h"
 #include "Animation/AnimInstance.h"
+#include "Define.h"
 #include "GreatSwordAnimInstance.generated.h"
 
 /**
@@ -18,16 +19,8 @@ public:
 	UGreatSwordAnimInstance();
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 
-	void PlayComboAttackMontage();
 
 private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
-	float CurrentPawnSpeed;
-
-	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
-	bool isInAir;
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
-	UAnimMontage* ComboAttackMontage;
-
+	EAnimState AnimState;
 };

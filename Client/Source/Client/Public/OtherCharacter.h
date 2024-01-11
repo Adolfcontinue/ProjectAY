@@ -4,6 +4,8 @@
 
 #include "CharacterBase.h"
 #include "GameFramework/Character.h"
+#include "Define.h"
+#include "Protobuf/Enum.pb.h"
 #include "OtherCharacter.generated.h"
 
 UCLASS()
@@ -18,7 +20,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	virtual void PostInitializeComponents() override;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -28,4 +30,14 @@ public:
 
 	void Move(float DeltaTime);
 	void Rotation(float DeltaTime);
+
+	void SetAnimState(EAnimState state);
+	void SetAnimState(Protocol::PlayerState state);
+
+private:
+	EAnimState AnimState;
+
+private:
+	UPROPERTY()
+	class UPlayerAnimInstance* Anim;
 };

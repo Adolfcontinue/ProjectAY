@@ -74,7 +74,7 @@ UserRef World::FindUser(int64 key)
 	return iter->second;
 }
 
-void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot)
+void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot, Protocol::PlayerState state)
 {
 	UserRef user = FindUser(sessionKey);
 	if (user == nullptr)
@@ -84,6 +84,7 @@ void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot)
 
 	Protocol::P2C_ReportMove sendPacket;
 	sendPacket.set_userkey(user->GetSessionKey());
+	sendPacket.set_state(state);
 
 	Protocol::PositionData* posData = sendPacket.mutable_posdata();
 	Protocol::Float3* userPos = posData->mutable_posision();

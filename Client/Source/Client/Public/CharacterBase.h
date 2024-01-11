@@ -41,5 +41,4 @@ protected:
 	FQuat CurrentRotation;
 	FQuat TargetRotation;
 	float SlerpAlpha;
-
 };

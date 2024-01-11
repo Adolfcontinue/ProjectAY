@@ -9,6 +9,7 @@
 #include "Public/Protobuf/Enum.pb.h"
 #include "Public/Protobuf/Struct.pb.h"
 #include "Public/Protobuf/Protocol.pb.h"
+#include "Public/Define.h"
 #include "AYGameInstance.generated.h"
 
 /**
@@ -37,7 +38,7 @@ private:
 public:
 	void AddPlayer(Protocol::UserData userData);
 	void RemovePlayer(int64 userKey);
-	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat);
+	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Protocol::PlayerState state);
 
 public:
 	template<typename T>

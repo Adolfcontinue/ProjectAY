@@ -1026,6 +1026,7 @@ class C2P_ReportMove final :
 
   enum : int {
     kPosDataFieldNumber = 1,
+    kStateFieldNumber = 2,
   };
   // .Protocol.PositionData PosData = 1;
   bool has_posdata() const;
@@ -1045,6 +1046,15 @@ class C2P_ReportMove final :
       ::Protocol::PositionData* posdata);
   ::Protocol::PositionData* unsafe_arena_release_posdata();
 
+  // .Protocol.PlayerState State = 2;
+  void clear_state();
+  ::Protocol::PlayerState state() const;
+  void set_state(::Protocol::PlayerState value);
+  private:
+  ::Protocol::PlayerState _internal_state() const;
+  void _internal_set_state(::Protocol::PlayerState value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.C2P_ReportMove)
  private:
   class _Internal;
@@ -1053,6 +1063,7 @@ class C2P_ReportMove final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::Protocol::PositionData* posdata_;
+  int state_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -1168,6 +1179,7 @@ class P2C_ReportMove final :
   enum : int {
     kPosDataFieldNumber = 2,
     kUserKeyFieldNumber = 1,
+    kStateFieldNumber = 3,
   };
   // .Protocol.PositionData PosData = 2;
   bool has_posdata() const;
@@ -1196,6 +1208,15 @@ class P2C_ReportMove final :
   void _internal_set_userkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // .Protocol.PlayerState State = 3;
+  void clear_state();
+  ::Protocol::PlayerState state() const;
+  void set_state(::Protocol::PlayerState value);
+  private:
+  ::Protocol::PlayerState _internal_state() const;
+  void _internal_set_state(::Protocol::PlayerState value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.P2C_ReportMove)
  private:
   class _Internal;
@@ -1205,6 +1226,7 @@ class P2C_ReportMove final :
   typedef void DestructorSkippable_;
   ::Protocol::PositionData* posdata_;
   ::PROTOBUF_NAMESPACE_ID::uint64 userkey_;
+  int state_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -1567,6 +1589,26 @@ inline void C2P_ReportMove::set_allocated_posdata(::Protocol::PositionData* posd
   // @@protoc_insertion_point(field_set_allocated:Protocol.C2P_ReportMove.PosData)
 }
 
+// .Protocol.PlayerState State = 2;
+inline void C2P_ReportMove::clear_state() {
+  state_ = 0;
+}
+inline ::Protocol::PlayerState C2P_ReportMove::_internal_state() const {
+  return static_cast< ::Protocol::PlayerState >(state_);
+}
+inline ::Protocol::PlayerState C2P_ReportMove::state() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_ReportMove.State)
+  return _internal_state();
+}
+inline void C2P_ReportMove::_internal_set_state(::Protocol::PlayerState value) {
+  
+  state_ = value;
+}
+inline void C2P_ReportMove::set_state(::Protocol::PlayerState value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_ReportMove.State)
+}
+
 // -------------------------------------------------------------------
 
 // P2C_ReportMove
@@ -1668,6 +1710,26 @@ inline void P2C_ReportMove::set_allocated_posdata(::Protocol::PositionData* posd
   }
   posdata_ = posdata;
   // @@protoc_insertion_point(field_set_allocated:Protocol.P2C_ReportMove.PosData)
+}
+
+// .Protocol.PlayerState State = 3;
+inline void P2C_ReportMove::clear_state() {
+  state_ = 0;
+}
+inline ::Protocol::PlayerState P2C_ReportMove::_internal_state() const {
+  return static_cast< ::Protocol::PlayerState >(state_);
+}
+inline ::Protocol::PlayerState P2C_ReportMove::state() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ReportMove.State)
+  return _internal_state();
+}
+inline void P2C_ReportMove::_internal_set_state(::Protocol::PlayerState value) {
+  
+  state_ = value;
+}
+inline void P2C_ReportMove::set_state(::Protocol::PlayerState value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ReportMove.State)
 }
 
 #ifdef __GNUC__

@@ -4,6 +4,8 @@
 
 #include "../Client.h"
 #include "GameFramework/Character.h"
+#include "Protobuf/Enum.pb.h"
+#include "Define.h"
 #include "AYCharacter.generated.h"
 
 UCLASS()
@@ -57,6 +59,13 @@ private:
 	void AttackEndComboState();
 
 private:
+	void AttackEndCheck();
+	void AttackEndCheck2();
+
+	void AnimSync();
+	void SetAnimState(EAnimState animstate);
+
+private:
 	eControlType CurrentControlType = eControlType::Type1;
 	FVector DirectionToMove = FVector::ZeroVector;
 
@@ -76,5 +85,7 @@ private:
 	int32 MaxCombo;
 
 	UPROPERTY()
-	class UDarkNightAnimInstance* _Anim;
+	class UPlayerAnimInstance* _Anim;
+
+	float SyncTimer;
 };

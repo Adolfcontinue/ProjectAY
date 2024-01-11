@@ -49,9 +49,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT Float4DefaultTypeInternal _Floa
 constexpr PositionData::PositionData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : posision_(nullptr)
-  , rotation_(nullptr)
-  , state_(0)
-{}
+  , rotation_(nullptr){}
 struct PositionDataDefaultTypeInternal {
   constexpr PositionDataDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -121,7 +119,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Struct_2eproto::offsets[] PROT
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionData, posision_),
   PROTOBUF_FIELD_OFFSET(::Protocol::PositionData, rotation_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::PositionData, state_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::UserData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -145,8 +142,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 0, -1, sizeof(::Protocol::Float3)},
   { 8, -1, sizeof(::Protocol::Float4)},
   { 17, -1, sizeof(::Protocol::PositionData)},
-  { 25, -1, sizeof(::Protocol::UserData)},
-  { 34, -1, sizeof(::Protocol::MonsterData)},
+  { 24, -1, sizeof(::Protocol::UserData)},
+  { 33, -1, sizeof(::Protocol::MonsterData)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -161,23 +158,22 @@ const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\")\n\006"
   "Float3\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\""
   "4\n\006Float4\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001"
-  "(\001\022\t\n\001w\030\004 \001(\001\"|\n\014PositionData\022\"\n\010posisio"
+  "(\001\022\t\n\001w\030\004 \001(\001\"V\n\014PositionData\022\"\n\010posisio"
   "n\030\001 \001(\0132\020.Protocol.Float3\022\"\n\010rotation\030\002 "
-  "\001(\0132\020.Protocol.Float4\022$\n\005State\030\003 \001(\0162\025.P"
-  "rotocol.PlayerState\"w\n\010UserData\022\022\n\nsessi"
-  "onKey\030\001 \001(\004\022\017\n\007userKey\030\002 \001(\004\022\"\n\010position"
-  "\030\003 \001(\0132\020.Protocol.Float3\022\"\n\010rotation\030\004 \001"
-  "(\0132\020.Protocol.Float4\"k\n\013MonsterData\022\022\n\nm"
-  "onsterKey\030\001 \001(\004\022\n\n\002hp\030\002 \001(\005\022\035\n\003pos\030\003 \001(\013"
-  "2\020.Protocol.Float3\022\035\n\003Rot\030\004 \001(\0132\020.Protoc"
-  "ol.Float4b\006proto3"
+  "\001(\0132\020.Protocol.Float4\"w\n\010UserData\022\022\n\nses"
+  "sionKey\030\001 \001(\004\022\017\n\007userKey\030\002 \001(\004\022\"\n\010positi"
+  "on\030\003 \001(\0132\020.Protocol.Float3\022\"\n\010rotation\030\004"
+  " \001(\0132\020.Protocol.Float4\"k\n\013MonsterData\022\022\n"
+  "\nmonsterKey\030\001 \001(\004\022\n\n\002hp\030\002 \001(\005\022\035\n\003pos\030\003 \001"
+  "(\0132\020.Protocol.Float3\022\035\n\003Rot\030\004 \001(\0132\020.Prot"
+  "ocol.Float4b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Struct_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto = {
-  false, false, 497, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
+  false, false, 459, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
   &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 5,
   schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
   file_level_metadata_Struct_2eproto, file_level_enum_descriptors_Struct_2eproto, file_level_service_descriptors_Struct_2eproto,
@@ -730,15 +726,14 @@ PositionData::PositionData(const PositionData& from)
   } else {
     rotation_ = nullptr;
   }
-  state_ = from.state_;
   // @@protoc_insertion_point(copy_constructor:Protocol.PositionData)
 }
 
 void PositionData::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&posision_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&posision_)) + sizeof(state_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&rotation_) -
+    reinterpret_cast<char*>(&posision_)) + sizeof(rotation_));
 }
 
 PositionData::~PositionData() {
@@ -777,7 +772,6 @@ void PositionData::Clear() {
     delete rotation_;
   }
   rotation_ = nullptr;
-  state_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -799,14 +793,6 @@ const char* PositionData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_rotation(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .Protocol.PlayerState State = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_state(static_cast<::Protocol::PlayerState>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -854,13 +840,6 @@ failure:
         2, _Internal::rotation(this), target, stream);
   }
 
-  // .Protocol.PlayerState State = 3;
-  if (this->state() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      3, this->_internal_state(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -889,12 +868,6 @@ size_t PositionData::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *rotation_);
-  }
-
-  // .Protocol.PlayerState State = 3;
-  if (this->state() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -934,9 +907,6 @@ void PositionData::MergeFrom(const PositionData& from) {
   if (from.has_rotation()) {
     _internal_mutable_rotation()->::Protocol::Float4::MergeFrom(from._internal_rotation());
   }
-  if (from.state() != 0) {
-    _internal_set_state(from._internal_state());
-  }
 }
 
 void PositionData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -961,8 +931,8 @@ void PositionData::InternalSwap(PositionData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PositionData, state_)
-      + sizeof(PositionData::state_)
+      PROTOBUF_FIELD_OFFSET(PositionData, rotation_)
+      + sizeof(PositionData::rotation_)
       - PROTOBUF_FIELD_OFFSET(PositionData, posision_)>(
           reinterpret_cast<char*>(&posision_),
           reinterpret_cast<char*>(&other->posision_));

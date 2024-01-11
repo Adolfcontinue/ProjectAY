@@ -4,6 +4,7 @@
 #include "AYCharacter.h"
 #include "PreLoder.h"
 #include "DarkNightAnimInstance.h"
+#include "PlayerAnimInstance.h"
 #include "../AYGameInstance.h"
 
 // Sets default values
@@ -21,14 +22,13 @@ AAYCharacter::AAYCharacter()
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	SpringArm->TargetArmLength = 400.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
-
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/GreatSword/Mannequin/Character/Mesh/WeaponMaster_GreatSword01.WeaponMaster_GreatSword01"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/OneMeshCharacters/IronMaskSK.IronMaskSK"));
 	if (skeletalmesh.Succeeded())
 		GetMesh()->SetSkeletalMesh(skeletalmesh.Object);
 
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/GreatSwordAnimBP.GreatSwordAnimBP_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> anim(TEXT("/Game/Blueprint/Character/SwordAnimBP.SwordAnimBP_C"));
 	if (anim.Succeeded())
 		GetMesh()->SetAnimInstanceClass(anim.Class);
 
@@ -39,6 +39,7 @@ AAYCharacter::AAYCharacter()
 	IsAttacking = false;
 	MaxCombo = 3;
 	AttackEndComboState();
+	SyncTimer = 0.f;
 }
 
 // Called when the game starts or when spawned
@@ -66,27 +67,17 @@ void AAYCharacter::Tick(float DeltaTime)
 void AAYCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	_Anim = Cast<UDarkNightAnimInstance>(GetMesh()->GetAnimInstance());
+	_Anim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	CHECK(_Anim);
 
-	_Anim->OnMontageEnded.AddDynamic(this, &AAYCharacter::OnAttackMontageEnded);
-
-	_Anim->OnNextAttackCheck.AddLambda([this]()->void {
-		LOG("OnNextAttackCheck");
-		CanNextCombo = false;
-
-		if (IsComboInputOn)
-		{
-			AttackStartComboState();
-			_Anim->JumpToAttackMontageSection(CurrentCombo);
-		}});
+	_Anim->OnAttack1_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck);
+	_Anim->OnAttack2_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck2);
 }
 
 // Called to bind functionality to input
 void AAYCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 
 	//bind action
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
@@ -206,8 +197,9 @@ void AAYCharacter::TickMove()
 	{
 		GetController()->SetControlRotation(FRotationMatrix::MakeFromX(DirectionToMove).Rotator());
 		AddMovementInput(DirectionToMove);
+		SetAnimState(EAnimState::Move);
 
-		FVector curPos = GetActorLocation();
+		/*FVector curPos = GetActorLocation();
 		FQuat curRot = GetActorQuat();
 		UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
 
@@ -223,13 +215,22 @@ void AAYCharacter::TickMove()
 		rot->set_z(curRot.Z);
 		rot->set_w(curRot.W);
 
-		inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);
+		packet.set_state(_Anim->GetAnimStateProtobuf());
+		inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);*/
 	}
+
+	if (DirectionToMove.SizeSquared() == 0.0f && _Anim->GetAnimState() == EAnimState::Move)
+		SetAnimState(EAnimState::Idle);
 }
 
 void AAYCharacter::ComboAttack()
-{
-	if (IsAttacking)
+{ 
+	if (_Anim->GetAnimState() == EAnimState::Attack1)
+		IsAttacking = true;
+	else
+		SetAnimState(EAnimState::Attack1);
+
+	/*if (IsAttacking)
 	{
 		CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
 		if(CanNextCombo)
@@ -244,31 +245,73 @@ void AAYCharacter::ComboAttack()
 		_Anim->PlayComboAttackMontage();
 		_Anim->JumpToAttackMontageSection(CurrentCombo);
 		IsAttacking = true;
-	}
+	}*/
 }
 
 void AAYCharacter::OnAttackMontageEnded(UAnimMontage* montage, bool bInterrupted)
 {
-	CHECK(IsAttacking);
+	/*CHECK(IsAttacking);
 	CHECK(CurrentCombo > 0);
 	IsAttacking = false;
-	AttackEndComboState();
+	AttackEndComboState();*/
 }
 
 void AAYCharacter::AttackStartComboState()
 {
-	CanNextCombo = true;
+	/*CanNextCombo = true;
 	IsComboInputOn = false;
 	CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 0, MaxCombo - 1));
 	CurrentCombo = FMath::Clamp<int32>(CurrentCombo + 1 , 1 , MaxCombo);
-	LOG("CurrentCombo %d", CurrentCombo);
+	LOG("CurrentCombo %d", CurrentCombo);*/
 }
 
 void AAYCharacter::AttackEndComboState()
 {
-	IsComboInputOn = false;
+	/*IsComboInputOn = false;
 	CanNextCombo = false;
-	CurrentCombo = 0;
+	CurrentCombo = 0;*/
+}
+
+void AAYCharacter::AttackEndCheck()
+{
+	if (IsAttacking)
+		SetAnimState(EAnimState::Attack2);
+	else
+		SetAnimState(EAnimState::Idle);
+}
+
+void AAYCharacter::AttackEndCheck2()
+{
+	SetAnimState(EAnimState::Idle);
+	IsAttacking = false;
+}
+
+void AAYCharacter::AnimSync()
+{
+	FVector curPos = GetActorLocation();
+	FQuat curRot = GetActorQuat();
+	UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
+
+	Protocol::C2P_ReportMove packet;
+	Protocol::PositionData* posData = packet.mutable_posdata();
+	Protocol::Float3* pos = posData->mutable_posision();
+	pos->set_x(curPos.X);
+	pos->set_y(curPos.Y);
+	pos->set_z(curPos.Z);
+	Protocol::Float4* rot = posData->mutable_rotation();
+	rot->set_x(curRot.X);
+	rot->set_y(curRot.Y);
+	rot->set_z(curRot.Z);
+	rot->set_w(curRot.W);
+
+	packet.set_state(_Anim->GetAnimStateProtobuf());
+	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);
+}
+
+void AAYCharacter::SetAnimState(EAnimState animstate)
+{
+	_Anim->SetAnimState(animstate);
+	AnimSync();
 }
 
 

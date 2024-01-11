@@ -76,16 +76,17 @@ void UAYGameInstance::RemovePlayer(int64 userKey)
 	}
 }
 
-void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat)
+void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Protocol::PlayerState state)
 {
-	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
-	if (::IsValid(state))
+	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(gameState))
 	{
-		auto it = state->FindPlayer(userKey);
+		auto it = gameState->FindPlayer(userKey);
 		if (it == nullptr)
 			return;
 
 		it->RepPlayerMove(pos, quat);
+		it->SetAnimState(state);
 	}
 }
 
