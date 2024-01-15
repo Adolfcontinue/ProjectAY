@@ -78,7 +78,9 @@ constexpr MonsterData::MonsterData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : pos_(nullptr)
   , rot_(nullptr)
-  , monsterkey_(uint64_t{0u})
+  , actorkey_(uint64_t{0u})
+  , type_(0)
+
   , hp_(0){}
 struct MonsterDataDefaultTypeInternal {
   constexpr MonsterDataDefaultTypeInternal()
@@ -133,7 +135,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Struct_2eproto::offsets[] PROT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, monsterkey_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, actorkey_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, type_),
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, hp_),
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, pos_),
   PROTOBUF_FIELD_OFFSET(::Protocol::MonsterData, rot_),
@@ -163,17 +166,18 @@ const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\001(\0132\020.Protocol.Float4\"w\n\010UserData\022\022\n\nses"
   "sionKey\030\001 \001(\004\022\017\n\007userKey\030\002 \001(\004\022\"\n\010positi"
   "on\030\003 \001(\0132\020.Protocol.Float3\022\"\n\010rotation\030\004"
-  " \001(\0132\020.Protocol.Float4\"k\n\013MonsterData\022\022\n"
-  "\nmonsterKey\030\001 \001(\004\022\n\n\002hp\030\002 \001(\005\022\035\n\003pos\030\003 \001"
-  "(\0132\020.Protocol.Float3\022\035\n\003Rot\030\004 \001(\0132\020.Prot"
-  "ocol.Float4b\006proto3"
+  " \001(\0132\020.Protocol.Float4\"\216\001\n\013MonsterData\022\020"
+  "\n\010actorkey\030\001 \001(\004\022#\n\004type\030\002 \001(\0162\025.Protoco"
+  "l.MonsterType\022\n\n\002hp\030\003 \001(\005\022\035\n\003pos\030\004 \001(\0132\020"
+  ".Protocol.Float3\022\035\n\003Rot\030\005 \001(\0132\020.Protocol"
+  ".Float4b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Struct_2eproto_deps[1] = {
   &::descriptor_table_Enum_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Struct_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Struct_2eproto = {
-  false, false, 459, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
+  false, false, 495, descriptor_table_protodef_Struct_2eproto, "Struct.proto", 
   &descriptor_table_Struct_2eproto_once, descriptor_table_Struct_2eproto_deps, 1, 5,
   schemas, file_default_instances, TableStruct_Struct_2eproto::offsets,
   file_level_metadata_Struct_2eproto, file_level_enum_descriptors_Struct_2eproto, file_level_service_descriptors_Struct_2eproto,
@@ -1284,9 +1288,9 @@ MonsterData::MonsterData(const MonsterData& from)
   } else {
     rot_ = nullptr;
   }
-  ::memcpy(&monsterkey_, &from.monsterkey_,
+  ::memcpy(&actorkey_, &from.actorkey_,
     static_cast<size_t>(reinterpret_cast<char*>(&hp_) -
-    reinterpret_cast<char*>(&monsterkey_)) + sizeof(hp_));
+    reinterpret_cast<char*>(&actorkey_)) + sizeof(hp_));
   // @@protoc_insertion_point(copy_constructor:Protocol.MonsterData)
 }
 
@@ -1333,9 +1337,9 @@ void MonsterData::Clear() {
     delete rot_;
   }
   rot_ = nullptr;
-  ::memset(&monsterkey_, 0, static_cast<size_t>(
+  ::memset(&actorkey_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&hp_) -
-      reinterpret_cast<char*>(&monsterkey_)) + sizeof(hp_));
+      reinterpret_cast<char*>(&actorkey_)) + sizeof(hp_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1345,30 +1349,38 @@ const char* MonsterData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 monsterKey = 1;
+      // uint64 actorkey = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          monsterkey_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          actorkey_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 hp = 2;
+      // .Protocol.MonsterType type = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::Protocol::MonsterType>(val));
+        } else goto handle_unusual;
+        continue;
+      // int32 hp = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           hp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .Protocol.Float3 pos = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+      // .Protocol.Float3 pos = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_pos(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .Protocol.Float4 Rot = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+      // .Protocol.Float4 Rot = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_rot(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -1402,32 +1414,39 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 monsterKey = 1;
-  if (this->monsterkey() != 0) {
+  // uint64 actorkey = 1;
+  if (this->actorkey() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_monsterkey(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_actorkey(), target);
   }
 
-  // int32 hp = 2;
+  // .Protocol.MonsterType type = 2;
+  if (this->type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_type(), target);
+  }
+
+  // int32 hp = 3;
   if (this->hp() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_hp(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_hp(), target);
   }
 
-  // .Protocol.Float3 pos = 3;
+  // .Protocol.Float3 pos = 4;
   if (this->has_pos()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        3, _Internal::pos(this), target, stream);
+        4, _Internal::pos(this), target, stream);
   }
 
-  // .Protocol.Float4 Rot = 4;
+  // .Protocol.Float4 Rot = 5;
   if (this->has_rot()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        4, _Internal::rot(this), target, stream);
+        5, _Internal::rot(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1446,28 +1465,34 @@ size_t MonsterData::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.Float3 pos = 3;
+  // .Protocol.Float3 pos = 4;
   if (this->has_pos()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *pos_);
   }
 
-  // .Protocol.Float4 Rot = 4;
+  // .Protocol.Float4 Rot = 5;
   if (this->has_rot()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *rot_);
   }
 
-  // uint64 monsterKey = 1;
-  if (this->monsterkey() != 0) {
+  // uint64 actorkey = 1;
+  if (this->actorkey() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_monsterkey());
+        this->_internal_actorkey());
   }
 
-  // int32 hp = 2;
+  // .Protocol.MonsterType type = 2;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  // int32 hp = 3;
   if (this->hp() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
@@ -1511,8 +1536,11 @@ void MonsterData::MergeFrom(const MonsterData& from) {
   if (from.has_rot()) {
     _internal_mutable_rot()->::Protocol::Float4::MergeFrom(from._internal_rot());
   }
-  if (from.monsterkey() != 0) {
-    _internal_set_monsterkey(from._internal_monsterkey());
+  if (from.actorkey() != 0) {
+    _internal_set_actorkey(from._internal_actorkey());
+  }
+  if (from.type() != 0) {
+    _internal_set_type(from._internal_type());
   }
   if (from.hp() != 0) {
     _internal_set_hp(from._internal_hp());

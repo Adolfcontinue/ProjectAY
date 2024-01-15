@@ -55,7 +55,8 @@ struct C2P_RequestWorldDataDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C2P_RequestWorldDataDefaultTypeInternal _C2P_RequestWorldData_default_instance_;
 constexpr P2C_ResultWorldData::P2C_ResultWorldData(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : users_(){}
+  : users_()
+  , monsters_(){}
 struct P2C_ResultWorldDataDefaultTypeInternal {
   constexpr P2C_ResultWorldDataDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -148,6 +149,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Protocol_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ResultWorldData, users_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ResultWorldData, monsters_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportEnterUser, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -181,10 +183,10 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 7, -1, sizeof(::Protocol::P2C_ResultLogin)},
   { 13, -1, sizeof(::Protocol::C2P_RequestWorldData)},
   { 18, -1, sizeof(::Protocol::P2C_ResultWorldData)},
-  { 24, -1, sizeof(::Protocol::P2C_ReportEnterUser)},
-  { 30, -1, sizeof(::Protocol::P2C_ReportLeaveUser)},
-  { 36, -1, sizeof(::Protocol::C2P_ReportMove)},
-  { 43, -1, sizeof(::Protocol::P2C_ReportMove)},
+  { 25, -1, sizeof(::Protocol::P2C_ReportEnterUser)},
+  { 31, -1, sizeof(::Protocol::P2C_ReportLeaveUser)},
+  { 37, -1, sizeof(::Protocol::C2P_ReportMove)},
+  { 44, -1, sizeof(::Protocol::P2C_ReportMove)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -202,17 +204,18 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "\n\016Protocol.proto\022\010Protocol\032\nEnum.proto\032\014"
   "Struct.proto\"*\n\020C2P_RequestLogin\022\n\n\002id\030\001"
   " \001(\t\022\n\n\002pw\030\002 \001(\t\"!\n\017P2C_ResultLogin\022\016\n\006r"
-  "esult\030\001 \001(\r\"\026\n\024C2P_RequestWorldData\"8\n\023P"
+  "esult\030\001 \001(\r\"\026\n\024C2P_RequestWorldData\"a\n\023P"
   "2C_ResultWorldData\022!\n\005Users\030\001 \003(\0132\022.Prot"
-  "ocol.UserData\"7\n\023P2C_ReportEnterUser\022 \n\004"
-  "User\030\001 \001(\0132\022.Protocol.UserData\"&\n\023P2C_Re"
-  "portLeaveUser\022\017\n\007UserKey\030\001 \001(\004\"_\n\016C2P_Re"
-  "portMove\022\'\n\007PosData\030\001 \001(\0132\026.Protocol.Pos"
-  "itionData\022$\n\005State\030\002 \001(\0162\025.Protocol.Play"
-  "erState\"p\n\016P2C_ReportMove\022\017\n\007UserKey\030\001 \001"
-  "(\004\022\'\n\007PosData\030\002 \001(\0132\026.Protocol.PositionD"
-  "ata\022$\n\005State\030\003 \001(\0162\025.Protocol.PlayerStat"
-  "eb\006proto3"
+  "ocol.UserData\022\'\n\010Monsters\030\002 \003(\0132\025.Protoc"
+  "ol.MonsterData\"7\n\023P2C_ReportEnterUser\022 \n"
+  "\004User\030\001 \001(\0132\022.Protocol.UserData\"&\n\023P2C_R"
+  "eportLeaveUser\022\017\n\007UserKey\030\001 \001(\004\"_\n\016C2P_R"
+  "eportMove\022\'\n\007PosData\030\001 \001(\0132\026.Protocol.Po"
+  "sitionData\022$\n\005State\030\002 \001(\0162\025.Protocol.Pla"
+  "yerState\"p\n\016P2C_ReportMove\022\017\n\007UserKey\030\001 "
+  "\001(\004\022\'\n\007PosData\030\002 \001(\0132\026.Protocol.Position"
+  "Data\022$\n\005State\030\003 \001(\0162\025.Protocol.PlayerSta"
+  "teb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -220,7 +223,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Protocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto = {
-  false, false, 529, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
+  false, false, 570, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
   &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 8,
   schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
   file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto, file_level_service_descriptors_Protocol_2eproto,
@@ -837,16 +840,21 @@ class P2C_ResultWorldData::_Internal {
 void P2C_ResultWorldData::clear_users() {
   users_.Clear();
 }
+void P2C_ResultWorldData::clear_monsters() {
+  monsters_.Clear();
+}
 P2C_ResultWorldData::P2C_ResultWorldData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena),
-  users_(arena) {
+  users_(arena),
+  monsters_(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:Protocol.P2C_ResultWorldData)
 }
 P2C_ResultWorldData::P2C_ResultWorldData(const P2C_ResultWorldData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      users_(from.users_) {
+      users_(from.users_),
+      monsters_(from.monsters_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:Protocol.P2C_ResultWorldData)
 }
@@ -881,6 +889,7 @@ void P2C_ResultWorldData::Clear() {
   (void) cached_has_bits;
 
   users_.Clear();
+  monsters_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -900,6 +909,18 @@ const char* P2C_ResultWorldData::_InternalParse(const char* ptr, ::PROTOBUF_NAME
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // repeated .Protocol.MonsterData Monsters = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_monsters(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -939,6 +960,14 @@ failure:
       InternalWriteMessage(1, this->_internal_users(i), target, stream);
   }
 
+  // repeated .Protocol.MonsterData Monsters = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_monsters_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_monsters(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -958,6 +987,13 @@ size_t P2C_ResultWorldData::ByteSizeLong() const {
   // repeated .Protocol.UserData Users = 1;
   total_size += 1UL * this->_internal_users_size();
   for (const auto& msg : this->users_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .Protocol.MonsterData Monsters = 2;
+  total_size += 1UL * this->_internal_monsters_size();
+  for (const auto& msg : this->monsters_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -994,6 +1030,7 @@ void P2C_ResultWorldData::MergeFrom(const P2C_ResultWorldData& from) {
   (void) cached_has_bits;
 
   users_.MergeFrom(from.users_);
+  monsters_.MergeFrom(from.monsters_);
 }
 
 void P2C_ResultWorldData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1018,6 +1055,7 @@ void P2C_ResultWorldData::InternalSwap(P2C_ResultWorldData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   users_.InternalSwap(&other->users_);
+  monsters_.InternalSwap(&other->monsters_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata P2C_ResultWorldData::GetMetadata() const {

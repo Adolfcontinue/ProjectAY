@@ -22,6 +22,20 @@ AOtherCharacter* AAYGameState::FindPlayer(int64 key)
 	return *iter;
 }
 
+void AAYGameState::AddMonster(int64 key, AAYMonsterBase* monster)
+{
+	Monsters.Add(key, monster);
+}
+
+AAYMonsterBase* AAYGameState::FindMonster(int64 key)
+{
+	auto iter = Monsters.Find(key);
+	if (iter == nullptr)
+		return nullptr;
+
+	return *iter;
+}
+
 void AAYGameState::RepPlayerMove(int64 userKey, FVector pos, FQuat quat)
 {
 	AOtherCharacter* player = FindPlayer(userKey);

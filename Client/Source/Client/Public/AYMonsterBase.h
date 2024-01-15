@@ -2,12 +2,13 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "../Client.h"
+#include "GameFramework/Character.h"
+#include "Define.h"
 #include "AYMonsterBase.generated.h"
 
 UCLASS()
-class CLIENT_API AAYMonsterBase : public APawn
+class CLIENT_API AAYMonsterBase : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -22,7 +23,10 @@ public:
 
     // Called every frame
     virtual void Tick(float DeltaTime) override;
+    void SetActorKey(uint64 key);
+    uint64 GetActorKey();
 
+public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster")
     float MaxHealth;
 
@@ -41,4 +45,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Monster")
     void ApplyStun(float StunDuration);
 
+protected:
+    uint64 ActorKey;
+    MonsterType MonsterKey;
 };

@@ -17,6 +17,33 @@ enum class EAnimState : uint8
 	Dead UMETA(DisplayName = "Dead")
 };
 
+UENUM(BlueprintType)
+enum class EMonsterAnimState : uint8
+{
+	Idle UMETA(DisplayName = "Idle"),
+	Attack UMETA(DisplayName = "Attack1"),
+	Move UMETA(DisplayName = "Move"),
+	Hit UMETA(DisplayName= "Hit"),
+	Dead UMETA(DisplayName = "Dead")
+};
+
+UENUM(BlueprintType)
+enum class EPlayerAnimType : uint8
+{
+	SwordShield,
+	TwoHandSword
+};
+
+enum MonsterType
+{
+	Beholder,
+	BlackKnight,
+	Chest,
+	Crab,
+	Demon,
+	Lizard
+};
+
 enum AnimState
 {
 	Idle = 0,

@@ -17,3 +17,13 @@ enum PlayerState
 	MOVE = 3;
 	DEAD = 4;
 }
+
+enum MonsterType
+{
+	BEHOLDER = 0;
+	BLACKNIGHT = 1;
+	CHEST = 2;
+	CRAB = 3;
+	DEMON = 4;
+	LIZARD = 5;
+}

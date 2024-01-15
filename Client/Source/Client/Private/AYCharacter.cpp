@@ -38,19 +38,27 @@ AAYCharacter::AAYCharacter()
 
 	IsAttacking = false;
 	MaxCombo = 3;
-	AttackEndComboState();
 	SyncTimer = 0.f;
+
+	/// Script / Engine.StaticMesh'/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword07SM.Sword07SM'
+	FName weaponSocket(TEXT("RightWeaponShield"));
+	if (GetMesh()->DoesSocketExist(weaponSocket))
+	{
+		Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WEAPON"));
+		static ConstructorHelpers::FObjectFinder<UStaticMesh> weaponMesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword07SM.Sword07SM"));
+		if (weaponMesh.Succeeded())
+			Weapon->SetStaticMesh(weaponMesh.Object);
+
+		Weapon->SetupAttachment(GetMesh(), weaponSocket);
+	}
+
+	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
 }
 
 // Called when the game starts or when spawned
 void AAYCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	//pakcet send
-	/*UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
-	Protocol::C2P_RequestWorldData packet;
-	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_RequestWorldData);*/
 }
 
 // Called every frame
@@ -72,6 +80,7 @@ void AAYCharacter::PostInitializeComponents()
 
 	_Anim->OnAttack1_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck);
 	_Anim->OnAttack2_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck2);
+	_Anim->OnAttackHitCheck.AddUObject(this, &AAYCharacter::AttackCheck);
 }
 
 // Called to bind functionality to input
@@ -198,25 +207,6 @@ void AAYCharacter::TickMove()
 		GetController()->SetControlRotation(FRotationMatrix::MakeFromX(DirectionToMove).Rotator());
 		AddMovementInput(DirectionToMove);
 		SetAnimState(EAnimState::Move);
-
-		/*FVector curPos = GetActorLocation();
-		FQuat curRot = GetActorQuat();
-		UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
-
-		Protocol::C2P_ReportMove packet;
-		Protocol::PositionData* posData = packet.mutable_posdata();
-		Protocol::Float3* pos = posData->mutable_posision();
-		pos->set_x(curPos.X);
-		pos->set_y(curPos.Y);
-		pos->set_z(curPos.Z);
-		Protocol::Float4* rot = posData->mutable_rotation();
-		rot->set_x(curRot.X);
-		rot->set_y(curRot.Y);
-		rot->set_z(curRot.Z);
-		rot->set_w(curRot.W);
-
-		packet.set_state(_Anim->GetAnimStateProtobuf());
-		inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);*/
 	}
 
 	if (DirectionToMove.SizeSquared() == 0.0f && _Anim->GetAnimState() == EAnimState::Move)
@@ -229,47 +219,6 @@ void AAYCharacter::ComboAttack()
 		IsAttacking = true;
 	else
 		SetAnimState(EAnimState::Attack1);
-
-	/*if (IsAttacking)
-	{
-		CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
-		if(CanNextCombo)
-		{
-			IsComboInputOn = true;
-		}
-	}
-	else
-	{
-		CHECK(CurrentCombo == 0);
-		AttackStartComboState();
-		_Anim->PlayComboAttackMontage();
-		_Anim->JumpToAttackMontageSection(CurrentCombo);
-		IsAttacking = true;
-	}*/
-}
-
-void AAYCharacter::OnAttackMontageEnded(UAnimMontage* montage, bool bInterrupted)
-{
-	/*CHECK(IsAttacking);
-	CHECK(CurrentCombo > 0);
-	IsAttacking = false;
-	AttackEndComboState();*/
-}
-
-void AAYCharacter::AttackStartComboState()
-{
-	/*CanNextCombo = true;
-	IsComboInputOn = false;
-	CHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 0, MaxCombo - 1));
-	CurrentCombo = FMath::Clamp<int32>(CurrentCombo + 1 , 1 , MaxCombo);
-	LOG("CurrentCombo %d", CurrentCombo);*/
-}
-
-void AAYCharacter::AttackEndComboState()
-{
-	/*IsComboInputOn = false;
-	CanNextCombo = false;
-	CurrentCombo = 0;*/
 }
 
 void AAYCharacter::AttackEndCheck()
@@ -284,6 +233,30 @@ void AAYCharacter::AttackEndCheck2()
 {
 	SetAnimState(EAnimState::Idle);
 	IsAttacking = false;
+}
+
+void AAYCharacter::AttackCheck()
+{
+	FHitResult hitResult;
+	FCollisionQueryParams params(NAME_None, false, this);
+	bool bResult = GetWorld()->SweepSingleByChannel(
+		hitResult,
+		GetActorLocation(),
+		GetActorLocation() + GetActorForwardVector() * 200.f,
+		FQuat::Identity,
+		ECollisionChannel::ECC_GameTraceChannel2,
+		FCollisionShape::MakeSphere(50.f),
+		params
+	);
+
+	if (bResult)
+	{
+		if (IsValid(hitResult.GetActor()))
+		{
+			//REPORT SERVER
+			LOG("PLAYER ATTACK CHECK");
+		}
+	}
 }
 
 void AAYCharacter::AnimSync()

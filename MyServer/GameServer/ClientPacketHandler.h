@@ -14,8 +14,6 @@ enum Packet_C2P
 	P2C_ReportLeaveUser = 1005,
 	C2P_ReportMove = 1006,
 	P2C_ReportMove = 1007,
-	C2P_ReportAnimSync = 1008,
-	P2C_ReportAnimSync = 1009,
 };
 
 // Custom Handlers
@@ -50,7 +48,6 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportEnterUser& packet) { return MakeSendBuffer(packet, P2C_ReportEnterUser); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportLeaveUser& packet) { return MakeSendBuffer(packet, P2C_ReportLeaveUser); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMove& packet) { return MakeSendBuffer(packet, P2C_ReportMove); }
-	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportAnimSync& packet) { return MakeSendBuffer(packet, P2C_ReportAnimSync); }
 
 
 private:

@@ -1,6 +1,6 @@
-﻿  ClientPacketHandler.cpp
-  GameServer.cpp
-  GameSession.cpp
+﻿  Actor.cpp
+  ClientPacketHandler.cpp
+  Monster.cpp
   User.cpp
   World.cpp
   코드를 생성하고 있습니다...

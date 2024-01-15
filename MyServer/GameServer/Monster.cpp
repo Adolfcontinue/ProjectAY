@@ -4,11 +4,12 @@
 
 Monster::Monster()
 {
+	SetType(eActorType::Monster);
 }
 
 Monster::~Monster()
 {
-	shared_from_this();
+	//shared_from_this();
 }
 
 void Monster::Update()

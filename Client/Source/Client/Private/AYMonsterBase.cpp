@@ -13,6 +13,8 @@ AAYMonsterBase::AAYMonsterBase()
     Health = MaxHealth;
     AttackPower = 10.0f;
     bIsStunned = false;
+
+    GetCapsuleComponent()->SetCollisionProfileName(TEXT("Monster"));
 }
 
 // Called when the game starts or when spawned
@@ -27,8 +29,19 @@ void AAYMonsterBase::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 }
 
+void AAYMonsterBase::SetActorKey(uint64 key)
+{
+    ActorKey = key;
+}
+
+uint64 AAYMonsterBase::GetActorKey()
+{
+    return ActorKey;
+}
+
 void AAYMonsterBase::TakeDamage(float DamageAmount)
 {
+    
     if (bIsStunned)
     {
         // 그로기 상태일 때는 대미지를 받지 않음

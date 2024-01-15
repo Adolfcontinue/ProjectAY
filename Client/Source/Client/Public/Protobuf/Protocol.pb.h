@@ -612,6 +612,7 @@ class P2C_ResultWorldData final :
 
   enum : int {
     kUsersFieldNumber = 1,
+    kMonstersFieldNumber = 2,
   };
   // repeated .Protocol.UserData Users = 1;
   int users_size() const;
@@ -631,6 +632,24 @@ class P2C_ResultWorldData final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::UserData >&
       users() const;
 
+  // repeated .Protocol.MonsterData Monsters = 2;
+  int monsters_size() const;
+  private:
+  int _internal_monsters_size() const;
+  public:
+  void clear_monsters();
+  ::Protocol::MonsterData* mutable_monsters(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MonsterData >*
+      mutable_monsters();
+  private:
+  const ::Protocol::MonsterData& _internal_monsters(int index) const;
+  ::Protocol::MonsterData* _internal_add_monsters();
+  public:
+  const ::Protocol::MonsterData& monsters(int index) const;
+  ::Protocol::MonsterData* add_monsters();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MonsterData >&
+      monsters() const;
+
   // @@protoc_insertion_point(class_scope:Protocol.P2C_ResultWorldData)
  private:
   class _Internal;
@@ -639,6 +658,7 @@ class P2C_ResultWorldData final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::UserData > users_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MonsterData > monsters_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -1397,6 +1417,42 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::UserData >&
 P2C_ResultWorldData::users() const {
   // @@protoc_insertion_point(field_list:Protocol.P2C_ResultWorldData.Users)
   return users_;
+}
+
+// repeated .Protocol.MonsterData Monsters = 2;
+inline int P2C_ResultWorldData::_internal_monsters_size() const {
+  return monsters_.size();
+}
+inline int P2C_ResultWorldData::monsters_size() const {
+  return _internal_monsters_size();
+}
+inline ::Protocol::MonsterData* P2C_ResultWorldData::mutable_monsters(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.P2C_ResultWorldData.Monsters)
+  return monsters_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MonsterData >*
+P2C_ResultWorldData::mutable_monsters() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.P2C_ResultWorldData.Monsters)
+  return &monsters_;
+}
+inline const ::Protocol::MonsterData& P2C_ResultWorldData::_internal_monsters(int index) const {
+  return monsters_.Get(index);
+}
+inline const ::Protocol::MonsterData& P2C_ResultWorldData::monsters(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ResultWorldData.Monsters)
+  return _internal_monsters(index);
+}
+inline ::Protocol::MonsterData* P2C_ResultWorldData::_internal_add_monsters() {
+  return monsters_.Add();
+}
+inline ::Protocol::MonsterData* P2C_ResultWorldData::add_monsters() {
+  // @@protoc_insertion_point(field_add:Protocol.P2C_ResultWorldData.Monsters)
+  return _internal_add_monsters();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::MonsterData >&
+P2C_ResultWorldData::monsters() const {
+  // @@protoc_insertion_point(field_list:Protocol.P2C_ResultWorldData.Monsters)
+  return monsters_;
 }
 
 // -------------------------------------------------------------------

@@ -114,6 +114,9 @@ void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
 	//process
 	for (size_t i = 0; i < packet.users_size(); i++)
 		GameInstance->AddPlayer(packet.users(i));
+
+	for (size_t i = 0; i < packet.monsters_size(); i++)
+		GameInstance->AddMonster(packet.monsters(i));
 }
 
 void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)

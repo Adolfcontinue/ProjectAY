@@ -7,7 +7,8 @@
 #include "PreLoder.h"
 #include "Kismet/GameplayStatics.h"
 #include "AYGameState.h"
-
+#include "MonsterBeholder.h"
+#include "MonsterLizardMan.h"
 
 void UAYGameInstance::Init()
 {
@@ -24,11 +25,7 @@ void UAYGameInstance::Init()
 
 void UAYGameInstance::Shutdown()
 {
-	LOG("UAYGameInstance::Shutdown()");
-	Socket->Stop();
-
-	delete Socket;
-	delete RecvProsesor;
+	Socket->NetworkClose();
 }
 
 NetworkSocket* UAYGameInstance::GetNetworkSocket()
@@ -71,8 +68,8 @@ void UAYGameInstance::RemovePlayer(int64 userKey)
 		if (it == nullptr)
 			return;
 
-		it->Destroy();
 		state->RemovePlayer(userKey);
+		it->Destroy();
 	}
 }
 
@@ -87,6 +84,20 @@ void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Prot
 
 		it->RepPlayerMove(pos, quat);
 		it->SetAnimState(state);
+	}
+}
+
+void UAYGameInstance::AddMonster(Protocol::MonsterData monsterData)
+{
+	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(state))
+	{
+		FVector location = FVector(monsterData.pos().x(), monsterData.pos().y(), 0);
+		FRotator rotation = FRotator::ZeroRotator;
+
+		AMonsterBeholder* newMonster = GetWorld()->SpawnActor<AMonsterBeholder>(AMonsterBeholder::StaticClass(), location, rotation);
+		newMonster->SetActorKey(monsterData.actorkey());
+		state->AddMonster(newMonster->GetActorKey(), newMonster);
 	}
 }
 

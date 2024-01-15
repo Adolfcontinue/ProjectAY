@@ -34,12 +34,13 @@ uint32 NetworkSocket::Run()
 void NetworkSocket::Stop()
 {
 	IsConnected = false;
-
-	Service->GetSession()->Disconnect(L"DisConnect");
 }
+
 
 void NetworkSocket::Exit()
 {
+	Service->GetSession()->Disconnect(L"DisConnect");
+	Service->CloseService();
 }
 
 void NetworkSocket::CreateStartService()
@@ -63,6 +64,11 @@ void NetworkSocket::ServiceRun(uint32 time)
 {
 	if(IsConnected)
 		Service->GetCore()->Dispatch(time);
+}
+
+void NetworkSocket::NetworkClose()
+{
+	IsConnected = !IsConnected;
 }
 
 bool NetworkSocket::NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len)

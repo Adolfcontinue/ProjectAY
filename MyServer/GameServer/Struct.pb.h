@@ -853,12 +853,13 @@ class MonsterData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPosFieldNumber = 3,
-    kRotFieldNumber = 4,
-    kMonsterKeyFieldNumber = 1,
-    kHpFieldNumber = 2,
+    kPosFieldNumber = 4,
+    kRotFieldNumber = 5,
+    kActorkeyFieldNumber = 1,
+    kTypeFieldNumber = 2,
+    kHpFieldNumber = 3,
   };
-  // .Protocol.Float3 pos = 3;
+  // .Protocol.Float3 pos = 4;
   bool has_pos() const;
   private:
   bool _internal_has_pos() const;
@@ -876,7 +877,7 @@ class MonsterData final :
       ::Protocol::Float3* pos);
   ::Protocol::Float3* unsafe_arena_release_pos();
 
-  // .Protocol.Float4 Rot = 4;
+  // .Protocol.Float4 Rot = 5;
   bool has_rot() const;
   private:
   bool _internal_has_rot() const;
@@ -894,16 +895,25 @@ class MonsterData final :
       ::Protocol::Float4* rot);
   ::Protocol::Float4* unsafe_arena_release_rot();
 
-  // uint64 monsterKey = 1;
-  void clear_monsterkey();
-  ::PROTOBUF_NAMESPACE_ID::uint64 monsterkey() const;
-  void set_monsterkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  // uint64 actorkey = 1;
+  void clear_actorkey();
+  ::PROTOBUF_NAMESPACE_ID::uint64 actorkey() const;
+  void set_actorkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_monsterkey() const;
-  void _internal_set_monsterkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_actorkey() const;
+  void _internal_set_actorkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // int32 hp = 2;
+  // .Protocol.MonsterType type = 2;
+  void clear_type();
+  ::Protocol::MonsterType type() const;
+  void set_type(::Protocol::MonsterType value);
+  private:
+  ::Protocol::MonsterType _internal_type() const;
+  void _internal_set_type(::Protocol::MonsterType value);
+  public:
+
+  // int32 hp = 3;
   void clear_hp();
   ::PROTOBUF_NAMESPACE_ID::int32 hp() const;
   void set_hp(::PROTOBUF_NAMESPACE_ID::int32 value);
@@ -921,7 +931,8 @@ class MonsterData final :
   typedef void DestructorSkippable_;
   ::Protocol::Float3* pos_;
   ::Protocol::Float4* rot_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 monsterkey_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 actorkey_;
+  int type_;
   ::PROTOBUF_NAMESPACE_ID::int32 hp_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Struct_2eproto;
@@ -1465,27 +1476,47 @@ inline void UserData::set_allocated_rotation(::Protocol::Float4* rotation) {
 
 // MonsterData
 
-// uint64 monsterKey = 1;
-inline void MonsterData::clear_monsterkey() {
-  monsterkey_ = uint64_t{0u};
+// uint64 actorkey = 1;
+inline void MonsterData::clear_actorkey() {
+  actorkey_ = uint64_t{0u};
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 MonsterData::_internal_monsterkey() const {
-  return monsterkey_;
+inline ::PROTOBUF_NAMESPACE_ID::uint64 MonsterData::_internal_actorkey() const {
+  return actorkey_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 MonsterData::monsterkey() const {
-  // @@protoc_insertion_point(field_get:Protocol.MonsterData.monsterKey)
-  return _internal_monsterkey();
+inline ::PROTOBUF_NAMESPACE_ID::uint64 MonsterData::actorkey() const {
+  // @@protoc_insertion_point(field_get:Protocol.MonsterData.actorkey)
+  return _internal_actorkey();
 }
-inline void MonsterData::_internal_set_monsterkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void MonsterData::_internal_set_actorkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   
-  monsterkey_ = value;
+  actorkey_ = value;
 }
-inline void MonsterData::set_monsterkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_monsterkey(value);
-  // @@protoc_insertion_point(field_set:Protocol.MonsterData.monsterKey)
+inline void MonsterData::set_actorkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_actorkey(value);
+  // @@protoc_insertion_point(field_set:Protocol.MonsterData.actorkey)
 }
 
-// int32 hp = 2;
+// .Protocol.MonsterType type = 2;
+inline void MonsterData::clear_type() {
+  type_ = 0;
+}
+inline ::Protocol::MonsterType MonsterData::_internal_type() const {
+  return static_cast< ::Protocol::MonsterType >(type_);
+}
+inline ::Protocol::MonsterType MonsterData::type() const {
+  // @@protoc_insertion_point(field_get:Protocol.MonsterData.type)
+  return _internal_type();
+}
+inline void MonsterData::_internal_set_type(::Protocol::MonsterType value) {
+  
+  type_ = value;
+}
+inline void MonsterData::set_type(::Protocol::MonsterType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:Protocol.MonsterData.type)
+}
+
+// int32 hp = 3;
 inline void MonsterData::clear_hp() {
   hp_ = 0;
 }
@@ -1505,7 +1536,7 @@ inline void MonsterData::set_hp(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:Protocol.MonsterData.hp)
 }
 
-// .Protocol.Float3 pos = 3;
+// .Protocol.Float3 pos = 4;
 inline bool MonsterData::_internal_has_pos() const {
   return this != internal_default_instance() && pos_ != nullptr;
 }
@@ -1588,7 +1619,7 @@ inline void MonsterData::set_allocated_pos(::Protocol::Float3* pos) {
   // @@protoc_insertion_point(field_set_allocated:Protocol.MonsterData.pos)
 }
 
-// .Protocol.Float4 Rot = 4;
+// .Protocol.Float4 Rot = 5;
 inline bool MonsterData::_internal_has_rot() const {
   return this != internal_default_instance() && rot_ != nullptr;
 }

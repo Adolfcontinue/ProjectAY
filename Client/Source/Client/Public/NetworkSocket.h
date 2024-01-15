@@ -40,6 +40,9 @@ private:
 	void ServiceRun(uint32 time);
 
 public:
+	void NetworkClose();
+
+public:
 	bool NetSocketPacketHandler(PacketSessionRef& session, BYTE* buffer, int32 len);
 	bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
 	void SetGameInstance(class UAYGameInstance* inst);

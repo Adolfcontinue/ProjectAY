@@ -65,3 +65,9 @@ void UPlayerAnimInstance::AnimNotify_AttackEndCheck()
 	OnAttack2_EndCheck.Broadcast();
 	LOG_SCREEN(FColor::Blue, "AnimNotify_AttackEndCheck");
 }
+
+void UPlayerAnimInstance::AnimNotify_PlayerAttack()
+{
+	OnAttackHitCheck.Broadcast();
+	LOG_SCREEN(FColor::Red, "AnimNotify_PlayerAttack");
+}

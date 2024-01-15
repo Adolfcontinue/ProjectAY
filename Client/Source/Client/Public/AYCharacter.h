@@ -34,11 +34,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(VisibleAnywhere, Category = Camera)
-	USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere, Category = Camera)
-	UCameraComponent* Camera;
 
 private:
 	void UpDown(float axisValue);
@@ -52,18 +48,23 @@ private:
 	void TickMove();
 	void ComboAttack();
 
-	UFUNCTION()
-	void OnAttackMontageEnded(UAnimMontage* montage, bool bInterrupted);
-
-	void AttackStartComboState();
-	void AttackEndComboState();
-
-private:
 	void AttackEndCheck();
 	void AttackEndCheck2();
 
+	void AttackCheck();
 	void AnimSync();
 	void SetAnimState(EAnimState animstate);
+
+public:
+	UPROPERTY(VisibleAnywhere, Category = Camera)
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category = Camera)
+	UCameraComponent* Camera;
+
+	UPROPERTY(VisibleAnywhere, Category = Weapon)
+	//USkeletalMeshComponent* Weapon;
+	UStaticMeshComponent* Weapon;
 
 private:
 	eControlType CurrentControlType = eControlType::Type1;

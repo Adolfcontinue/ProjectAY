@@ -34,8 +34,9 @@ message UserData
 
 message MonsterData
 {
-	uint64 monsterKey = 1;
-	int32  hp = 2;
-	Float3 pos = 3;
-	Float4 Rot = 4;
+	uint64 actorkey = 1;
+	MonsterType type = 2;
+	int32  hp = 3;
+	Float3 pos = 4;
+	Float4 Rot = 5;
 }

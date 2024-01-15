@@ -25,7 +25,7 @@ public:
 	inline void SetRotationY(double y) { Rotation.Y = y; }
 	inline void SetRotationZ(double z) { Rotation.Z = z; }
 	inline void SetRotationW(double w) { Rotation.W = w; }
-	inline void SetType(ActorType type) { Type = type; }
+	inline void SetType(eActorType type) { Type = type; }
 
 	inline Float3 GetPosition() { return Position; }
 	inline double GetPositionX() { return Position.X; }
@@ -38,13 +38,13 @@ public:
 	inline double GetRotationZ() { return Rotation.Z; }
 	inline double GetRotationW() { return Rotation.W; }
 
-	inline ActorType GetType() { return Type; }
+	inline eActorType GetType() { return Type; }
 
 
 protected:
 	int64	ActorKey;
 	Float3	Position;
 	Float4	Rotation;
-	ActorType Type;
+	eActorType Type;
 };
 

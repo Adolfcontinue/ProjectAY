@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
 #include "OtherCharacter.h"
+#include "AYMonsterBase.h"
 #include "AYGameState.generated.h"
 
 /**
@@ -20,12 +21,14 @@ public:
 	void RemovePlayer(int64 key);
 	AOtherCharacter* FindPlayer(int64 key);
 
+	void AddMonster(int64 key, AAYMonsterBase* monster);
+	AAYMonsterBase* FindMonster(int64 key);
+
 public:
 	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat);
 
 
 private:
 	TMap<int64, AOtherCharacter*> Players;
-
-
+	TMap<int64, AAYMonsterBase*> Monsters;
 };

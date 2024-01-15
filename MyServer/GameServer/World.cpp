@@ -100,6 +100,8 @@ void World::CreateMonster()
 {
 	MonsterRef newMonster = MakeShared<Monster>();
 	newMonster->SetActorKey(IssueActorKey());
+	newMonster->SetPosition(830, 1110, 90);
+	newMonster->SetMonsterType(eMonsterType::Beholder);
 	_Monsters.insert(pair<int64, MonsterRef>(newMonster->GetActorKey(), newMonster));
 }
 

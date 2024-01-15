@@ -60,7 +60,7 @@ void AOtherCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 void AOtherCharacter::Move(float DeltaTime)
 {
 	// 보간 가중치를 증가시켜 부드러운 이동을 만듦
-	LerpAlpha += DeltaTime * 2.0f; // 2.0f는 보간 속도 조절 값
+	LerpAlpha += DeltaTime * 8.0f; // 2.0f는 보간 속도 조절 값
 
 	// 보간 가중치를 [0, 1] 범위로 클램프
 	LerpAlpha = FMath::Clamp(LerpAlpha, 0.0f, 1.0f);
@@ -72,7 +72,7 @@ void AOtherCharacter::Move(float DeltaTime)
 
 void AOtherCharacter::Rotation(float DeltaTime)
 {
-	SlerpAlpha += DeltaTime * 2.0f; // 보간 속도 조절 값 (2.0f는 예시, 조절 필요)
+	SlerpAlpha += DeltaTime * 5.0f; // 보간 속도 조절 값 (2.0f는 예시, 조절 필요)
 	SlerpAlpha = FMath::Clamp(SlerpAlpha, 0.0f, 1.0f); // [0, 1] 범위로 클램프
 
 	// 쿼터니언 Slerp를 사용해 현재 회전을 목표 회전으로 부드럽게 이동시킴
