@@ -14,6 +14,9 @@ enum Packet_C2P
 	P2C_ReportLeaveUser = 1005,
 	C2P_ReportMove = 1006,
 	P2C_ReportMove = 1007,
+	C2P_RequestPlayerAttack = 1008,
+	P2C_ResultPlayerAttack = 1009,
+	P2C_ReportPlayerAttack = 1010,
 };
 
 // Custom Handlers
@@ -25,6 +28,8 @@ namespace Handler
 	bool P2C_ReportEnterUser(PacketSessionRef& session, Protocol::P2C_ReportEnterUser& packet);
 	bool P2C_ReportLeaveUser(PacketSessionRef& session, Protocol::P2C_ReportLeaveUser& packet);
 	bool P2C_ReportMove(PacketSessionRef& session, Protocol::P2C_ReportMove& packet);
+	bool P2C_ResultPlayerAttack(PacketSessionRef& session, Protocol::P2C_ResultPlayerAttack& packet);
+	bool P2C_ReportPlayerAttack(PacketSessionRef& session, Protocol::P2C_ReportPlayerAttack& packet);
 }
 
 
@@ -40,6 +45,8 @@ public:
 		GPacketHandler[P2C_ReportEnterUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportEnterUser>(Handler::P2C_ReportEnterUser, session, buffer, len); };
 		GPacketHandler[P2C_ReportLeaveUser] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportLeaveUser>(Handler::P2C_ReportLeaveUser, session, buffer, len); };
 		GPacketHandler[P2C_ReportMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportMove>(Handler::P2C_ReportMove, session, buffer, len); };
+		GPacketHandler[P2C_ResultPlayerAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultPlayerAttack>(Handler::P2C_ResultPlayerAttack, session, buffer, len); };
+		GPacketHandler[P2C_ReportPlayerAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportPlayerAttack>(Handler::P2C_ReportPlayerAttack, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -50,6 +57,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::C2P_RequestLogin& packet) { return MakeSendBuffer(packet, C2P_RequestLogin); }
 	static SendBufferRef MakeSendBuffer(Protocol::C2P_RequestWorldData& packet) { return MakeSendBuffer(packet, C2P_RequestWorldData); }
 	static SendBufferRef MakeSendBuffer(Protocol::C2P_ReportMove& packet) { return MakeSendBuffer(packet, C2P_ReportMove); }
+	static SendBufferRef MakeSendBuffer(Protocol::C2P_RequestPlayerAttack& packet) { return MakeSendBuffer(packet, C2P_RequestPlayerAttack); }
 
 
 private:

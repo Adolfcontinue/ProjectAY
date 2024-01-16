@@ -95,6 +95,15 @@ void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot, Protocol::PlayerS
 	BroadCastExcept(sendBuffer, sessionKey);
 }
 
+MonsterRef World::FindMonster(uint64 key)
+{
+	auto iter = _Monsters.find(key);
+	if (iter == _Monsters.end())
+		return nullptr;
+
+	return iter->second;
+}
+
 //::todo create monster
 void World::CreateMonster()
 {

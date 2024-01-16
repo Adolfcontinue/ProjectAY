@@ -20,6 +20,9 @@ enum EPacket_C2P_Protocol
 	P2C_ReportLeaveUser = 1005,
 	C2P_ReportMove = 1006,
 	P2C_ReportMove = 1007,
+	C2P_RequestPlayerAttack = 1008,
+	P2C_ResultPlayerAttack = 1009,
+	P2C_ReportPlayerAttack = 1010,
 };
 
 class CLIENT_API NetworkSocket : public FRunnable

@@ -52,7 +52,7 @@ struct TableStruct_Protocol_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -66,6 +66,9 @@ extern C2P_ReportMoveDefaultTypeInternal _C2P_ReportMove_default_instance_;
 class C2P_RequestLogin;
 struct C2P_RequestLoginDefaultTypeInternal;
 extern C2P_RequestLoginDefaultTypeInternal _C2P_RequestLogin_default_instance_;
+class C2P_RequestPlayerAttack;
+struct C2P_RequestPlayerAttackDefaultTypeInternal;
+extern C2P_RequestPlayerAttackDefaultTypeInternal _C2P_RequestPlayerAttack_default_instance_;
 class C2P_RequestWorldData;
 struct C2P_RequestWorldDataDefaultTypeInternal;
 extern C2P_RequestWorldDataDefaultTypeInternal _C2P_RequestWorldData_default_instance_;
@@ -78,9 +81,15 @@ extern P2C_ReportLeaveUserDefaultTypeInternal _P2C_ReportLeaveUser_default_insta
 class P2C_ReportMove;
 struct P2C_ReportMoveDefaultTypeInternal;
 extern P2C_ReportMoveDefaultTypeInternal _P2C_ReportMove_default_instance_;
+class P2C_ReportPlayerAttack;
+struct P2C_ReportPlayerAttackDefaultTypeInternal;
+extern P2C_ReportPlayerAttackDefaultTypeInternal _P2C_ReportPlayerAttack_default_instance_;
 class P2C_ResultLogin;
 struct P2C_ResultLoginDefaultTypeInternal;
 extern P2C_ResultLoginDefaultTypeInternal _P2C_ResultLogin_default_instance_;
+class P2C_ResultPlayerAttack;
+struct P2C_ResultPlayerAttackDefaultTypeInternal;
+extern P2C_ResultPlayerAttackDefaultTypeInternal _P2C_ResultPlayerAttack_default_instance_;
 class P2C_ResultWorldData;
 struct P2C_ResultWorldDataDefaultTypeInternal;
 extern P2C_ResultWorldDataDefaultTypeInternal _P2C_ResultWorldData_default_instance_;
@@ -88,11 +97,14 @@ extern P2C_ResultWorldDataDefaultTypeInternal _P2C_ResultWorldData_default_insta
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Protocol::C2P_ReportMove* Arena::CreateMaybeMessage<::Protocol::C2P_ReportMove>(Arena*);
 template<> ::Protocol::C2P_RequestLogin* Arena::CreateMaybeMessage<::Protocol::C2P_RequestLogin>(Arena*);
+template<> ::Protocol::C2P_RequestPlayerAttack* Arena::CreateMaybeMessage<::Protocol::C2P_RequestPlayerAttack>(Arena*);
 template<> ::Protocol::C2P_RequestWorldData* Arena::CreateMaybeMessage<::Protocol::C2P_RequestWorldData>(Arena*);
 template<> ::Protocol::P2C_ReportEnterUser* Arena::CreateMaybeMessage<::Protocol::P2C_ReportEnterUser>(Arena*);
 template<> ::Protocol::P2C_ReportLeaveUser* Arena::CreateMaybeMessage<::Protocol::P2C_ReportLeaveUser>(Arena*);
 template<> ::Protocol::P2C_ReportMove* Arena::CreateMaybeMessage<::Protocol::P2C_ReportMove>(Arena*);
+template<> ::Protocol::P2C_ReportPlayerAttack* Arena::CreateMaybeMessage<::Protocol::P2C_ReportPlayerAttack>(Arena*);
 template<> ::Protocol::P2C_ResultLogin* Arena::CreateMaybeMessage<::Protocol::P2C_ResultLogin>(Arena*);
+template<> ::Protocol::P2C_ResultPlayerAttack* Arena::CreateMaybeMessage<::Protocol::P2C_ResultPlayerAttack>(Arena*);
 template<> ::Protocol::P2C_ResultWorldData* Arena::CreateMaybeMessage<::Protocol::P2C_ResultWorldData>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Protocol {
@@ -1250,6 +1262,446 @@ class P2C_ReportMove final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
+// -------------------------------------------------------------------
+
+class C2P_RequestPlayerAttack final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.C2P_RequestPlayerAttack) */ {
+ public:
+  inline C2P_RequestPlayerAttack() : C2P_RequestPlayerAttack(nullptr) {}
+  ~C2P_RequestPlayerAttack() override;
+  explicit constexpr C2P_RequestPlayerAttack(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  C2P_RequestPlayerAttack(const C2P_RequestPlayerAttack& from);
+  C2P_RequestPlayerAttack(C2P_RequestPlayerAttack&& from) noexcept
+    : C2P_RequestPlayerAttack() {
+    *this = ::std::move(from);
+  }
+
+  inline C2P_RequestPlayerAttack& operator=(const C2P_RequestPlayerAttack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline C2P_RequestPlayerAttack& operator=(C2P_RequestPlayerAttack&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const C2P_RequestPlayerAttack& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const C2P_RequestPlayerAttack* internal_default_instance() {
+    return reinterpret_cast<const C2P_RequestPlayerAttack*>(
+               &_C2P_RequestPlayerAttack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(C2P_RequestPlayerAttack& a, C2P_RequestPlayerAttack& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(C2P_RequestPlayerAttack* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(C2P_RequestPlayerAttack* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline C2P_RequestPlayerAttack* New() const final {
+    return new C2P_RequestPlayerAttack();
+  }
+
+  C2P_RequestPlayerAttack* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<C2P_RequestPlayerAttack>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const C2P_RequestPlayerAttack& from);
+  void MergeFrom(const C2P_RequestPlayerAttack& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(C2P_RequestPlayerAttack* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.C2P_RequestPlayerAttack";
+  }
+  protected:
+  explicit C2P_RequestPlayerAttack(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDamageAmountFieldNumber = 1,
+    kVictimKeyFieldNumber = 2,
+  };
+  // double DamageAmount = 1;
+  void clear_damageamount();
+  double damageamount() const;
+  void set_damageamount(double value);
+  private:
+  double _internal_damageamount() const;
+  void _internal_set_damageamount(double value);
+  public:
+
+  // uint64 victimKey = 2;
+  void clear_victimkey();
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey() const;
+  void set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_victimkey() const;
+  void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.C2P_RequestPlayerAttack)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double damageamount_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_Protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
+class P2C_ResultPlayerAttack final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.P2C_ResultPlayerAttack) */ {
+ public:
+  inline P2C_ResultPlayerAttack() : P2C_ResultPlayerAttack(nullptr) {}
+  ~P2C_ResultPlayerAttack() override;
+  explicit constexpr P2C_ResultPlayerAttack(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  P2C_ResultPlayerAttack(const P2C_ResultPlayerAttack& from);
+  P2C_ResultPlayerAttack(P2C_ResultPlayerAttack&& from) noexcept
+    : P2C_ResultPlayerAttack() {
+    *this = ::std::move(from);
+  }
+
+  inline P2C_ResultPlayerAttack& operator=(const P2C_ResultPlayerAttack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline P2C_ResultPlayerAttack& operator=(P2C_ResultPlayerAttack&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const P2C_ResultPlayerAttack& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const P2C_ResultPlayerAttack* internal_default_instance() {
+    return reinterpret_cast<const P2C_ResultPlayerAttack*>(
+               &_P2C_ResultPlayerAttack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(P2C_ResultPlayerAttack& a, P2C_ResultPlayerAttack& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(P2C_ResultPlayerAttack* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(P2C_ResultPlayerAttack* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline P2C_ResultPlayerAttack* New() const final {
+    return new P2C_ResultPlayerAttack();
+  }
+
+  P2C_ResultPlayerAttack* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<P2C_ResultPlayerAttack>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const P2C_ResultPlayerAttack& from);
+  void MergeFrom(const P2C_ResultPlayerAttack& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(P2C_ResultPlayerAttack* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.P2C_ResultPlayerAttack";
+  }
+  protected:
+  explicit P2C_ResultPlayerAttack(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDamageAmountFieldNumber = 2,
+    kVictimKeyFieldNumber = 3,
+  };
+  // double DamageAmount = 2;
+  void clear_damageamount();
+  double damageamount() const;
+  void set_damageamount(double value);
+  private:
+  double _internal_damageamount() const;
+  void _internal_set_damageamount(double value);
+  public:
+
+  // uint64 VictimKey = 3;
+  void clear_victimkey();
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey() const;
+  void set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_victimkey() const;
+  void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.P2C_ResultPlayerAttack)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double damageamount_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_Protocol_2eproto;
+};
+// -------------------------------------------------------------------
+
+class P2C_ReportPlayerAttack final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.P2C_ReportPlayerAttack) */ {
+ public:
+  inline P2C_ReportPlayerAttack() : P2C_ReportPlayerAttack(nullptr) {}
+  ~P2C_ReportPlayerAttack() override;
+  explicit constexpr P2C_ReportPlayerAttack(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  P2C_ReportPlayerAttack(const P2C_ReportPlayerAttack& from);
+  P2C_ReportPlayerAttack(P2C_ReportPlayerAttack&& from) noexcept
+    : P2C_ReportPlayerAttack() {
+    *this = ::std::move(from);
+  }
+
+  inline P2C_ReportPlayerAttack& operator=(const P2C_ReportPlayerAttack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline P2C_ReportPlayerAttack& operator=(P2C_ReportPlayerAttack&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const P2C_ReportPlayerAttack& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const P2C_ReportPlayerAttack* internal_default_instance() {
+    return reinterpret_cast<const P2C_ReportPlayerAttack*>(
+               &_P2C_ReportPlayerAttack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(P2C_ReportPlayerAttack& a, P2C_ReportPlayerAttack& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(P2C_ReportPlayerAttack* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(P2C_ReportPlayerAttack* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline P2C_ReportPlayerAttack* New() const final {
+    return new P2C_ReportPlayerAttack();
+  }
+
+  P2C_ReportPlayerAttack* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<P2C_ReportPlayerAttack>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const P2C_ReportPlayerAttack& from);
+  void MergeFrom(const P2C_ReportPlayerAttack& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(P2C_ReportPlayerAttack* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.P2C_ReportPlayerAttack";
+  }
+  protected:
+  explicit P2C_ReportPlayerAttack(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAttackerFieldNumber = 1,
+    kDamageAmountFieldNumber = 2,
+    kVictimKeyFieldNumber = 3,
+  };
+  // uint64 Attacker = 1;
+  void clear_attacker();
+  ::PROTOBUF_NAMESPACE_ID::uint64 attacker() const;
+  void set_attacker(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_attacker() const;
+  void _internal_set_attacker(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // double DamageAmount = 2;
+  void clear_damageamount();
+  double damageamount() const;
+  void set_damageamount(double value);
+  private:
+  double _internal_damageamount() const;
+  void _internal_set_damageamount(double value);
+  public:
+
+  // uint64 VictimKey = 3;
+  void clear_victimkey();
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey() const;
+  void set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_victimkey() const;
+  void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.P2C_ReportPlayerAttack)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 attacker_;
+  double damageamount_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_Protocol_2eproto;
+};
 // ===================================================================
 
 
@@ -1788,9 +2240,167 @@ inline void P2C_ReportMove::set_state(::Protocol::PlayerState value) {
   // @@protoc_insertion_point(field_set:Protocol.P2C_ReportMove.State)
 }
 
+// -------------------------------------------------------------------
+
+// C2P_RequestPlayerAttack
+
+// double DamageAmount = 1;
+inline void C2P_RequestPlayerAttack::clear_damageamount() {
+  damageamount_ = 0;
+}
+inline double C2P_RequestPlayerAttack::_internal_damageamount() const {
+  return damageamount_;
+}
+inline double C2P_RequestPlayerAttack::damageamount() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestPlayerAttack.DamageAmount)
+  return _internal_damageamount();
+}
+inline void C2P_RequestPlayerAttack::_internal_set_damageamount(double value) {
+  
+  damageamount_ = value;
+}
+inline void C2P_RequestPlayerAttack::set_damageamount(double value) {
+  _internal_set_damageamount(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestPlayerAttack.DamageAmount)
+}
+
+// uint64 victimKey = 2;
+inline void C2P_RequestPlayerAttack::clear_victimkey() {
+  victimkey_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 C2P_RequestPlayerAttack::_internal_victimkey() const {
+  return victimkey_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 C2P_RequestPlayerAttack::victimkey() const {
+  // @@protoc_insertion_point(field_get:Protocol.C2P_RequestPlayerAttack.victimKey)
+  return _internal_victimkey();
+}
+inline void C2P_RequestPlayerAttack::_internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  victimkey_ = value;
+}
+inline void C2P_RequestPlayerAttack::set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_victimkey(value);
+  // @@protoc_insertion_point(field_set:Protocol.C2P_RequestPlayerAttack.victimKey)
+}
+
+// -------------------------------------------------------------------
+
+// P2C_ResultPlayerAttack
+
+// double DamageAmount = 2;
+inline void P2C_ResultPlayerAttack::clear_damageamount() {
+  damageamount_ = 0;
+}
+inline double P2C_ResultPlayerAttack::_internal_damageamount() const {
+  return damageamount_;
+}
+inline double P2C_ResultPlayerAttack::damageamount() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ResultPlayerAttack.DamageAmount)
+  return _internal_damageamount();
+}
+inline void P2C_ResultPlayerAttack::_internal_set_damageamount(double value) {
+  
+  damageamount_ = value;
+}
+inline void P2C_ResultPlayerAttack::set_damageamount(double value) {
+  _internal_set_damageamount(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ResultPlayerAttack.DamageAmount)
+}
+
+// uint64 VictimKey = 3;
+inline void P2C_ResultPlayerAttack::clear_victimkey() {
+  victimkey_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ResultPlayerAttack::_internal_victimkey() const {
+  return victimkey_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ResultPlayerAttack::victimkey() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ResultPlayerAttack.VictimKey)
+  return _internal_victimkey();
+}
+inline void P2C_ResultPlayerAttack::_internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  victimkey_ = value;
+}
+inline void P2C_ResultPlayerAttack::set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_victimkey(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ResultPlayerAttack.VictimKey)
+}
+
+// -------------------------------------------------------------------
+
+// P2C_ReportPlayerAttack
+
+// uint64 Attacker = 1;
+inline void P2C_ReportPlayerAttack::clear_attacker() {
+  attacker_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ReportPlayerAttack::_internal_attacker() const {
+  return attacker_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ReportPlayerAttack::attacker() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ReportPlayerAttack.Attacker)
+  return _internal_attacker();
+}
+inline void P2C_ReportPlayerAttack::_internal_set_attacker(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  attacker_ = value;
+}
+inline void P2C_ReportPlayerAttack::set_attacker(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_attacker(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ReportPlayerAttack.Attacker)
+}
+
+// double DamageAmount = 2;
+inline void P2C_ReportPlayerAttack::clear_damageamount() {
+  damageamount_ = 0;
+}
+inline double P2C_ReportPlayerAttack::_internal_damageamount() const {
+  return damageamount_;
+}
+inline double P2C_ReportPlayerAttack::damageamount() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ReportPlayerAttack.DamageAmount)
+  return _internal_damageamount();
+}
+inline void P2C_ReportPlayerAttack::_internal_set_damageamount(double value) {
+  
+  damageamount_ = value;
+}
+inline void P2C_ReportPlayerAttack::set_damageamount(double value) {
+  _internal_set_damageamount(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ReportPlayerAttack.DamageAmount)
+}
+
+// uint64 VictimKey = 3;
+inline void P2C_ReportPlayerAttack::clear_victimkey() {
+  victimkey_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ReportPlayerAttack::_internal_victimkey() const {
+  return victimkey_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 P2C_ReportPlayerAttack::victimkey() const {
+  // @@protoc_insertion_point(field_get:Protocol.P2C_ReportPlayerAttack.VictimKey)
+  return _internal_victimkey();
+}
+inline void P2C_ReportPlayerAttack::_internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  victimkey_ = value;
+}
+inline void P2C_ReportPlayerAttack::set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_victimkey(value);
+  // @@protoc_insertion_point(field_set:Protocol.P2C_ReportPlayerAttack.VictimKey)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

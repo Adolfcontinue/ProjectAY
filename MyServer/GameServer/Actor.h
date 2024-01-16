@@ -1,5 +1,8 @@
 #pragma once
 #include "Enum.h"
+#include "Protocol.pb.h"
+#include "Enum.pb.h"
+#include "Struct.pb.h"
 #include "Float3.h"
 
 class Actor : public JobQueue

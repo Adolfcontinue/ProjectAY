@@ -7,6 +7,7 @@
 #include "PreLoder.h"
 #include "Kismet/GameplayStatics.h"
 #include "AYGameState.h"
+#include "AYMonsterBase.h"
 #include "MonsterBeholder.h"
 #include "MonsterLizardMan.h"
 
@@ -84,6 +85,20 @@ void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Prot
 
 		it->RepPlayerMove(pos, quat);
 		it->SetAnimState(state);
+	}
+}
+
+void UAYGameInstance::RepPlayerAttack(int64 victimKey, double damageAmount)
+{
+	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(state))
+	{
+		AAYMonsterBase* monster = state->FindMonster(victimKey);
+		if (monster == nullptr)
+			return;
+
+		monster->TakeDamage(damageAmount);
+		LOG("RepPlayerAttack");
 	}
 }
 

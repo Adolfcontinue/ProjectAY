@@ -12,7 +12,14 @@ void UMonsterAnimInstance::NativeUpdateAnimation(float deltaSecond)
 	Super::NativeUpdateAnimation(deltaSecond);
 }
 
-void UMonsterAnimInstance::SetAnimState(EMonsterAnimState state)
+void UMonsterAnimInstance::SetAnimState(EAnimState state)
 {
 	AnimState = state;
 }
+
+void UMonsterAnimInstance::AnimNotify_monsterhit()
+{
+	//todo
+	SetAnimState(EAnimState::Idle);
+}
+

@@ -49,8 +49,6 @@ private:
 	void ComboAttack();
 
 	void AttackEndCheck();
-	void AttackEndCheck2();
-
 	void AttackCheck();
 	void AnimSync();
 	void SetAnimState(EAnimState animstate);

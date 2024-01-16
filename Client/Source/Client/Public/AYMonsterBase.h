@@ -23,6 +23,8 @@ public:
 
     // Called every frame
     virtual void Tick(float DeltaTime) override;
+    virtual void PostInitializeComponents() override;
+
     void SetActorKey(uint64 key);
     uint64 GetActorKey();
 
@@ -48,4 +50,7 @@ public:
 protected:
     uint64 ActorKey;
     MonsterType MonsterKey;
+
+    UPROPERTY()
+    class UMonsterAnimInstance* Anim;
 };

@@ -14,6 +14,9 @@ public:
 	UserRef FindUser(int64 key);
 	void MoveUser(int64 sessionKey, Float3 pos, Float4 rot, Protocol::PlayerState state);
 
+	MonsterRef FindMonster(uint64 key);
+	
+
 
 public:
 	void CreateMonster();

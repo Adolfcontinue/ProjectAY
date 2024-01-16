@@ -19,12 +19,15 @@ public:
 	UMonsterAnimInstance();
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 
-
 public:
-	void SetAnimState(EMonsterAnimState state);
+	void SetAnimState(EAnimState state);
+
+private:
+	UFUNCTION()
+	void AnimNotify_monsterhit();
 
 private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
-	EMonsterAnimState AnimState;
+	EAnimState AnimState;
 
 };

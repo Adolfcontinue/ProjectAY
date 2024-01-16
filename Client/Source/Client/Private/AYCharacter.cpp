@@ -5,6 +5,7 @@
 #include "PreLoder.h"
 #include "DarkNightAnimInstance.h"
 #include "PlayerAnimInstance.h"
+#include "AYMonsterBase.h"
 #include "../AYGameInstance.h"
 
 // Sets default values
@@ -79,7 +80,6 @@ void AAYCharacter::PostInitializeComponents()
 	CHECK(_Anim);
 
 	_Anim->OnAttack1_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck);
-	_Anim->OnAttack2_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck2);
 	_Anim->OnAttackHitCheck.AddUObject(this, &AAYCharacter::AttackCheck);
 }
 
@@ -214,25 +214,13 @@ void AAYCharacter::TickMove()
 }
 
 void AAYCharacter::ComboAttack()
-{ 
-	if (_Anim->GetAnimState() == EAnimState::Attack1)
-		IsAttacking = true;
-	else
-		SetAnimState(EAnimState::Attack1);
+{
+	SetAnimState(EAnimState::Attack1);
 }
 
 void AAYCharacter::AttackEndCheck()
 {
-	if (IsAttacking)
-		SetAnimState(EAnimState::Attack2);
-	else
-		SetAnimState(EAnimState::Idle);
-}
-
-void AAYCharacter::AttackEndCheck2()
-{
 	SetAnimState(EAnimState::Idle);
-	IsAttacking = false;
 }
 
 void AAYCharacter::AttackCheck()
@@ -253,6 +241,14 @@ void AAYCharacter::AttackCheck()
 	{
 		if (IsValid(hitResult.GetActor()))
 		{
+			AAYMonsterBase* victim = Cast<AAYMonsterBase>(hitResult.GetActor());
+			Protocol::C2P_RequestPlayerAttack sendPacket;
+			sendPacket.set_victimkey(victim->GetActorKey());
+			sendPacket.set_damageamount(5);
+
+			UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
+			if (IsValid(inst))
+				inst->Send(sendPacket, (uint16)(EPacket_C2P_Protocol::C2P_RequestPlayerAttack));
 			//REPORT SERVER
 			LOG("PLAYER ATTACK CHECK");
 		}

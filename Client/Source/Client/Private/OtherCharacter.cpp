@@ -96,9 +96,6 @@ void AOtherCharacter::SetAnimState(Protocol::PlayerState state)
 	case Protocol::ATTACK1:
 		AnimState = EAnimState::Attack1;
 		break;
-	case Protocol::ATTACK2:
-		AnimState = EAnimState::Attack2;
-		break;
 	case Protocol::MOVE:
 		AnimState = EAnimState::Move;
 		break;

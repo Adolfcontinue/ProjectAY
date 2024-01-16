@@ -40,8 +40,6 @@ Protocol::PlayerState UPlayerAnimInstance::GetAnimStateProtobuf()
 		return Protocol::PlayerState::IDlE;
 	case EAnimState::Attack1:		
 		return Protocol::PlayerState::ATTACK1;
-	case EAnimState::Attack2:
-		return Protocol::PlayerState::ATTACK2;
 	case EAnimState::Move:
 		return Protocol::PlayerState::MOVE;
 	case EAnimState::Dead:

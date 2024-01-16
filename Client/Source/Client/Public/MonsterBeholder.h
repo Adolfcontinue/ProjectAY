@@ -14,8 +14,12 @@ class CLIENT_API AMonsterBeholder : public AAYMonsterBase
 {
 	GENERATED_BODY()
 	
-
 public:
 	AMonsterBeholder();
 
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };

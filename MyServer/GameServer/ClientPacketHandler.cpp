@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include "World.h"
 #include "User.h"
+#include "Monster.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -57,6 +58,19 @@ bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove
 	Float4 rot(packet.posdata().rotation());
 
 	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot, packet.state());
+
+	return true;
+}
+
+bool Handler::C2P_RequestPlayerAttack(PacketSessionRef& session, Protocol::C2P_RequestPlayerAttack& packet)
+{
+	//vaild
+	uint64 victimkey = packet.victimkey();
+	MonsterRef monster = GWorld->FindMonster(victimkey);
+	if (monster == nullptr)
+		return false;
+
+	monster->DoASync(&Monster::TakeDamage, (uint64)session->GetSessionKey(), packet.damageamount());
 
 	return true;
 }

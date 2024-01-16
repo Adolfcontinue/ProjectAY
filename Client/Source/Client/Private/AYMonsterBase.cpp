@@ -1,6 +1,8 @@
 // AYMonsterBase.cpp
 
 #include "AYMonsterBase.h"
+#include "MonsterAnimInstance.h"
+#include "PreLoder.h"
 
 // Sets default values
 AAYMonsterBase::AAYMonsterBase()
@@ -9,11 +11,12 @@ AAYMonsterBase::AAYMonsterBase()
     PrimaryActorTick.bCanEverTick = true;
 
     // Initialize default values
-    MaxHealth = 100.0f;
+    MaxHealth = 500.0f;
     Health = MaxHealth;
     AttackPower = 10.0f;
     bIsStunned = false;
 
+    ActorKey = -1;
     GetCapsuleComponent()->SetCollisionProfileName(TEXT("Monster"));
 }
 
@@ -29,6 +32,12 @@ void AAYMonsterBase::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 }
 
+void AAYMonsterBase::PostInitializeComponents()
+{
+    Super::PostInitializeComponents();
+    Anim = Cast<UMonsterAnimInstance>(GetMesh()->GetAnimInstance());
+}
+
 void AAYMonsterBase::SetActorKey(uint64 key)
 {
     ActorKey = key;
@@ -41,7 +50,6 @@ uint64 AAYMonsterBase::GetActorKey()
 
 void AAYMonsterBase::TakeDamage(float DamageAmount)
 {
-    
     if (bIsStunned)
     {
         // 그로기 상태일 때는 대미지를 받지 않음
@@ -49,6 +57,11 @@ void AAYMonsterBase::TakeDamage(float DamageAmount)
     }
 
     Health -= DamageAmount;
+
+    LOG("MONSTER TAKE DAMAGE CALL");
+
+    //todo
+    Anim->SetAnimState(EAnimState::Hit);
 
     if (Health <= 0.0f)
     {

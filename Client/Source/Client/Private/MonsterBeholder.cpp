@@ -20,4 +20,14 @@ AMonsterBeholder::AMonsterBeholder()
     GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
 }
 
+void AMonsterBeholder::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void AMonsterBeholder::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+}
+
 

@@ -9,13 +9,19 @@ public:
 
 public:
 	void SetMonsterType(eMonsterType type) { MonsterType = type; }
+	void SetMonsterAbils();
+	void TakeDamage(uint64 attacker, double damageAmount);
+	
 
 public:
 	void Update();
 
 private:
-	eMonsterType MonsterType;
 	//::todo world
+	eMonsterType MonsterType;
+	double MaxHealth;
+	double Health;
+	double Power;
 };
 
 

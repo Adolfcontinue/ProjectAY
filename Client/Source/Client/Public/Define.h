@@ -12,18 +12,8 @@ enum class EAnimState : uint8
 { 
 	Idle UMETA(DisplayName = "Idle"), 
 	Attack1 UMETA(DisplayName = "Attack1"),
-	Attack2 UMETA(DisplayName = "Attack2"),
 	Move UMETA(DisplayName = "Move"),
-	Dead UMETA(DisplayName = "Dead")
-};
-
-UENUM(BlueprintType)
-enum class EMonsterAnimState : uint8
-{
-	Idle UMETA(DisplayName = "Idle"),
-	Attack UMETA(DisplayName = "Attack1"),
-	Move UMETA(DisplayName = "Move"),
-	Hit UMETA(DisplayName= "Hit"),
+	Hit UMETA(DisplayName = "Hit"),
 	Dead UMETA(DisplayName = "Dead")
 };
 
