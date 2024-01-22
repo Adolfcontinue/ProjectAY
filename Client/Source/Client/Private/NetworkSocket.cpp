@@ -57,7 +57,8 @@ void NetworkSocket::CreateStartService()
 	Service->SetOwner(this);
 
 	//service start
-	if (Service->Start()) IsConnected = true;
+	if (Service->Start()) 
+		IsConnected = true;
 }
 
 void NetworkSocket::ServiceRun(uint32 time)

@@ -3,6 +3,7 @@
 
 #include "OtherCharacter.h"
 #include "PlayerAnimInstance.h"
+#include "Components/WidgetComponent.h"
 
 // Sets default values
 AOtherCharacter::AOtherCharacter()
@@ -24,6 +25,17 @@ AOtherCharacter::AOtherCharacter()
 	GetCharacterMovement()->JumpZVelocity = 450.0f;
 
 	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
+
+	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("WIDGET"));
+	Widget->SetupAttachment(GetMesh());
+	Widget->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
+	Widget->SetWidgetSpace(EWidgetSpace::Screen);
+	static ConstructorHelpers::FClassFinder<UUserWidget> ui(TEXT("/Game/UI/UI_PlayerName.UI_PlayerName"));
+	if (ui.Succeeded())
+	{
+		Widget->SetWidgetClass(ui.Class);
+		Widget->SetDrawSize(FVector2D(150.f, 50.f));
+	}
 }
 
 // Called when the game starts or when spawned

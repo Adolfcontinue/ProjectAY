@@ -17,6 +17,7 @@ enum Packet_C2P
 	C2P_RequestPlayerAttack = 1008,
 	P2C_ResultPlayerAttack = 1009,
 	P2C_ReportPlayerAttack = 1010,
+	P2C_ReportMonsterState = 1011,
 };
 
 // Custom Handlers
@@ -55,6 +56,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMove& packet) { return MakeSendBuffer(packet, P2C_ReportMove); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultPlayerAttack& packet) { return MakeSendBuffer(packet, P2C_ResultPlayerAttack); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportPlayerAttack& packet) { return MakeSendBuffer(packet, P2C_ReportPlayerAttack); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMonsterState& packet) { return MakeSendBuffer(packet, P2C_ReportMonsterState); }
 
 
 private:

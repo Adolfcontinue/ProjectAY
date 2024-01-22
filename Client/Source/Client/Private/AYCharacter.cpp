@@ -6,7 +6,9 @@
 #include "DarkNightAnimInstance.h"
 #include "PlayerAnimInstance.h"
 #include "AYMonsterBase.h"
+#include "ActorWeapon.h"
 #include "../AYGameInstance.h"
+#include "PlayerStatComponent.h"
 
 // Sets default values
 AAYCharacter::AAYCharacter()
@@ -37,29 +39,24 @@ AAYCharacter::AAYCharacter()
 
 	GetCharacterMovement()->JumpZVelocity = 450.0f;
 
+	Stat = CreateDefaultSubobject<UPlayerStatComponent>(TEXT("PLAYER_STAT"));
+
 	IsAttacking = false;
 	MaxCombo = 3;
 	SyncTimer = 0.f;
 
-	/// Script / Engine.StaticMesh'/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword07SM.Sword07SM'
-	FName weaponSocket(TEXT("RightWeaponShield"));
-	if (GetMesh()->DoesSocketExist(weaponSocket))
-	{
-		Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WEAPON"));
-		static ConstructorHelpers::FObjectFinder<UStaticMesh> weaponMesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword07SM.Sword07SM"));
-		if (weaponMesh.Succeeded())
-			Weapon->SetStaticMesh(weaponMesh.Object);
-
-		Weapon->SetupAttachment(GetMesh(), weaponSocket);
-	}
-
-	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
 }
 
 // Called when the game starts or when spawned
 void AAYCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FName weaponSocket(TEXT("RightWeaponShield"));
+	auto weapon = GetWorld()->SpawnActor<AActorWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+	weapon->LoadMesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword01SM.Sword01SM"));
+	if (weapon != nullptr)
+		weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, weaponSocket);
 }
 
 // Called every frame

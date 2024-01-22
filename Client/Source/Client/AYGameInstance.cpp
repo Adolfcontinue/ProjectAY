@@ -10,6 +10,7 @@
 #include "AYMonsterBase.h"
 #include "MonsterBeholder.h"
 #include "MonsterLizardMan.h"
+#include "TableManager.h"
 
 void UAYGameInstance::Init()
 {
@@ -21,7 +22,11 @@ void UAYGameInstance::Init()
 	FRunnableThread::Create(Socket, TEXT("network_thread"));
 	RecvProsesor = new URecvPacketProsesor();
 	RecvProsesor->Init();
-	RecvProsesor->SetGameInstance(this);
+	RecvProsesor->SetGameInstance(this); 
+	TableManager = NewObject<UTableManager>();
+	TableManager->TableLoad();
+	auto a = TableManager->GetTableTest(3);
+	int32 l = a->Level;
 }
 
 void UAYGameInstance::Shutdown()
@@ -99,6 +104,19 @@ void UAYGameInstance::RepPlayerAttack(int64 victimKey, double damageAmount)
 
 		monster->TakeDamage(damageAmount);
 		LOG("RepPlayerAttack");
+	}
+}
+
+void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FQuat quat, Protocol::PlayerState state)
+{
+	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(gameState))
+	{
+		auto it = gameState->FindMonster(actorKey);
+		if (it == nullptr)
+			return;
+
+		it->RepMonsterState(pos, quat);
 	}
 }
 

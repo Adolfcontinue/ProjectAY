@@ -86,5 +86,9 @@ private:
 	UPROPERTY()
 	class UPlayerAnimInstance* _Anim;
 
+	UPROPERTY()
+	class UPlayerStatComponent* Stat;
+
+
 	float SyncTimer;
 };

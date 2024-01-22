@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "Engine/GameInstance.h"
 #include "Public/NetworkSocket.h"
 #include "Public/RecvPacketProsesor.h"
@@ -34,6 +35,7 @@ public:
 private:
 	NetworkSocket* Socket;
 	URecvPacketProsesor* RecvProsesor;
+	class UTableManager* TableManager;
 
 public:
 	void AddPlayer(Protocol::UserData userData);
@@ -42,6 +44,7 @@ public:
 
 	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Protocol::PlayerState state);
 	void RepPlayerAttack(int64 victimKey, double damageAmount);
+	void RepMonsterState(int64 actorKey, FVector pos, FQuat quat, Protocol::PlayerState state);
 
 	
 public:

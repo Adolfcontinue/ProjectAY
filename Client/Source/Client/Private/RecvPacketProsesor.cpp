@@ -26,12 +26,13 @@ void URecvPacketProsesor::TestTimer()
 
 void URecvPacketProsesor::Init()
 {
-	Handler[EPacket_C2P_Protocol::P2C_ResultLogin] = &URecvPacketProsesor::Proc_P2C_ResultLogin;
-	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::Proc_P2C_ResultWorldData;
-	Handler[EPacket_C2P_Protocol::P2C_ReportEnterUser] = &URecvPacketProsesor::Proc_P2C_ReportEnterUser;
-	Handler[EPacket_C2P_Protocol::P2C_ReportLeaveUser] = &URecvPacketProsesor::Proc_P2C_ReportLeaveUser;
-	Handler[EPacket_C2P_Protocol::P2C_ReportMove] = &URecvPacketProsesor::Proc_P2C_ReportMove;
-	Handler[EPacket_C2P_Protocol::P2C_ReportPlayerAttack] = &URecvPacketProsesor::Proc_P2C_ReportPlayerAttack;
+	Handler[EPacket_C2P_Protocol::P2C_ResultLogin] = &URecvPacketProsesor::P2C_ResultLogin;
+	Handler[EPacket_C2P_Protocol::P2C_ResultWorldData] = &URecvPacketProsesor::P2C_ResultWorldData;
+	Handler[EPacket_C2P_Protocol::P2C_ReportEnterUser] = &URecvPacketProsesor::P2C_ReportEnterUser;
+	Handler[EPacket_C2P_Protocol::P2C_ReportLeaveUser] = &URecvPacketProsesor::P2C_ReportLeaveUser;
+	Handler[EPacket_C2P_Protocol::P2C_ReportMove] = &URecvPacketProsesor::P2C_ReportMove;
+	Handler[EPacket_C2P_Protocol::P2C_ReportPlayerAttack] = &URecvPacketProsesor::P2C_ReportPlayerAttack;
+	Handler[EPacket_C2P_Protocol::P2C_ReportMonsterState] = &URecvPacketProsesor::P2C_ReportMonsterState;
 }
 
 void URecvPacketProsesor::Tick(float DeltaTime)
@@ -95,7 +96,7 @@ void URecvPacketProsesor::PacketHandle(BYTE* buffer, int32 len)
 	Handler[protocol](*this, buffer, len);
 }
 
-void URecvPacketProsesor::Proc_P2C_ResultLogin(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ResultLogin(BYTE* buffer, int32 len)
 {
 	//vaild
 	Protocol::P2C_ResultLogin packet;
@@ -105,7 +106,7 @@ void URecvPacketProsesor::Proc_P2C_ResultLogin(BYTE* buffer, int32 len)
 	Delegate_P2C_Result.Broadcast();
 }
 
-void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ResultWorldData(BYTE* buffer, int32 len)
 {
 	//valid
 	Protocol::P2C_ResultWorldData packet;
@@ -120,7 +121,7 @@ void URecvPacketProsesor::Proc_P2C_ResultWorldData(BYTE* buffer, int32 len)
 		GameInstance->AddMonster(packet.monsters(i));
 }
 
-void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ReportEnterUser(BYTE* buffer, int32 len)
 {
 	//valid
 	Protocol::P2C_ReportEnterUser packet;
@@ -131,7 +132,7 @@ void URecvPacketProsesor::Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len)
 	GameInstance->AddPlayer(packet.user());
 }
 
-void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ReportLeaveUser(BYTE* buffer, int32 len)
 {
 	//valid
 	Protocol::P2C_ReportLeaveUser packet;
@@ -142,7 +143,7 @@ void URecvPacketProsesor::Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len)
 	GameInstance->RemovePlayer(packet.userkey());
 }
 
-void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ReportMove(BYTE* buffer, int32 len)
 {
 	//vaild
 	Protocol::P2C_ReportMove packet;
@@ -160,7 +161,7 @@ void URecvPacketProsesor::Proc_P2C_ReportMove(BYTE* buffer, int32 len)
 	GameInstance->RepPlayerMove(packet.userkey(), pos, quat, packet.state());
 }
 
-void URecvPacketProsesor::Proc_P2C_ReportPlayerAttack(BYTE* buffer, int32 len)
+void URecvPacketProsesor::P2C_ReportPlayerAttack(BYTE* buffer, int32 len)
 {
 	//vaild
 	Protocol::P2C_ReportPlayerAttack packet;
@@ -169,5 +170,23 @@ void URecvPacketProsesor::Proc_P2C_ReportPlayerAttack(BYTE* buffer, int32 len)
 
 	//process
 	GameInstance->RepPlayerAttack(packet.victimkey(), packet.damageamount());
+}
+
+void URecvPacketProsesor::P2C_ReportMonsterState(BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ReportMonsterState packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+
+	FVector pos;
+	pos.Set(packet.posdata().posision().x(), packet.posdata().posision().y(), packet.posdata().posision().z());
+	FQuat quat;
+	quat.X = packet.posdata().rotation().x();
+	quat.Y = packet.posdata().rotation().y();
+	quat.Z = packet.posdata().rotation().z();
+	quat.W = packet.posdata().rotation().w();
+
+	GameInstance->RepMonsterState(packet.actorkey() , pos, quat, Protocol::PlayerState_MIN);
 }
 

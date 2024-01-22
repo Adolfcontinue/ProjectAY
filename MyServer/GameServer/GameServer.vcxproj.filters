@@ -83,6 +83,7 @@
       <Filter>02.World</Filter>
     </ClCompile>
     <ClCompile Include="ProtobufHelper.cpp" />
+    <ClCompile Include="Define.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -136,5 +137,6 @@
       <Filter>02.World</Filter>
     </ClInclude>
     <ClInclude Include="ProtobufHelper.h" />
+    <ClInclude Include="Define.h" />
   </ItemGroup>
 </Project>

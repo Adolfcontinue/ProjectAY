@@ -40,4 +40,7 @@ private:
 private:
 	UPROPERTY()
 	class UPlayerAnimInstance* Anim;
+
+	UPROPERTY()
+	class UWidgetComponent* Widget;
 };

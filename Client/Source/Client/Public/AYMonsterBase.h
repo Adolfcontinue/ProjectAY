@@ -5,6 +5,9 @@
 #include "../Client.h"
 #include "GameFramework/Character.h"
 #include "Define.h"
+#include "Protobuf/Enum.pb.h"
+#include "Protobuf/Protocol.pb.h"
+#include "Protobuf/Struct.pb.h"
 #include "AYMonsterBase.generated.h"
 
 UCLASS()
@@ -12,7 +15,6 @@ class CLIENT_API AAYMonsterBase : public ACharacter
 {
 	GENERATED_BODY()
 
-protected:
 
 public:
     // Sets default values for this actor's properties
@@ -47,10 +49,25 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Monster")
     void ApplyStun(float StunDuration);
 
+public:
+    void RepMonsterState(FVector pos, FQuat quat);
+
+
+private:
+    void Move(float DeltaTime);
+    void Rotation(float DeltaTime);
+
 protected:
     uint64 ActorKey;
     MonsterType MonsterKey;
 
     UPROPERTY()
     class UMonsterAnimInstance* Anim;
+
+    FVector CurrentLocation;
+    FVector TargetLocation;
+    float LerpAlpha;
+    FQuat CurrentRotation;
+    FQuat TargetRotation;
+    float SlerpAlpha;
 };

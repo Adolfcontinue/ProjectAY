@@ -24,7 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	void LoadMesh(FString& path);
+	void LoadMesh(const FString& path);
 	void SetScale(FVector& scale);
 	UStaticMeshComponent* GetStaticMeshComponent();
 	

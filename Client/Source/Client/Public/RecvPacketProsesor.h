@@ -53,12 +53,13 @@ public:
 
 private:
 	void PacketHandle(BYTE* buffer, int32 len);
-	void Proc_P2C_ResultLogin(BYTE* buffer, int32 len);
-	void Proc_P2C_ResultWorldData(BYTE* buffer, int32 len);
-	void Proc_P2C_ReportEnterUser(BYTE* buffer, int32 len);
-	void Proc_P2C_ReportLeaveUser(BYTE* buffer, int32 len);
-	void Proc_P2C_ReportMove(BYTE* buffer, int32 len);
-	void Proc_P2C_ReportPlayerAttack(BYTE* buffer, int32 len);
+	void P2C_ResultLogin(BYTE* buffer, int32 len);
+	void P2C_ResultWorldData(BYTE* buffer, int32 len);
+	void P2C_ReportEnterUser(BYTE* buffer, int32 len);
+	void P2C_ReportLeaveUser(BYTE* buffer, int32 len);
+	void P2C_ReportMove(BYTE* buffer, int32 len);
+	void P2C_ReportPlayerAttack(BYTE* buffer, int32 len);
+	void P2C_ReportMonsterState(BYTE* buffer, int32 len);
 
 
 private:

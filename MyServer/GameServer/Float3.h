@@ -1,7 +1,8 @@
 #pragma once
 #include <math.h>
+#include <cmath>
+#include "Define.h"
 #include "Protocol.pb.h"
-
 
 struct Float3
 {
@@ -24,6 +25,33 @@ public:
 
 		return retval;
 	}
+
+	DirectX::XMFLOAT3 ConvertXMFlOAT3()
+	{
+		return DirectX::XMFLOAT3(X, Y, Z);
+	}
+
+	DirectX::XMVECTOR ConvertXMVECTOR()
+	{
+		DirectX::XMFLOAT3 temp = ConvertXMFlOAT3();
+		return DirectX::XMLoadFloat3(&temp);
+	}
+
+	double Length()
+	{
+		DirectX::XMVECTOR ret = DirectX::XMVector3Length(ConvertXMVECTOR());
+		return DirectX::XMVectorGetX(ret);
+	}
+
+	Float3 Normalize()
+	{
+		DirectX::XMVECTOR temp = DirectX::XMVector3Normalize(ConvertXMVECTOR());
+		Float3 retVal;
+		retVal.X = DirectX::XMVectorGetX(temp);
+		retVal.Y = DirectX::XMVectorGetY(temp);
+		retVal.Z = DirectX::XMVectorGetZ(temp);
+		return retVal;
+	}
 };
 
 
@@ -40,6 +68,15 @@ public:
 	double W;
 
 public:
+	void Set(double x, double y, double z, double w)
+	{
+		X = x;
+		Y = y;
+		Z = z;
+		W = w;
+	}
+
+
 	Protocol::Float4 Convert()
 	{
 		Protocol::Float4 retval;
@@ -49,6 +86,41 @@ public:
 		retval.set_w(W);
 
 		return retval;
+	}
+
+	DirectX::XMFLOAT4 ConvertXMFlOAT4()
+	{
+		return DirectX::XMFLOAT4(X, Y, Z, W);
+	}
+
+	DirectX::XMVECTOR ConvertXMVECTOR()
+	{
+		DirectX::XMFLOAT4 temp = ConvertXMFlOAT4();
+		return DirectX::XMLoadFloat4(&temp);
+	}
+
+	double Length()
+	{
+		DirectX::XMVECTOR ret = DirectX::XMVector4Length(ConvertXMVECTOR());
+		return DirectX::XMVectorGetX(ret);
+	}
+
+	Float3 Normalize()
+	{
+		DirectX::XMVECTOR temp = DirectX::XMVector4Normalize(ConvertXMVECTOR());
+		Float3 retVal;
+		retVal.X = DirectX::XMVectorGetX(temp);
+		retVal.Y = DirectX::XMVectorGetY(temp);
+		retVal.Z = DirectX::XMVectorGetZ(temp);
+		return retVal;
+	}
+
+	void RotateAxisZ(float radian)
+	{
+		DirectX::XMVECTOR rotationQuaternion = DirectX::XMQuaternionRotationAxis(AXIS_Z, radian);
+		DirectX::XMVECTOR rotation = DirectX::XMQuaternionMultiply(ConvertXMVECTOR(), rotationQuaternion);
+		
+		Set(DirectX::XMVectorGetX(rotation), DirectX::XMVectorGetY(rotation), DirectX::XMVectorGetZ(rotation), DirectX::XMVectorGetW(rotation));
 	}
 };
 

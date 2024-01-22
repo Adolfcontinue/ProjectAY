@@ -17,6 +17,7 @@ enum Packet_C2P
 	C2P_RequestPlayerAttack = 1008,
 	P2C_ResultPlayerAttack = 1009,
 	P2C_ReportPlayerAttack = 1010,
+	P2C_ReportMonsterState = 1011,
 };
 
 // Custom Handlers
@@ -30,6 +31,7 @@ namespace Handler
 	bool P2C_ReportMove(PacketSessionRef& session, Protocol::P2C_ReportMove& packet);
 	bool P2C_ResultPlayerAttack(PacketSessionRef& session, Protocol::P2C_ResultPlayerAttack& packet);
 	bool P2C_ReportPlayerAttack(PacketSessionRef& session, Protocol::P2C_ReportPlayerAttack& packet);
+	bool P2C_ReportMonsterState(PacketSessionRef& session, Protocol::P2C_ReportMonsterState& packet);
 }
 
 
@@ -47,6 +49,7 @@ public:
 		GPacketHandler[P2C_ReportMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportMove>(Handler::P2C_ReportMove, session, buffer, len); };
 		GPacketHandler[P2C_ResultPlayerAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ResultPlayerAttack>(Handler::P2C_ResultPlayerAttack, session, buffer, len); };
 		GPacketHandler[P2C_ReportPlayerAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportPlayerAttack>(Handler::P2C_ReportPlayerAttack, session, buffer, len); };
+		GPacketHandler[P2C_ReportMonsterState] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::P2C_ReportMonsterState>(Handler::P2C_ReportMonsterState, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)

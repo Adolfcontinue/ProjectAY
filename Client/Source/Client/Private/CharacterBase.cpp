@@ -44,6 +44,8 @@ void ACharacterBase::RepPlayerMove(FVector pos, FQuat quat)
 	TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
 	LerpAlpha = 0.0f;
 
+	GetActorForwardVector();
+
 	CurrentRotation = GetActorQuat();   // 현재 회전 저장
 	TargetRotation = quat; // 서버로부터 받은 목표 회전 설정
 	SlerpAlpha = 0.0f;

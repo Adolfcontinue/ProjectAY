@@ -23,3 +23,9 @@ void UMonsterAnimInstance::AnimNotify_monsterhit()
 	SetAnimState(EAnimState::Idle);
 }
 
+void UMonsterAnimInstance::AnimNotify_monsterattack()
+{
+	//todo
+	SetAnimState(EAnimState::Idle);
+}
+

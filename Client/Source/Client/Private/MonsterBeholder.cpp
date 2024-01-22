@@ -2,6 +2,9 @@
 
 
 #include "MonsterBeholder.h"
+#include "MonsterAnimInstance.h"
+#include "../AYGameInstance.h"
+#include "PreLoder.h"
 
 AMonsterBeholder::AMonsterBeholder()
 {
@@ -29,5 +32,12 @@ void AMonsterBeholder::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 }
+
+void AMonsterBeholder::PostInitializeComponents()
+{
+    Super::PostInitializeComponents();
+    //Anim->MonstertAttackDelegate.AddUObject(this, &AMonsterBeholder::BeholderAttack);
+}
+
 
 

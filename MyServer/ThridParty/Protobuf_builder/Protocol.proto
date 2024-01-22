@@ -66,3 +66,9 @@ message P2C_ReportPlayerAttack
 	double DamageAmount = 2;
 	uint64 VictimKey = 3;
 }
+
+message P2C_ReportMonsterState
+{
+	uint64 ActorKey = 1;
+	PositionData PosData = 2;
+}

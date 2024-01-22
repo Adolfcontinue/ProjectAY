@@ -10,6 +10,9 @@
 /**
  * 
  */
+
+DECLARE_MULTICAST_DELEGATE(FOnMonsterAttackDelegate);
+
 UCLASS()
 class CLIENT_API UMonsterAnimInstance : public UAnimInstance
 {
@@ -19,12 +22,17 @@ public:
 	UMonsterAnimInstance();
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 
+	FOnMonsterAttackDelegate MonstertAttackDelegate;
+
 public:
 	void SetAnimState(EAnimState state);
 
 private:
 	UFUNCTION()
 	void AnimNotify_monsterhit();
+
+	UFUNCTION()
+	void AnimNotify_monsterattack();
 
 private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))

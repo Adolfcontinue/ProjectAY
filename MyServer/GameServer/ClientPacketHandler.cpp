@@ -31,7 +31,7 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	pos.Y = 1110;
 	pos.Z = 90;
 	user->SetPosition(pos);
-	Float4 rot;
+	Float4 rot(0,0,0,1);
 	user->SetRotation(rot);
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;

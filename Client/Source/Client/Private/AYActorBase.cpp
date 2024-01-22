@@ -7,11 +7,10 @@
 AAYActorBase::AAYActorBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MESH"));
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	SetRootComponent(Mesh);
 }
 
 // Called when the game starts or when spawned
@@ -26,7 +25,7 @@ void AAYActorBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AAYActorBase::LoadMesh(FString& path)
+void AAYActorBase::LoadMesh(const FString& path)
 {
 	UStaticMesh* staticMesh = LoadObject<UStaticMesh>(nullptr, *path);
 	if (IsValid(staticMesh))
