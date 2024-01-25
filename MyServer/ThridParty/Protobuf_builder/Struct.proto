@@ -5,17 +5,17 @@ import "Enum.proto";
 
 message Float3
 {
-	double x = 1;
-	double y = 2;
-	double z = 3;
+	float x = 1;
+	float y = 2;
+	float z = 3;
 }
 
 message Float4
 {
-	double x = 1;
-	double y = 2;
-	double z = 3;
-	double w = 4;
+	float x = 1;
+	float y = 2;
+	float z = 3;
+	float w = 4;
 }
 
 message PositionData

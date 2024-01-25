@@ -10,7 +10,7 @@ public:
 public:
 	void SetMonsterType(eMonsterType type) { MonsterType = type; }
 	void SetMonsterAbils();
-	void TakeDamage(uint64 attacker, double damageAmount);
+	void TakeDamage(uint64 attacker, float damageAmount);
 	void SetTarget(uint64 target);
 
 public:
@@ -18,7 +18,7 @@ public:
 
 private:
 	bool IsVaildTarget();
-	void LookAt(Float3 pos);
+	void LookAt();
 
 private:
 	//::todo world
@@ -26,7 +26,6 @@ private:
 	double MaxHealth;
 	double Health;
 	double Power;
-
 	uint64 TargetKey;
 };
 

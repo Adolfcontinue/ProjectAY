@@ -1,5 +1,4 @@
 #pragma once
-#include "Float3.h"
 #include "Actor.h"
 
 class User : public Actor

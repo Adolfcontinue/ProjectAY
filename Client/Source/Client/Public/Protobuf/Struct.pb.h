@@ -4,6 +4,7 @@
 #pragma warning(disable: 4668)
 #pragma warning(disable: 4577)
 
+
 #ifndef GOOGLE_PROTOBUF_INCLUDED_Struct_2eproto
 #define GOOGLE_PROTOBUF_INCLUDED_Struct_2eproto
 
@@ -197,31 +198,31 @@ class Float3 final :
     kYFieldNumber = 2,
     kZFieldNumber = 3,
   };
-  // double x = 1;
+  // float x = 1;
   void clear_x();
-  double x() const;
-  void set_x(double value);
+  float x() const;
+  void set_x(float value);
   private:
-  double _internal_x() const;
-  void _internal_set_x(double value);
+  float _internal_x() const;
+  void _internal_set_x(float value);
   public:
 
-  // double y = 2;
+  // float y = 2;
   void clear_y();
-  double y() const;
-  void set_y(double value);
+  float y() const;
+  void set_y(float value);
   private:
-  double _internal_y() const;
-  void _internal_set_y(double value);
+  float _internal_y() const;
+  void _internal_set_y(float value);
   public:
 
-  // double z = 3;
+  // float z = 3;
   void clear_z();
-  double z() const;
-  void set_z(double value);
+  float z() const;
+  void set_z(float value);
   private:
-  double _internal_z() const;
-  void _internal_set_z(double value);
+  float _internal_z() const;
+  void _internal_set_z(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.Float3)
@@ -231,9 +232,9 @@ class Float3 final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  double x_;
-  double y_;
-  double z_;
+  float x_;
+  float y_;
+  float z_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Struct_2eproto;
 };
@@ -352,40 +353,40 @@ class Float4 final :
     kZFieldNumber = 3,
     kWFieldNumber = 4,
   };
-  // double x = 1;
+  // float x = 1;
   void clear_x();
-  double x() const;
-  void set_x(double value);
+  float x() const;
+  void set_x(float value);
   private:
-  double _internal_x() const;
-  void _internal_set_x(double value);
+  float _internal_x() const;
+  void _internal_set_x(float value);
   public:
 
-  // double y = 2;
+  // float y = 2;
   void clear_y();
-  double y() const;
-  void set_y(double value);
+  float y() const;
+  void set_y(float value);
   private:
-  double _internal_y() const;
-  void _internal_set_y(double value);
+  float _internal_y() const;
+  void _internal_set_y(float value);
   public:
 
-  // double z = 3;
+  // float z = 3;
   void clear_z();
-  double z() const;
-  void set_z(double value);
+  float z() const;
+  void set_z(float value);
   private:
-  double _internal_z() const;
-  void _internal_set_z(double value);
+  float _internal_z() const;
+  void _internal_set_z(float value);
   public:
 
-  // double w = 4;
+  // float w = 4;
   void clear_w();
-  double w() const;
-  void set_w(double value);
+  float w() const;
+  void set_w(float value);
   private:
-  double _internal_w() const;
-  void _internal_set_w(double value);
+  float _internal_w() const;
+  void _internal_set_w(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.Float4)
@@ -395,10 +396,10 @@ class Float4 final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  double x_;
-  double y_;
-  double z_;
-  double w_;
+  float x_;
+  float y_;
+  float z_;
+  float w_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Struct_2eproto;
 };
@@ -951,62 +952,62 @@ class MonsterData final :
 #endif  // __GNUC__
 // Float3
 
-// double x = 1;
+// float x = 1;
 inline void Float3::clear_x() {
   x_ = 0;
 }
-inline double Float3::_internal_x() const {
+inline float Float3::_internal_x() const {
   return x_;
 }
-inline double Float3::x() const {
+inline float Float3::x() const {
   // @@protoc_insertion_point(field_get:Protocol.Float3.x)
   return _internal_x();
 }
-inline void Float3::_internal_set_x(double value) {
+inline void Float3::_internal_set_x(float value) {
   
   x_ = value;
 }
-inline void Float3::set_x(double value) {
+inline void Float3::set_x(float value) {
   _internal_set_x(value);
   // @@protoc_insertion_point(field_set:Protocol.Float3.x)
 }
 
-// double y = 2;
+// float y = 2;
 inline void Float3::clear_y() {
   y_ = 0;
 }
-inline double Float3::_internal_y() const {
+inline float Float3::_internal_y() const {
   return y_;
 }
-inline double Float3::y() const {
+inline float Float3::y() const {
   // @@protoc_insertion_point(field_get:Protocol.Float3.y)
   return _internal_y();
 }
-inline void Float3::_internal_set_y(double value) {
+inline void Float3::_internal_set_y(float value) {
   
   y_ = value;
 }
-inline void Float3::set_y(double value) {
+inline void Float3::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:Protocol.Float3.y)
 }
 
-// double z = 3;
+// float z = 3;
 inline void Float3::clear_z() {
   z_ = 0;
 }
-inline double Float3::_internal_z() const {
+inline float Float3::_internal_z() const {
   return z_;
 }
-inline double Float3::z() const {
+inline float Float3::z() const {
   // @@protoc_insertion_point(field_get:Protocol.Float3.z)
   return _internal_z();
 }
-inline void Float3::_internal_set_z(double value) {
+inline void Float3::_internal_set_z(float value) {
   
   z_ = value;
 }
-inline void Float3::set_z(double value) {
+inline void Float3::set_z(float value) {
   _internal_set_z(value);
   // @@protoc_insertion_point(field_set:Protocol.Float3.z)
 }
@@ -1015,82 +1016,82 @@ inline void Float3::set_z(double value) {
 
 // Float4
 
-// double x = 1;
+// float x = 1;
 inline void Float4::clear_x() {
   x_ = 0;
 }
-inline double Float4::_internal_x() const {
+inline float Float4::_internal_x() const {
   return x_;
 }
-inline double Float4::x() const {
+inline float Float4::x() const {
   // @@protoc_insertion_point(field_get:Protocol.Float4.x)
   return _internal_x();
 }
-inline void Float4::_internal_set_x(double value) {
+inline void Float4::_internal_set_x(float value) {
   
   x_ = value;
 }
-inline void Float4::set_x(double value) {
+inline void Float4::set_x(float value) {
   _internal_set_x(value);
   // @@protoc_insertion_point(field_set:Protocol.Float4.x)
 }
 
-// double y = 2;
+// float y = 2;
 inline void Float4::clear_y() {
   y_ = 0;
 }
-inline double Float4::_internal_y() const {
+inline float Float4::_internal_y() const {
   return y_;
 }
-inline double Float4::y() const {
+inline float Float4::y() const {
   // @@protoc_insertion_point(field_get:Protocol.Float4.y)
   return _internal_y();
 }
-inline void Float4::_internal_set_y(double value) {
+inline void Float4::_internal_set_y(float value) {
   
   y_ = value;
 }
-inline void Float4::set_y(double value) {
+inline void Float4::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:Protocol.Float4.y)
 }
 
-// double z = 3;
+// float z = 3;
 inline void Float4::clear_z() {
   z_ = 0;
 }
-inline double Float4::_internal_z() const {
+inline float Float4::_internal_z() const {
   return z_;
 }
-inline double Float4::z() const {
+inline float Float4::z() const {
   // @@protoc_insertion_point(field_get:Protocol.Float4.z)
   return _internal_z();
 }
-inline void Float4::_internal_set_z(double value) {
+inline void Float4::_internal_set_z(float value) {
   
   z_ = value;
 }
-inline void Float4::set_z(double value) {
+inline void Float4::set_z(float value) {
   _internal_set_z(value);
   // @@protoc_insertion_point(field_set:Protocol.Float4.z)
 }
 
-// double w = 4;
+// float w = 4;
 inline void Float4::clear_w() {
   w_ = 0;
 }
-inline double Float4::_internal_w() const {
+inline float Float4::_internal_w() const {
   return w_;
 }
-inline double Float4::w() const {
+inline float Float4::w() const {
   // @@protoc_insertion_point(field_get:Protocol.Float4.w)
   return _internal_w();
 }
-inline void Float4::_internal_set_w(double value) {
+inline void Float4::_internal_set_w(float value) {
   
   w_ = value;
 }
-inline void Float4::set_w(double value) {
+inline void Float4::set_w(float value) {
   _internal_set_w(value);
   // @@protoc_insertion_point(field_set:Protocol.Float4.w)
 }

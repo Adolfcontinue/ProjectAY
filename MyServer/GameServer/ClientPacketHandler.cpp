@@ -8,6 +8,7 @@
 #include "World.h"
 #include "User.h"
 #include "Monster.h"
+#include "ProtobufHelper.h"
 
 PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
@@ -26,13 +27,8 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 	user->SetPW(packet.pw());
 	user->SetLevel(1);
 	user->SetSessionKey(session->GetSessionKey());
-	Float3 pos;
-	pos.X = 790;
-	pos.Y = 1110;
-	pos.Z = 90;
-	user->SetPosition(pos);
-	Float4 rot(0,0,0,1);
-	user->SetRotation(rot);
+	user->GetTransForm()->SetPosition(790.f, 1110.f, 90.f);
+	user->GetTransForm()->SetRotation(0.f, 0.f, 0.f, 1.f);
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);
@@ -54,10 +50,11 @@ bool Handler::C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_Requ
 
 bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
 {
-	Float3 pos(packet.posdata().posision());
-	Float4 rot(packet.posdata().rotation());
-
-	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot, packet.state());
+	DirectX::XMFLOAT3 pos;
+	ProtobufHelper::ConvertXMFLOAT3(&pos, packet.posdata().posision());
+	DirectX::XMFLOAT4 rot;
+	ProtobufHelper::ConvertXMFLOAT4(&rot, packet.posdata().rotation());
+	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot);
 
 	return true;
 }

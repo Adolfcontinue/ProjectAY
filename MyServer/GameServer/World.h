@@ -1,5 +1,5 @@
 #pragma once
-#include "Float3.h"
+#include "Define.h"
 #include "JobQueue.h"
 
 class World : public JobQueue
@@ -12,7 +12,7 @@ public:
 	void BroadCast(SendBufferRef sendBuffer);
 	void BroadCastExcept(SendBufferRef sendBuffer, int64 exceptKey);
 	UserRef FindUser(int64 key);
-	void MoveUser(int64 sessionKey, Float3 pos, Float4 rot, Protocol::PlayerState state);
+	void MoveUser(int64 sessionKey, DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 rot);
 
 	MonsterRef FindMonster(uint64 key);
 	

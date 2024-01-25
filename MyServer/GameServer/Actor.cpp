@@ -3,41 +3,41 @@
 
 Actor::Actor()
 {
+	m_TransForm = std::make_shared<TransForm>();
 }
 
 Actor::~Actor()
 {
+	m_TransForm.reset();
 }
 
-void Actor::SetPosition(Float3 pos)
+void Actor::SetActorKey(int64 key)
 {
-	Position.X = pos.X;
-	Position.Y = pos.Y;
-	Position.Z = pos.Z;
+	m_ActorKey = key;
 }
 
-void Actor::SetPosition(double x, double y, double z)
+void Actor::SetType(eActorType type)
 {
-	Position.X = x;
-	Position.Y = y;
-	Position.Z = z;
+	m_Type = type;
 }
 
-void Actor::SetRotation(Float4 rot)
+int64 Actor::GetActorKey()
 {
-	Rotation.X = rot.X;
-	Rotation.Y = rot.Y;
-	Rotation.Z = rot.Z;
-	Rotation.W = rot.W;
+	return m_ActorKey;
 }
 
-void Actor::SetRotation(double x, double y, double z, double w)
+eActorType Actor::GetType()
 {
-	Rotation.X = x;
-	Rotation.Y = y;
-	Rotation.Z = z;
-	Rotation.W = w;
+	return m_Type;
 }
+
+std::shared_ptr<TransForm> Actor::GetTransForm()
+{
+	return m_TransForm;
+}
+
+
+
 
 
 

@@ -207,7 +207,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Float3.cpp" />
+    <ClCompile Include="TransForm.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="User.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -229,7 +232,7 @@
     <ClInclude Include="Protocol.pb.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Struct.pb.h" />
-    <ClInclude Include="Float3.h" />
+    <ClInclude Include="TransForm.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

@@ -67,9 +67,6 @@
     <ClCompile Include="Monster.cpp">
       <Filter>01.Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Float3.cpp">
-      <Filter>07.Math</Filter>
-    </ClCompile>
     <ClCompile Include="Math.cpp">
       <Filter>07.Math</Filter>
     </ClCompile>
@@ -84,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="ProtobufHelper.cpp" />
     <ClCompile Include="Define.cpp" />
+    <ClCompile Include="TransForm.cpp">
+      <Filter>01.Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -121,9 +121,6 @@
     <ClInclude Include="Monster.h">
       <Filter>01.Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Float3.h">
-      <Filter>07.Math</Filter>
-    </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>07.Math</Filter>
     </ClInclude>
@@ -138,5 +135,8 @@
     </ClInclude>
     <ClInclude Include="ProtobufHelper.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="TransForm.h">
+      <Filter>01.Actor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

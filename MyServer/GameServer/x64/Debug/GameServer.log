@@ -1,9 +1,7 @@
-﻿  Monster.cpp
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(31,34): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(31,31): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(31,28): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(93,37): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(93,34): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(93,31): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\GameServer\Float3.h(93,28): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  ClientPacketHandler.cpp
+  GameServer.cpp
+  Monster.cpp
+  User.cpp
+  World.cpp
+  코드를 생성하고 있습니다...
   GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\GameServer.exe

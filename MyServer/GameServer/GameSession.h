@@ -6,7 +6,6 @@ class GameSession : public PacketSession
 public:
 	~GameSession()
 	{
-		cout << "~GameSession" << endl;
 	}
 
 	virtual void		OnConnected() override;

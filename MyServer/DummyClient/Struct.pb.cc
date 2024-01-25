@@ -159,9 +159,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_Struct_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014Struct.proto\022\010Protocol\032\nEnum.proto\")\n\006"
-  "Float3\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\""
-  "4\n\006Float4\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001"
-  "(\001\022\t\n\001w\030\004 \001(\001\"V\n\014PositionData\022\"\n\010posisio"
+  "Float3\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\""
+  "4\n\006Float4\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001"
+  "(\002\022\t\n\001w\030\004 \001(\002\"V\n\014PositionData\022\"\n\010posisio"
   "n\030\001 \001(\0132\020.Protocol.Float3\022\"\n\010rotation\030\002 "
   "\001(\0132\020.Protocol.Float4\"w\n\010UserData\022\022\n\nses"
   "sionKey\030\001 \001(\004\022\017\n\007userKey\030\002 \001(\004\022\"\n\010positi"
@@ -256,25 +256,25 @@ const char* Float3::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // double x = 1;
+      // float x = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
-          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // double y = 2;
+      // float y = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
-          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // double z = 3;
+      // float z = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
-          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
       default: {
@@ -306,22 +306,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // double x = 1;
+  // float x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
-  // double y = 2;
+  // float y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
 
-  // double z = 3;
+  // float z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_z(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -340,19 +340,19 @@ size_t Float3::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // double x = 1;
+  // float x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
-  // double y = 2;
+  // float y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
-  // double z = 3;
+  // float z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -498,32 +498,32 @@ const char* Float4::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // double x = 1;
+      // float x = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
-          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // double y = 2;
+      // float y = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
-          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // double z = 3;
+      // float z = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
-          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // double w = 4;
+      // float w = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
-          w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
-          ptr += sizeof(double);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
       default: {
@@ -555,28 +555,28 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // double x = 1;
+  // float x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
-  // double y = 2;
+  // float y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
 
-  // double z = 3;
+  // float z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_z(), target);
   }
 
-  // double w = 4;
+  // float w = 4;
   if (!(this->w() <= 0 && this->w() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_w(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_w(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -595,24 +595,24 @@ size_t Float4::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // double x = 1;
+  // float x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
-  // double y = 2;
+  // float y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
-  // double z = 3;
+  // float z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
-  // double w = 4;
+  // float w = 4;
   if (!(this->w() <= 0 && this->w() >= 0)) {
-    total_size += 1 + 8;
+    total_size += 1 + 4;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {

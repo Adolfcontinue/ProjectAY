@@ -26,6 +26,9 @@ AMonsterBeholder::AMonsterBeholder()
 void AMonsterBeholder::BeginPlay()
 {
     Super::BeginPlay();
+
+    FVector v = GetActorForwardVector();
+    LOG("Beholder", v.X, v.Y, v.Z);
 }
 
 void AMonsterBeholder::Tick(float DeltaTime)

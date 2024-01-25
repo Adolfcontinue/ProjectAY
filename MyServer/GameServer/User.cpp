@@ -34,10 +34,10 @@ void User::ReqWorldData()
 		Protocol::UserData* user = sendPacket.add_users();
 		
 		Protocol::Float3* pos = user->mutable_position();
-		ProtobufConverter::ConvertFloat3(pos, itval->GetPositionX(), itval->GetPositionY(), itval->GetPositionZ());
+		ProtobufHelper::ConvertFloat3(pos, itval->GetTransForm()->GetPosition());
 		
 		Protocol::Float4* rot = user->mutable_rotation();
-		ProtobufConverter::ConvertFloat4(rot, itval->GetRotationX(), itval->GetRotationY(), itval->GetRotationZ(), itval->GetRotationW());
+		ProtobufHelper::ConvertFloat4(rot, itval->GetTransForm()->GetRotation());
 
 		user->set_sessionkey(itval->GetSessionKey());
 		user->set_userkey(itval->GetSessionKey());
@@ -48,7 +48,7 @@ void User::ReqWorldData()
 		MonsterRef itval = iter.second;
 		Protocol::MonsterData* monster = sendPacket.add_monsters();
 		Protocol::Float3* pos = monster->mutable_pos();
-		ProtobufConverter::ConvertFloat3(pos, itval->GetPositionX(), itval->GetPositionY(), itval->GetPositionY());
+		ProtobufHelper::ConvertFloat3(pos, itval->GetTransForm()->GetPosition());
 		monster->set_actorkey(itval->GetActorKey());
 		monster->set_type(Protocol::BEHOLDER);
 	}

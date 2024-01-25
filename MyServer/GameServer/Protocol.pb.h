@@ -1372,18 +1372,9 @@ class C2P_RequestPlayerAttack final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDamageAmountFieldNumber = 1,
     kVictimKeyFieldNumber = 2,
+    kDamageAmountFieldNumber = 1,
   };
-  // double DamageAmount = 1;
-  void clear_damageamount();
-  double damageamount() const;
-  void set_damageamount(double value);
-  private:
-  double _internal_damageamount() const;
-  void _internal_set_damageamount(double value);
-  public:
-
   // uint64 victimKey = 2;
   void clear_victimkey();
   ::PROTOBUF_NAMESPACE_ID::uint64 victimkey() const;
@@ -1393,6 +1384,15 @@ class C2P_RequestPlayerAttack final :
   void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // float DamageAmount = 1;
+  void clear_damageamount();
+  float damageamount() const;
+  void set_damageamount(float value);
+  private:
+  float _internal_damageamount() const;
+  void _internal_set_damageamount(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.C2P_RequestPlayerAttack)
  private:
   class _Internal;
@@ -1400,8 +1400,8 @@ class C2P_RequestPlayerAttack final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  double damageamount_;
   ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  float damageamount_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -1515,18 +1515,9 @@ class P2C_ResultPlayerAttack final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDamageAmountFieldNumber = 2,
     kVictimKeyFieldNumber = 3,
+    kDamageAmountFieldNumber = 2,
   };
-  // double DamageAmount = 2;
-  void clear_damageamount();
-  double damageamount() const;
-  void set_damageamount(double value);
-  private:
-  double _internal_damageamount() const;
-  void _internal_set_damageamount(double value);
-  public:
-
   // uint64 VictimKey = 3;
   void clear_victimkey();
   ::PROTOBUF_NAMESPACE_ID::uint64 victimkey() const;
@@ -1536,6 +1527,15 @@ class P2C_ResultPlayerAttack final :
   void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // float DamageAmount = 2;
+  void clear_damageamount();
+  float damageamount() const;
+  void set_damageamount(float value);
+  private:
+  float _internal_damageamount() const;
+  void _internal_set_damageamount(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.P2C_ResultPlayerAttack)
  private:
   class _Internal;
@@ -1543,8 +1543,8 @@ class P2C_ResultPlayerAttack final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  double damageamount_;
   ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  float damageamount_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -1659,8 +1659,8 @@ class P2C_ReportPlayerAttack final :
 
   enum : int {
     kAttackerFieldNumber = 1,
-    kDamageAmountFieldNumber = 2,
     kVictimKeyFieldNumber = 3,
+    kDamageAmountFieldNumber = 2,
   };
   // uint64 Attacker = 1;
   void clear_attacker();
@@ -1669,15 +1669,6 @@ class P2C_ReportPlayerAttack final :
   private:
   ::PROTOBUF_NAMESPACE_ID::uint64 _internal_attacker() const;
   void _internal_set_attacker(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
-  // double DamageAmount = 2;
-  void clear_damageamount();
-  double damageamount() const;
-  void set_damageamount(double value);
-  private:
-  double _internal_damageamount() const;
-  void _internal_set_damageamount(double value);
   public:
 
   // uint64 VictimKey = 3;
@@ -1689,6 +1680,15 @@ class P2C_ReportPlayerAttack final :
   void _internal_set_victimkey(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // float DamageAmount = 2;
+  void clear_damageamount();
+  float damageamount() const;
+  void set_damageamount(float value);
+  private:
+  float _internal_damageamount() const;
+  void _internal_set_damageamount(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.P2C_ReportPlayerAttack)
  private:
   class _Internal;
@@ -1697,8 +1697,8 @@ class P2C_ReportPlayerAttack final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::uint64 attacker_;
-  double damageamount_;
   ::PROTOBUF_NAMESPACE_ID::uint64 victimkey_;
+  float damageamount_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_Protocol_2eproto;
 };
@@ -2396,22 +2396,22 @@ inline void P2C_ReportMove::set_state(::Protocol::PlayerState value) {
 
 // C2P_RequestPlayerAttack
 
-// double DamageAmount = 1;
+// float DamageAmount = 1;
 inline void C2P_RequestPlayerAttack::clear_damageamount() {
   damageamount_ = 0;
 }
-inline double C2P_RequestPlayerAttack::_internal_damageamount() const {
+inline float C2P_RequestPlayerAttack::_internal_damageamount() const {
   return damageamount_;
 }
-inline double C2P_RequestPlayerAttack::damageamount() const {
+inline float C2P_RequestPlayerAttack::damageamount() const {
   // @@protoc_insertion_point(field_get:Protocol.C2P_RequestPlayerAttack.DamageAmount)
   return _internal_damageamount();
 }
-inline void C2P_RequestPlayerAttack::_internal_set_damageamount(double value) {
+inline void C2P_RequestPlayerAttack::_internal_set_damageamount(float value) {
   
   damageamount_ = value;
 }
-inline void C2P_RequestPlayerAttack::set_damageamount(double value) {
+inline void C2P_RequestPlayerAttack::set_damageamount(float value) {
   _internal_set_damageamount(value);
   // @@protoc_insertion_point(field_set:Protocol.C2P_RequestPlayerAttack.DamageAmount)
 }
@@ -2440,22 +2440,22 @@ inline void C2P_RequestPlayerAttack::set_victimkey(::PROTOBUF_NAMESPACE_ID::uint
 
 // P2C_ResultPlayerAttack
 
-// double DamageAmount = 2;
+// float DamageAmount = 2;
 inline void P2C_ResultPlayerAttack::clear_damageamount() {
   damageamount_ = 0;
 }
-inline double P2C_ResultPlayerAttack::_internal_damageamount() const {
+inline float P2C_ResultPlayerAttack::_internal_damageamount() const {
   return damageamount_;
 }
-inline double P2C_ResultPlayerAttack::damageamount() const {
+inline float P2C_ResultPlayerAttack::damageamount() const {
   // @@protoc_insertion_point(field_get:Protocol.P2C_ResultPlayerAttack.DamageAmount)
   return _internal_damageamount();
 }
-inline void P2C_ResultPlayerAttack::_internal_set_damageamount(double value) {
+inline void P2C_ResultPlayerAttack::_internal_set_damageamount(float value) {
   
   damageamount_ = value;
 }
-inline void P2C_ResultPlayerAttack::set_damageamount(double value) {
+inline void P2C_ResultPlayerAttack::set_damageamount(float value) {
   _internal_set_damageamount(value);
   // @@protoc_insertion_point(field_set:Protocol.P2C_ResultPlayerAttack.DamageAmount)
 }
@@ -2504,22 +2504,22 @@ inline void P2C_ReportPlayerAttack::set_attacker(::PROTOBUF_NAMESPACE_ID::uint64
   // @@protoc_insertion_point(field_set:Protocol.P2C_ReportPlayerAttack.Attacker)
 }
 
-// double DamageAmount = 2;
+// float DamageAmount = 2;
 inline void P2C_ReportPlayerAttack::clear_damageamount() {
   damageamount_ = 0;
 }
-inline double P2C_ReportPlayerAttack::_internal_damageamount() const {
+inline float P2C_ReportPlayerAttack::_internal_damageamount() const {
   return damageamount_;
 }
-inline double P2C_ReportPlayerAttack::damageamount() const {
+inline float P2C_ReportPlayerAttack::damageamount() const {
   // @@protoc_insertion_point(field_get:Protocol.P2C_ReportPlayerAttack.DamageAmount)
   return _internal_damageamount();
 }
-inline void P2C_ReportPlayerAttack::_internal_set_damageamount(double value) {
+inline void P2C_ReportPlayerAttack::_internal_set_damageamount(float value) {
   
   damageamount_ = value;
 }
-inline void P2C_ReportPlayerAttack::set_damageamount(double value) {
+inline void P2C_ReportPlayerAttack::set_damageamount(float value) {
   _internal_set_damageamount(value);
   // @@protoc_insertion_point(field_set:Protocol.P2C_ReportPlayerAttack.DamageAmount)
 }

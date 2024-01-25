@@ -2,6 +2,7 @@
 
 
 #include "MonsterBlackKnight.h"
+#include "PreLoder.h"
 
 AMonsterBlackKnight::AMonsterBlackKnight()
 {
@@ -17,5 +18,22 @@ AMonsterBlackKnight::AMonsterBlackKnight()
         GetMesh()->SetAnimInstanceClass(anim.Class);
 
     GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
+}
+
+void AMonsterBlackKnight::BeginPlay()
+{
+    Super::BeginPlay();
+    FVector v = GetActorForwardVector();
+    LOG("BlackKnight", v.X, v.Y, v.Z);
+}
+
+void AMonsterBlackKnight::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+}
+
+void AMonsterBlackKnight::PostInitializeComponents()
+{
+    Super::PostInitializeComponents();
 }
 

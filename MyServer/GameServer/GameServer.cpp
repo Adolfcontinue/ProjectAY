@@ -24,6 +24,7 @@ void Process(ServerServiceRef& sevice)
 		LEndTickCount = GetTickCount64() + WORKER_TICK;
 
 		sevice->GetCore()->Dispatch(10);
+		GWorld->DoTimer(200, &World::Update);
 
 		ThreadManager::DistributeReserveJobs();
 		ThreadManager::DoGlobalQueueWork();

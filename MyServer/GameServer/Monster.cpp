@@ -24,7 +24,7 @@ void Monster::SetMonsterAbils()
 	Power = 10;
 }
 
-void Monster::TakeDamage(uint64 attacker, double damageAmount)
+void Monster::TakeDamage(uint64 attacker, float damageAmount)
 {
 	Health -= damageAmount;
 
@@ -40,8 +40,8 @@ void Monster::TakeDamage(uint64 attacker, double damageAmount)
 
 void Monster::SetTarget(uint64 target)
 {
-	/*if (IsVaildTarget())
-		return;*/
+	if (IsVaildTarget())
+		return;
 
 	TargetKey = target;
 
@@ -49,17 +49,7 @@ void Monster::SetTarget(uint64 target)
 	if (targetUser == nullptr)
 		return;
 
-	LookAt(targetUser->GetPosition());
-
-	Protocol::P2C_ReportMonsterState sendPacket;
-	sendPacket.set_actorkey(GetActorKey());
-	Protocol::PositionData* posData = sendPacket.mutable_posdata();
-	Protocol::Float3* userPos = posData->mutable_posision();
-	ProtobufConverter::ConvertFloat3(userPos, GetPositionX(), GetPositionY(), GetPositionZ());
-	Protocol::Float4* userRot = posData->mutable_rotation();
-	ProtobufConverter::ConvertFloat4(userRot, GetRotationX(), GetRotationY(), GetRotationZ(), GetRotationW());
-	SendBufferRef sendBuffer1 = ClientPacketHandler::MakeSendBuffer(sendPacket);
-	GWorld->BroadCast(sendBuffer1);
+	LookAt();
 }
 
 void Monster::Update()
@@ -83,22 +73,38 @@ bool Monster::IsVaildTarget()
 	return true;
 }
 
-void Monster::LookAt(Float3 targetpos)
+void Monster::LookAt()
 {
-	XMVECTOR position = Position.ConvertXMVECTOR();
-	XMVECTOR targetPosition = targetpos.ConvertXMVECTOR();
-	XMVECTOR direction = XMVector3Normalize(position - targetPosition);
-	// 회전 축과 회전 각도를 계산
-	float angle = atan2f(XMVectorGetX(direction), XMVectorGetZ(direction));
+	if (!IsVaildTarget())
+		return;
 
-	XMVECTOR rotation = XMQuaternionRotationAxis(AXIS_Z, angle);
+	UserRef targetUser = GWorld->FindUser(TargetKey);
+	if (targetUser == nullptr)
+		return;
 
-	Rotation.Set(
-		XMVectorGetX(rotation),
-		XMVectorGetY(rotation),
-		XMVectorGetZ(rotation),
-		XMVectorGetW(rotation)
-	);
+	DirectX::XMVECTOR pos = GetTransForm()->XMVECTORPosition();
+	DirectX::XMVECTOR targetpos = targetUser->GetTransForm()->XMVECTORPosition();
+
+	DirectX::XMVECTOR dir = DirectX::XMVectorSubtract(targetpos, pos);
+	DirectX::XMVECTOR n_dir = DirectX::XMVector3Normalize(dir);
+
+	DirectX::XMVECTOR forward = GetTransForm()->XMVECTORForwardVector();
+	DirectX::XMVECTOR angle = DirectX::XMVector3AngleBetweenVectors(n_dir, forward);
+	DirectX::XMVECTOR quat = DirectX::XMQuaternionRotationAxis(AXIS_Z, DirectX::XMVectorGetX(angle));
+
+	GetTransForm()->SetRotation(quat);
+	
+	Protocol::P2C_ReportMonsterState sendPacket;
+	sendPacket.set_actorkey(GetActorKey());
+	Protocol::PositionData* posData = sendPacket.mutable_posdata();
+	Protocol::Float3* userPos = posData->mutable_posision();
+	ProtobufHelper::ConvertFloat3(userPos, GetTransForm()->GetPosition());
+	Protocol::Float4* userRot = posData->mutable_rotation();
+	ProtobufHelper::ConvertFloat4(userRot, GetTransForm()->GetRotation());
+	SendBufferRef sendBuffer1 = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	GWorld->BroadCast(sendBuffer1);
 }
+
+
 
 

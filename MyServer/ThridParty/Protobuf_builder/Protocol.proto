@@ -50,20 +50,20 @@ message P2C_ReportMove
 
 message C2P_RequestPlayerAttack
 {
-	double DamageAmount = 1;
+	float DamageAmount = 1;
 	uint64 victimKey = 2;
 }
 
 message P2C_ResultPlayerAttack
 {
-	double DamageAmount = 2;
+	float DamageAmount = 2;
 	uint64 VictimKey = 3;
 }
 
 message P2C_ReportPlayerAttack
 {
 	uint64 Attacker = 1;
-	double DamageAmount = 2;
+	float DamageAmount = 2;
 	uint64 VictimKey = 3;
 }
 

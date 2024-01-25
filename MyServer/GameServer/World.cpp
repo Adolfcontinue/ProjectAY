@@ -19,9 +19,9 @@ void World::EnterUser(UserRef user)
 	Protocol::P2C_ReportEnterUser packet;
 	Protocol::UserData* data = packet.mutable_user();
 	//Protocol::Float3* pos = data->mutable_position();
-	ProtobufConverter::ConvertFloat3(data->mutable_position(), user->GetPositionX(), user->GetPositionY(), user->GetPositionZ());
+	ProtobufHelper::ConvertFloat3(data->mutable_position(), user->GetTransForm()->GetPosition());
 	//Protocol::Float4* rot = data->mutable_rotation();
-	ProtobufConverter::ConvertFloat4(data->mutable_rotation(), user->GetRotationX(), user->GetRotationY(), user->GetRotationZ(), user->GetRotationW());
+	ProtobufHelper::ConvertFloat4(data->mutable_rotation(), user->GetTransForm()->GetRotation());
 	
 	data->set_userkey(user->GetSessionKey());
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(packet);
@@ -74,23 +74,24 @@ UserRef World::FindUser(int64 key)
 	return iter->second;
 }
 
-void World::MoveUser(int64 sessionKey, Float3 pos, Float4 rot, Protocol::PlayerState state)
+void World::MoveUser(int64 sessionKey, DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 rot)
 {
 	UserRef user = FindUser(sessionKey);
 	if (user == nullptr)
 		return;
 
-	user->SetPosition(pos);
-
+	user->GetTransForm()->SetPosition(pos);
 	Protocol::P2C_ReportMove sendPacket;
 	sendPacket.set_userkey(user->GetSessionKey());
+	Protocol::PlayerState state;
+	state = Protocol::PlayerState::MOVE;
 	sendPacket.set_state(state);
 
 	Protocol::PositionData* posData = sendPacket.mutable_posdata();
 	Protocol::Float3* userPos = posData->mutable_posision();
-	ProtobufConverter::ConvertFloat3(userPos, pos.X, pos.Y, pos.Z);
+	ProtobufHelper::ConvertFloat3(userPos, pos.x, pos.y, pos.z);
 	Protocol::Float4* userRot = posData->mutable_rotation();
-	ProtobufConverter::ConvertFloat4(userRot, rot.X, rot.Y, rot.Z, rot.W);
+	ProtobufHelper::ConvertFloat4(userRot, rot.x, rot.y, rot.z, rot.w);
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	BroadCastExcept(sendBuffer, sessionKey);
 }
@@ -109,8 +110,8 @@ void World::CreateMonster()
 {
 	MonsterRef newMonster = MakeShared<Monster>();
 	newMonster->SetActorKey(IssueActorKey());
-	newMonster->SetPosition(830, 1110, 90);
-	newMonster->SetRotation(0, 0, 0, 1);
+	newMonster->GetTransForm()->SetPosition(830.f, 1110.f, 90.f);
+	newMonster->GetTransForm()->SetRotation(0.f, 0.f, 0.f, 1.f);
 	newMonster->SetMonsterType(eMonsterType::Beholder);
 	_Monsters.insert(pair<int64, MonsterRef>(newMonster->GetActorKey(), newMonster));
 }
@@ -118,7 +119,7 @@ void World::CreateMonster()
 void World::Update()
 {
 	for (auto& it : _Monsters)
+	{
 		it.second->Update();
-
-	GWorld->DoTimer(500, &World::Update);
+	}
 }
