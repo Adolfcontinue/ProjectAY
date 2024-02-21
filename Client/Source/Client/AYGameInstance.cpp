@@ -57,8 +57,8 @@ void UAYGameInstance::AddPlayer(Protocol::UserData userData)
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
 	{
-		FVector location = FVector(userData.position().x(), userData.position().y(), userData.position().z());
-		FRotator rotation = FRotator::ZeroRotator;
+		FVector location = FVector(userData.transform().x(), userData.transform().y(), userData.transform().z());
+		FRotator rotation = FRotator(0, userData.transform().yaw(), 0.f);
 		AOtherCharacter* newPlayer = GetWorld()->SpawnActor<AOtherCharacter>(AOtherCharacter::StaticClass(), location, rotation);
 		newPlayer->SetPlayerKey(userData.userkey());
 		state->AddPlayer(newPlayer->GetPalyerKey(), newPlayer);
@@ -79,7 +79,7 @@ void UAYGameInstance::RemovePlayer(int64 userKey)
 	}
 }
 
-void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Protocol::PlayerState state)
+void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, float yaw, Protocol::ActorState state)
 {
 	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(gameState))
@@ -88,7 +88,7 @@ void UAYGameInstance::RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Prot
 		if (it == nullptr)
 			return;
 
-		it->RepPlayerMove(pos, quat);
+		it->RepPlayerMove(pos, yaw);
 		it->SetAnimState(state);
 	}
 }
@@ -107,7 +107,7 @@ void UAYGameInstance::RepPlayerAttack(int64 victimKey, double damageAmount)
 	}
 }
 
-void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FQuat quat, Protocol::PlayerState state)
+void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, Protocol::ActorState state)
 {
 	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(gameState))
@@ -116,7 +116,20 @@ void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FQuat quat, P
 		if (it == nullptr)
 			return;
 
-		it->RepMonsterState(pos, quat);
+		it->RepMonsterState(pos, state);
+	}
+}
+
+void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FVector targetPos, Protocol::ActorState state)
+{
+	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(gameState))
+	{
+		auto it = gameState->FindMonster(actorKey);
+		if (it == nullptr)
+			return;
+
+		it->RepMonsterState(pos, targetPos ,state);
 	}
 }
 
@@ -125,9 +138,8 @@ void UAYGameInstance::AddMonster(Protocol::MonsterData monsterData)
 	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
 	if (::IsValid(state))
 	{
-		FVector location = FVector(monsterData.pos().x(), monsterData.pos().y(), 0);
-		FRotator rotation = FRotator::ZeroRotator;
-
+		FVector location = FVector(monsterData.transform().x(), monsterData.transform().y(), monsterData.transform().z());
+		FRotator rotation = FRotator(0 , monsterData.transform().yaw(), 0);
 		AMonsterBeholder* newMonster = GetWorld()->SpawnActor<AMonsterBeholder>(AMonsterBeholder::StaticClass(), location, rotation);
 		newMonster->SetActorKey(monsterData.actorkey());
 		state->AddMonster(newMonster->GetActorKey(), newMonster);

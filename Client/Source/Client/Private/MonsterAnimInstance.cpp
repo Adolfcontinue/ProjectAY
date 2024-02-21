@@ -14,18 +14,35 @@ void UMonsterAnimInstance::NativeUpdateAnimation(float deltaSecond)
 
 void UMonsterAnimInstance::SetAnimState(EAnimState state)
 {
-	AnimState = state;
+	if (AnimState == EAnimState::Idle)
+		AnimState = state;
+	else
+		AnimStateQueue.Enqueue(state);
+}
+
+void UMonsterAnimInstance::AddAnimState(EAnimState state)
+{
+	AnimStateQueue.Enqueue(state);
 }
 
 void UMonsterAnimInstance::AnimNotify_monsterhit()
 {
-	//todo
-	SetAnimState(EAnimState::Idle);
+	//todo`
+	//SetAnimState(EAnimState::Idle);
+	EAnimState outState = EAnimState::Idle;
+	if (!AnimStateQueue.IsEmpty())
+		AnimStateQueue.Dequeue(outState);
+
+	AnimState = outState;
 }
 
 void UMonsterAnimInstance::AnimNotify_monsterattack()
 {
 	//todo
-	SetAnimState(EAnimState::Idle);
+	EAnimState outState = EAnimState::Idle;
+	if (!AnimStateQueue.IsEmpty())
+		AnimStateQueue.Dequeue(outState);
+
+	AnimState = outState;
 }
 

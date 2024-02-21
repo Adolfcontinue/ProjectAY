@@ -31,7 +31,7 @@ public:
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 	void SetAnimState(EAnimState state);
 	EAnimState GetAnimState();
-	Protocol::PlayerState GetAnimStateProtobuf();
+	Protocol::ActorState GetAnimStateProtobuf();
 	
 private:
 	UFUNCTION()

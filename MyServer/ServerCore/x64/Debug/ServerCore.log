@@ -10,7 +10,7 @@
   DBConnection.cpp
   DBConnectionPool.cpp
   DBQuery.cpp
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp(4,88): warning C4244: '초기화 중': 'int64'에서 'long'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\godye\Desktop\MyProject\MyServer\ServerCore\DBQuery.cpp(4,88): warning C4244: '초기화 중': 'int64'에서 'long'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   DeadLockProfiler.cpp
   GlobalQueue.cpp
   NetCore.cpp
@@ -37,4 +37,4 @@ C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\ServerCore\DBQuery.cpp(4,88)
   ThreadManager.cpp
   TimeConverter.cpp
   코드를 생성하고 있습니다...
-  ServerCore.vcxproj -> C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Libraries\Libs\ServerCore\Debug\ServerCore.lib
+  ServerCore.vcxproj -> C:\Users\godye\Desktop\MyProject\MyServer\Libraries\Libs\ServerCore\Debug\ServerCore.lib

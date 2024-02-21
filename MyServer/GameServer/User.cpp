@@ -21,6 +21,18 @@ User::User(string id, string pw, int64 sessionKey, int32 level, int32 exp)
 
 }
 
+void User::Init(int64 sessionKey, string id, string pw, float x, float y, float z, float yaw, int64 level, int64 exp, float dmg, float maxhp)
+{
+	SetID(id);
+	SetPW(pw);
+	SetSessionKey(sessionKey);
+	TransForm = MakeShared<TransFormAgent>(static_pointer_cast<User>(shared_from_this()));
+	Status = MakeShared<StatusAgent>(static_pointer_cast<User>(shared_from_this()));
+
+	Status->Init(level, exp, dmg, maxhp);
+	TransForm->Init(x, y, z, yaw);
+}
+
 void User::ReqWorldData()
 {
 	Protocol::P2C_ResultWorldData sendPacket;
@@ -30,26 +42,23 @@ void User::ReqWorldData()
 		if (iter.first == this->GetSessionKey())
 			continue;
 
-		UserRef itval = iter.second;
+		UserRef itVal = iter.second;
 		Protocol::UserData* user = sendPacket.add_users();
-		
-		Protocol::Float3* pos = user->mutable_position();
-		ProtobufHelper::ConvertFloat3(pos, itval->GetTransForm()->GetPosition());
-		
-		Protocol::Float4* rot = user->mutable_rotation();
-		ProtobufHelper::ConvertFloat4(rot, itval->GetTransForm()->GetRotation());
-
-		user->set_sessionkey(itval->GetSessionKey());
-		user->set_userkey(itval->GetSessionKey());
+		Protocol::TransFormData* transform = user->mutable_transform();
+		Protocol::TransFormData* itTransForm = itVal->GetTransFormAgent()->GetTransForm();
+		transform->CopyFrom(*itTransForm);
+		user->set_sessionkey(itVal->GetSessionKey());
+		user->set_userkey(itVal->GetSessionKey());
 	}
 
 	for (auto iter : GWorld->_Monsters)
 	{
-		MonsterRef itval = iter.second;
+		MonsterRef itVal = iter.second;
 		Protocol::MonsterData* monster = sendPacket.add_monsters();
-		Protocol::Float3* pos = monster->mutable_pos();
-		ProtobufHelper::ConvertFloat3(pos, itval->GetTransForm()->GetPosition());
-		monster->set_actorkey(itval->GetActorKey());
+		Protocol::TransFormData* transform = monster->mutable_transform();
+		Protocol::TransFormData* itTransForm = itVal->GetTransFormAgent()->GetTransForm();
+		transform->CopyFrom(*itTransForm);
+		monster->set_actorkey(itVal->GetActorKey());
 		monster->set_type(Protocol::BEHOLDER);
 	}
 
@@ -59,4 +68,9 @@ void User::ReqWorldData()
 
 	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 	session->Send(sendBuffer);
+}
+
+std::shared_ptr<StatusAgent> User::GetStatus()
+{
+	return Status;
 }

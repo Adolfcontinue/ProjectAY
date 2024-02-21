@@ -23,7 +23,7 @@ AAYCharacter::AAYCharacter()
 	Camera->SetupAttachment(SpringArm);
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
-	SpringArm->TargetArmLength = 400.0f;
+	SpringArm->TargetArmLength = 1000.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> skeletalmesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/OneMeshCharacters/IronMaskSK.IronMaskSK"));
 	if (skeletalmesh.Succeeded())
@@ -39,12 +39,13 @@ AAYCharacter::AAYCharacter()
 
 	GetCharacterMovement()->JumpZVelocity = 450.0f;
 
+	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Character"));
+
 	Stat = CreateDefaultSubobject<UPlayerStatComponent>(TEXT("PLAYER_STAT"));
 
 	IsAttacking = false;
 	MaxCombo = 3;
 	SyncTimer = 0.f;
-
 }
 
 // Called when the game starts or when spawned
@@ -66,6 +67,7 @@ void AAYCharacter::Tick(float DeltaTime)
 
 	FVector prevPos = GetActorLocation();
 
+	prevPos.Rotation();
 	if (CurrentControlType == eControlType::Type2)
 		TickMove();
 }
@@ -184,7 +186,7 @@ void AAYCharacter::ControlType1()
 
 void AAYCharacter::ContrilType2()
 {
-	SpringArm->TargetArmLength = 800.f;
+	SpringArm->TargetArmLength = 1200.f;
 	SpringArm->SetRelativeRotation(FRotator(-45.0f, 0.0f, 0.0f));
 	SpringArm->bUsePawnControlRotation = false;
 	SpringArm->bInheritPitch = false;
@@ -248,6 +250,11 @@ void AAYCharacter::AttackCheck()
 				inst->Send(sendPacket, (uint16)(EPacket_C2P_Protocol::C2P_RequestPlayerAttack));
 			//REPORT SERVER
 			LOG("PLAYER ATTACK CHECK");
+
+			FVector l = victim->GetActorLocation();
+			FVector l2 = GetActorLocation();
+
+			float d = l.Distance(l, l2);
 		}
 	}
 }
@@ -255,22 +262,18 @@ void AAYCharacter::AttackCheck()
 void AAYCharacter::AnimSync()
 {
 	FVector curPos = GetActorLocation();
+	FRotator curRotator = GetActorRotation();
 	FQuat curRot = GetActorQuat();
 	UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
 
 	Protocol::C2P_ReportMove packet;
-	Protocol::PositionData* posData = packet.mutable_posdata();
-	Protocol::Float3* pos = posData->mutable_posision();
-	pos->set_x(curPos.X);
-	pos->set_y(curPos.Y);
-	pos->set_z(curPos.Z);
-	Protocol::Float4* rot = posData->mutable_rotation();
-	rot->set_x(curRot.X);
-	rot->set_y(curRot.Y);
-	rot->set_z(curRot.Z);
-	rot->set_w(curRot.W);
-
-	packet.set_state(_Anim->GetAnimStateProtobuf());
+	Protocol::UserData* userData = packet.mutable_userdata();
+	Protocol::TransFormData* transform = userData->mutable_transform();
+	transform->set_x(curPos.X);
+	transform->set_y(curPos.Y);
+	transform->set_z(curPos.Z);
+	transform->set_yaw(curRotator.Yaw);
+	userData->set_state(_Anim->GetAnimStateProtobuf());
 	inst->Send(packet, (uint16)EPacket_C2P_Protocol::C2P_ReportMove);
 }
 

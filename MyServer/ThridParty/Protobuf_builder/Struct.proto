@@ -3,40 +3,26 @@ package Protocol;
 
 import "Enum.proto";
 
-message Float3
+message TransFormData
 {
 	float x = 1;
 	float y = 2;
 	float z = 3;
-}
-
-message Float4
-{
-	float x = 1;
-	float y = 2;
-	float z = 3;
-	float w = 4;
-}
-
-message PositionData
-{
-	Float3 posision = 1;
-	Float4 rotation = 2;
+	float yaw = 4;
 }
 
 message UserData
 {
 	uint64 sessionKey = 1;
 	uint64 userKey = 2;
-	Float3 position = 3;
-	Float4 rotation = 4;
+	TransFormData Transform = 3;
+	ActorState state = 4;
 }
 
 message MonsterData
 {
 	uint64 actorkey = 1;
 	MonsterType type = 2;
-	int32  hp = 3;
-	Float3 pos = 4;
-	Float4 Rot = 5;
+	TransFormData Transform = 3;
+	ActorState state = 5;
 }

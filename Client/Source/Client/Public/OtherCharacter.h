@@ -30,9 +30,10 @@ public:
 
 	void Move(float DeltaTime);
 	void Rotation(float DeltaTime);
+	void Rotation2(float DeltaTime);
 
 	void SetAnimState(EAnimState state);
-	void SetAnimState(Protocol::PlayerState state);
+	void SetAnimState(Protocol::ActorState state);
 
 private:
 	EAnimState AnimState;

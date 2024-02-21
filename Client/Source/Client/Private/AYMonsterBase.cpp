@@ -3,6 +3,8 @@
 #include "AYMonsterBase.h"
 #include "MonsterAnimInstance.h"
 #include "PreLoder.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Protobuf/Protocol.pb.h"
 
 // Sets default values
 AAYMonsterBase::AAYMonsterBase()
@@ -18,6 +20,8 @@ AAYMonsterBase::AAYMonsterBase()
 
     ActorKey = -1;
     GetCapsuleComponent()->SetCollisionProfileName(TEXT("Monster"));
+
+    GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 }
 
 // Called when the game starts or when spawned
@@ -31,9 +35,10 @@ void AAYMonsterBase::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     //
+
     if (TargetLocation.Size() > 0)
         Move(DeltaTime);
-
+    //
     if (TargetRotation.Size() > 0)
         Rotation(DeltaTime);
 }
@@ -63,15 +68,7 @@ void AAYMonsterBase::TakeDamage(float DamageAmount)
     }
 
     Health -= DamageAmount;
-
-    LOG("MONSTER TAKE DAMAGE CALL");
-
-    FQuat f = GetActorQuat();
-    FRotator r = GetActorRotation();
-
-    //todo
     Anim->SetAnimState(EAnimState::Hit);
-
     if (Health <= 0.0f)
     {
         // 몬스터가 사망한 경우 처리
@@ -91,16 +88,67 @@ void AAYMonsterBase::ApplyStun(float StunDuration)
         }, StunDuration, false);
 }
 
-void AAYMonsterBase::RepMonsterState(FVector pos, FQuat quat)
+void AAYMonsterBase::RepMonsterState(FVector pos, Protocol::ActorState state)
 {
-    CurrentLocation = GetActorLocation(); // 현재 위치 저장
-    TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
+    MyLocation = GetActorLocation(); // 현재 위치 저장
+    //TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
+    //LerpAlpha = 0.0f;
+
+    SetActorLocation(pos);
+
+    //CurrentRotation = GetActorQuat();   // 현재 회전 저장
+    //TargetRotation = quat; // 서버로부터 받은 목표 회전 설정
+    //SlerpAlpha = 0.0f;
+
+    FVector loc = MyLocation;
+    loc.Z = 0.f;
+    FVector targetLoc = TargetLocation;
+    targetLoc.Z = 0.f;
+
+    FVector dir = targetLoc - loc;
+    dir.Normalize();
+
+    SetActorRotation(FRotator(0.f, dir.Rotation().Yaw, 0.f));
+    Anim->SetAnimState(ConvertAnimState(state));
+}
+
+void AAYMonsterBase::RepMonsterState(FVector pos, FVector targetPos, Protocol::ActorState state)
+{
+    MyLocation = GetActorLocation(); // 현재 위치 저장
+    CurLocation = pos;   // 서버로부터 받은 목표 위치 설정
     LerpAlpha = 0.0f;
 
-    CurrentRotation = GetActorQuat();   // 현재 회전 저장
-    TargetRotation = quat; // 서버로부터 받은 목표 회전 설정
-    SlerpAlpha = 0.0f;
+    if (targetPos.Size() > 0)
+    {
+        TargetLocation = targetPos;
+        CurrentRotation = GetActorQuat();   // 현재 회전 저장
+        FRotator rotator = UKismetMathLibrary::FindLookAtRotation(MyLocation, TargetLocation);
+        TargetRotation = rotator.Quaternion();
+        SlerpAlpha = 0.0f;
+        FVector pp = GetActorForwardVector();
+    }
+
+    Anim->SetAnimState(ConvertAnimState(state));
 }
+
+//
+//
+//void AAYMonsterBase::RepMonsterState(FVector pos, FVector Target, Protocol::ActorState state)
+//{
+//    CurrentLocation = pos;
+//    TargetLocation = Target;
+//    Anim->SetAnimState(ConvertAnimState(state));
+//
+//    FVector loc = CurrentLocation;
+//    loc.Z = 0.f;
+//    FVector targetLoc = TargetLocation;
+//    targetLoc.Z = 0;
+//
+//    FVector dir = targetLoc - loc;
+//    dir.Normalize();
+//
+//    SetActorRotation(FRotator(0.f, dir.Rotation().Yaw, 0.f));
+//}
 
 void AAYMonsterBase::Move(float DeltaTime)
 {
@@ -111,7 +159,7 @@ void AAYMonsterBase::Move(float DeltaTime)
     LerpAlpha = FMath::Clamp(LerpAlpha, 0.0f, 1.0f);
 
     // 선형 보간을 사용해 현재 위치를 목표 위치로 부드럽게 이동시킴
-    FVector NewLocation = FMath::Lerp(CurrentLocation, TargetLocation, LerpAlpha);
+    FVector NewLocation = FMath::Lerp(MyLocation, CurLocation, LerpAlpha);
     SetActorLocation(NewLocation);
 }
 
@@ -123,5 +171,34 @@ void AAYMonsterBase::Rotation(float DeltaTime)
     // 쿼터니언 Slerp를 사용해 현재 회전을 목표 회전으로 부드럽게 이동시킴
     FQuat NewRotation = FQuat::Slerp(CurrentRotation, TargetRotation, SlerpAlpha);
     SetActorRotation(NewRotation);
+}
+
+EAnimState AAYMonsterBase::ConvertAnimState(Protocol::ActorState state)
+{
+    switch (state)
+    {
+    case Protocol::IDlE:
+        return EAnimState::Idle;
+        break;
+    case Protocol::ATTACK1:
+        return EAnimState::Attack1;
+        break;
+    case Protocol::HIT:
+        return EAnimState::Hit;
+        break;
+    case Protocol::MOVE:
+        return EAnimState::Move;
+        break;
+    case Protocol::DEAD:
+        return EAnimState::Dead;
+        break;
+    case Protocol::ActorState_INT_MIN_SENTINEL_DO_NOT_USE_:
+    case Protocol::ActorState_INT_MAX_SENTINEL_DO_NOT_USE_:
+        return EAnimState::Idle;
+        break;
+    }
+
+    return EAnimState::Idle;
+
 }
 

@@ -11,5 +11,7 @@ public class Client : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG" });
 
         PrivateDependencyModuleNames.AddRange(new string[] { "protobuf" });
+
+        PublicDefinitions.Add("GOOGLE_PROTOBUF_NO_RTTI=1");
     }
 }

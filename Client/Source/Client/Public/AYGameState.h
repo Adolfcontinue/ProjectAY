@@ -6,6 +6,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "OtherCharacter.h"
 #include "AYMonsterBase.h"
+#include "AYCharacter.h"
 #include "AYGameState.generated.h"
 
 /**
@@ -24,11 +25,14 @@ public:
 	void AddMonster(int64 key, AAYMonsterBase* monster);
 	AAYMonsterBase* FindMonster(int64 key);
 
+	void SetMyPlayer(AAYCharacter* player);
+	AAYCharacter* GetMyPlayer();
 public:
 	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat);
 
 
 private:
+	AAYCharacter* MyPlayer;
 	TMap<int64, AOtherCharacter*> Players;
 	TMap<int64, AAYMonsterBase*> Monsters;
 };

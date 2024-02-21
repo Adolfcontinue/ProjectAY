@@ -1,5 +1,7 @@
 #pragma once
 #include "Actor.h"
+#include "TransFormAgent.h"
+#include "StatusAgent.h"
 
 class User : public Actor
 {
@@ -9,6 +11,7 @@ public:
 	~User() {};
 
 public:
+	void Init(int64 sessionKey, string id, string pw, float x, float y , float z ,float yaw, int64 level, int64 exp, float dmg, float maxhp);
 	void SetID(string id) { _Id = id; };
 	void SetPW(string pw) { _Pw = pw; };
 	void SetSessionKey(int64 sessionKey) { _SessionKey = sessionKey; };
@@ -20,9 +23,9 @@ public:
 	int64 GetSessionKey() { return _SessionKey; }
 	int32 GetLevel() { return _Level; }
 	int32 GetExp() { return _Exp; }
-
 	void ReqWorldData();
 
+	std::shared_ptr<StatusAgent> GetStatus();
 
 private:
 	int64 _SessionKey;
@@ -31,5 +34,6 @@ private:
 	int32 _Level;
 	int32 _Exp;
 
+	std::shared_ptr<StatusAgent> Status;
 };
 

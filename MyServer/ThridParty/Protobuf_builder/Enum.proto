@@ -9,11 +9,11 @@ enum PlayerType
 	PLAYER_TYPE_ARCHER = 3;
 }
 
-enum PlayerState
+enum ActorState
 {
 	IDlE = 0;
 	ATTACK1 = 1;
-	ATTACK2 = 2;
+	HIT = 2;
 	MOVE = 3;
 	DEAD = 4;
 }

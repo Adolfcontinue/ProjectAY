@@ -32,24 +32,24 @@ EAnimState UPlayerAnimInstance::GetAnimState()
 	return AnimState;
 }
 
-Protocol::PlayerState UPlayerAnimInstance::GetAnimStateProtobuf()
+Protocol::ActorState UPlayerAnimInstance::GetAnimStateProtobuf()
 {
 	switch (AnimState)
 	{
 	case EAnimState::Idle:	
-		return Protocol::PlayerState::IDlE;
+		return Protocol::ActorState::IDlE;
 	case EAnimState::Attack1:		
-		return Protocol::PlayerState::ATTACK1;
+		return Protocol::ActorState::ATTACK1;
 	case EAnimState::Move:
-		return Protocol::PlayerState::MOVE;
+		return Protocol::ActorState::MOVE;
 	case EAnimState::Dead:
-		return Protocol::PlayerState::DEAD;
+		return Protocol::ActorState::DEAD;
 		break;
 	default:
 		break;
 	}
 
-	return Protocol::PlayerState::IDlE;
+	return Protocol::ActorState::IDlE;
 }
 
 void UPlayerAnimInstance::AnimNotify_AttackEnd()

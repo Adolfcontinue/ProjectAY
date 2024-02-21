@@ -26,6 +26,7 @@ public:
 
 public:
 	void SetAnimState(EAnimState state);
+	void AddAnimState(EAnimState state);
 
 private:
 	UFUNCTION()
@@ -38,4 +39,5 @@ private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	EAnimState AnimState;
 
+	TQueue<EAnimState> AnimStateQueue;
 };

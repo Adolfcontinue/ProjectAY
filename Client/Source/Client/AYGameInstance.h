@@ -42,10 +42,10 @@ public:
 	void RemovePlayer(int64 userKey);
 	void AddMonster(Protocol::MonsterData monsterData);
 
-	void RepPlayerMove(int64 userKey, FVector pos, FQuat quat, Protocol::PlayerState state);
+	void RepPlayerMove(int64 userKey, FVector pos, float yaw, Protocol::ActorState state);
 	void RepPlayerAttack(int64 victimKey, double damageAmount);
-	void RepMonsterState(int64 actorKey, FVector pos, FQuat quat, Protocol::PlayerState state);
-
+	void RepMonsterState(int64 actorKey, FVector pos, Protocol::ActorState state);
+	void RepMonsterState(int64 actorKey, FVector pos, FVector targetPos, Protocol::ActorState state);
 	
 public:
 	template<typename T>

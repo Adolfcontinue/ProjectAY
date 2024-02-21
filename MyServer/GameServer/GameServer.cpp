@@ -24,7 +24,6 @@ void Process(ServerServiceRef& sevice)
 		LEndTickCount = GetTickCount64() + WORKER_TICK;
 
 		sevice->GetCore()->Dispatch(10);
-		GWorld->DoTimer(200, &World::Update);
 
 		ThreadManager::DistributeReserveJobs();
 		ThreadManager::DoGlobalQueueWork();
@@ -40,8 +39,8 @@ int main()
 	ClientPacketHandler::Init();
 	
 	//todo createmonster
-	GWorld->CreateMonster();
-
+	GWorld->Init();
+	
 	ServerServiceRef service = MakeShared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
 		MakeShared<NetCore>(),
@@ -60,6 +59,8 @@ int main()
 				}
 			});
 	}
+
+
 
 	//Process(service);
 

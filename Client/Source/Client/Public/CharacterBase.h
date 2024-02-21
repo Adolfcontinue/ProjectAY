@@ -4,6 +4,7 @@
 
 #include "../Client.h"
 #include "GameFramework/Character.h"
+#include "Protobuf/Protocol.pb.h"
 #include "CharacterBase.generated.h"
 
 UCLASS()
@@ -31,7 +32,9 @@ public:
 	int64 GetPalyerKey();
 
 public:
+	void RepPlayerState(FVector pos, float yaw, Protocol::ActorState state);
 	void RepPlayerMove(FVector pos, FQuat quat);
+	void RepPlayerMove(FVector pos, float yaw);
 
 protected:
 	int64 PlayerKey;
@@ -39,6 +42,8 @@ protected:
 	FVector TargetLocation;
 	float LerpAlpha;
 	FQuat CurrentRotation;
+	FRotator CurrentRotation2;
+	FRotator TargetRotation2;
 	FQuat TargetRotation;
 	float SlerpAlpha;
 };

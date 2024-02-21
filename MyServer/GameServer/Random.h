@@ -3,8 +3,13 @@
 
 class Random
 {
-	static std::mt19937 gen;
+	static std::mt19937 geneator;
 public:
-	static uint64 Get(uint64 begin, uint64 end);
+	template<typename T>
+	static T GetRandom(T min, T max)
+	{
+		std::uniform_int_distribution<T> distribute(min, max);
+		return distribute(geneator);
+	}
 };
 

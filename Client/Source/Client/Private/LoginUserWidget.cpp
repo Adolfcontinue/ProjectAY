@@ -31,7 +31,7 @@ void ULoginUserWidget::NativeConstruct()
 
 void ULoginUserWidget::ChangeLevel()
 {
-    UGameplayStatics::OpenLevel(this, "Field");
+    UGameplayStatics::OpenLevel(this, "Field1");
 }
 
 //void ULoginUserWidget::ChangeLevel()

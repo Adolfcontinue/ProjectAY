@@ -60,6 +60,9 @@ void AOtherCharacter::Tick(float DeltaTime)
 
 	if (TargetRotation.Size() > 0)
 		Rotation(DeltaTime);
+
+	if (TargetRotation2.Vector().Size() > 0)
+		Rotation2(DeltaTime);
 }
 
 // Called to bind functionality to input
@@ -92,13 +95,18 @@ void AOtherCharacter::Rotation(float DeltaTime)
 	SetActorRotation(NewRotation);
 }
 
+void AOtherCharacter::Rotation2(float DeltaTime)
+{
+	SetActorRotation(TargetRotation2);
+}
+
 void AOtherCharacter::SetAnimState(EAnimState state)
 {
 	AnimState = state;
 	Anim->SetAnimState(state);
 }
 
-void AOtherCharacter::SetAnimState(Protocol::PlayerState state)
+void AOtherCharacter::SetAnimState(Protocol::ActorState state)
 {
 	switch (state)
 	{

@@ -1,5 +1,2 @@
-﻿  ServerPacketHandler.cpp
-  DummyClient.cpp
-  코드를 생성하고 있습니다...
-DummyClient.obj : error LNK2019: "bool __cdecl Handler::P2C_ReportEnterUser(class std::shared_ptr<class PacketSession> &,class Protocol::P2C_ReportEnterUser &)" (?P2C_ReportEnterUser@Handler@@YA_NAEAV?$shared_ptr@VPacketSession@@@std@@AEAV0Protocol@@@Z)"public: __cdecl `public: static void __cdecl ServerPacketHandler::Init(void)'::`2'::<lambda_5>::operator()(class std::shared_ptr<class PacketSession> &,unsigned char *,int)const " (??R<lambda_5>@?1??Init@ServerPacketHandler@@SAXXZ@QEBA@AEAV?$shared_ptr@VPacketSession@@@std@@PEAEH@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\godye\Desktop\MyProject\ProjectAY\MyServer\Binary\Debug\DummyClient.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
+﻿  pch.cpp
+C:\Users\godye\Desktop\MyProject\MyServer\DummyClient\pch.h(13,10): fatal  error C1083: 포함 파일을 열 수 없습니다. 'CorePch.h': No such file or directory

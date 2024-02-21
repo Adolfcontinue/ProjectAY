@@ -92,9 +92,7 @@ struct P2C_ReportLeaveUserDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT P2C_ReportLeaveUserDefaultTypeInternal _P2C_ReportLeaveUser_default_instance_;
 constexpr C2P_ReportMove::C2P_ReportMove(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : posdata_(nullptr)
-  , state_(0)
-{}
+  : userdata_(nullptr){}
 struct C2P_ReportMoveDefaultTypeInternal {
   constexpr C2P_ReportMoveDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -106,10 +104,7 @@ struct C2P_ReportMoveDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT C2P_ReportMoveDefaultTypeInternal _C2P_ReportMove_default_instance_;
 constexpr P2C_ReportMove::P2C_ReportMove(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : posdata_(nullptr)
-  , userkey_(uint64_t{0u})
-  , state_(0)
-{}
+  : userdata_(nullptr){}
 struct P2C_ReportMoveDefaultTypeInternal {
   constexpr P2C_ReportMoveDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -161,7 +156,8 @@ struct P2C_ReportPlayerAttackDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT P2C_ReportPlayerAttackDefaultTypeInternal _P2C_ReportPlayerAttack_default_instance_;
 constexpr P2C_ReportMonsterState::P2C_ReportMonsterState(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : posdata_(nullptr)
+  : monster_(nullptr)
+  , target_(nullptr)
   , actorkey_(uint64_t{0u}){}
 struct P2C_ReportMonsterStateDefaultTypeInternal {
   constexpr P2C_ReportMonsterStateDefaultTypeInternal()
@@ -220,16 +216,13 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Protocol_2eproto::offsets[] PR
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::Protocol::C2P_ReportMove, posdata_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::C2P_ReportMove, state_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::C2P_ReportMove, userdata_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMove, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMove, userkey_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMove, posdata_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMove, state_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMove, userdata_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::C2P_RequestPlayerAttack, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -258,7 +251,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_Protocol_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMonsterState, actorkey_),
-  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMonsterState, posdata_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMonsterState, monster_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::P2C_ReportMonsterState, target_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Protocol::C2P_RequestLogin)},
@@ -268,11 +262,11 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 25, -1, sizeof(::Protocol::P2C_ReportEnterUser)},
   { 31, -1, sizeof(::Protocol::P2C_ReportLeaveUser)},
   { 37, -1, sizeof(::Protocol::C2P_ReportMove)},
-  { 44, -1, sizeof(::Protocol::P2C_ReportMove)},
-  { 52, -1, sizeof(::Protocol::C2P_RequestPlayerAttack)},
-  { 59, -1, sizeof(::Protocol::P2C_ResultPlayerAttack)},
-  { 66, -1, sizeof(::Protocol::P2C_ReportPlayerAttack)},
-  { 74, -1, sizeof(::Protocol::P2C_ReportMonsterState)},
+  { 43, -1, sizeof(::Protocol::P2C_ReportMove)},
+  { 49, -1, sizeof(::Protocol::C2P_RequestPlayerAttack)},
+  { 56, -1, sizeof(::Protocol::P2C_ResultPlayerAttack)},
+  { 63, -1, sizeof(::Protocol::P2C_ReportPlayerAttack)},
+  { 71, -1, sizeof(::Protocol::P2C_ReportMonsterState)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -299,20 +293,19 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "ocol.UserData\022\'\n\010Monsters\030\002 \003(\0132\025.Protoc"
   "ol.MonsterData\"7\n\023P2C_ReportEnterUser\022 \n"
   "\004User\030\001 \001(\0132\022.Protocol.UserData\"&\n\023P2C_R"
-  "eportLeaveUser\022\017\n\007UserKey\030\001 \001(\004\"_\n\016C2P_R"
-  "eportMove\022\'\n\007PosData\030\001 \001(\0132\026.Protocol.Po"
-  "sitionData\022$\n\005State\030\002 \001(\0162\025.Protocol.Pla"
-  "yerState\"p\n\016P2C_ReportMove\022\017\n\007UserKey\030\001 "
-  "\001(\004\022\'\n\007PosData\030\002 \001(\0132\026.Protocol.Position"
-  "Data\022$\n\005State\030\003 \001(\0162\025.Protocol.PlayerSta"
-  "te\"B\n\027C2P_RequestPlayerAttack\022\024\n\014DamageA"
-  "mount\030\001 \001(\002\022\021\n\tvictimKey\030\002 \001(\004\"A\n\026P2C_Re"
-  "sultPlayerAttack\022\024\n\014DamageAmount\030\002 \001(\002\022\021"
-  "\n\tVictimKey\030\003 \001(\004\"S\n\026P2C_ReportPlayerAtt"
-  "ack\022\020\n\010Attacker\030\001 \001(\004\022\024\n\014DamageAmount\030\002 "
-  "\001(\002\022\021\n\tVictimKey\030\003 \001(\004\"S\n\026P2C_ReportMons"
-  "terState\022\020\n\010ActorKey\030\001 \001(\004\022\'\n\007PosData\030\002 "
-  "\001(\0132\026.Protocol.PositionDatab\006proto3"
+  "eportLeaveUser\022\017\n\007UserKey\030\001 \001(\004\"6\n\016C2P_R"
+  "eportMove\022$\n\010userData\030\001 \001(\0132\022.Protocol.U"
+  "serData\"6\n\016P2C_ReportMove\022$\n\010userData\030\001 "
+  "\001(\0132\022.Protocol.UserData\"B\n\027C2P_RequestPl"
+  "ayerAttack\022\024\n\014DamageAmount\030\001 \001(\002\022\021\n\tvict"
+  "imKey\030\002 \001(\004\"A\n\026P2C_ResultPlayerAttack\022\024\n"
+  "\014DamageAmount\030\001 \001(\002\022\021\n\tVictimKey\030\002 \001(\004\"S"
+  "\n\026P2C_ReportPlayerAttack\022\020\n\010Attacker\030\001 \001"
+  "(\004\022\024\n\014DamageAmount\030\002 \001(\002\022\021\n\tVictimKey\030\003 "
+  "\001(\004\"{\n\026P2C_ReportMonsterState\022\020\n\010ActorKe"
+  "y\030\001 \001(\004\022&\n\007monster\030\002 \001(\0132\025.Protocol.Mons"
+  "terData\022\'\n\006Target\030\003 \001(\0132\027.Protocol.Trans"
+  "FormDatab\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -320,7 +313,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Protocol_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto = {
-  false, false, 875, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
+  false, false, 816, descriptor_table_protodef_Protocol_2eproto, "Protocol.proto", 
   &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 12,
   schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
   file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto, file_level_service_descriptors_Protocol_2eproto,
@@ -1566,18 +1559,18 @@ void P2C_ReportLeaveUser::InternalSwap(P2C_ReportLeaveUser* other) {
 
 class C2P_ReportMove::_Internal {
  public:
-  static const ::Protocol::PositionData& posdata(const C2P_ReportMove* msg);
+  static const ::Protocol::UserData& userdata(const C2P_ReportMove* msg);
 };
 
-const ::Protocol::PositionData&
-C2P_ReportMove::_Internal::posdata(const C2P_ReportMove* msg) {
-  return *msg->posdata_;
+const ::Protocol::UserData&
+C2P_ReportMove::_Internal::userdata(const C2P_ReportMove* msg) {
+  return *msg->userdata_;
 }
-void C2P_ReportMove::clear_posdata() {
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+void C2P_ReportMove::clear_userdata() {
+  if (GetArenaForAllocation() == nullptr && userdata_ != nullptr) {
+    delete userdata_;
   }
-  posdata_ = nullptr;
+  userdata_ = nullptr;
 }
 C2P_ReportMove::C2P_ReportMove(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -1588,20 +1581,16 @@ C2P_ReportMove::C2P_ReportMove(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 C2P_ReportMove::C2P_ReportMove(const C2P_ReportMove& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_posdata()) {
-    posdata_ = new ::Protocol::PositionData(*from.posdata_);
+  if (from._internal_has_userdata()) {
+    userdata_ = new ::Protocol::UserData(*from.userdata_);
   } else {
-    posdata_ = nullptr;
+    userdata_ = nullptr;
   }
-  state_ = from.state_;
   // @@protoc_insertion_point(copy_constructor:Protocol.C2P_ReportMove)
 }
 
 void C2P_ReportMove::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&posdata_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&posdata_)) + sizeof(state_));
+userdata_ = nullptr;
 }
 
 C2P_ReportMove::~C2P_ReportMove() {
@@ -1612,7 +1601,7 @@ C2P_ReportMove::~C2P_ReportMove() {
 
 void C2P_ReportMove::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete posdata_;
+  if (this != internal_default_instance()) delete userdata_;
 }
 
 void C2P_ReportMove::ArenaDtor(void* object) {
@@ -1631,11 +1620,10 @@ void C2P_ReportMove::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+  if (GetArenaForAllocation() == nullptr && userdata_ != nullptr) {
+    delete userdata_;
   }
-  posdata_ = nullptr;
-  state_ = 0;
+  userdata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1645,19 +1633,11 @@ const char* C2P_ReportMove::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Protocol.PositionData PosData = 1;
+      // .Protocol.UserData userData = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_posdata(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_userdata(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .Protocol.PlayerState State = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_state(static_cast<::Protocol::PlayerState>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1689,19 +1669,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Protocol.PositionData PosData = 1;
-  if (this->has_posdata()) {
+  // .Protocol.UserData userData = 1;
+  if (this->has_userdata()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        1, _Internal::posdata(this), target, stream);
-  }
-
-  // .Protocol.PlayerState State = 2;
-  if (this->state() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      2, this->_internal_state(), target);
+        1, _Internal::userdata(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1720,17 +1693,11 @@ size_t C2P_ReportMove::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.PositionData PosData = 1;
-  if (this->has_posdata()) {
+  // .Protocol.UserData userData = 1;
+  if (this->has_userdata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *posdata_);
-  }
-
-  // .Protocol.PlayerState State = 2;
-  if (this->state() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
+        *userdata_);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1764,11 +1731,8 @@ void C2P_ReportMove::MergeFrom(const C2P_ReportMove& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_posdata()) {
-    _internal_mutable_posdata()->::Protocol::PositionData::MergeFrom(from._internal_posdata());
-  }
-  if (from.state() != 0) {
-    _internal_set_state(from._internal_state());
+  if (from.has_userdata()) {
+    _internal_mutable_userdata()->::Protocol::UserData::MergeFrom(from._internal_userdata());
   }
 }
 
@@ -1793,12 +1757,7 @@ bool C2P_ReportMove::IsInitialized() const {
 void C2P_ReportMove::InternalSwap(C2P_ReportMove* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(C2P_ReportMove, state_)
-      + sizeof(C2P_ReportMove::state_)
-      - PROTOBUF_FIELD_OFFSET(C2P_ReportMove, posdata_)>(
-          reinterpret_cast<char*>(&posdata_),
-          reinterpret_cast<char*>(&other->posdata_));
+  swap(userdata_, other->userdata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata C2P_ReportMove::GetMetadata() const {
@@ -1811,18 +1770,18 @@ void C2P_ReportMove::InternalSwap(C2P_ReportMove* other) {
 
 class P2C_ReportMove::_Internal {
  public:
-  static const ::Protocol::PositionData& posdata(const P2C_ReportMove* msg);
+  static const ::Protocol::UserData& userdata(const P2C_ReportMove* msg);
 };
 
-const ::Protocol::PositionData&
-P2C_ReportMove::_Internal::posdata(const P2C_ReportMove* msg) {
-  return *msg->posdata_;
+const ::Protocol::UserData&
+P2C_ReportMove::_Internal::userdata(const P2C_ReportMove* msg) {
+  return *msg->userdata_;
 }
-void P2C_ReportMove::clear_posdata() {
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+void P2C_ReportMove::clear_userdata() {
+  if (GetArenaForAllocation() == nullptr && userdata_ != nullptr) {
+    delete userdata_;
   }
-  posdata_ = nullptr;
+  userdata_ = nullptr;
 }
 P2C_ReportMove::P2C_ReportMove(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -1833,22 +1792,16 @@ P2C_ReportMove::P2C_ReportMove(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 P2C_ReportMove::P2C_ReportMove(const P2C_ReportMove& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_posdata()) {
-    posdata_ = new ::Protocol::PositionData(*from.posdata_);
+  if (from._internal_has_userdata()) {
+    userdata_ = new ::Protocol::UserData(*from.userdata_);
   } else {
-    posdata_ = nullptr;
+    userdata_ = nullptr;
   }
-  ::memcpy(&userkey_, &from.userkey_,
-    static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&userkey_)) + sizeof(state_));
   // @@protoc_insertion_point(copy_constructor:Protocol.P2C_ReportMove)
 }
 
 void P2C_ReportMove::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&posdata_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&state_) -
-    reinterpret_cast<char*>(&posdata_)) + sizeof(state_));
+userdata_ = nullptr;
 }
 
 P2C_ReportMove::~P2C_ReportMove() {
@@ -1859,7 +1812,7 @@ P2C_ReportMove::~P2C_ReportMove() {
 
 void P2C_ReportMove::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete posdata_;
+  if (this != internal_default_instance()) delete userdata_;
 }
 
 void P2C_ReportMove::ArenaDtor(void* object) {
@@ -1878,13 +1831,10 @@ void P2C_ReportMove::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+  if (GetArenaForAllocation() == nullptr && userdata_ != nullptr) {
+    delete userdata_;
   }
-  posdata_ = nullptr;
-  ::memset(&userkey_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&state_) -
-      reinterpret_cast<char*>(&userkey_)) + sizeof(state_));
+  userdata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1894,26 +1844,11 @@ const char* P2C_ReportMove::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 UserKey = 1;
+      // .Protocol.UserData userData = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          userkey_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_userdata(), ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .Protocol.PositionData PosData = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_posdata(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .Protocol.PlayerState State = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_state(static_cast<::Protocol::PlayerState>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1945,25 +1880,12 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 UserKey = 1;
-  if (this->userkey() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_userkey(), target);
-  }
-
-  // .Protocol.PositionData PosData = 2;
-  if (this->has_posdata()) {
+  // .Protocol.UserData userData = 1;
+  if (this->has_userdata()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        2, _Internal::posdata(this), target, stream);
-  }
-
-  // .Protocol.PlayerState State = 3;
-  if (this->state() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      3, this->_internal_state(), target);
+        1, _Internal::userdata(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1982,24 +1904,11 @@ size_t P2C_ReportMove::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.PositionData PosData = 2;
-  if (this->has_posdata()) {
+  // .Protocol.UserData userData = 1;
+  if (this->has_userdata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *posdata_);
-  }
-
-  // uint64 UserKey = 1;
-  if (this->userkey() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_userkey());
-  }
-
-  // .Protocol.PlayerState State = 3;
-  if (this->state() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
+        *userdata_);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2033,14 +1942,8 @@ void P2C_ReportMove::MergeFrom(const P2C_ReportMove& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_posdata()) {
-    _internal_mutable_posdata()->::Protocol::PositionData::MergeFrom(from._internal_posdata());
-  }
-  if (from.userkey() != 0) {
-    _internal_set_userkey(from._internal_userkey());
-  }
-  if (from.state() != 0) {
-    _internal_set_state(from._internal_state());
+  if (from.has_userdata()) {
+    _internal_mutable_userdata()->::Protocol::UserData::MergeFrom(from._internal_userdata());
   }
 }
 
@@ -2065,12 +1968,7 @@ bool P2C_ReportMove::IsInitialized() const {
 void P2C_ReportMove::InternalSwap(P2C_ReportMove* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(P2C_ReportMove, state_)
-      + sizeof(P2C_ReportMove::state_)
-      - PROTOBUF_FIELD_OFFSET(P2C_ReportMove, posdata_)>(
-          reinterpret_cast<char*>(&posdata_),
-          reinterpret_cast<char*>(&other->posdata_));
+  swap(userdata_, other->userdata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata P2C_ReportMove::GetMetadata() const {
@@ -2368,16 +2266,16 @@ const char* P2C_ResultPlayerAttack::_InternalParse(const char* ptr, ::PROTOBUF_N
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // float DamageAmount = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+      // float DamageAmount = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           damageamount_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
-      // uint64 VictimKey = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+      // uint64 VictimKey = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           victimkey_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -2411,16 +2309,16 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // float DamageAmount = 2;
+  // float DamageAmount = 1;
   if (!(this->damageamount() <= 0 && this->damageamount() >= 0)) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_damageamount(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_damageamount(), target);
   }
 
-  // uint64 VictimKey = 3;
+  // uint64 VictimKey = 2;
   if (this->victimkey() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(3, this->_internal_victimkey(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_victimkey(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2439,14 +2337,14 @@ size_t P2C_ResultPlayerAttack::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 VictimKey = 3;
+  // uint64 VictimKey = 2;
   if (this->victimkey() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_victimkey());
   }
 
-  // float DamageAmount = 2;
+  // float DamageAmount = 1;
   if (!(this->damageamount() <= 0 && this->damageamount() >= 0)) {
     total_size += 1 + 4;
   }
@@ -2775,18 +2673,29 @@ void P2C_ReportPlayerAttack::InternalSwap(P2C_ReportPlayerAttack* other) {
 
 class P2C_ReportMonsterState::_Internal {
  public:
-  static const ::Protocol::PositionData& posdata(const P2C_ReportMonsterState* msg);
+  static const ::Protocol::MonsterData& monster(const P2C_ReportMonsterState* msg);
+  static const ::Protocol::TransFormData& target(const P2C_ReportMonsterState* msg);
 };
 
-const ::Protocol::PositionData&
-P2C_ReportMonsterState::_Internal::posdata(const P2C_ReportMonsterState* msg) {
-  return *msg->posdata_;
+const ::Protocol::MonsterData&
+P2C_ReportMonsterState::_Internal::monster(const P2C_ReportMonsterState* msg) {
+  return *msg->monster_;
 }
-void P2C_ReportMonsterState::clear_posdata() {
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+const ::Protocol::TransFormData&
+P2C_ReportMonsterState::_Internal::target(const P2C_ReportMonsterState* msg) {
+  return *msg->target_;
+}
+void P2C_ReportMonsterState::clear_monster() {
+  if (GetArenaForAllocation() == nullptr && monster_ != nullptr) {
+    delete monster_;
   }
-  posdata_ = nullptr;
+  monster_ = nullptr;
+}
+void P2C_ReportMonsterState::clear_target() {
+  if (GetArenaForAllocation() == nullptr && target_ != nullptr) {
+    delete target_;
+  }
+  target_ = nullptr;
 }
 P2C_ReportMonsterState::P2C_ReportMonsterState(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -2797,10 +2706,15 @@ P2C_ReportMonsterState::P2C_ReportMonsterState(::PROTOBUF_NAMESPACE_ID::Arena* a
 P2C_ReportMonsterState::P2C_ReportMonsterState(const P2C_ReportMonsterState& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_posdata()) {
-    posdata_ = new ::Protocol::PositionData(*from.posdata_);
+  if (from._internal_has_monster()) {
+    monster_ = new ::Protocol::MonsterData(*from.monster_);
   } else {
-    posdata_ = nullptr;
+    monster_ = nullptr;
+  }
+  if (from._internal_has_target()) {
+    target_ = new ::Protocol::TransFormData(*from.target_);
+  } else {
+    target_ = nullptr;
   }
   actorkey_ = from.actorkey_;
   // @@protoc_insertion_point(copy_constructor:Protocol.P2C_ReportMonsterState)
@@ -2808,9 +2722,9 @@ P2C_ReportMonsterState::P2C_ReportMonsterState(const P2C_ReportMonsterState& fro
 
 void P2C_ReportMonsterState::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&posdata_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&monster_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&actorkey_) -
-    reinterpret_cast<char*>(&posdata_)) + sizeof(actorkey_));
+    reinterpret_cast<char*>(&monster_)) + sizeof(actorkey_));
 }
 
 P2C_ReportMonsterState::~P2C_ReportMonsterState() {
@@ -2821,7 +2735,8 @@ P2C_ReportMonsterState::~P2C_ReportMonsterState() {
 
 void P2C_ReportMonsterState::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete posdata_;
+  if (this != internal_default_instance()) delete monster_;
+  if (this != internal_default_instance()) delete target_;
 }
 
 void P2C_ReportMonsterState::ArenaDtor(void* object) {
@@ -2840,10 +2755,14 @@ void P2C_ReportMonsterState::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && posdata_ != nullptr) {
-    delete posdata_;
+  if (GetArenaForAllocation() == nullptr && monster_ != nullptr) {
+    delete monster_;
   }
-  posdata_ = nullptr;
+  monster_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && target_ != nullptr) {
+    delete target_;
+  }
+  target_ = nullptr;
   actorkey_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -2861,10 +2780,17 @@ const char* P2C_ReportMonsterState::_InternalParse(const char* ptr, ::PROTOBUF_N
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .Protocol.PositionData PosData = 2;
+      // .Protocol.MonsterData monster = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_posdata(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_monster(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .Protocol.TransFormData Target = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_target(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2903,12 +2829,20 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_actorkey(), target);
   }
 
-  // .Protocol.PositionData PosData = 2;
-  if (this->has_posdata()) {
+  // .Protocol.MonsterData monster = 2;
+  if (this->has_monster()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        2, _Internal::posdata(this), target, stream);
+        2, _Internal::monster(this), target, stream);
+  }
+
+  // .Protocol.TransFormData Target = 3;
+  if (this->has_target()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::target(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2927,11 +2861,18 @@ size_t P2C_ReportMonsterState::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .Protocol.PositionData PosData = 2;
-  if (this->has_posdata()) {
+  // .Protocol.MonsterData monster = 2;
+  if (this->has_monster()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *posdata_);
+        *monster_);
+  }
+
+  // .Protocol.TransFormData Target = 3;
+  if (this->has_target()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *target_);
   }
 
   // uint64 ActorKey = 1;
@@ -2972,8 +2913,11 @@ void P2C_ReportMonsterState::MergeFrom(const P2C_ReportMonsterState& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_posdata()) {
-    _internal_mutable_posdata()->::Protocol::PositionData::MergeFrom(from._internal_posdata());
+  if (from.has_monster()) {
+    _internal_mutable_monster()->::Protocol::MonsterData::MergeFrom(from._internal_monster());
+  }
+  if (from.has_target()) {
+    _internal_mutable_target()->::Protocol::TransFormData::MergeFrom(from._internal_target());
   }
   if (from.actorkey() != 0) {
     _internal_set_actorkey(from._internal_actorkey());
@@ -3004,9 +2948,9 @@ void P2C_ReportMonsterState::InternalSwap(P2C_ReportMonsterState* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(P2C_ReportMonsterState, actorkey_)
       + sizeof(P2C_ReportMonsterState::actorkey_)
-      - PROTOBUF_FIELD_OFFSET(P2C_ReportMonsterState, posdata_)>(
-          reinterpret_cast<char*>(&posdata_),
-          reinterpret_cast<char*>(&other->posdata_));
+      - PROTOBUF_FIELD_OFFSET(P2C_ReportMonsterState, monster_)>(
+          reinterpret_cast<char*>(&monster_),
+          reinterpret_cast<char*>(&other->monster_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata P2C_ReportMonsterState::GetMetadata() const {

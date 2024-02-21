@@ -1,5 +1,7 @@
 #pragma once
 #include "Actor.h"
+#include "TransFormAgent.h"
+#include "AIAgent.h"
 
 class Monster : public Actor
 {
@@ -8,17 +10,13 @@ public:
 	~Monster();
 
 public:
+	void Init(int64 actorKey, eMonsterType monsterType, float x, float y, float z, float yaw);
 	void SetMonsterType(eMonsterType type) { MonsterType = type; }
 	void SetMonsterAbils();
 	void TakeDamage(uint64 attacker, float damageAmount);
-	void SetTarget(uint64 target);
 
 public:
 	void Update();
-
-private:
-	bool IsVaildTarget();
-	void LookAt();
 
 private:
 	//::todo world
@@ -27,6 +25,7 @@ private:
 	double Health;
 	double Power;
 	uint64 TargetKey;
+	std::shared_ptr<AIAgent> AI;
 };
 
 

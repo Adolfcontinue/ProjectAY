@@ -5,6 +5,10 @@
 #include "MonsterAnimInstance.h"
 #include "../AYGameInstance.h"
 #include "PreLoder.h"
+#include "Kismet/GameplayStatics.h"
+#include "AYGameState.h"
+#include "AYCharacter.h"
+#include "AYGameMode.h"
 
 AMonsterBeholder::AMonsterBeholder()
 {
@@ -20,15 +24,13 @@ AMonsterBeholder::AMonsterBeholder()
     if (anim.Succeeded())
         GetMesh()->SetAnimInstanceClass(anim.Class);
 
-    GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
+    //GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
+    GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 }
 
 void AMonsterBeholder::BeginPlay()
 {
     Super::BeginPlay();
-
-    FVector v = GetActorForwardVector();
-    LOG("Beholder", v.X, v.Y, v.Z);
 }
 
 void AMonsterBeholder::Tick(float DeltaTime)

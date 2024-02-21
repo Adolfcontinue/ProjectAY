@@ -22,13 +22,8 @@ bool Handler::C2P_RequestLogin(PacketSessionRef& session, Protocol::C2P_RequestL
 {
 	//::todo login data db
 	UserRef user = MakeShared<User>();
-	user->SetExp(0);
-	user->SetID(packet.id());
-	user->SetPW(packet.pw());
-	user->SetLevel(1);
-	user->SetSessionKey(session->GetSessionKey());
-	user->GetTransForm()->SetPosition(790.f, 1110.f, 90.f);
-	user->GetTransForm()->SetRotation(0.f, 0.f, 0.f, 1.f);
+	user->Init(session->GetSessionKey(), packet.id(), packet.pw(), 
+		790.f, 1100.f, 90.f, 1,  0.f, 0, 10.f, 100.f);
 	GWorld->DoASync(&World::EnterUser, user);
 	Protocol::P2C_ResultLogin sendPacket;
 	sendPacket.set_result((uint32)true);
@@ -50,12 +45,7 @@ bool Handler::C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_Requ
 
 bool Handler::C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet)
 {
-	DirectX::XMFLOAT3 pos;
-	ProtobufHelper::ConvertXMFLOAT3(&pos, packet.posdata().posision());
-	DirectX::XMFLOAT4 rot;
-	ProtobufHelper::ConvertXMFLOAT4(&rot, packet.posdata().rotation());
-	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), pos, rot);
-
+	GWorld->DoASync(&World::MoveUser, session->GetSessionKey(), packet.userdata().transform(), packet.userdata().state());
 	return true;
 }
 

@@ -50,12 +50,13 @@ public:
     void ApplyStun(float StunDuration);
 
 public:
-    void RepMonsterState(FVector pos, FQuat quat);
-
+    void RepMonsterState(FVector pos, Protocol::ActorState state);
+    void RepMonsterState(FVector pos, FVector targetPos, Protocol::ActorState state);
 
 private:
     void Move(float DeltaTime);
     void Rotation(float DeltaTime);
+    EAnimState ConvertAnimState(Protocol::ActorState state);
 
 protected:
     uint64 ActorKey;
@@ -64,7 +65,8 @@ protected:
     UPROPERTY()
     class UMonsterAnimInstance* Anim;
 
-    FVector CurrentLocation;
+    FVector MyLocation;
+    FVector CurLocation;
     FVector TargetLocation;
     float LerpAlpha;
     FQuat CurrentRotation;

@@ -151,14 +151,17 @@ void URecvPacketProsesor::P2C_ReportMove(BYTE* buffer, int32 len)
 		return;
 
 	//process
-	FVector pos;
+	/*FVector pos;
 	pos.Set(packet.posdata().posision().x(), packet.posdata().posision().y(), packet.posdata().posision().z());
 	FQuat quat;
 	quat.X = packet.posdata().rotation().x();
 	quat.Y = packet.posdata().rotation().y();
 	quat.Z = packet.posdata().rotation().z();
-	quat.W = packet.posdata().rotation().w();
-	GameInstance->RepPlayerMove(packet.userkey(), pos, quat, packet.state());
+	quat.W = packet.posdata().rotation().w();*/
+
+	FVector pos(packet.userdata().transform().x(), packet.userdata().transform().y(), packet.userdata().transform().z());
+	float yaw = packet.userdata().transform().yaw();
+	GameInstance->RepPlayerMove(packet.userdata().userkey(), pos, yaw, packet.userdata().state());
 }
 
 void URecvPacketProsesor::P2C_ReportPlayerAttack(BYTE* buffer, int32 len)
@@ -179,14 +182,12 @@ void URecvPacketProsesor::P2C_ReportMonsterState(BYTE* buffer, int32 len)
 	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
 		return;
 
-	FVector pos;
-	pos.Set(packet.posdata().posision().x(), packet.posdata().posision().y(), packet.posdata().posision().z());
-	FQuat quat;
-	quat.X = packet.posdata().rotation().x();
-	quat.Y = packet.posdata().rotation().y();
-	quat.Z = packet.posdata().rotation().z();
-	quat.W = packet.posdata().rotation().w();
-
-	GameInstance->RepMonsterState(packet.actorkey() , pos, quat, Protocol::PlayerState_MIN);
+	//process
+	FVector pos(packet.monster().transform().x(), packet.monster().transform().y(), packet.monster().transform().z());
+	float yaw = packet.monster().transform().yaw();
+	
+	FVector target(packet.target().x(), packet.target().y(), packet.target().z());
+	GameInstance->RepMonsterState(packet.actorkey(), pos, target, packet.monster().state());
+	//GameInstance->RepMonsterState(packet.actorkey(), pos, packet.monster().state());
 }
 

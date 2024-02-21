@@ -28,15 +28,15 @@ const char descriptor_table_protodef_Enum_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\n\nEnum.proto\022\010Protocol*h\n\nPlayerType\022\024\n\020"
   "PLAYER_TYPE_NONE\020\000\022\026\n\022PLAYER_TYPE_KNIGHT"
   "\020\001\022\024\n\020PLAYER_TYPE_MAGE\020\002\022\026\n\022PLAYER_TYPE_"
-  "ARCHER\020\003*E\n\013PlayerState\022\010\n\004IDlE\020\000\022\013\n\007ATT"
-  "ACK1\020\001\022\013\n\007ATTACK2\020\002\022\010\n\004MOVE\020\003\022\010\n\004DEAD\020\004*"
-  "W\n\013MonsterType\022\014\n\010BEHOLDER\020\000\022\016\n\nBLACKNIG"
-  "HT\020\001\022\t\n\005CHEST\020\002\022\010\n\004CRAB\020\003\022\t\n\005DEMON\020\004\022\n\n\006"
-  "LIZARD\020\005b\006proto3"
+  "ARCHER\020\003*@\n\nActorState\022\010\n\004IDlE\020\000\022\013\n\007ATTA"
+  "CK1\020\001\022\007\n\003HIT\020\002\022\010\n\004MOVE\020\003\022\010\n\004DEAD\020\004*W\n\013Mo"
+  "nsterType\022\014\n\010BEHOLDER\020\000\022\016\n\nBLACKNIGHT\020\001\022"
+  "\t\n\005CHEST\020\002\022\010\n\004CRAB\020\003\022\t\n\005DEMON\020\004\022\n\n\006LIZAR"
+  "D\020\005b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_Enum_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Enum_2eproto = {
-  false, false, 296, descriptor_table_protodef_Enum_2eproto, "Enum.proto", 
+  false, false, 291, descriptor_table_protodef_Enum_2eproto, "Enum.proto", 
   &descriptor_table_Enum_2eproto_once, nullptr, 0, 0,
   schemas, file_default_instances, TableStruct_Enum_2eproto::offsets,
   nullptr, file_level_enum_descriptors_Enum_2eproto, file_level_service_descriptors_Enum_2eproto,
@@ -64,11 +64,11 @@ bool PlayerType_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerState_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorState_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_Enum_2eproto);
   return file_level_enum_descriptors_Enum_2eproto[1];
 }
-bool PlayerState_IsValid(int value) {
+bool ActorState_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:

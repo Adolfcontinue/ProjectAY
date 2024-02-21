@@ -4,7 +4,6 @@
 #pragma warning(disable: 4668)
 #pragma warning(disable: 4577)
 
-
 #ifndef GOOGLE_PROTOBUF_INCLUDED_Enum_2eproto
 #define GOOGLE_PROTOBUF_INCLUDED_Enum_2eproto
 
@@ -87,33 +86,33 @@ inline bool PlayerType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PlayerType>(
     PlayerType_descriptor(), name, value);
 }
-enum PlayerState : int {
+enum ActorState : int {
   IDlE = 0,
   ATTACK1 = 1,
-  ATTACK2 = 2,
+  HIT = 2,
   MOVE = 3,
   DEAD = 4,
-  PlayerState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  PlayerState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+  ActorState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  ActorState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
-bool PlayerState_IsValid(int value);
-constexpr PlayerState PlayerState_MIN = IDlE;
-constexpr PlayerState PlayerState_MAX = DEAD;
-constexpr int PlayerState_ARRAYSIZE = PlayerState_MAX + 1;
+bool ActorState_IsValid(int value);
+constexpr ActorState ActorState_MIN = IDlE;
+constexpr ActorState ActorState_MAX = DEAD;
+constexpr int ActorState_ARRAYSIZE = ActorState_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PlayerState_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ActorState_descriptor();
 template<typename T>
-inline const std::string& PlayerState_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, PlayerState>::value ||
+inline const std::string& ActorState_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ActorState>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function PlayerState_Name.");
+    "Incorrect type passed to function ActorState_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    PlayerState_descriptor(), enum_t_value);
+    ActorState_descriptor(), enum_t_value);
 }
-inline bool PlayerState_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PlayerState* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PlayerState>(
-    PlayerState_descriptor(), name, value);
+inline bool ActorState_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ActorState* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ActorState>(
+    ActorState_descriptor(), name, value);
 }
 enum MonsterType : int {
   BEHOLDER = 0,
@@ -171,10 +170,10 @@ template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::PlayerType>() {
   return ::Protocol::PlayerType_descriptor();
 }
-template <> struct is_proto_enum< ::Protocol::PlayerState> : ::std::true_type {};
+template <> struct is_proto_enum< ::Protocol::ActorState> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::PlayerState>() {
-  return ::Protocol::PlayerState_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Protocol::ActorState>() {
+  return ::Protocol::ActorState_descriptor();
 }
 template <> struct is_proto_enum< ::Protocol::MonsterType> : ::std::true_type {};
 template <>

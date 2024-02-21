@@ -36,6 +36,16 @@ AAYMonsterBase* AAYGameState::FindMonster(int64 key)
 	return *iter;
 }
 
+void AAYGameState::SetMyPlayer(AAYCharacter* player)
+{
+	MyPlayer = player;
+}
+
+AAYCharacter* AAYGameState::GetMyPlayer()
+{
+	return MyPlayer;
+}
+
 void AAYGameState::RepPlayerMove(int64 userKey, FVector pos, FQuat quat)
 {
 	AOtherCharacter* player = FindPlayer(userKey);
