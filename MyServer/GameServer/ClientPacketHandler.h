@@ -18,6 +18,8 @@ enum Packet_C2P
 	P2C_ResultPlayerAttack = 1009,
 	P2C_ReportPlayerAttack = 1010,
 	P2C_ReportMonsterState = 1011,
+	C2P_RequestMonsterAttack = 1012,
+	P2C_ResultMonsterAttack = 1013,
 };
 
 // Custom Handlers
@@ -28,6 +30,7 @@ namespace Handler
 	bool C2P_RequestWorldData(PacketSessionRef& session, Protocol::C2P_RequestWorldData& packet);
 	bool C2P_ReportMove(PacketSessionRef& session, Protocol::C2P_ReportMove& packet);
 	bool C2P_RequestPlayerAttack(PacketSessionRef& session, Protocol::C2P_RequestPlayerAttack& packet);
+	bool C2P_RequestMonsterAttack(PacketSessionRef& session, Protocol::C2P_RequestMonsterAttack& packet);
 }
 
 
@@ -42,6 +45,7 @@ public:
 		GPacketHandler[C2P_RequestWorldData] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_RequestWorldData>(Handler::C2P_RequestWorldData, session, buffer, len); };
 		GPacketHandler[C2P_ReportMove] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_ReportMove>(Handler::C2P_ReportMove, session, buffer, len); };
 		GPacketHandler[C2P_RequestPlayerAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_RequestPlayerAttack>(Handler::C2P_RequestPlayerAttack, session, buffer, len); };
+		GPacketHandler[C2P_RequestMonsterAttack] = [](PacketSessionRef& session, BYTE* buffer, int32 len) { return HandlePacket<Protocol::C2P_RequestMonsterAttack>(Handler::C2P_RequestMonsterAttack, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -57,6 +61,7 @@ public:
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultPlayerAttack& packet) { return MakeSendBuffer(packet, P2C_ResultPlayerAttack); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportPlayerAttack& packet) { return MakeSendBuffer(packet, P2C_ReportPlayerAttack); }
 	static SendBufferRef MakeSendBuffer(Protocol::P2C_ReportMonsterState& packet) { return MakeSendBuffer(packet, P2C_ReportMonsterState); }
+	static SendBufferRef MakeSendBuffer(Protocol::P2C_ResultMonsterAttack& packet) { return MakeSendBuffer(packet, P2C_ResultMonsterAttack); }
 
 
 private:

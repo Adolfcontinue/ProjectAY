@@ -33,6 +33,7 @@ void URecvPacketProsesor::Init()
 	Handler[EPacket_C2P_Protocol::P2C_ReportMove] = &URecvPacketProsesor::P2C_ReportMove;
 	Handler[EPacket_C2P_Protocol::P2C_ReportPlayerAttack] = &URecvPacketProsesor::P2C_ReportPlayerAttack;
 	Handler[EPacket_C2P_Protocol::P2C_ReportMonsterState] = &URecvPacketProsesor::P2C_ReportMonsterState;
+	Handler[EPacket_C2P_Protocol::P2C_ResultMonsterAttack] = &URecvPacketProsesor::P2C_ResultMonsterAttack;
 }
 
 void URecvPacketProsesor::Tick(float DeltaTime)
@@ -188,6 +189,16 @@ void URecvPacketProsesor::P2C_ReportMonsterState(BYTE* buffer, int32 len)
 	
 	FVector target(packet.target().x(), packet.target().y(), packet.target().z());
 	GameInstance->RepMonsterState(packet.actorkey(), pos, target, packet.monster().state());
-	//GameInstance->RepMonsterState(packet.actorkey(), pos, packet.monster().state());
+}
+
+void URecvPacketProsesor::P2C_ResultMonsterAttack(BYTE* buffer, int32 len)
+{
+	//vaild
+	Protocol::P2C_ResultMonsterAttack packet;
+	if (packet.ParseFromArray(buffer + sizeof(PacketHeader), len - sizeof(PacketHeader)) == false)
+		return;
+
+	//process
+	GameInstance->RetMonsterAttack(packet.damageamount());
 }
 

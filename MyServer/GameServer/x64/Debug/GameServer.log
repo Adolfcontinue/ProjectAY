@@ -85,6 +85,7 @@ C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C424
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ProtobufHelper.cpp
   StatusAgent.cpp
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -123,5 +124,9 @@ C:\Users\godye\Desktop\MyProject\MyServer\GameServer\World.cpp(132,10): warning 
           [
               T=int
           ]
+  코드를 생성하고 있습니다...
+  Enum.pb.cc
+  Protocol.pb.cc
+  Struct.pb.cc
   코드를 생성하고 있습니다...
   GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\MyServer\Binary\Debug\GameServer.exe

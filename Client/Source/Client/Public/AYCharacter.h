@@ -34,6 +34,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void TakeDamage(float dmgAmount);
 
 
 private:
@@ -52,6 +53,7 @@ private:
 	void AttackCheck();
 	void AnimSync();
 	void SetAnimState(EAnimState animstate);
+	void SetSessionKey(int64 key);
 
 public:
 	UPROPERTY(VisibleAnywhere, Category = Camera)
@@ -62,7 +64,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = Weapon)
 	//USkeletalMeshComponent* Weapon;
-	UStaticMeshComponent* Weapon;
+	class AActorWeapon* Weapon;
 
 private:
 	eControlType CurrentControlType = eControlType::Type1;
@@ -89,6 +91,8 @@ private:
 	UPROPERTY()
 	class UPlayerStatComponent* Stat;
 
+	UPROPERTY()
+	class UWidgetComponent* HPBar;
 
 	float SyncTimer;
 };

@@ -4,6 +4,7 @@
 #pragma warning(disable: 4668)
 #pragma warning(disable: 4577)
 
+
 #ifndef GOOGLE_PROTOBUF_INCLUDED_Enum_2eproto
 #define GOOGLE_PROTOBUF_INCLUDED_Enum_2eproto
 

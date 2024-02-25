@@ -22,11 +22,10 @@ public:
 	UMonsterAnimInstance();
 	virtual void NativeUpdateAnimation(float deltaSecond) override;
 
-	FOnMonsterAttackDelegate MonstertAttackDelegate;
+	FOnMonsterAttackDelegate OnMonsterAttack;
 
 public:
 	void SetAnimState(EAnimState state);
-	void AddAnimState(EAnimState state);
 
 private:
 	UFUNCTION()
@@ -38,6 +37,4 @@ private:
 private:
 	UPROPERTY(Editanywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	EAnimState AnimState;
-
-	TQueue<EAnimState> AnimStateQueue;
 };

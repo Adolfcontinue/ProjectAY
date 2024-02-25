@@ -44,8 +44,8 @@ public:
 
 	void RepPlayerMove(int64 userKey, FVector pos, float yaw, Protocol::ActorState state);
 	void RepPlayerAttack(int64 victimKey, double damageAmount);
-	void RepMonsterState(int64 actorKey, FVector pos, Protocol::ActorState state);
 	void RepMonsterState(int64 actorKey, FVector pos, FVector targetPos, Protocol::ActorState state);
+	void RetMonsterAttack(float dmg);
 	
 public:
 	template<typename T>

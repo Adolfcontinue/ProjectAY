@@ -25,8 +25,9 @@ public:
 	int32 GetExp() { return _Exp; }
 	void ReqWorldData();
 
-	std::shared_ptr<StatusAgent> GetStatus();
+	void TakeDamage(float dmg);
 
+	std::shared_ptr<StatusAgent> GetStatus();
 private:
 	int64 _SessionKey;
 	string _Id;

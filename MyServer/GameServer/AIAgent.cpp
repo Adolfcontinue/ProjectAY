@@ -16,10 +16,16 @@ AIAgent::AIAgent(shared_ptr<Actor> owner) : AgentBase(owner)
 void AIAgent::Init(Protocol::ActorState state)
 {
 	State = state;
+	Tick = GetTickCount64();
 }
 
 void AIAgent::Update()
 {
+	if (GetTickCount64() - Tick < TickCount)
+		return;
+
+	Tick = GetTickCount64();
+
 	MonsterRef ownerMonster = static_pointer_cast<Monster>(Owner.lock());
 	if (ownerMonster == nullptr)
 		return;
@@ -71,14 +77,21 @@ bool AIAgent::CheckTargetDistance(int distance)
 {
 	ActorRef ownerActor = Owner.lock();
 	Vector3 pos = ownerActor->GetTransFormAgent()->GetPosition();
-	pos.Z = 0;
-	Vector3 targetPos = TargetPosition;
-	targetPos.Z = 0;
-	Vector3 direction = targetPos - pos;
-	if (direction.Size() > distance)
-		return true;
-		
-	return false;
+
+	PathFinder finder;
+	bool retVal = finder.IsPathFinder(pos, TargetPosition, GWorld->GetGridMap());
+	return retVal;
+
+
+	//pos.Z = 0;
+	//Vector3 targetPos = TargetPosition;
+	//targetPos.Z = 0;
+	//Vector3 direction = targetPos - pos;
+	//int64 dirSize = direction.Size();
+	//if (dirSize > distance)
+	//	return true;
+	//	
+	//return false;
 }
 
 void AIAgent::UpdateIDLE()
@@ -102,7 +115,6 @@ void AIAgent::UpdateMove()
 	}
 	
 	PathFinder finder;
-	
 	Vector3 targetPos = finder.FindTargetPos(pos, TargetPosition, GWorld->GetGridMap());
 	pos.Z = 0;
 	targetPos.Z = 0;
@@ -134,11 +146,10 @@ void AIAgent::UpdateFSM()
 		{
 		case Protocol::IDlE:
 		{
-			SetState(Protocol::ActorState::ATTACK1);
-			//if (CheckTargetDistance(200))
-			//	SetState(Protocol::ActorState::MOVE);
-			//else
-			//	
+			if (CheckTargetDistance(100))
+				SetState(Protocol::ActorState::MOVE);
+			else
+				SetState(Protocol::ActorState::ATTACK1);
 		}
 		break;
 		case Protocol::ATTACK1:
@@ -149,7 +160,7 @@ void AIAgent::UpdateFSM()
 			break;
 		case Protocol::MOVE:
 		{
-			if (CheckTargetDistance(200))
+			if (CheckTargetDistance(100))
 				SetState(Protocol::ActorState::MOVE);
 			else
 				SetState(Protocol::ActorState::IDlE);

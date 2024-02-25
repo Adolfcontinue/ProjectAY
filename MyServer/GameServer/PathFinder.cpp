@@ -11,6 +11,22 @@ PathFinder::~PathFinder()
 {
 }
 
+bool PathFinder::IsPathFinder(Vector3& start, Vector3& end, GridMap* map)
+{
+	GridNode* startNode = map->GetGridNode(start);
+	if (startNode == nullptr)
+		return false;
+
+	GridNode* endNode = map->GetGridNode(end);
+	if (endNode == nullptr)
+		return false;
+	
+	if (startNode == endNode)
+		return false;
+
+	return true;
+}
+
 Vector3 PathFinder::FindTargetPos(Vector3& start, Vector3& end, GridMap* map)
 {
 	GridNode* endNode = FindPath(start, end, map);
@@ -109,9 +125,10 @@ GridNode* PathFinder::GetAstarNode(GridNode* targetNode)
 	{
 		if (node->Parent == nullptr)
 			break;
+		else
+			retNode = node;
 
 		node = node->Parent;
-		retNode = node;
 	}
 
 	return retNode;

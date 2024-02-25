@@ -64,3 +64,8 @@ float StatusAgent::GetHP()
 {
 	return HP;
 }
+
+void StatusAgent::TakeDamage(float dmg)
+{
+	HP -= dmg;
+}

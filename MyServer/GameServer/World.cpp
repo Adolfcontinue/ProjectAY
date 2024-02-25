@@ -146,6 +146,6 @@ void World::Update()
 	for (auto& it : _Monsters)
 		it.second->Update();
 
-	DoTimer(2000, &World::Update);
+	DoTimer(200, &World::Update);
 }
 

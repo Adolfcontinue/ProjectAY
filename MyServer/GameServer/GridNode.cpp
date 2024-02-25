@@ -25,7 +25,7 @@ int GridNode::GetFCost() const
 void GridNode::SetCenter()
 {
 	Center.X = (Min.X + Max.X) / 2;
-	Center.Y = (Min.Y + Min.Y) / 2;
+	Center.Y = (Min.Y + Max.Y) / 2;
 }
 
 void GridNode::SetParent(GridNode* parent)

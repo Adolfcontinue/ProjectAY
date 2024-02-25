@@ -3,7 +3,7 @@
 #include "GridNode.h"
 
 #define MapSize 64
-#define TileSize 100
+#define TileSize 400
 #define DefaultMap
 
 using namespace std;

@@ -114,6 +114,7 @@
     <ClCompile Include="PathFinder.cpp">
       <Filter>PathFinder</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -189,6 +190,7 @@
     <ClInclude Include="PathFinder.h">
       <Filter>PathFinder</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\ThridParty\Protobuf_builder\Enum.proto">

@@ -10,7 +10,9 @@
 #include "AYMonsterBase.h"
 #include "MonsterBeholder.h"
 #include "MonsterLizardMan.h"
+#include "MonsterBlackKnight.h"
 #include "TableManager.h"
+#include "Public/AYCharacter.h"
 
 void UAYGameInstance::Init()
 {
@@ -107,19 +109,6 @@ void UAYGameInstance::RepPlayerAttack(int64 victimKey, double damageAmount)
 	}
 }
 
-void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, Protocol::ActorState state)
-{
-	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
-	if (::IsValid(gameState))
-	{
-		auto it = gameState->FindMonster(actorKey);
-		if (it == nullptr)
-			return;
-
-		it->RepMonsterState(pos, state);
-	}
-}
-
 void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FVector targetPos, Protocol::ActorState state)
 {
 	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
@@ -133,16 +122,30 @@ void UAYGameInstance::RepMonsterState(int64 actorKey, FVector pos, FVector targe
 	}
 }
 
+void UAYGameInstance::RetMonsterAttack(float dmg)
+{
+	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(gameState))
+	{
+		AAYCharacter* myPlayer = gameState->GetMyPlayer();
+		if (myPlayer == nullptr)
+			return;
+
+		myPlayer->TakeDamage(dmg);
+	}
+}
+
 void UAYGameInstance::AddMonster(Protocol::MonsterData monsterData)
 {
-	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
-	if (::IsValid(state))
+	AAYGameState* gameState = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(gameState))
 	{
 		FVector location = FVector(monsterData.transform().x(), monsterData.transform().y(), monsterData.transform().z());
 		FRotator rotation = FRotator(0 , monsterData.transform().yaw(), 0);
-		AMonsterBeholder* newMonster = GetWorld()->SpawnActor<AMonsterBeholder>(AMonsterBeholder::StaticClass(), location, rotation);
+		
+		AMonsterBlackKnight* newMonster = GetWorld()->SpawnActor<AMonsterBlackKnight>(AMonsterBlackKnight::StaticClass(), location, rotation);
 		newMonster->SetActorKey(monsterData.actorkey());
-		state->AddMonster(newMonster->GetActorKey(), newMonster);
+		gameState->AddMonster(newMonster->GetActorKey(), newMonster);
 	}
 }
 

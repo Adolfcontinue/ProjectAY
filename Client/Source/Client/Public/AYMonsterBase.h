@@ -26,9 +26,10 @@ public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
     virtual void PostInitializeComponents() override;
-
     void SetActorKey(uint64 key);
     uint64 GetActorKey();
+    void SetMonseterAsset();
+
 
 public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster")
@@ -50,13 +51,15 @@ public:
     void ApplyStun(float StunDuration);
 
 public:
-    void RepMonsterState(FVector pos, Protocol::ActorState state);
     void RepMonsterState(FVector pos, FVector targetPos, Protocol::ActorState state);
 
 private:
     void Move(float DeltaTime);
     void Rotation(float DeltaTime);
+    void AttackCheck();
     EAnimState ConvertAnimState(Protocol::ActorState state);
+
+
 
 protected:
     uint64 ActorKey;
@@ -67,9 +70,16 @@ protected:
 
     FVector MyLocation;
     FVector CurLocation;
+    FVector MoveDir;
     FVector TargetLocation;
     float LerpAlpha;
     FQuat CurrentRotation;
     FQuat TargetRotation;
     float SlerpAlpha;
+
+    UPROPERTY()
+    class UPlayerStatComponent* Stat;
+
+    UPROPERTY()
+    class UWidgetComponent* HPBar;
 };

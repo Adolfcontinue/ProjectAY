@@ -70,6 +70,22 @@ void User::ReqWorldData()
 	session->Send(sendBuffer);
 }
 
+void User::TakeDamage(float dmg)
+{
+	Status->TakeDamage(dmg);
+	 
+	//result;
+	Protocol::P2C_ResultMonsterAttack sendPacket;
+	sendPacket.set_damageamount(dmg);
+
+	GameSessionRef session = GGameSessionManager.Find(GetSessionKey());
+	if (session == nullptr)
+		return;
+
+	SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
+	session->Send(sendBuffer);
+}
+
 std::shared_ptr<StatusAgent> User::GetStatus()
 {
 	return Status;

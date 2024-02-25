@@ -41,7 +41,6 @@ void AMonsterBeholder::Tick(float DeltaTime)
 void AMonsterBeholder::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
-    //Anim->MonstertAttackDelegate.AddUObject(this, &AMonsterBeholder::BeholderAttack);
 }
 
 

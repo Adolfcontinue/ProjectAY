@@ -9,6 +9,10 @@
 #include "ActorWeapon.h"
 #include "../AYGameInstance.h"
 #include "PlayerStatComponent.h"
+#include "Components/WidgetComponent.h"
+#include "CharacterWidget.h"
+#include "Kismet/GameplayStatics.h"
+#include "AYGameState.h"
 
 // Sets default values
 AAYCharacter::AAYCharacter()
@@ -46,6 +50,17 @@ AAYCharacter::AAYCharacter()
 	IsAttacking = false;
 	MaxCombo = 3;
 	SyncTimer = 0.f;
+
+	HPBar = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBARWIDGET"));
+	HPBar->SetupAttachment(GetMesh());
+	HPBar->SetRelativeLocation(FVector(0.0f, 10.0f, 180.f));
+	HPBar->SetWidgetSpace(EWidgetSpace::Screen);
+	static ConstructorHelpers::FClassFinder<UCharacterWidget> UI_HUD(TEXT("/Game/Blueprint/Widget/UI_HPBar.UI_HPBar_C"));
+	if (UI_HUD.Succeeded())
+	{
+		HPBar->SetWidgetClass(UI_HUD.Class);
+		HPBar->SetDrawSize(FVector2D(150.f, 50.f));
+	}
 }
 
 // Called when the game starts or when spawned
@@ -54,10 +69,18 @@ void AAYCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	FName weaponSocket(TEXT("RightWeaponShield"));
-	auto weapon = GetWorld()->SpawnActor<AActorWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
-	weapon->LoadMesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword01SM.Sword01SM"));
-	if (weapon != nullptr)
-		weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, weaponSocket);
+	Weapon = GetWorld()->SpawnActor<AActorWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+	Weapon->LoadMesh(TEXT("/Game/Asset/ModularRPGHeroesPBR/Meshes/Weapons/Sword01SM.Sword01SM"));
+	if (Weapon != nullptr)
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, weaponSocket);
+
+	auto hpWidget = Cast<UCharacterWidget>(HPBar->GetUserWidgetObject());
+	if (hpWidget != nullptr)
+		hpWidget->BindCharacterStat(Stat);
+
+	AAYGameState* state = Cast<AAYGameState>(UGameplayStatics::GetGameState(this));
+	if (::IsValid(state))
+		state->SetMyPlayer(this);
 }
 
 // Called every frame
@@ -80,6 +103,8 @@ void AAYCharacter::PostInitializeComponents()
 
 	_Anim->OnAttack1_EndCheck.AddUObject(this, &AAYCharacter::AttackEndCheck);
 	_Anim->OnAttackHitCheck.AddUObject(this, &AAYCharacter::AttackCheck);
+
+
 }
 
 // Called to bind functionality to input
@@ -96,6 +121,12 @@ void AAYCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AAYCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AAYCharacter::LookUp);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AAYCharacter::Turn);
+}
+
+void AAYCharacter::TakeDamage(float dmgAmount)
+{
+	//
+	Stat->TakeDamage(dmgAmount);
 }
 
 void AAYCharacter::UpDown(float axisValue)
@@ -282,5 +313,6 @@ void AAYCharacter::SetAnimState(EAnimState animstate)
 	_Anim->SetAnimState(animstate);
 	AnimSync();
 }
+
 
 

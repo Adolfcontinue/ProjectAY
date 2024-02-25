@@ -13,6 +13,7 @@ public:
 	~PathFinder();
 
 public:
+	bool IsPathFinder(Vector3& start, Vector3& end, class GridMap* map);
 	Vector3 FindTargetPos(Vector3& start, Vector3& end, class GridMap* map);
 
 private:

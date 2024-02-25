@@ -22,8 +22,9 @@ void TransFormAgent::Update()
 {
 	if (Direction.Size() != 0)
 	{
+		Vector3 dir = Direction * 20;
 		SetYaw(Direction.RotationYaw());
-		//Position += Direction;
+		AddPosition(dir);
 	}
 }
 
@@ -101,5 +102,11 @@ Vector3 TransFormAgent::GetPosition()
 float TransFormAgent::GetYaw()
 {
 	return 0.0f;
+}
+
+void TransFormAgent::AddPosition(Vector3 other)
+{
+	Position += other;
+	SetTransForm(Position.X, Position.Y, Position.Z, Yaw);
 }
 

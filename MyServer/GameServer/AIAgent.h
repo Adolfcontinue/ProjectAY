@@ -4,6 +4,8 @@
 #include "Protocol.pb.h"
 #include "Math.h"
 
+#define TickCount 2000
+
 class AIAgent : public AgentBase
 {
 public:
@@ -32,5 +34,6 @@ private:
 	Protocol::ActorState State;
 	uint64 TargetKey;
 	Vector3 TargetPosition;
+	int64 Tick;
 };
 

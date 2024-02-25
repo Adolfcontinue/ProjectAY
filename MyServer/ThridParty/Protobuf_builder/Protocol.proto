@@ -70,3 +70,14 @@ message P2C_ReportMonsterState
 	MonsterData monster = 2;
 	TransFormData Target = 3;
 }
+
+message C2P_RequestMonsterAttack
+{
+	uint64 Attacker = 1;
+	float DamageAmout = 2;
+}
+
+message P2C_ResultMonsterAttack
+{	
+	float DamageAmount = 1;
+}

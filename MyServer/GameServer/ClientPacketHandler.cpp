@@ -62,4 +62,14 @@ bool Handler::C2P_RequestPlayerAttack(PacketSessionRef& session, Protocol::C2P_R
 	return true;
 }
 
+bool Handler::C2P_RequestMonsterAttack(PacketSessionRef& session, Protocol::C2P_RequestMonsterAttack& packet)
+{
+	UserRef user = GWorld->FindUser(session->GetSessionKey());
+	if (user == nullptr)
+		return false;
+
+	user->DoASync(&User::TakeDamage, packet.damageamout());
+	return true;
+}
+
 

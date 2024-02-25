@@ -16,10 +16,10 @@ void GridMap::CreateDefaultGridNode()
         for (int x = 0; x < MapSize; ++x)
         {
             int minX = x * TileSize;
-            int maxX = x + 1 * TileSize;
+            int maxX = (x + 1) * TileSize;
 
             int minY = y * TileSize;
-            int maxY = y + 1 * TileSize;
+            int maxY = (y + 1) * TileSize;
             GridNode* node = new GridNode(minX, minY, maxX, maxY, x, y);
             v.push_back(node);
         }

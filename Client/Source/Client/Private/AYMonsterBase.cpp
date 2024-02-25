@@ -4,7 +4,12 @@
 #include "MonsterAnimInstance.h"
 #include "PreLoder.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "MonsterAIController.h"
 #include "Protobuf/Protocol.pb.h"
+#include "PlayerStatComponent.h"
+#include "Components/WidgetComponent.h"
+#include "CharacterWidget.h"
+#include "../AYGameInstance.h"
 
 // Sets default values
 AAYMonsterBase::AAYMonsterBase()
@@ -22,12 +27,38 @@ AAYMonsterBase::AAYMonsterBase()
     GetCapsuleComponent()->SetCollisionProfileName(TEXT("Monster"));
 
     GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
+
+    AIControllerClass = AMonsterAIController::StaticClass();
+
+    Stat = CreateDefaultSubobject<UPlayerStatComponent>(TEXT("MONSTERSTAT"));
+
+    HPBar = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBARWIDGET"));
+    HPBar->SetupAttachment(GetMesh());
+    HPBar->SetRelativeLocation(FVector(0.0f, 10.0f, 180.f));
+    HPBar->SetWidgetSpace(EWidgetSpace::Screen);
+    static ConstructorHelpers::FClassFinder<UCharacterWidget> UI_HUD(TEXT("/Game/Blueprint/Widget/UI_HPBar.UI_HPBar_C"));
+    if (UI_HUD.Succeeded())
+    {
+        HPBar->SetWidgetClass(UI_HUD.Class);
+        HPBar->SetDrawSize(FVector2D(150.f, 50.f));
+    }
 }
 
 // Called when the game starts or when spawned
 void AAYMonsterBase::BeginPlay()
 {
     Super::BeginPlay();
+
+    AMonsterAIController* AIController = GetWorld()->SpawnActor<AMonsterAIController>();
+
+    if (AIController)
+        AIController->Possess(this);
+
+    auto hpWidget = Cast<UCharacterWidget>(HPBar->GetUserWidgetObject());
+    if (hpWidget != nullptr)
+    {
+        hpWidget->BindCharacterStat(Stat);
+    }
 }
 
 // Called every frame
@@ -36,9 +67,20 @@ void AAYMonsterBase::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     //
 
-    if (TargetLocation.Size() > 0)
-        Move(DeltaTime);
-    //
+    //if (CurLocation.Size() > 0)
+    //{
+    //    Move(DeltaTime);
+    //    Anim->SetAnimState(EAnimState::Move);
+    //}
+    //if (MoveDir.Size() > 0)
+    //{
+    //    SetActorLocation(MyLocation + MoveDir);
+    //    Anim->SetAnimState(EAnimState::Move);
+    //    MyLocation = GetActorLocation(); // 현재 위치 저장
+    //} 
+    /*if (CurLocation.Size() > 0)
+        Move(DeltaTime);*/
+
     if (TargetRotation.Size() > 0)
         Rotation(DeltaTime);
 }
@@ -47,6 +89,9 @@ void AAYMonsterBase::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
     Anim = Cast<UMonsterAnimInstance>(GetMesh()->GetAnimInstance());
+
+    Anim->OnMonsterAttack.AddUObject(this, &AAYMonsterBase::AttackCheck);
+
 }
 
 void AAYMonsterBase::SetActorKey(uint64 key)
@@ -59,6 +104,47 @@ uint64 AAYMonsterBase::GetActorKey()
     return ActorKey;
 }
 
+void AAYMonsterBase::SetMonseterAsset()
+{
+    //todo
+   /* switch (MonsterKey)
+    {
+    case Beholder:
+    {
+        USkeletalMesh* mesh = LoadObject<USkeletalMesh>(nullptr, TEXT("SkeletalMesh'/Game/Asset/RPGMonsterWave2PBR/Mesh/Beholder/Beholder_SK.Beholder_SK'"));
+        GetMesh()->SetSkeletalMesh(mesh);
+    }
+        break;
+    case BlackKnight:
+    {
+
+    }
+        break;
+    case Chest:
+    {
+
+    }
+        break;
+    case Crab:
+    {
+
+    }
+        break;
+    case Demon:
+    {
+
+    }
+        break;
+    case Lizard:
+    {
+
+    }
+        break;
+    default:
+        break;
+    }*/
+}
+
 void AAYMonsterBase::TakeDamage(float DamageAmount)
 {
     if (bIsStunned)
@@ -67,8 +153,10 @@ void AAYMonsterBase::TakeDamage(float DamageAmount)
         return;
     }
 
-    Health -= DamageAmount;
-    Anim->SetAnimState(EAnimState::Hit);
+    Stat->TakeDamage(DamageAmount);
+
+    //Health -= DamageAmount;
+
     if (Health <= 0.0f)
     {
         // 몬스터가 사망한 경우 처리
@@ -88,36 +176,16 @@ void AAYMonsterBase::ApplyStun(float StunDuration)
         }, StunDuration, false);
 }
 
-void AAYMonsterBase::RepMonsterState(FVector pos, Protocol::ActorState state)
-{
-    MyLocation = GetActorLocation(); // 현재 위치 저장
-    //TargetLocation = pos;   // 서버로부터 받은 목표 위치 설정
-    //LerpAlpha = 0.0f;
-
-    SetActorLocation(pos);
-
-    //CurrentRotation = GetActorQuat();   // 현재 회전 저장
-    //TargetRotation = quat; // 서버로부터 받은 목표 회전 설정
-    //SlerpAlpha = 0.0f;
-
-    FVector loc = MyLocation;
-    loc.Z = 0.f;
-    FVector targetLoc = TargetLocation;
-    targetLoc.Z = 0.f;
-
-    FVector dir = targetLoc - loc;
-    dir.Normalize();
-
-    SetActorRotation(FRotator(0.f, dir.Rotation().Yaw, 0.f));
-    Anim->SetAnimState(ConvertAnimState(state));
-}
-
 void AAYMonsterBase::RepMonsterState(FVector pos, FVector targetPos, Protocol::ActorState state)
 {
     MyLocation = GetActorLocation(); // 현재 위치 저장
+    //SetActorLocation(pos);
     CurLocation = pos;   // 서버로부터 받은 목표 위치 설정
     LerpAlpha = 0.0f;
-
+    
+    AMonsterAIController* controller = Cast<AMonsterAIController>(GetController());
+    controller->MoveToLocation(pos);
+    
     if (targetPos.Size() > 0)
     {
         TargetLocation = targetPos;
@@ -131,36 +199,17 @@ void AAYMonsterBase::RepMonsterState(FVector pos, FVector targetPos, Protocol::A
     Anim->SetAnimState(ConvertAnimState(state));
 }
 
-//
-//
-//void AAYMonsterBase::RepMonsterState(FVector pos, FVector Target, Protocol::ActorState state)
-//{
-//    CurrentLocation = pos;
-//    TargetLocation = Target;
-//    Anim->SetAnimState(ConvertAnimState(state));
-//
-//    FVector loc = CurrentLocation;
-//    loc.Z = 0.f;
-//    FVector targetLoc = TargetLocation;
-//    targetLoc.Z = 0;
-//
-//    FVector dir = targetLoc - loc;
-//    dir.Normalize();
-//
-//    SetActorRotation(FRotator(0.f, dir.Rotation().Yaw, 0.f));
-//}
-
 void AAYMonsterBase::Move(float DeltaTime)
 {
     // 보간 가중치를 증가시켜 부드러운 이동을 만듦
-    LerpAlpha += DeltaTime * 8.0f; // 2.0f는 보간 속도 조절 값
+    LerpAlpha += DeltaTime;// *20.0f; // 2.0f는 보간 속도 조절 값
 
     // 보간 가중치를 [0, 1] 범위로 클램프
     LerpAlpha = FMath::Clamp(LerpAlpha, 0.0f, 1.0f);
 
     // 선형 보간을 사용해 현재 위치를 목표 위치로 부드럽게 이동시킴
     FVector NewLocation = FMath::Lerp(MyLocation, CurLocation, LerpAlpha);
-    SetActorLocation(NewLocation);
+    SetActorLocation(CurLocation);
 }
 
 void AAYMonsterBase::Rotation(float DeltaTime)
@@ -171,6 +220,48 @@ void AAYMonsterBase::Rotation(float DeltaTime)
     // 쿼터니언 Slerp를 사용해 현재 회전을 목표 회전으로 부드럽게 이동시킴
     FQuat NewRotation = FQuat::Slerp(CurrentRotation, TargetRotation, SlerpAlpha);
     SetActorRotation(NewRotation);
+}
+
+void AAYMonsterBase::AttackCheck()
+{
+    //monster attack
+    FHitResult hitResult;
+    FCollisionQueryParams params(NAME_None, false, this);
+    bool bResult = GetWorld()->SweepSingleByChannel(
+        hitResult,
+        GetActorLocation(),
+        GetActorLocation() + GetActorForwardVector() * 200.f,
+        FQuat::Identity,
+        ECollisionChannel::ECC_GameTraceChannel4,
+        FCollisionShape::MakeSphere(50.f),
+        params
+    );
+
+    if (bResult)
+    {
+        if (IsValid(hitResult.GetActor()))
+        {
+            auto actor = hitResult.GetActor();
+
+            Protocol::C2P_RequestMonsterAttack sendPacket;
+            sendPacket.set_attacker(GetActorKey());
+            sendPacket.set_damageamout(Stat->GetAttack());
+
+            
+            UAYGameInstance* inst = Cast<UAYGameInstance>(GetGameInstance());
+            if (IsValid(inst))
+                inst->Send(sendPacket, (uint16)(EPacket_C2P_Protocol::C2P_RequestMonsterAttack));
+
+            //REPORT SERVER
+            //LOG("PLAYER ATTACK CHECK");
+
+            //FVector l = victim->GetActorLocation();
+            //FVector l2 = GetActorLocation();
+
+            
+        }
+    }
+
 }
 
 EAnimState AAYMonsterBase::ConvertAnimState(Protocol::ActorState state)

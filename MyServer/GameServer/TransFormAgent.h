@@ -26,6 +26,7 @@ public:
 	Protocol::TransFormData* GetTransForm();
 	Vector3 GetPosition();
 	float GetYaw();
+	void AddPosition(Vector3 other);
 
 private:
 	Protocol::TransFormData* TransForm;

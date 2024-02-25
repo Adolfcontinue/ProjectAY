@@ -18,6 +18,10 @@ public:
 	float GetMaxHP();
 	float GetHP();
 
+public:
+	void TakeDamage(float dmg);
+
+
 private:
 	int64 Level;
 	int64 Exp;
