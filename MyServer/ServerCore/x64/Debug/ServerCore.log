@@ -1,5 +1,4 @@
 ﻿  pch.cpp
-  CSVReader.cpp
   Allocator.cpp
   BufferReader.cpp
   BufferWriter.cpp

@@ -53,7 +53,6 @@ void ThreadManager::InitTLS()
 
 void ThreadManager::DestroyTLS()
 {
-
 }
 
 void ThreadManager::DoGlobalQueueWork()

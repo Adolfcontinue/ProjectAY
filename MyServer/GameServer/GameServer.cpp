@@ -11,6 +11,13 @@
 #include "DBConnectionPool.h"
 #include "QueryRunManager.h"
 #include "World.h"
+#include "TableManager.h"
+
+#include "TableData.h"
+#include "MonsterTable.h"
+
+
+#define _CRTDBG_MAP_ALLOC
 
 enum
 {
@@ -30,6 +37,11 @@ void Process(ServerServiceRef& sevice)
 	}
 }
 
+class Test
+{
+	int a = 0;
+};
+
 int main()
 {
 	std::cout << "Server Start .. !" << std::endl;
@@ -37,7 +49,10 @@ int main()
 	GWorld->DoTimer(1000, &World::Update);
 
 	ClientPacketHandler::Init();
+	TableManager::Instance().Init();
 	
+	//MonsterTableData data = TABLE.GetTableData<MonsterTableData, MonsterTable>("MonsterTa1ble", 1001);
+
 	//todo createmonster
 	GWorld->Init();
 	
@@ -60,10 +75,7 @@ int main()
 			});
 	}
 
-
-
-	//Process(service);
-
 	GThreadManager->Join();
+	return 0;
 }
 

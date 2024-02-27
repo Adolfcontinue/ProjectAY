@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "Types.h"
 
 class CSVReader
 {
@@ -34,11 +35,22 @@ public:
 	const std::vector<std::string>& GetRow(size_t rowIndex) const;
 	const std::string& GetCell(int rowIndex, int columnIndex) const;
 	const std::vector<std::string>& operator[](size_t rowIndex) const;
-
+	const void GetCellData(std::string columnName, int& rowIndex, int32& refVal) const;
+	const void GetCellData(std::string columnName, int& rowIndex, int64& refVal) const;
+	const void GetCellData(std::string columnName, int& rowIndex, float& refVal) const;
+	const void GetCellData(std::string columnName, int& rowIndex, double& refVal) const;
+	const void GetCellData(std::string columnName, int& rowIndex, std::string& refVal) const;
+	
 	iterator begin() const;
 	iterator end() const;
+
+private:
+	const int ColumnIndex(std::string& columnName) const;
+
 private:
 	std::vector<std::vector<std::string>> rows;
+	std::map<std::string, std::vector<std::string>> columns;
+	
 };
 
 #endif

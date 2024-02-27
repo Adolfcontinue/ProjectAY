@@ -25,7 +25,7 @@ private:
 	double Health;
 	double Power;
 	uint64 TargetKey;
-	std::shared_ptr<AIAgent> AI;
+	std::shared_ptr<AIAgent> m_AI; 
 };
 
 

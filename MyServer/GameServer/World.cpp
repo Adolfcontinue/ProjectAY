@@ -131,7 +131,7 @@ void World::CreateMonster()
 	float x = Random::GetRandom(50, 5500);
 	float y = Random::GetRandom(50, 5500);
 	float z = 70.f;
-	
+	int monsterKey = Random::GetRandom(1001, 1006);
 	x = 800;
 	y = 1500;
 

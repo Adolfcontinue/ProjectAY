@@ -50,6 +50,7 @@ void AIAgent::Update()
 		UpdateMove();
 		break;
 	case Protocol::DEAD:
+		UpdateDie();
 		break;
 	default:
 		break;
@@ -81,17 +82,6 @@ bool AIAgent::CheckTargetDistance(int distance)
 	PathFinder finder;
 	bool retVal = finder.IsPathFinder(pos, TargetPosition, GWorld->GetGridMap());
 	return retVal;
-
-
-	//pos.Z = 0;
-	//Vector3 targetPos = TargetPosition;
-	//targetPos.Z = 0;
-	//Vector3 direction = targetPos - pos;
-	//int64 dirSize = direction.Size();
-	//if (dirSize > distance)
-	//	return true;
-	//	
-	//return false;
 }
 
 void AIAgent::UpdateIDLE()
@@ -189,12 +179,18 @@ void AIAgent::UpdateFSM()
 			SetState(Protocol::ActorState::IDlE);
 			break;
 		case Protocol::DEAD:
-			SetState(Protocol::ActorState::IDlE);
 			break;
 		default:
 			break;
 		}
 	}
+}
+
+void AIAgent::UpdateDie()
+{
+	Owner.lock()->MoveStop();
+	Owner.lock()->Enable();
+	//sendPacket;
 }
 
 void AIAgent::SetTarget(uint64 target)

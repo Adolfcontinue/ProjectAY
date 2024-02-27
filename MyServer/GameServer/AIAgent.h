@@ -29,6 +29,7 @@ private:
 	void UpdateAttack();
 	void UpdateHit();
 	void UpdateFSM();
+	void UpdateDie();
 
 private:
 	Protocol::ActorState State;

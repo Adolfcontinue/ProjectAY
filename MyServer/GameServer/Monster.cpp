@@ -22,23 +22,25 @@ void Monster::Init(int64 actorKey, eMonsterType monsterType, float x, float y, f
 	SetActorKey(actorKey);
 	SetMonsterType(monsterType);
 	SetActorState(Protocol::ActorState::IDlE);
-	TransForm = MakeShared<TransFormAgent>(static_pointer_cast<Monster>(shared_from_this()));
-	TransForm->Init(x, y, z, yaw);
-	AI = MakeShared<AIAgent>(static_pointer_cast<Monster>(shared_from_this()));
-
+	m_TransForm = MakeShared<TransFormAgent>(static_pointer_cast<Monster>(shared_from_this()));
+	m_TransForm->Init(x, y, z, yaw);
+	m_AI = MakeShared<AIAgent>(static_pointer_cast<Monster>(shared_from_this()));
+	SetMonsterAbils();
 }
 
 void Monster::SetMonsterAbils()
 {
-	MaxHealth = 500;
+	MaxHealth = 100;
 	Health = MaxHealth;
 	Power = 10;
 }
 
 void Monster::TakeDamage(uint64 attacker, float damageAmount)
 {
+	m_AI->SetTarget(attacker);
 	Health -= damageAmount;
-	AI->DoASync(&AIAgent::SetTarget, attacker);
+	if (Health <= 0)
+		m_AI->SetState(Protocol::ActorState::DEAD);
 
 	Protocol::P2C_ReportPlayerAttack sendPacket;
 	sendPacket.set_attacker(attacker);
@@ -50,10 +52,13 @@ void Monster::TakeDamage(uint64 attacker, float damageAmount)
 
 void Monster::Update()
 {
-	AI->Update();
-	TransForm->Update();
+	if (!IsEnable())
+		return;
 
-	if (AI->GetState() != Protocol::ActorState::IDlE)
+	m_AI->Update();
+	m_TransForm->Update();
+
+	if (m_AI->GetState() != Protocol::ActorState::IDlE)
 	{
 		Protocol::P2C_ReportMonsterState sendPacket;
 		sendPacket.set_actorkey(GetActorKey());
@@ -63,10 +68,10 @@ void Monster::Update()
 
 		Protocol::TransFormData* monsterTransform = GetTransFormAgent()->GetTransForm();
 		transformData->CopyFrom(*monsterTransform);
-		monsterData->set_state(AI->GetState());
-		target->set_x(AI->GetTargerPosition().X);
-		target->set_y(AI->GetTargerPosition().Y);
-		target->set_z(AI->GetTargerPosition().Z);
+		monsterData->set_state(m_AI->GetState());
+		target->set_x(m_AI->GetTargerPosition().X);
+		target->set_y(m_AI->GetTargerPosition().Y);
+		target->set_z(m_AI->GetTargerPosition().Z);
 		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(sendPacket);
 		GWorld->BroadCast(sendBuffer);
 	}

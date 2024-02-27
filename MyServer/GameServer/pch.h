@@ -15,3 +15,5 @@
 using UserRef = std::shared_ptr<class User>;
 using MonsterRef = std::shared_ptr<class Monster>;
 using ActorRef = std::shared_ptr<class Actor>;
+
+#define TABLE TableManager::Instance()

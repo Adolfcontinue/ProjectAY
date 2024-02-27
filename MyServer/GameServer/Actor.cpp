@@ -4,6 +4,7 @@
 
 Actor::Actor() : m_ActorKey(-1), m_Type(eActorType::User), m_State(Protocol::ActorState::IDlE)
 {
+	m_Enable = true;
 }
 
 Actor::~Actor()
@@ -27,17 +28,17 @@ void Actor::SetActorState(Protocol::ActorState state)
 
 void Actor::SetDirection(Vector3 direction)
 {
-	TransForm->SetDirection(direction);
+	m_TransForm->SetDirection(direction);
 }
 
 void Actor::MoveStop()
 {
-	TransForm->SetDirection(0, 0, 0);
+	m_TransForm->SetDirection(0, 0, 0);
 }
 
 std::shared_ptr<TransFormAgent> Actor::GetTransFormAgent()
 {
-	return TransForm;
+	return m_TransForm;
 }
 
 Protocol::ActorState Actor::GetActorState()
@@ -53,6 +54,16 @@ int64 Actor::GetActorKey()
 eActorType Actor::GetType()
 {
 	return m_Type;
+}
+
+bool Actor::IsEnable()
+{
+	return m_Enable;
+}
+
+void Actor::Enable()
+{
+	m_Enable = !m_Enable;
 }
 
 

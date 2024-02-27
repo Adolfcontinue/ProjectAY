@@ -24,12 +24,16 @@ public:
 	Protocol::ActorState GetActorState();
 	int64 GetActorKey();
 	eActorType GetType();
+	bool IsEnable();
+	void Enable();
+
 
 protected:
 	int64	m_ActorKey;
 	eActorType m_Type;
 	Protocol::ActorState m_State;
-	std::shared_ptr<TransFormAgent> TransForm;
-	Vector3 Direction;
+	std::shared_ptr<TransFormAgent> m_TransForm;
+	Vector3 m_Direction;
+	bool m_Enable;
 };
 

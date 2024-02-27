@@ -35,6 +35,6 @@ private:
 	int32 _Level;
 	int32 _Exp;
 
-	std::shared_ptr<StatusAgent> Status;
+	std::shared_ptr<StatusAgent> m_Status;
 };
 

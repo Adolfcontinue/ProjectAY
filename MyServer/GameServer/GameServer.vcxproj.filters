@@ -37,6 +37,9 @@
     <Filter Include="PathFinder">
       <UniqueIdentifier>{dcef848f-be00-496d-8606-024c6b6aa706}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Table">
+      <UniqueIdentifier>{0f6a8eac-03ab-4980-9385-d83f880a43ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -115,6 +118,23 @@
       <Filter>PathFinder</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="MonsterTable.cpp">
+      <Filter>Table</Filter>
+    </ClCompile>
+    <ClCompile Include="TableManager.cpp">
+      <Filter>Table</Filter>
+    </ClCompile>
+    <ClCompile Include="CSVReader.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Enum.cpp" />
+    <ClCompile Include="DefineTable.cpp">
+      <Filter>Table</Filter>
+    </ClCompile>
+    <ClCompile Include="TableData.cpp">
+      <Filter>Table</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -191,6 +211,22 @@
       <Filter>PathFinder</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="MonsterTable.h">
+      <Filter>Table</Filter>
+    </ClInclude>
+    <ClInclude Include="TableManager.h">
+      <Filter>Table</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineTable.h">
+      <Filter>Table</Filter>
+    </ClInclude>
+    <ClInclude Include="TableData.h">
+      <Filter>Table</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelTable.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\ThridParty\Protobuf_builder\Enum.proto">

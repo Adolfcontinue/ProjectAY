@@ -1,39 +1,4 @@
-﻿  AIAgent.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Actor.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  AgentBase.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  ClientPacketHandler.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\ClientPacketHandler.cpp(26,28): warning C4244: '인수': 'float'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Collision.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  DefineTable.cpp
   GameServer.cpp
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -41,72 +6,10 @@ C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C424
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameSession.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GridMap.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\GridMap.cpp(36,16): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\GridMap.cpp(37,16): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GridNode.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Math.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Monster.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  PathFinder.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  ProtobufHelper.cpp
-  StatusAgent.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  TransFormAgent.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  User.cpp
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(61,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(195,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(203,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(235,30): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  LevelTable.cpp
+  MonsterTable.cpp
+  TableData.cpp
+  TableManager.cpp
   World.cpp
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(19,2): warning C4091: 'static ': 변수를 선언하지 않으면 'Math' 왼쪽은 무시됩니다.
 C:\Users\godye\Desktop\MyProject\MyServer\GameServer\Math.h(44,14): warning C4244: 'return': 'double'에서 'int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -125,8 +28,6 @@ C:\Users\godye\Desktop\MyProject\MyServer\GameServer\World.cpp(132,10): warning 
               T=int
           ]
   코드를 생성하고 있습니다...
-  Enum.pb.cc
-  Protocol.pb.cc
-  Struct.pb.cc
-  코드를 생성하고 있습니다...
+  CSVReader.cpp
+C:\Users\godye\Desktop\MyProject\MyServer\GameServer\CSVReader.cpp(173,14): warning C4244: 'return': '__int64'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameServer.vcxproj -> C:\Users\godye\Desktop\MyProject\MyServer\Binary\Debug\GameServer.exe

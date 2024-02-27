@@ -162,6 +162,17 @@ CSVReader::iterator CSVReader::end() const
 	return iterator(rows.end());
 }
 
+const int CSVReader::ColumnIndex(std::string& columnName) const
+{
+	const std::vector<std::string>& row = GetRow(0);
+	auto iter = std::find(row.begin(), row.end(), columnName);
+
+	if (iter == row.end())
+		return -1;
+
+	return iter - row.begin();
+}
+
 const std::vector<std::string>& CSVReader::GetRow(size_t rowIndex) const
 {
 	if (0 > rowIndex || rows.size() <= rowIndex)
@@ -174,6 +185,86 @@ const std::vector<std::string>& CSVReader::GetRow(size_t rowIndex) const
 const std::vector<std::string>& CSVReader::operator [] (size_t rowIndex) const
 {
 	return GetRow(rowIndex);
+}
+
+const void CSVReader::GetCellData(std::string columnName, int& rowIndex, int32& refVal) const
+{
+	if (rowIndex < 1)
+		return;
+
+	int columnIndex = ColumnIndex(columnName);
+	if (columnIndex == -1)
+		return;
+
+	auto value = GetCell(rowIndex, columnIndex);
+	if (value.empty())
+		return;
+
+	refVal = std::stoi(value);
+}
+
+const void CSVReader::GetCellData(std::string columnName, int& rowIndex, int64& refVal) const
+{
+	if (rowIndex < 1)
+		return;
+
+	int columnIndex = ColumnIndex(columnName);
+	if (columnIndex == -1)
+		return;
+
+	auto value = GetCell(rowIndex, columnIndex);
+	if (value.empty())
+		return;
+
+	refVal = _atoi64(value.c_str());
+}
+
+const void CSVReader::GetCellData(std::string columnName, int& rowIndex, float& refVal) const
+{
+	if (rowIndex < 1)
+		return;
+
+	int columnIndex = ColumnIndex(columnName);
+	if (columnIndex == -1)
+		return;
+
+	auto value = GetCell(rowIndex, columnIndex);
+	if (value.empty())
+		return;
+
+	refVal = std::stof(value);
+}
+
+const void CSVReader::GetCellData(std::string columnName, int& rowIndex, double& refVal) const
+{
+	if (rowIndex < 1)
+		return;
+
+	int columnIndex = ColumnIndex(columnName);
+	if (columnIndex == -1)
+		return;
+
+	auto value = GetCell(rowIndex, columnIndex);
+	if (value.empty())
+		return;
+
+	refVal = std::stod(value);
+}
+
+const void CSVReader::GetCellData(std::string columnName, int& rowIndex, std::string& refVal) const
+{
+	if (rowIndex < 1)
+		return;
+
+	int columnIndex = ColumnIndex(columnName);
+	if (columnIndex == -1)
+		return;
+
+	auto value = GetCell(rowIndex, columnIndex);
+	if (value.empty())
+		return;
+
+	refVal = value;
 }
 
 const std::string& CSVReader::GetCell(int rowIndex, int columnIndex) const

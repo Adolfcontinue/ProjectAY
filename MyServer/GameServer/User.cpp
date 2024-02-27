@@ -26,11 +26,11 @@ void User::Init(int64 sessionKey, string id, string pw, float x, float y, float 
 	SetID(id);
 	SetPW(pw);
 	SetSessionKey(sessionKey);
-	TransForm = MakeShared<TransFormAgent>(static_pointer_cast<User>(shared_from_this()));
-	Status = MakeShared<StatusAgent>(static_pointer_cast<User>(shared_from_this()));
+	m_TransForm = MakeShared<TransFormAgent>(static_pointer_cast<User>(shared_from_this()));
+	m_Status = MakeShared<StatusAgent>(static_pointer_cast<User>(shared_from_this()));
 
-	Status->Init(level, exp, dmg, maxhp);
-	TransForm->Init(x, y, z, yaw);
+	m_Status->Init(level, exp, dmg, maxhp);
+	m_TransForm->Init(x, y, z, yaw);
 }
 
 void User::ReqWorldData()
@@ -72,7 +72,7 @@ void User::ReqWorldData()
 
 void User::TakeDamage(float dmg)
 {
-	Status->TakeDamage(dmg);
+	m_Status->TakeDamage(dmg);
 	 
 	//result;
 	Protocol::P2C_ResultMonsterAttack sendPacket;
@@ -88,5 +88,5 @@ void User::TakeDamage(float dmg)
 
 std::shared_ptr<StatusAgent> User::GetStatus()
 {
-	return Status;
+	return m_Status;
 }

@@ -1,9 +1,12 @@
 #pragma once
-#include "Singleton.h"
 
+class TableBase : public enable_shared_from_this<TableBase>
+{
 
-template <typename Type, typename TKey, typename TValue>
-class Table : public Singleton<Type>
+};
+
+template <typename TKey, typename TValue>
+class Table : public TableBase
 {
 public:
     Table()
@@ -14,12 +17,11 @@ public:
     {
         for (auto iter = _table.begin(); iter != _table.end(); iter++)
         {
-            iter->second = nullptr;
         }
     }
 
 public:
-    virtual void Init() override {}
+    virtual void Init(string path = "") {}
 
 protected:
     std::unordered_map<TKey, TValue> _table;
@@ -44,7 +46,7 @@ public:
     {
         auto value = _table.find(key);
         if (value == _table.end())
-            return nullptr;
+            return TValue();
 
         return value->second;
     }
